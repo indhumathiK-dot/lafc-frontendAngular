@@ -231,6 +231,7 @@ export class DeliveryComponent implements OnInit {
         country: !this.addressForm.value.country,
         state: !this.addressForm.value.state,
         pincode: !this.addressForm.value.pincode,
+        phone:  this.addressForm.value.phone ? !(this.digits_count(Number(this.addressForm.value.phone)) > 7 && this.digits_count(Number(this.addressForm.value.phone)) < 32) : false
       }
       return;
     } else {
@@ -264,4 +265,16 @@ export class DeliveryComponent implements OnInit {
   checkValidationForm(type) {
     this.validationCheck[type] = false;
   }
+  digits_count(n) {
+    var count = 0;
+    if (n >= 1) ++count;
+
+    while (n / 10 >= 1) {
+      n /= 10;
+      ++count;
+    }
+
+    return count;
+  }
+
 }

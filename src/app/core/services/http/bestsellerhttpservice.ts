@@ -18,7 +18,7 @@ import { environment } from 'src/environments/environment';
 export class BestSellerHttpService {
   private baseUrl = environment.base_url;
   public token: string;
-  private empDetailSubject = new BehaviorSubject(null);
+  public addressUpdate = new BehaviorSubject(false);
   public showErrorMessage = '';
   public newErrorMessage = [];
   private currentUserSubject: BehaviorSubject<any>;

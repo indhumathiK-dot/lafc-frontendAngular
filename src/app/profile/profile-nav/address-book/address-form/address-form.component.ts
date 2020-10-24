@@ -64,6 +64,7 @@ export class AddressFormComponent implements OnInit {
       country: false,
       state: false,
       pincode: false,
+      phone: false
     }
   }
 
@@ -158,11 +159,12 @@ export class AddressFormComponent implements OnInit {
       this.validationCheck = {
         firstname: !this.addressForm.value.firstname,
         lastname: !this.addressForm.value.lastname,
-        address: !this.addressForm.value.address || this.addressForm.value.address.length < 3 || this.addressForm.value.address.length > 128,
-        city: !this.addressForm.value.city || this.addressForm.value.city.length < 3 || this.addressForm.value.city.length > 128,
+        address: !this.addressForm.value.address || !(this.addressForm.value.address.length > 3 && this.addressForm.value.address.length < 128),
+        city: !this.addressForm.value.city || !(this.addressForm.value.city.length > 3 && this.addressForm.value.city.length < 128),
         country: !this.addressForm.value.country.length,
         state: !this.addressForm.value.state.length,
         pincode: !this.addressForm.value.pincode,
+        phone:  this.addressForm.value.phone ? !(this.digits_count(Number(this.addressForm.value.phone)) > 7 && this.digits_count(Number(this.addressForm.value.phone)) < 32) : false
       }
       return;
     } else {
@@ -199,6 +201,18 @@ export class AddressFormComponent implements OnInit {
 
   checkValidationForm(type) {
     this.validationCheck[type] = false;
+  }
+
+  digits_count(n) {
+    var count = 0;
+    if (n >= 1) ++count;
+
+    while (n / 10 >= 1) {
+      n /= 10;
+      ++count;
+    }
+
+    return count;
   }
 
 }

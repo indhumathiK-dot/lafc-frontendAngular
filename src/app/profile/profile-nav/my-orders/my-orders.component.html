@@ -42,7 +42,7 @@
     </div>
     <div fxFlex="48" fxFlex.lt-sm="100">
       <div class="checkout-row">
-        <a class="checkout cart-button" [routerLink]="'/account/address'">
+        <a class="checkout cart-button" (click)="addressNavigate()">
           View Addresses({{address?.length}})
         </a>
       </div>

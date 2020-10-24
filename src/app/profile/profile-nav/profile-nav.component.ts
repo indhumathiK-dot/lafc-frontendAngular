@@ -1,5 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
+import {BestSellerHttpService} from "../../core/services/http/bestsellerhttpservice";
 
 @Component({
   selector: 'app-profile-nav',
@@ -8,7 +9,13 @@ import { Router, NavigationEnd } from '@angular/router';
 })
 export class ProfileNavComponent implements OnInit {
   account: number;
-  constructor(public router: Router) {
+  constructor(public router: Router, private bestSellerHttpService: BestSellerHttpService) {
+    this.bestSellerHttpService.addressUpdate.subscribe(res => {
+      if(res) {
+        this.account = 2;
+        this.bestSellerHttpService.addressUpdate.next(false);
+      }
+    });
   }
 
   ngOnInit() {

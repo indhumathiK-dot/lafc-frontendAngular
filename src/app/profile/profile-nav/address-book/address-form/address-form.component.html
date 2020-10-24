@@ -105,10 +105,13 @@
     </div>
 
     <label class="label-name top-padding">Phone</label>
-    <mat-form-field appearance="outline" class="w-100 address-form">
+    <mat-form-field appearance="outline" class="w-100 address-form mat-bottom-remove" [ngClass]="validationCheck['phone'] ? 'errorClass' : ''">
       <input type="tel" matInput placeholder="Phone" formControlName="phone"
-             ng2TelInput [ng2TelInputOptions]="cell1TelInput">
+             ng2TelInput [ng2TelInputOptions]="cell1TelInput" (keydown)="checkValidationForm('phone')">
     </mat-form-field>
+
+    <span *ngIf="validationCheck['phone']" class="password-check">Please enter valid phone number </span>
+    <br>
 
       <mat-checkbox formControlName="defaultAddress">Set as default address</mat-checkbox>
 

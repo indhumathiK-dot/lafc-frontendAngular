@@ -347,3 +347,9 @@ div.scrollmenu a {
   color: #212121;
   font-style: italic;
 }
+.share-size {
+  font-size: 13px;
+}
+.desc-pad {
+  margin-bottom: 30px;
+}

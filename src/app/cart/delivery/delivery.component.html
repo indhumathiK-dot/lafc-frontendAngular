@@ -94,7 +94,7 @@
 
           <div class="col-md-4 row-space">
             <label class="label-name">Country*</label>
-            <mat-form-field appearance="outline" class="w-100 delivery" [ngClass]="validationCheck['country'] ? 'errorClass' : ''">
+            <mat-form-field appearance="outline" class="w-100 delivery mat-bottom-remove" [ngClass]="validationCheck['country'] ? 'errorClass' : ''">
               <select matNativeControl formControlName="country" (change)="onSelectCountry(addressForm.value.country)">
                 <option value=""></option>
                 <option [value]="country.value" *ngFor="let country of countriesList">{{country.label}}</option>
@@ -106,7 +106,7 @@
 
           <div class="col-md-4 row-space">
             <label class="label-name parellel-field">State*</label>
-            <mat-form-field appearance="outline"  class="w-100 delivery parellel-field" [ngClass]="validationCheck['state'] ? 'errorClass' : ''">
+            <mat-form-field appearance="outline"  class="w-100 delivery parellel-field mat-bottom-remove" [ngClass]="validationCheck['state'] ? 'errorClass' : ''">
               <select matNativeControl formControlName="state" (change)="checkValidationForm('state')">
                 <option value=""></option>
                 <option [value]="state.value" *ngFor="let state of statesList">{{state.label}}</option>
@@ -128,7 +128,8 @@
 
           <div class="col-md-4 row-space">
           <label class="label-name parellel-field">Zip code*</label>
-          <mat-form-field appearance="outline" class="parellel-field w-100 zip-pad-remove zip-code delivery" [ngClass]="validationCheck['pincode'] ? 'errorClass' : ''">
+          <mat-form-field appearance="outline" class="parellel-field w-100 zip-pad-remove zip-code delivery mat-bottom-remove"
+                          [ngClass]="validationCheck['pincode'] ? 'errorClass' : ''">
             <input matInput formControlName="pincode" (keydown)="checkValidationForm('pincode')">
           </mat-form-field>
             <span *ngIf="validationCheck['pincode']" class="password-check parellel-field">Please enter zip </span>
@@ -136,9 +137,14 @@
         </div>
 
         <label class="label-name">Phone</label>
-          <mat-form-field appearance="outline" class="w-100 delivery">
-            <input type="tel" ng2TelInput [ng2TelInputOptions]="cell1TelInput" matInput formControlName="phone">
+          <mat-form-field appearance="outline" class="w-100 delivery mat-bottom-remove botton-padding"
+                          [ngClass]="validationCheck['phone'] ? 'errorClass' : ''">
+            <input type="tel" ng2TelInput [ng2TelInputOptions]="cell1TelInput" matInput formControlName="phone"
+                   (keydown)="checkValidationForm('phone')">
           </mat-form-field>
+
+        <span *ngIf="validationCheck['phone']" class="password-check">Please enter valid phone number </span>
+        <br>
 
       </form>
     </div>

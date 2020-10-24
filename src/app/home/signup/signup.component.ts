@@ -180,10 +180,10 @@ export class SignupComponent implements OnInit {
           this.validationCheck = {
             firstname: !this.registerForm.value.firstname,
             lastname: !this.registerForm.value.lastname,
-            phoneNumber: !this.registerForm.value.phoneNumber,
+            phoneNumber: !this.registerForm.value.phoneNumber || (this.digits_count(this.registerForm.value.phoneNumber) > 7 && this.digits_count(this.registerForm.value.phoneNumber) < 32),
             email: !this.registerForm.value.email,
-            address: !this.registerForm.value.address || this.registerForm.value.address.length < 3 || this.registerForm.value.city.length > 128,
-            city: !this.registerForm.value.city || this.registerForm.value.city.length < 3 || this.registerForm.value.address.city > 128,
+            address: !this.registerForm.value.address || (this.registerForm.value.address.length > 3 && this.registerForm.value.address.length < 128),
+            city: !this.registerForm.value.city || (this.registerForm.value.city.length > 3 && this.registerForm.value.city.length < 128),
             country: !this.registerForm.value.country,
             state: !this.registerForm.value.state,
             zip: !this.registerForm.value.zip,
@@ -235,10 +235,10 @@ export class SignupComponent implements OnInit {
           this.validationCheck = {
             firstname: !this.registerForm.value.firstname,
             lastname: !this.registerForm.value.lastname,
-            phoneNumber: !this.registerForm.value.phoneNumber || ((this.registerForm.value.phoneNumber).toString).length < 3 || ((this.registerForm.value.phoneNumber).toString).length > 32,
+            phoneNumber: !this.registerForm.value.phoneNumber && (this.digits_count(this.registerForm.value.phoneNumber) > 7 && this.digits_count(this.registerForm.value.phoneNumber) < 32),
             email: !this.registerForm.value.email,
-            password: !this.registerForm.value.password || this.registerForm.value.password.length < 6 || this.registerForm.value.password.length > 20,
-            confirmPassword: !(this.registerForm.value.confirmPassword && this.registerForm.value.password === this.registerForm.value.confirmPassword) || this.registerForm.value.confirmPassword.length < 4 || this.registerForm.value.confirmPassword.length > 20,
+            password: !(this.registerForm.value.password && (this.registerForm.value.password.length > 6 && this.registerForm.value.password.length < 20)),
+            confirmPassword: !((this.registerForm.value.confirmPassword && this.registerForm.value.password === this.registerForm.value.confirmPassword) && (this.registerForm.value.confirmPassword.length > 6 && this.registerForm.value.confirmPassword.length < 20)),
             address: !this.registerForm.value.address,
             city: !this.registerForm.value.city,
             country: !this.registerForm.value.country,
@@ -355,15 +355,15 @@ export class SignupComponent implements OnInit {
     return item.code.toLocaleLowerCase().indexOf(term) > -1 || item.countryName.toLocaleLowerCase() === term;
   }
 
-  onClear() {
+  digits_count(n) {
+    var count = 0;
+    if (n >= 1) ++count;
 
-  }
+    while (n / 10 >= 1) {
+      n /= 10;
+      ++count;
+    }
 
-  onFocus($event: any) {
-
-  }
-
-  onKeyUP($event: KeyboardEvent) {
-
+    return count;
   }
 }

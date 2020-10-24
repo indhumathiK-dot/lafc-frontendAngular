@@ -347,3 +347,12 @@ div.scrollmenu a {
   color: #212121;
   font-style: italic;
 }
+@media screen and (max-width: 765px){
+  .right-adjust{
+    padding-right: 0%;
+    padding-left: 0%;
+  }
+  .padding-between {
+    padding-right: 15px;
+}
+}

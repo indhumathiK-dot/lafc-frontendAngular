@@ -353,3 +353,12 @@ div.scrollmenu a {
 .desc-pad {
   margin-bottom: 30px;
 }
+@media screen and (max-width: 765px){
+  .right-adjust{
+    padding-right: 0%;
+    padding-left: 0%;
+  }
+  .padding-between {
+    padding-right: 15px;
+}
+}

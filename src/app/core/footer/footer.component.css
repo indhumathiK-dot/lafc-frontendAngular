@@ -13,6 +13,9 @@
   text-align: right;
   font-size: 14px;
 }
+.footer-copyright{
+  text-align: left;
+}
 .footer-menu {
   display: inline;
   list-style: none;
@@ -81,4 +84,12 @@
     border-right:2px;
     display: inline-block
   }
+}
+@media screen and (max-width: 765px) {
+.page-footer.cust-footer{
+  width: 100%;
+}
+.footer-copyright{
+  text-align: center;
+}
 }

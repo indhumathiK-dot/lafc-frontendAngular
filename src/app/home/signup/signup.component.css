@@ -153,3 +153,34 @@
   padding-right: 0;
   padding-left: 0;
 }
+.fd-sep{
+  padding-right: 2%;
+}
+@media screen and (max-width: 765px) {
+  .head-font{
+    text-align: center;
+  }
+  .footer-padding {
+    padding-bottom: 0px;
+}
+.detail-padding {
+    padding-left: 0px;
+}
+.form-width {
+  width: 100%;
+}
+.page-wrapper{
+  width: 100%;
+  float: unset;
+}
+.parellel-field{
+  padding-left: 0px;
+  padding-bottom:12px;
+}
+.fd-mob{
+  padding-bottom: 12px;
+}
+.fd-sep{
+  padding-right: 2%;
+}
+}

@@ -43,3 +43,14 @@
 .sidebar-move {
   overflow: auto;
 }
+@media screen and (max-width: 765px) {
+.page-wrapper{
+  width: 100%;
+  float: unset;
+  padding: 20px;
+}
+.header-icon{
+  padding: 20px;
+  color: #333333;
+}
+}

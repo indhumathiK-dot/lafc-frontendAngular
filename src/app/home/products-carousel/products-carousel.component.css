@@ -30,6 +30,9 @@
   font-size: 15px;
   color: #414141;
 }
+.apply-wholesale {
+  font-size: 14px;
+}
 
 ::ng-deep .price{
   color: #ED2F2F;

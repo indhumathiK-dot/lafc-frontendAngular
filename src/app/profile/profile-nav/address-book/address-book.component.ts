@@ -37,7 +37,8 @@ export class AddressBookComponent implements OnInit {
 
   constructor(public bestSellerHttpService: BestSellerHttpService,
      public modalService: BsModalService,
-              private router: Router) {}
+              private router: Router) {
+  }
 
   ngOnInit() {
     let user = localStorage.getItem('user');

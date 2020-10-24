@@ -22,7 +22,8 @@ export class MyOrdersComponent implements OnInit {
   public defaultAddress: {};
 
   constructor(private bestSellerHttpService: BestSellerHttpService,
-              private ordersService: OrdersService) {
+              private ordersService: OrdersService,
+              private router: Router) {
   }
 
   ngOnInit() {
@@ -51,4 +52,8 @@ export class MyOrdersComponent implements OnInit {
       });
   }
 
+  addressNavigate() {
+    this.bestSellerHttpService.addressUpdate.next(true);
+    this.router.navigate(['/account/address']);
+  }
 }

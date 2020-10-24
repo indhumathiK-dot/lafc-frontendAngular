@@ -360,3 +360,8 @@
 ::ng-deep .quick-option-view.mat-form-field-appearance-outline .mat-form-field-infix {
   padding: 0 0 0 3px  !important;
 }
+.stock-status {
+  font-size: 13px;
+  color: #212121;
+  font-style: italic;
+}

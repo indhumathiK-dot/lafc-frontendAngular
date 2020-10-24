@@ -36,44 +36,52 @@
 <!--          </ng-select>-->
 <!--        </div>-->
 
-        <div class="w-100">
-          <div class="w-50 display">
+        <div class="row col-md-12 row-space botton-padding">
+          <div class="col-md-6 row-space">
         <label class="label-name">First Name*</label>
-          <mat-form-field appearance="outline" class="w-100 delivery" [ngClass]="validationCheck['firstname'] ? 'errorClass' : ''">
+          <mat-form-field appearance="outline" class="w-100 delivery mat-bottom-remove" [ngClass]="validationCheck['firstname'] ? 'errorClass' : ''">
             <input matInput formControlName="firstname" (keydown)="checkValidationForm('firstname')">
           </mat-form-field>
+            <span *ngIf="validationCheck['firstname']" class="password-check">Please enter first name </span>
           </div>
 
-          <div class="w-50 display">
+          <div class="col-md-6 row-space">
         <label class="label-name parellel-field">Last Name*</label>
-          <mat-form-field appearance="outline" class="w-100 parellel-field delivery" [ngClass]="validationCheck['lastname'] ? 'errorClass' : ''">
+          <mat-form-field appearance="outline" class="w-100 parellel-field delivery mat-bottom-remove" [ngClass]="validationCheck['lastname'] ? 'errorClass' : ''">
             <input matInput formControlName="lastname" (keydown)="checkValidationForm('lastname')">
           </mat-form-field>
+            <span *ngIf="validationCheck['lastname']" class="password-check parellel-field">Please enter last name </span>
           </div>
         </div>
 
         <label class="label-name">Company</label>
-          <mat-form-field appearance="outline" class="w-100 delivery">
+          <mat-form-field appearance="outline" class="w-100 delivery mat-bottom-remove botton-padding">
             <input matInput formControlName="company">
           </mat-form-field>
 
+        <div class="botton-padding">
         <label class="label-name">Address*</label>
-          <mat-form-field appearance="outline" class="w-100 delivery" [ngClass]="validationCheck['address'] ? 'errorClass' : ''">
+          <mat-form-field appearance="outline" class="w-100 delivery mat-bottom-remove" [ngClass]="validationCheck['address'] ? 'errorClass' : ''">
             <input matInput formControlName="address" (keydown)="checkValidationForm('address')">
           </mat-form-field>
+        <span *ngIf="validationCheck['address']" class="password-check">Please enter address </span>
+        </div>
 
         <label class="label-name">Apartment, suite, etc (optional)</label>
-          <mat-form-field appearance="outline" class="w-100 delivery">
+          <mat-form-field appearance="outline" class="w-100 delivery mat-bottom-remove botton-padding">
             <input matInput formControlName="subAddress">
           </mat-form-field>
 
+        <div class="botton-padding">
         <label class="label-name">City*</label>
-          <mat-form-field appearance="outline" class="w-100 city-padding delivery" [ngClass]="validationCheck['city'] ? 'errorClass' : ''">
+          <mat-form-field appearance="outline" class="w-100 city-padding delivery mat-bottom-remove" [ngClass]="validationCheck['city'] ? 'errorClass' : ''">
             <input matInput formControlName="city" (keydown)="checkValidationForm('city')">
           </mat-form-field>
+        <span *ngIf="validationCheck['city']" class="password-check">Please enter city </span>
+        </div>
 
 
-        <div class="w-100 botton-padding csz-control">
+        <div class="row col-md-12 row-space botton-padding csz-control">
 <!--          <div class="field-width display">-->
 <!--          <label class="label-name">Country*</label>-->
 <!--          <ng-select [items]="countriesList" name="projectCategoryId" bindLabel="label" [searchable]="false"-->
@@ -84,7 +92,7 @@
 <!--          </ng-select>-->
 <!--        </div>-->
 
-          <div class="display field-width">
+          <div class="col-md-4 row-space">
             <label class="label-name">Country*</label>
             <mat-form-field appearance="outline" class="w-100 delivery" [ngClass]="validationCheck['country'] ? 'errorClass' : ''">
               <select matNativeControl formControlName="country" (change)="onSelectCountry(addressForm.value.country)">
@@ -92,17 +100,19 @@
                 <option [value]="country.value" *ngFor="let country of countriesList">{{country.label}}</option>
               </select>
             </mat-form-field>
+            <span *ngIf="validationCheck['country']" class="password-check">Please select country </span>
           </div>
 
 
-          <div class="display field-width parellel-field">
-            <label class="label-name">State*</label>
-            <mat-form-field appearance="outline"  class="w-100 delivery" [ngClass]="validationCheck['state'] ? 'errorClass' : ''">
+          <div class="col-md-4 row-space">
+            <label class="label-name parellel-field">State*</label>
+            <mat-form-field appearance="outline"  class="w-100 delivery parellel-field" [ngClass]="validationCheck['state'] ? 'errorClass' : ''">
               <select matNativeControl formControlName="state" (change)="checkValidationForm('state')">
                 <option value=""></option>
                 <option [value]="state.value" *ngFor="let state of statesList">{{state.label}}</option>
               </select>
             </mat-form-field>
+            <span *ngIf="validationCheck['state']" class="password-check parellel-field">Please select state </span>
           </div>
 
 
@@ -116,11 +126,12 @@
 <!--          </ng-select>-->
 <!--        </div>-->
 
-          <div class="field-width display">
+          <div class="col-md-4 row-space">
           <label class="label-name parellel-field">Zip code*</label>
           <mat-form-field appearance="outline" class="parellel-field w-100 zip-pad-remove zip-code delivery" [ngClass]="validationCheck['pincode'] ? 'errorClass' : ''">
             <input matInput formControlName="pincode" (keydown)="checkValidationForm('pincode')">
           </mat-form-field>
+            <span *ngIf="validationCheck['pincode']" class="password-check parellel-field">Please enter zip </span>
           </div>
         </div>
 

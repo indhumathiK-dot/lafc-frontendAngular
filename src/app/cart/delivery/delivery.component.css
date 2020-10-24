@@ -62,9 +62,6 @@
 ::ng-deep .delivery.mat-form-field-appearance-outline .mat-form-field-label {
   font-size: 13px;
 }
-::ng-deep .delivery.mat-form-field-appearance-outline .mat-form-field-wrapper {
-  margin-bottom: -7px !important;
-}
 .return {
   font-size: 14px !important;
   color: #988c88 !important;
@@ -166,17 +163,17 @@
   margin-bottom: 8px;
 }
 ::ng-deep.errorClass.mat-form-field-appearance-outline .mat-form-field-outline {
-   border: 2px solid red;
+   border: 2px solid #c60000;
    color: white;
  }
 ::ng-deep .errorClass.ng-select .ng-select-container{
-  border: 2px solid red !important;
+  border: 2px solid #c60000 !important;
 }
 ::ng-deep .errorClass .mat-form-field-label{
-  color:red !important;
+  color:#c60000 !important;
 }
 ::ng-deep .errorClass.ng-select .ng-select-container .ng-value-container .ng-placeholder {
-  color: red;
+  color: #c60000;
 }
 ::ng-deep .ng-select .ng-select-container .ng-value-container .ng-placeholder {
   font-size: 13px;
@@ -208,4 +205,17 @@
 
 ::ng-deep .zip-pad-remove.mat-form-field-appearance-outline .mat-form-field-flex {
   padding: 0 0 0 .75em;
+}
+.password-check {
+  color: #c60000;
+  padding-bottom: 10px;
+}
+::ng-deep .mat-bottom-remove .mat-form-field-wrapper {
+  padding-bottom: 0;
+}
+.row-space {
+  margin-right: 0;
+  margin-left: 0;
+  padding-right: 0;
+  padding-left: 0;
 }

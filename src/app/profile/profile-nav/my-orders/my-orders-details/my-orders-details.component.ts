@@ -32,6 +32,14 @@ export class MyOrdersDetailsComponent implements OnInit {
    this.ordersService.getCustomerOrdersDetailsWithTrackingById(id).subscribe(
      data => {
       this.orderDetails = data;
+       for(let productIndex = 0; productIndex < data.products.length; productIndex++) {
+         for(let index = 0; index < this.orderDetails.tracking_code.rows.length; index++) {
+           if(this.orderDetails.tracking_code.rows[index].product_id === data.products[productIndex].product_id) {
+             data.products[productIndex].tracking = this.orderDetails.tracking_code.rows[index].tracking_id_s2s;
+           }
+         }
+       }
+       console.log(data.products)
       this.dataSource.data = data.products;
        var orderhistory = [];
        var totalValue = [];

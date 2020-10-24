@@ -342,3 +342,8 @@ div.scrollmenu a {
   margin-top: 4px;
   width: 106%;
 }
+.stock-status {
+  font-size: 13px;
+  color: #212121;
+  font-style: italic;
+}

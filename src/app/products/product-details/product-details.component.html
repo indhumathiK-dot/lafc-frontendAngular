@@ -53,6 +53,9 @@
   <div>
     {{productsDetails?.name}}
   </div>
+  <div class="stock-status" *ngIf="productsDetails?.stock_status_id !== 7">
+  <label>* {{productsDetails?.stock_status}}</label>
+  </div>
   <div *ngIf="loginCheck">
   <div>
     {{productsDetails?.bundle_price}}

@@ -72,27 +72,68 @@ export class ProductDetailsComponent implements OnInit {
 
   ngAfterViewInit() {
     var galleryTop = new Swiper('.gallery-top', {
-      observer: true,
-observeParents: true,
-      spaceBetween: 3,
+        observer: true,
+  observeParents: true,
+        spaceBetween: 234,
+        centeredSlides: true,
+        slidesPerView: 3,
+          navigation: {
+            nextEl: '.swiper-button-n',
+            prevEl: '.swiper-button-p',
+          },
+            loop: true,
+            loopedSlides: 3,
+            breakpoints:{
+               // when window width is >= 320px
+    320: {
+      slidesPerView: 2,
+      spaceBetween: 200
+    },
+    // when window width is >= 480px
+    480: {
+      slidesPerView: 1,
+      spaceBetween: 30
+    },
+    // when window width is >= 640px
+    640: {
+      slidesPerView: 2,
+      spaceBetween: 225
+    },
+    1659: {
       slidesPerView: 3,
-         navigation: {
-           nextEl: '.swiper-button-next',
-           prevEl: '.swiper-button-prev',
-         },
-          loop: true,
-         loopedSlides: 10
+      spaceBetween: 250
+    },
+    1080: {
+      slidesPerView: 2,
+      spaceBetween: 230
+    },
+    900: {
+      slidesPerView: 3,
+      spaceBetween: 234
+    },
+            }
     });
     var galleryThumbs = new Swiper('.gallery-thumbs', {
-      // observer: true,
+      observer: true,
        observeParents: true,
       spaceBetween: 3,
       centeredSlides: true,
-      slidesPerView: 6,
+
+      slidesPerView: 'auto',
       touchRatio: 0.2,
       slideToClickedSlide: true,
 			loop: true,
-			loopedSlides: 10
+      loopedSlides: 3,
+      breakpoints:{
+        // when window width is >= 320px
+320: {
+slidesPerView: 2,
+spaceBetween: 5
+},
+900: {
+  slidesPerView: 3,
+  spaceBetween: 3
+  },}
     });
     galleryTop.controller.control = galleryThumbs;
     galleryThumbs.controller.control = galleryTop;

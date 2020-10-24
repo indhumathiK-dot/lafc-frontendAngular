@@ -28,22 +28,34 @@
 
 <br>
 <div class="row no-margin">
+  <div>
+    <!-- <owl-carousel
+    [options]="{items: 3, dots: false, navigation: false}"
+  
+    [carouselClasses]="['owl-theme', 'row', 'sliding']">
+    <div class="item" *ngFor="let image of productImages;let i = index">
+    <div class="thumbnail-image" ><img src="{{image}}" class="w-100" alt="" (click)="imageView(i)"></div>
+    </div>
+    </owl-carousel> -->
+  </div>
 <div class="header-margin w-100">
 
-  <div class="product-width">
+  <div class="product-width fd-t">
+   
+
     <div id="arrivalcarousal" class="carousel slide" data-ride="carousel" data-interval="0">
       <!-- Wrapper for carousel items -->
-          <div class="scrollmenu" fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="4" fxLayoutAlign="flex-start" style="overflow: scroll">
+          <!-- <div class="scrollmenu" fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="4" fxLayoutAlign="flex-start" style="overflow: scroll">
             <div fxFlex="33.3" fxFlex.lt-sm="100" *ngFor="let image of productImages; let i = index;">
               <a class="image-pad mouse-events"><img src="{{image}}" class="w-100" alt="" (click)="imageView(i)"></a>
             </div>
-          </div>
-
+          </div> -->
+<!-- 
       <div class="small-image-pad" fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="1" fxLayoutAlign="flex-start" style="overflow: scroll" *ngIf="productImages.length > 1">
             <div fxFlex="15" fxFlex.lt-sm="100" *ngFor="let image of productImages; let i = index;">
                   <a class="mouse-events"><img src="{{image}}" class="image-model" alt="" (click)="imageView(i)" ></a>
             </div>
-          </div>
+          </div> -->
 
     </div>
   </div>

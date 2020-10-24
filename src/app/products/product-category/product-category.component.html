@@ -38,23 +38,26 @@
       </div>
 
 
-      <div class="bottom-separator" *ngIf="filterClick">
-        <span *ngFor="let tag of productsTags">
-          <span class="display tag-label mouse-events" (click)="filterSubmit(tag)">{{tag}}
-          </span>
-        </span>
-        <span *ngIf="!productsTags.length">
-          <span>Sorry, there are no filter tags</span>
-        </span>
-      </div>
+     
 
     </div>
 
     <div class="sort-space">
-
+      
       <div class="same-order">
+        <div class="bottom-separator" *ngIf="filterClick">
+          <span *ngFor="let tag of productsTags">
+            <span class="display tag-label mouse-events" (click)="filterSubmit(tag)">{{tag}}
+            </span>
+          </span>
+          <span *ngIf="!productsTags.length">
+            <span>Sorry, there are no filter tags</span>
+          </span>
+        </div>
+        
         <div class="align-order">
-          <span class="sort-order">Sort by</span></div>
+          <span class="sort-order">Sort by</span>
+        </div>
 <!--        <div class="form-group form-default m-b-10 field-width align-order sort">-->
 <!--          <ng-select [items]="sortOrder" bindLabel="label" [clearable]="false" [searchable]="false"-->
 <!--                     bindValue="value" #sortby (focus)="sortby.open()" [ngModel]="7"-->

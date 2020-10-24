@@ -95,6 +95,8 @@ export class ProductDetailsComponent implements OnInit {
           this.productImages.push(this.productsDetails.images[i]);
         }
 
+this.navigate();
+
         for(let index = 0; index < this.productsDetails.options.length; index++) {
           var optionList = [];
           for(let value = 0; value < this.productsDetails.options[index].option_value.length; value++) {
@@ -281,5 +283,14 @@ export class ProductDetailsComponent implements OnInit {
         } else {
             this.router.navigate(['/products/collections/' + this.productsDetails.category[0].name + '/' + this.productsDetails.category[0].id])
         }
+    }
+
+    imageNavigate() {
+
+    }
+
+
+    navigate() {
+    
     }
 }

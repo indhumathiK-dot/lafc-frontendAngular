@@ -51,6 +51,7 @@ import { ProductCategoryComponent } from './product-category/product-category.co
 import {NgSelectModule} from "@ng-select/ng-select";
 import { ImageViewComponent } from './image-view/image-view.component';
 import {MatPaginatorModule} from "@angular/material/paginator";
+import { OwlModule } from 'ngx-owl-carousel';
 // import {NgSelectModule} from "@ng-select/ng-select";
 
 @NgModule({
@@ -88,6 +89,7 @@ import {MatPaginatorModule} from "@angular/material/paginator";
         MatDialogModule,
         CoreModule,
         ProductsRoutingModule, HomeModule, FlexLayoutModule, NgSelectModule, MatPaginatorModule,
+        OwlModule
         // NgSelectModule
     ],
     declarations: [

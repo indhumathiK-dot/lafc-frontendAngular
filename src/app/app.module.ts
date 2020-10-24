@@ -28,6 +28,7 @@ import {
 } from "@angular/material/form-field";
 import { MatInputModule } from '@angular/material/input';
 import { NgxSpinnerModule } from "ngx-spinner";
+import { OwlModule } from 'ngx-owl-carousel';
 
 
 const googleLoginOptions: any = {
@@ -90,7 +91,8 @@ import {MatButtonModule} from "@angular/material/button";
     MainPageRoutes,
     CartModule,
     ReactiveFormsModule,
-    MatButtonModule
+    MatButtonModule,
+    OwlModule
   ],
   providers: [
     {

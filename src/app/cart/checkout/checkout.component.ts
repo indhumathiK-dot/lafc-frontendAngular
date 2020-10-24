@@ -19,6 +19,7 @@ export class CheckoutComponent implements OnInit {
   public notesValidation: boolean = false;
   private shippingValue = 'UPS Ground';
   public validateNote = false;
+  private notes = '';
 
   constructor(private checkoutService: CheckoutService,
               public createOrderService: CreateOrderService,
@@ -56,8 +57,8 @@ export class CheckoutComponent implements OnInit {
   }
 
   checkout() {
-    if(!this.notesValidation) {
-      let comment = (this.createOrderService.shippingComment ? this.createOrderService.shippingComment : '') + ' ' + this.shippingValue;
+    if(this.notesValidation === false || (this.notesValidation == true && this.notes)) {
+      var comment = 'Shipping Method  -  ' + this.shippingValue + + '  '+ this.notes;
       this.createOrderService.shippingComment = comment;
       this.paymentMethodSelect();
       setTimeout(() => {
@@ -84,6 +85,6 @@ export class CheckoutComponent implements OnInit {
 
   getNotes(value: any) {
     this.validateNote = false;
-   this.createOrderService.shippingComment = value;
+    this.notes = value;
   }
 }

@@ -50,20 +50,24 @@ export class ProductDetailsComponent implements OnInit {
       this.productId = params['product_id'];
       this.category = params['name'];
       this.backname = params['name'] ? params['name'] : 'New Arrivals';
-      this.productImages = [];
-      this.optionList = [];
-      this.selectedOptionList = [];
-      this.selectedProductIndex = this.productId;
-      this.getWishList();
-      this.getProductDetails(this.productId);
-      this.getRelatedProducts(this.productId);
-      this.getProductList();
-      this.getImageArray(this.productId);
+      this.loadInit();
     });
   }
 
   ngOnInit() {
 
+  }
+
+  loadInit() {
+    this.productImages = [];
+    this.optionList = [];
+    this.selectedOptionList = [];
+    this.selectedProductIndex = this.productId;
+    this.getWishList();
+    this.getProductDetails(this.productId);
+    this.getRelatedProducts(this.productId);
+    this.getProductList();
+    this.getImageArray(this.productId);
   }
 
   ngAfterViewInit() {
@@ -287,7 +291,9 @@ this.navigate();
       if(this.products[index]['product_id'] == this.productId) {
         this.selectedProductIndex = this.products[index-1]['product_id'];
         this.productId = this.products[index-1]['product_id'];
-        this.ngOnInit();
+        var category = this.products[index-1]['category'][0]['name'];
+        this.router.navigate(['/products/' + category + '/' + this.productId]);
+        this.loadInit();
         return
       }
     }
@@ -298,7 +304,9 @@ this.navigate();
       if(this.products[index]['product_id'] == this.productId) {
         this.selectedProductIndex = this.products[index+1]['product_id'];
         this.productId = this.products[index+1]['product_id'];
-        this.ngOnInit();
+        var category = this.products[index-1]['category'][0]['name'];
+        this.router.navigate(['/products/' + category + '/' + this.productId]);
+        this.loadInit();
         return
       }
     }

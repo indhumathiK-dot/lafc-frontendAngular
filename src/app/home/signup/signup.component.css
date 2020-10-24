@@ -184,3 +184,13 @@
   padding-right: 2%;
 }
 }
+
+::ng-deep .delivery-checkout.mat-form-field-appearance-outline .mat-form-field-flex {
+  padding: 0;
+}
+::ng-deep .delivery-checkout select.mat-input-element {
+  padding: 0 15px 0 15px;
+}
+::ng-deep .delivery-checkout.mat-form-field-type-mat-native-select .mat-form-field-infix::after {
+  right: 15px;
+}

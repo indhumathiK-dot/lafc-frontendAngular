@@ -20,7 +20,7 @@
 
         <div class="w-100">
           <label class="label-name">Saved Address</label>
-          <mat-form-field appearance="outline" class="w-100 delivery">
+          <mat-form-field appearance="outline" class="w-100 delivery delivery-checkout">
             <select matNativeControl formControlName="savedAddress" (change)="getAddressListById(addressForm.value.savedAddress)">
               <option [value]="address.value" *ngFor="let address of fullAddressList">{{address.label}}</option>
             </select>
@@ -94,7 +94,7 @@
 
           <div class="col-md-4 row-space">
             <label class="label-name">Country*</label>
-            <mat-form-field appearance="outline" class="w-100 delivery mat-bottom-remove" [ngClass]="validationCheck['country'] ? 'errorClass' : ''">
+            <mat-form-field appearance="outline" class="w-100 delivery mat-bottom-remove delivery-checkout" [ngClass]="validationCheck['country'] ? 'errorClass' : ''">
               <select matNativeControl formControlName="country" (change)="onSelectCountry(addressForm.value.country)">
                 <option value=""></option>
                 <option [value]="country.value" *ngFor="let country of countriesList">{{country.label}}</option>
@@ -106,7 +106,7 @@
 
           <div class="col-md-4 row-space">
             <label class="label-name parellel-field">State*</label>
-            <mat-form-field appearance="outline"  class="w-100 delivery parellel-field mat-bottom-remove" [ngClass]="validationCheck['state'] ? 'errorClass' : ''">
+            <mat-form-field appearance="outline"  class="w-100 delivery delivery-checkout parellel-field mat-bottom-remove" [ngClass]="validationCheck['state'] ? 'errorClass' : ''">
               <select matNativeControl formControlName="state" (change)="checkValidationForm('state')">
                 <option value=""></option>
                 <option [value]="state.value" *ngFor="let state of statesList">{{state.label}}</option>

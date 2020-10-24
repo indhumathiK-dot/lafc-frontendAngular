@@ -219,3 +219,36 @@
   padding-right: 0;
   padding-left: 0;
 }
+
+@media screen and (max-width: 768px){
+  .address-design{
+    width: 90%;
+    padding-left: 40px;
+    padding-top: 20px;
+    margin: 0;
+  }
+  .contact-title{
+    margin: 0;
+    text-align: center;
+  }
+  .image-width{
+    margin: 0;
+    border: 0;
+    width: 100%;
+    margin-top: 20px;
+    background: no-repeat;
+  }
+  .total-margin-left{
+    text-align: center;
+    margin-left: 0;
+    margin-bottom: 20px;
+  }
+  .contact{
+    padding: 0%;
+  }
+  .contact .left-align {
+    float: none;
+  }
+
+
+}

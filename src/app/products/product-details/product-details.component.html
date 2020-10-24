@@ -1,7 +1,7 @@
 <div>
-  <div class="swiper-container gallery-top">
+  <!-- <div class="swiper-container gallery-top">
     <div class="swiper-wrapper">
-      <!-- Slides -->
+      
       <div class="swiper-slide" *ngFor="let image of productImages;let i = index">
         <img [src]="image" alt="product-image">
       </div>
@@ -9,12 +9,12 @@
   </div>
   <div class="swiper-container gallery-thumbs">
     <div class="swiper-wrapper">
-      <!-- Slides -->
+      
       <div class="swiper-slide" *ngFor="let image of productImages;let i = index">
         <img [src]="image" alt="product-image">
       </div>
     </div>
-  </div>
+  </div> -->
 </div>
 <div class="footer-padding right-adjust">
 <div class="head-changes">
@@ -85,6 +85,54 @@
             </div>
           </div> -->
 
+
+          <div class="swiper-container gallery-top">
+            <div class="swiper-wrapper">
+
+              <div class="swiper-slide" *ngFor="let image of productImages; let i = index;">
+                <div class="swiper-slide-container" >
+                  <img src="{{image}}" alt="product-image">
+                </div>
+                </div>
+      
+              
+            </div>
+            <!-- Add Arrows -->
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+        </div>
+        <div class="swiper-container gallery-thumbs">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide" *ngFor="let image of productImages; let i = index;">
+                <div  >
+                  <img src="{{image}}"class="swiper-slide-container"  alt="product-image">
+                </div>
+                </div>
+            </div>
+        </div>
+
+          <!-- slider comented  -->
+
+          <!-- <div class="swiper-container gallery-top">
+            <div class="swiper-wrapper"> -->
+              <!-- Slides -->
+              <!-- <div class="swiper-slide " *ngFor="let image of productImages;let i = index">
+                <img [src]="image" alt="product-image">
+              </div>
+            </div> -->
+            <!-- Add Arrows -->
+			<!-- <div class="swiper-button-next"></div>
+			<div class="swiper-button-prev"></div>
+          </div>
+          <div class="swiper-container gallery-thumbs">
+            <div class="swiper-wrapper"> -->
+              <!-- Slides -->
+              <!-- <div class="swiper-slide" *ngFor="let image of productImages;let i = index">
+                <img [src]="image" class="swiper-slide-container" alt="product-image">
+              </div>
+            </div>
+          </div> -->
+          <!-- Coment finished  -->
     </div>
   </div>
 

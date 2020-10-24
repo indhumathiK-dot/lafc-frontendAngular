@@ -80,3 +80,8 @@ table {
 .total-padding {
   padding: 12px 0;
 }
+@media screen and (max-width: 768px){
+  .padd-item{
+    width: 90%;
+  }
+}

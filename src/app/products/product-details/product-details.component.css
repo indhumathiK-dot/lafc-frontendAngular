@@ -359,7 +359,7 @@ div.scrollmenu a {
 }
 
 .swiper-container{
-  width: 800px;
+  /* width: 800px; */
 }
 
 .desc-pad {
@@ -403,4 +403,30 @@ font-size: 18px;
 }
 #sync2 .synced .item{
 background: #0c83e7;
+}
+.gallery-thumbs {
+  height: 20%;
+  box-sizing: border-box;
+  padding: 10px 0;
+}
+
+.gallery-thumbs .swiper-slide {
+  width: 20%;
+  height: 100%;
+  opacity: 0.4;
+}
+
+.swiper-slide-container {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+  /* height: 100%; */
+  max-width: 110px;
+  /* margin: auto; */
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  align-items: center;
 }

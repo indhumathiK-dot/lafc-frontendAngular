@@ -1,106 +1,106 @@
 <div class="product-category-container">
   <div class="category-name">
-    <h1>{{categoryName ? categoryName : (manufactureName ? manufactureName : ArrivalsName)}}</h1>
+  <h1>{{categoryName ? categoryName : (manufactureName ? manufactureName : ArrivalsName)}}</h1>
   </div>
   <div>
-
-    <div class="mouse-events">
-      <div class="bottom-separator" (click)="filterClick = !filterClick">
-      <span class="filter-space">Filter</span>
-      <span>
-        <svg xmlns="http://www.w3.org/2000/svg" width="14.643" height="10.822" viewBox="0 0 20.643 11.822">
-          <path id="Icon_feather-chevron-down" data-name="Icon feather-chevron-down" d="M16.4,8.2,8.2,0,0,8.2" transform="translate(18.522 10.322) rotate(180)" fill="none" stroke="#998c88" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
-        </svg>
-
-      </span>
-
-        <span *ngIf="selectedFilterList.length">
-          <span class="filter-label label-background" *ngFor="let selectTag of selectedFilterList">
-            <span class="close-padding">{{selectTag}} </span>
-            <span>
-              <a (click)="removeIndividualFilter(selectTag)"><svg xmlns="http://www.w3.org/2000/svg" width="10.261" height="16.257" viewBox="0 0 16.261 16.257">
-                <path id="Icon_ionic-ios-close" data-name="Icon ionic-ios-close" d="M21.343,19.417l5.808-5.808a1.361,1.361,0,1,0-1.925-1.925l-5.808,5.808L13.61,11.685a1.361,1.361,0,1,0-1.925,1.925l5.808,5.808-5.808,5.808A1.361,1.361,0,1,0,13.61,27.15l5.808-5.808,5.808,5.808a1.361,1.361,0,1,0,1.925-1.925Z" transform="translate(-11.285 -11.289)" fill="#998c88"/>
-              </svg>
-              </a>
-            </span>
-          </span>
-          <span class="filter-label" (click)="removeFilter()">
-            <span class="close-padding">Close All </span>
-            <span>
-              <a><svg xmlns="http://www.w3.org/2000/svg" width="10.261" height="16.257" viewBox="0 0 16.261 16.257">
-                <path id="Icon_ionic-ios-close" data-name="Icon ionic-ios-close" d="M21.343,19.417l5.808-5.808a1.361,1.361,0,1,0-1.925-1.925l-5.808,5.808L13.61,11.685a1.361,1.361,0,1,0-1.925,1.925l5.808,5.808-5.808,5.808A1.361,1.361,0,1,0,13.61,27.15l5.808-5.808,5.808,5.808a1.361,1.361,0,1,0,1.925-1.925Z" transform="translate(-11.285 -11.289)" fill="#998c88"/>
-              </svg>
-              </a>
-            </span>
-          </span>
-        </span>
-
-      </div>
-
-
-     
-
-    </div>
-
-    <div class="sort-space">
-      
-      <div class="same-order">
-        <div class="bottom-separator" *ngIf="filterClick">
-          <span *ngFor="let tag of productsTags">
-            <span class="display tag-label mouse-events" (click)="filterSubmit(tag)">{{tag}}
-            </span>
-          </span>
-          <span *ngIf="!productsTags.length">
-            <span>Sorry, there are no filter tags</span>
-          </span>
-        </div>
-        
-        <div class="align-order">
-          <span class="sort-order">Sort by</span>
-        </div>
-<!--        <div class="form-group form-default m-b-10 field-width align-order sort">-->
-<!--          <ng-select [items]="sortOrder" bindLabel="label" [clearable]="false" [searchable]="false"-->
-<!--                     bindValue="value" #sortby (focus)="sortby.open()" [ngModel]="7"-->
-<!--                     placeholder="Sort by" (change)="sorting($event.value)"-->
-<!--                     class="custom-select auto-grow">-->
-<!--          </ng-select>-->
-<!--        </div>-->
-
-        <div class="w-50 align-order sort">
-          <mat-form-field appearance="outline"  class="w-100 auto-grow">
-            <select placeholder="Sort By" matNativeControl (change)="sorting($event.target.value)">
-              <option value=""></option>
-              <option [value]="sort.value" *ngFor="let sort of sortOrder">{{sort.label}}</option>
-            </select>
-          </mat-form-field>
-        </div>
-
-      </div>
-<!--      <div class="right-align">-->
-<!--        Showing all {{products.length}} results-->
-<!--      </div>-->
-
-
-      <div class="right-align right-text">
-        <div class="display common-color">  Showing all {{products.length}} results</div>
-        <div class="display">
-          <mat-paginator class="paginator-margin" #paginator [pageSize]="48" [hidePageSize]="true" (page)="onChange($event)"
-                         [showFirstLastButtons]="true" [length]="productsTotalCount">
-          </mat-paginator>
-        </div>
-      </div>
-
-    </div>
-    <br>
-    <br>
-    <br>
-
-    <div *ngIf="products.length">
-      <app-product-list [productList]="products"></app-product-list>
-    </div>
-
-    <div *ngIf="!products.length && firstLoadCheck">
-      Sorry, there are no products matching your search.
-    </div>
+  
+  <div class="mouse-events">
+  <div class="bottom-separator" (click)="filterClick = !filterClick">
+  <span class="filter-space">Filter</span>
+  <span>
+  <svg xmlns="http://www.w3.org/2000/svg" width="14.643" height="10.822" viewBox="0 0 20.643 11.822">
+  <path id="Icon_feather-chevron-down" data-name="Icon feather-chevron-down" d="M16.4,8.2,8.2,0,0,8.2" transform="translate(18.522 10.322) rotate(180)" fill="none" stroke="#998c88" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+  </svg>
+  
+  </span>
+  
+  <span *ngIf="selectedFilterList.length">
+  <span class="filter-label label-background" *ngFor="let selectTag of selectedFilterList">
+  <span class="close-padding">{{selectTag}} </span>
+  <span>
+  <a (click)="removeIndividualFilter(selectTag)"><svg xmlns="http://www.w3.org/2000/svg" width="10.261" height="16.257" viewBox="0 0 16.261 16.257">
+  <path id="Icon_ionic-ios-close" data-name="Icon ionic-ios-close" d="M21.343,19.417l5.808-5.808a1.361,1.361,0,1,0-1.925-1.925l-5.808,5.808L13.61,11.685a1.361,1.361,0,1,0-1.925,1.925l5.808,5.808-5.808,5.808A1.361,1.361,0,1,0,13.61,27.15l5.808-5.808,5.808,5.808a1.361,1.361,0,1,0,1.925-1.925Z" transform="translate(-11.285 -11.289)" fill="#998c88"/>
+  </svg>
+  </a>
+  </span>
+  </span>
+  <span class="filter-label" (click)="removeFilter()">
+  <span class="close-padding">Close All </span>
+  <span>
+  <a><svg xmlns="http://www.w3.org/2000/svg" width="10.261" height="16.257" viewBox="0 0 16.261 16.257">
+  <path id="Icon_ionic-ios-close" data-name="Icon ionic-ios-close" d="M21.343,19.417l5.808-5.808a1.361,1.361,0,1,0-1.925-1.925l-5.808,5.808L13.61,11.685a1.361,1.361,0,1,0-1.925,1.925l5.808,5.808-5.808,5.808A1.361,1.361,0,1,0,13.61,27.15l5.808-5.808,5.808,5.808a1.361,1.361,0,1,0,1.925-1.925Z" transform="translate(-11.285 -11.289)" fill="#998c88"/>
+  </svg>
+  </a>
+  </span>
+  </span>
+  </span>
+  
   </div>
-</div>
+  
+  
+  <div class="bottom-separator" *ngIf="filterClick">
+    <span *ngFor="let tag of productsTags">
+    <span class="display tag-label mouse-events" (click)="filterSubmit(tag)">{{tag}}
+    </span>
+    </span>
+    <span *ngIf="!productsTags.length">
+    <span>Sorry, there are no filter tags</span>
+    </span>
+    </div>
+  
+  </div>
+  
+  <div class="sort-space">
+  
+  <div class="same-order">
+ 
+  
+  <div class="align-order">
+  <span class="sort-order">Sort by</span>
+  </div>
+  <!-- <div class="form-group form-default m-b-10 field-width align-order sort">-->
+  <!-- <ng-select [items]="sortOrder" bindLabel="label" [clearable]="false" [searchable]="false"-->
+  <!-- bindValue="value" #sortby (focus)="sortby.open()" [ngModel]="7"-->
+  <!-- placeholder="Sort by" (change)="sorting($event.value)"-->
+  <!-- class="custom-select auto-grow">-->
+  <!-- </ng-select>-->
+  <!-- </div>-->
+  
+  <div class="w-50 align-order sort">
+  <mat-form-field appearance="outline" class="w-100 auto-grow">
+  <select placeholder="Sort By" matNativeControl (change)="sorting($event.target.value)">
+  <option value=""></option>
+  <option [value]="sort.value" *ngFor="let sort of sortOrder">{{sort.label}}</option>
+  </select>
+  </mat-form-field>
+  </div>
+  
+  </div>
+  <!-- <div class="right-align">-->
+  <!-- Showing all {{products.length}} results-->
+  <!-- </div>-->
+  
+  
+  <div class="right-align right-text">
+  <div class="display common-color"> Showing all {{products.length}} results</div>
+  <div class="display">
+  <mat-paginator class="paginator-margin" #paginator [pageSize]="48" [hidePageSize]="true" (page)="onChange($event)"
+  [showFirstLastButtons]="true" [length]="productsTotalCount">
+  </mat-paginator>
+  </div>
+  </div>
+  
+  </div>
+  <br>
+  <br>
+  <br>
+  
+  <div *ngIf="products.length">
+  <app-product-list [productList]="products"></app-product-list>
+  </div>
+  
+  <div *ngIf="!products.length && firstLoadCheck">
+  Sorry, there are no products matching your search.
+  </div>
+  </div>
+  </div>

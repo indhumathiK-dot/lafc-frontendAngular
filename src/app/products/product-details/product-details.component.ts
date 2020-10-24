@@ -67,26 +67,31 @@ export class ProductDetailsComponent implements OnInit {
   }
 
   ngAfterViewInit() {
-    this.Swiper = new Swiper(this.elementRef.nativeElement.querySelector('.gallery-top'), {
-      spaceBetween: 10,
-      centeredSlides: true,
+    var galleryTop = new Swiper('.gallery-top', {
+      observer: true,
+observeParents: true,
+      spaceBetween: 3,
       slidesPerView: 3,
-      touchRatio: 0.2,
-      slideToClickedSlide: true,
-      loop: true,
-      loopedSlides: 4,
-      // If we need pagination
-      pagination: {
-        el: '.swiper-pagination',
-      },
+         navigation: {
+           nextEl: '.swiper-button-next',
+           prevEl: '.swiper-button-prev',
+         },
+          loop: true,
+         loopedSlides: 10
     });
     var galleryThumbs = new Swiper('.gallery-thumbs', {
-      spaceBetween: 10,
-      slidesPerView: 4,
-      freeMode: true,
-      watchSlidesVisibility: true,
-      watchSlidesProgress: true,
+      // observer: true,
+       observeParents: true,
+      spaceBetween: 3,
+      centeredSlides: true,
+      slidesPerView: 6,
+      touchRatio: 0.2,
+      slideToClickedSlide: true,
+			loop: true,
+			loopedSlides: 10
     });
+    galleryTop.controller.control = galleryThumbs;
+    galleryThumbs.controller.control = galleryTop;
   }
   getProductList() {
     this.productsService.getAllProducts().pipe(take(1))

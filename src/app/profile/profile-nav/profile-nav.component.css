@@ -27,3 +27,9 @@
 .padding-remove {
   padding: 16px 1em 16px 0 !important;
 }
+@media screen and (max-width: 700px){
+  .container-padding {
+    padding-left: 0px;
+    padding-top: 30px;
+}
+}

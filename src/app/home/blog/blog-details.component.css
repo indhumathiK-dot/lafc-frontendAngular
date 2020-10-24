@@ -1,0 +1,62 @@
+.blog-wrapper {
+    margin: 2em 12em;
+}
+.blog-image {
+    width: 100%;
+    height: 16vw;
+    object-fit: none;
+}
+.author-info {
+    margin: 8px 0px;
+}
+.author-image {
+    width: 38px !important;
+    height: 38px !important;
+} 
+.image-row {
+    margin: 3em 0em;
+}
+.text-muted {
+    margin: 8px;
+}
+.description {
+    font-family: Opensans-regular;
+}
+.card {
+    margin-right: 0px;
+    overflow: hidden;
+}
+.card-img-top {
+    width: 100%;
+    height: 8vw;
+    object-fit: none;
+    transition: transform .5s ease;
+}
+.card-img-top:hover {
+    -ms-transform: scale(1.1); /* IE 9 */
+    -webkit-transform: scale(1.1); /* Safari 3-8 */
+    transform: scale(1.1); 
+}
+.card-body {
+    padding: 0px;
+}
+.card-title {
+    font-size: 14px;
+    color: #Ed2f2f;
+    font-family: Opensans-bold;
+}
+.card-text {
+    min-height: 40px !important;
+    max-height: 40px !important;
+    overflow: hidden;
+    font-size: 12px;
+    font-family: Opensans-regular;
+    margin: 16px 0px;
+}
+.btn-dark {
+    float: right;
+}
+.recent-wrapper{
+    padding: 1em 8em 2em 8em;
+    background: whitesmoke;
+}

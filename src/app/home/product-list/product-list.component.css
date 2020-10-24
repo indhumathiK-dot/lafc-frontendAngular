@@ -1,0 +1,99 @@
+.thumb-wrapper {
+  margin-top: 30px;
+}
+.image-hover {
+  position: relative;
+  width: 90%;
+}
+
+.image {
+  opacity: 1;
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: .5s ease;
+  backface-visibility: hidden;
+}
+.img-fluid {
+  width: 100%;
+}
+.middle {
+  transition: .5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 75%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.image-hover:hover .image {
+  opacity: 0.3;
+}
+
+.image-hover:hover .middle {
+  opacity: 1;
+}
+.img-box {
+  border-bottom: 1px solid #D5CEC8;
+  margin-bottom: 10px;
+}
+
+.text {
+  color: white;
+  font-size: 16px;
+}
+.my-icon {
+  color: #988c88;
+  font-size: 16px;
+}
+.heart-icon {
+  padding: 5px 4px 4px 5px;
+}
+.eye-icon {
+  padding: 4px 4px 5px 5px;;
+}
+.icon-circle {
+  border-radius: 30px;
+  background: #FFFFFF;
+  cursor: pointer;
+}
+.padding-rgt {
+  margin-right: 10px;
+}
+.project-name{
+  font-size: 15px;
+  color: #414141;
+  font-weight: 600;
+}
+.apply-wholesale {
+  font-size: 14px;
+  color: #414141;
+}
+.image-spacing {
+  margin-bottom: 20px;
+}
+/*CSS for model content */
+::ng-deep.modal-content {
+  width: 600px !important;
+  height: fit-content !important;
+  right: 72%;
+}
+@media (min-width: 832px) and (max-width: 2011px) {
+  ::ng-deep.modal-content {
+    width: 750px !important;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+

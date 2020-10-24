@@ -1,0 +1,32 @@
+.head {
+    position: fixed;
+    right: 0;
+    left: 0;
+    z-index: 999; 
+}
+.spacer {
+    height: 95px;
+}
+.scrollup-btn {
+    position: fixed;
+    bottom: 82px;
+    right: 32px;
+}
+
+
+@media (min-width: 320px) and (max-width: 1024px) {
+    .not-web {
+        display: block;
+    }
+    .all, .cart {
+        display: none;
+    }
+}
+@media (min-width: 1025px) {
+    .not-web {
+        display: none;
+    }
+    .all, .cart {
+        display: block;
+    }
+}

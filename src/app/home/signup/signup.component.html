@@ -1,0 +1,188 @@
+<div>
+  <div class="detail-padding footer-padding common-color">
+    <div class="login-box-heading">
+      <h1 class="head-font">Create Account</h1>
+    </div>
+
+    <div class="address-design form-width">
+      <form novalidate [formGroup]="registerForm" (ngSubmit)="createAccount()" class="login-box">
+    <div class="w-100 botton-padding">
+      <div class="w-50 display">
+        <label class="label-name">First Name*</label>
+        <mat-form-field appearance="outline" class="w-100 mat-bottom-remove register"
+                        [ngClass]="validationCheck['firstname'] ? 'errorClass' : ''">
+          <input matInput formControlName="firstname" (keydown)="checkValidationForm('firstname')">
+        </mat-form-field>
+        <span *ngIf="validationCheck['firstname']" class="password-check">Please enter first name </span>
+       </div>
+
+       <div class="w-50 display">
+        <label class="label-name parellel-field">Last Name*</label>
+        <mat-form-field appearance="outline" class="w-100 parellel-field mat-bottom-remove register" [ngClass]="validationCheck['lastname'] ? 'errorClass' : ''">
+          <input matInput formControlName="lastname" (keydown)="checkValidationForm('lastname')">
+        </mat-form-field>
+         <span *ngIf="validationCheck['lastname']" class="password-check">Please enter first name </span>
+      </div>
+    </div>
+
+        <label class="label-name">Business Name</label>
+        <mat-form-field appearance="outline" class="w-100 botton-padding mat-bottom-remove register">
+          <input matInput formControlName="businessName">
+        </mat-form-field>
+
+        <div class="botton-padding">
+        <label class="label-name">Phone Number*</label>
+        <mat-form-field appearance="outline" class="w-100 mat-bottom-remove register" [ngClass]="validationCheck['phoneNumber'] ? 'errorClass' : ''">
+          <input matInput type="number" formControlName="phoneNumber" (keydown)="checkValidationForm('phoneNumber')"
+                 ng2TelInput [ng2TelInputOptions]="cell1TelInput">
+        </mat-form-field>
+
+        <span *ngIf="validationCheck['phoneNumber']" class="password-check">Please enter phone number </span>
+        </div>
+
+        <label class="label-name">Email*</label>
+        <mat-form-field appearance="outline" class="w-100 mat-bottom-remove register" [ngClass]="validationCheck['email'] ? 'errorClass' : ''">
+          <input matInput type="email" formControlName="email" (keydown)="checkValidationForm('email')">
+        </mat-form-field>
+        <label class="bottom-label" [ngClass]="validationCheck['email'] ? 'no-margin-bottom' : 'label-margin-bottom'">Used for account login and order notifications</label>
+
+        <div *ngIf="validationCheck['email']" class="password-check">Please enter email </div>
+
+        <div *ngIf="!loginCheck">
+        <label class="label-name">Password*</label>
+        <mat-form-field appearance="outline" class="w-100 mat-bottom-remove register" [ngClass]="validationCheck['password'] ? 'errorClass' : ''">
+          <input matInput type="password" formControlName="password" (blur)="checkValidationForm('password')">
+        </mat-form-field>
+        <label class="bottom-label" [ngClass]="validationCheck['password'] ? 'no-margin-bottom' : 'label-margin-bottom'">Used for account login</label>
+          <div *ngIf="validationCheck['password']" class="password-check">Please enter password </div>
+
+        <label class="label-name">Password Confirmation*</label>
+        <mat-form-field appearance="outline" class="w-100 mat-bottom-remove register" [ngClass]="validationCheck['confirmPassword'] || passwordConfirmationCheck ? 'errorClass' : ''">
+          <input matInput type="password" formControlName="confirmPassword" (blur)="checkValidationForm('confirmPassword')">
+        </mat-form-field>
+        </div>
+        <span *ngIf="passwordConfirmationCheck && !loginCheck" class="password-check">Password and Confirm password should be same</span>
+        <div *ngIf="validationCheck['confirmPassword']" class="password-check">Please enter confirm password </div>
+
+        <div class="botton-padding">
+        <label class="label-name top-padding">Address*</label>
+        <mat-form-field appearance="outline" class="w-100 mat-bottom-remove register" [ngClass]="validationCheck['address'] ? 'errorClass' : ''">
+          <input matInput formControlName="address" (keydown)="checkValidationForm('address')">
+        </mat-form-field>
+        <span *ngIf="validationCheck['address']" class="password-check">Please enter address </span>
+        </div>
+
+        <div class="botton-padding">
+        <label class="label-name">City*</label>
+        <mat-form-field appearance="outline" class="w-100 mat-bottom-remove register" [ngClass]="validationCheck['city'] ? 'errorClass' : ''">
+          <input matInput formControlName="city"  (keydown)="checkValidationForm('city')">
+        </mat-form-field>
+        <span *ngIf="validationCheck['city']" class="password-check">Please enter city </span>
+        </div>
+
+        <div class="w-100 csz-control botton-padding">
+<!--          <div class="field-width display">-->
+<!--            <label class="label-name">Country*</label>-->
+<!--          <div class="form-group form-default m-b-10 w-100 display">-->
+<!--            <ng-select [items]="countriesList" name="country" bindLabel="label"-->
+<!--                       bindValue="value" #country  [ngClass]="validationCheck['country'] ? 'errorClass' : ''"-->
+<!--                       [formControl]= "registerForm.controls['country']" (focus)="country.open()"-->
+<!--                       placeholder="Country" (change)="onSelectCountry($event)"-->
+<!--                       class="custom-select country">-->
+<!--            </ng-select>-->
+<!--          </div>-->
+<!--          </div>-->
+
+          <div class="display field-width">
+            <label class="label-name">Country*</label>
+            <mat-form-field appearance="outline" class="w-100 mat-bottom-remove register" [ngClass]="validationCheck['country'] ? 'errorClass' : ''">
+            <select matNativeControl formControlName="country" (change)="onSelectCountry(registerForm.value.country)">
+              <option value=""></option>
+              <option [value]="country.value" *ngFor="let country of countriesList">{{country.label}}</option>
+            </select>
+          </mat-form-field>
+          </div>
+
+          <div class="display field-width parellel-field">
+            <label class="label-name">State*</label>
+            <mat-form-field appearance="outline"  class="w-100 mat-bottom-remove register" [ngClass]="validationCheck['state'] ? 'errorClass' : ''">
+              <select matNativeControl formControlName="state" (change)="checkValidationForm('state')">
+                <option value=""></option>
+                <option [value]="state.value" *ngFor="let state of statesList">{{state.label}}</option>
+              </select>
+            </mat-form-field>
+          </div>
+
+<!--          <div class="field-width display">-->
+<!--        <label class="label-name parellel-field">State*</label>-->
+<!--            <div class="form-group form-default m-b-10 parellel-field display w-100">-->
+<!--              <ng-select [items]="statesList" bindLabel="label"  [ngClass]="validationCheck['state'] ? 'errorClass' : ''"-->
+<!--                         bindValue="value" #states [searchable]="false"-->
+<!--                         [formControl]= "registerForm.controls['state']" (focus)="states.open()"-->
+<!--                         placeholder="State" (change)="checkValidationForm('state')"-->
+<!--                         class="custom-select state">-->
+<!--              </ng-select>-->
+<!--            </div>-->
+<!--          </div>-->
+          <div class="field-width display">
+        <label class="label-name parellel-field">Zip code*</label>
+        <mat-form-field appearance="outline" class="w-100 parellel-field mat-bottom-remove zip-code register" [ngClass]="validationCheck['zip'] ? 'errorClass' : ''">
+          <input matInput formControlName="zip"  (keydown)="checkValidationForm('zip')">
+        </mat-form-field>
+          </div>
+        </div>
+
+        <div class="botton-padding">
+        <label class="label-name">Sellers Permit OR Tax ID* </label>
+        <mat-form-field appearance="outline" class="w-100 register mat-bottom-remove" [ngClass]="validationCheck['sellersPermit'] ? 'errorClass' : ''">
+          <input matInput formControlName="sellersPermit" (keydown)="checkValidationForm('sellersPermit')">
+        </mat-form-field>
+        <span *ngIf="validationCheck['sellersPermit']" class="password-check">Please enter Sellers Permit OR Tax ID </span>
+        </div>
+
+        <div>
+          <span>Complete this </span> <a target="_blank" href="https://drive.google.com/file/d/1ltwy1D3kwqTp7kJ6AoyvQTywq9g9XoCs/view"
+             class="link-color">Credit Card Authorization Form </a> <span> and upload completed form below:</span></div>
+
+        <label class="label-name website-design">Upload completed CC Auth Form*</label>
+        <div class="custom-file cc-space">
+            <input  (change)="fileChange($event)"  type="file" name="invoice" class="custom-file-input"
+                    id="inputGroupFile01"  aria-describedby="inputGroupFileAddon01" required>
+          <label class="custom-file-label" for="inputGroupFile01">{{fileName}}</label>
+        </div>
+
+        <span *ngIf="validationCheck['uploadCC']" class="password-check">Please select the CC Form </span>
+
+        <label class="label-name website-design">Website or Facebook URL</label>
+        <mat-form-field appearance="outline" class="w-100 mat-bottom-remove botton-padding register">
+          <input matInput formControlName="websiteUrl">
+        </mat-form-field>
+
+        <label class="label-name">Where You Sell*</label>
+        <div class="botton-padding sell-space">
+          <mat-radio-group aria-label="Select an option" formControlName="sellOption" required>
+            <mat-radio-button value="1">Online</mat-radio-button>
+            <mat-radio-button value="2">Storefront</mat-radio-button>
+            <mat-radio-button value="3">Both</mat-radio-button>
+          </mat-radio-group>
+        </div>
+
+
+        <div>
+          <div class="checkout cart-button display user-padding" (click)="createAccount()" *ngIf="!loginCheck">
+            Create Account
+          </div>
+
+          <div class="checkout cart-button display user-padding" (click)="createAccount()" *ngIf="loginCheck">
+            Update Account
+          </div>
+
+          <a class="checkout cancel-button display" [routerLink]="'/login'">
+            Cancel
+          </a>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>

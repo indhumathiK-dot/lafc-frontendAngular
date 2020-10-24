@@ -1,0 +1,59 @@
+<div class="checkout-container w-100">
+    <div class="contact-details contact-height">
+    <div>
+      <div class="display left-align contact-row header-width">Contact</div>
+      <div class="display left-align left-padding contact-row value-width">{{customerDetails.email}}</div>
+      <a href="/cart/delivery"class="display right-align common-color common-font-size">Change</a>
+    </div>
+    <br>
+    <div class="separate-box"></div>
+    <div class="top-margin">
+      <div class="display left-align contact-row header-width">Ship To</div>
+      <div class="display left-align left-padding contact-row value-width">{{shippingAddress}}</div>
+      <a href="/cart/delivery" class="display right-align common-color common-font-size">Change</a>
+    </div>
+  </div>
+  <div>
+    <h5 class="ship-title">Shipping Method</h5>
+
+
+    <div class="">
+      <mat-form-field appearance="outline"  class="w-100 delivery">
+        <select matNativeControl (change)="shippingMethodChange($event.target.value)" placeholder="Shipping Method">
+          <option value=""></option>
+          <option [value]="ship.value" *ngFor="let ship of shippingMethods">{{ship.label}}</option>
+        </select>
+      </mat-form-field>
+    </div>
+
+
+<!--    <div class="form-group form-default m-b-10 shiiping-dd-width update-left">-->
+<!--      <ng-select [items]="shippingMethods" bindLabel="label" [ngModel]="1"-->
+<!--                 bindValue="value" #shippingMethod [clearable]="false"-->
+<!--                 (focus)="shippingMethod.open()" (change)="shippingMethodChange($event.value)"-->
+<!--                 placeholder="Shipping Method"-->
+<!--                 class="custom-select checkout-select">-->
+<!--      </ng-select>-->
+<!--    </div>-->
+
+    <div class="update-left">
+      <h5 class="ship-title">Notes <span *ngIf="notesValidation">*</span></h5>
+      <textarea rows="6" class="w-100" [ngClass]="validateNote ? 'validate-note' : ''" (blur)="getNotes($event.target.value)"></textarea>
+    </div>
+
+  </div>
+
+  <div>
+    <a class="return display update-left" [routerLink]="'/cart/delivery'">
+      <i class="fa fa-angle-left"></i> Return to Information
+    </a>
+    <div class="checkout-row display right-align">
+      <div class="checkout cart-button" (click)="checkout()">
+        Place Order
+      </div>
+    </div>
+  </div>
+</div>
+
+
+

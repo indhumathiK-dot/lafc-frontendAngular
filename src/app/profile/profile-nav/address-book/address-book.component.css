@@ -1,0 +1,40 @@
+.action-align {
+  text-align: right;
+}
+.edit-padding {
+  padding-right: 25px;
+}
+.checkout-row {
+  float: right;
+  margin-right: 3pc;
+}
+.icon-padding {
+  padding-right: 11px;
+}
+.checkout {
+  display: inline-block;
+  margin: 0;
+  padding: 12px 2em;
+  font-family: Raleway,sans-serif;
+  font-weight: bold;
+  font-style: normal;
+  font-size: 15px;
+  line-height: 17px;
+  text-transform: uppercase;
+  cursor: pointer;
+  letter-spacing: 1px;
+  height: auto;
+}
+.address-pad {
+  margin-top: 20px;
+}
+.cart-button {
+  border: 1px solid #dae6ff;
+  background: #dae6ff;
+  color: #414141;
+}
+.cart-button:hover {
+  border: 1px solid black;
+  background: black;
+  color: #FFFFFF;
+}

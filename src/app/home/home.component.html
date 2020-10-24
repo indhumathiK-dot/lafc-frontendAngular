@@ -1,0 +1,17 @@
+<div>
+  <div>
+    <div>
+      <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="4">
+
+        <div  fxFlex="100" fxFlex.lt-sm="100">
+      <img class="banner-width" src="{{bannerImage[0]?.image}}">
+    </div>
+      </div>
+    </div>
+
+    <div class="row footer-margin">
+        <app-product-list [productList]="products"></app-product-list>
+    </div>
+
+  </div>
+</div>

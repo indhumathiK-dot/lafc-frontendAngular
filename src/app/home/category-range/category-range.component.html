@@ -1,0 +1,21 @@
+
+<section class="categoryRange container-fluid">
+    <div class="categoryOptions container">
+        <h6 class="section-title"> EXPLORE OUR CATEGORY RANGE </h6>
+        <div class="icons">
+            <!-- <div class="Hardware categorylist"> <a routerLink= "/category/85/hardware"> <img   src="../../assets/images/Hardware.png" alt="">  </a><p> HARDWARE </p></div>
+            <div class="Sanitaryware categorylist"> <a routerLink = "/category/84/sanitary-wares"> <img src="../../assets/images/Sanitaryware.png" alt=""></a><p> SANITARYWARE </p>  </div>
+            <div class="BathAccessories categorylist"> <a routerLink = "/category/83/bath-accessories"> <img src="../../assets/images/BathAccessories.png" alt=""></a><p> BATH ACCESSORIES </p>  </div>
+            <div class="ModularKitchen categorylist"> <a routerLink="/category/82/modular-kitchen"> <img src="../../assets/images/ModularKitchen.png" alt=""></a><p> MODULAR KITCHEN </p> </div>
+            <div class="ModularHardware categorylist"> <a routerLink="/category/1348/modular-wardrobe"> <img src="../../assets/images/ModularHardware.png" alt=""></a><p>  MODULAR WARDROBE </p> </div> -->
+
+            <div class="categorylist" *ngFor="let category of categoriesList"> 
+                <a [routerLink]="['/category', category.category_id, categoryService.slug(category.name)]"> 
+                    <img [src]="category.web_icon">
+                    <p> {{category.name | uppercase}} </p>
+                </a> 
+            </div>
+            
+        </div>
+    </div>
+</section>

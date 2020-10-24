@@ -1,0 +1,54 @@
+.card {
+    margin-top: -40px !important;
+}
+.heading {
+    text-align: center;
+    font-size: 28px;
+    color: whitesmoke;
+    margin: 0 auto;
+    padding-bottom: 3em;
+    padding-top: 60px;
+    background-color: #EF4040;
+    font-family:  Opensans-bold;
+}
+agm-map {
+    height: 400px;
+}
+.details-row {
+    margin-top: 30px;
+    margin-bottom: 60px;
+}
+.col-4 {
+    text-align: center;
+}
+.fa-phone, .fa-envelope-o, .fa-map-marker {
+    font-size: 48px !important;
+    padding: 16px;
+    color: #EF4040;
+}
+.image {
+    height: 64px !important;
+    margin: 16px !important;
+}
+.title {
+    font-weight: bold;
+    font-family:  Opensans-bold;
+}
+.sub-title {
+    font-size: 14px;
+    color: gray;
+    font-family:  Opensans-Semibold;
+    text-decoration: none;
+}
+.helpline, .showroom {
+    color: #EF4040;
+    font-weight: 600;
+    font-size: 15px;
+    margin-bottom: 0px;
+}
+.sub-title1 {
+    margin: 0px;
+    font-size: 14px;
+    color: gray;
+    font-family:  Opensans-Semibold;
+}

@@ -1,0 +1,40 @@
+<div *ngIf="router.url !== '/cart/items'">
+<div class="w-100 all-height">
+ <div class=" display left-design">
+   <div class="center-align">
+   <a [routerLink]="'/'">
+     <img class="image" src="/assets/images/LA%20Marketplace%20Logo.jpg"></a>
+        <ul class="menu-align" *ngIf="router.url !== '/cart/orderSuccess'">
+            <li class="cart-menu">
+                <a class="common-font-size icon-color" [routerLink]="'/cart/items'" routerLinkActive="router-link-active" > Cart </a>
+            </li>
+          <li class="cart-menu">
+            <i class="fa fa-angle-right"> </i>
+          </li>
+            <li class="cart-menu">
+                <a  class="common-font-size"
+                    [ngClass]="router.url == '/cart/delivery' ? 'color-black' : 'icon-color'"
+                    [routerLink]="'/cart/delivery'" > Information </a>
+            </li>
+          <li class="cart-menu">
+            <i class="fa fa-angle-right"> </i>
+          </li>
+            <li class="cart-menu">
+                <a class="common-font-size icon-color" [routerLink]="'/cart/checkout'"
+                   [ngClass]="router.url == '/cart/checkout' ? 'color-black' : 'icon-color'"> Shipping </a>
+            </li>
+        </ul>
+   </div>
+   <router-outlet></router-outlet>
+</div>
+ <div class="display item-display">
+   <app-cart-item></app-cart-item>
+ </div>
+
+</div>
+
+</div>
+<div  *ngIf="router.url=== '/cart/items'">
+  <router-outlet></router-outlet>
+</div>
+

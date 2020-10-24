@@ -1,0 +1,81 @@
+<div class="success-container footer-padding common-color">
+
+  <div class="total-margin-left flex-display">
+    <div  class="image-width display">
+      <img src="https://img.icons8.com/pastel-glyph/128/000000/checked.png"/>
+    </div>
+    <div class="display contact">
+      <div>
+        <span class="order-size">Order #{{orderId}}</span>
+      </div>
+      <div>
+        <span class="thank-msg">Thank you {{customerDetails.firstname}} {{customerDetails.lastname}}!</span>
+      </div>
+      <br>
+    </div>
+  </div>
+
+  <div class="top-container payment-address">
+    <div class="confirmation-msg">
+      Your order is confirmed
+    </div>
+    <div class="view-order">
+      You will receive confirmation email with your order number shortly
+    </div>
+    <a class="link-color" href="/orders/{{orderId}}">View order</a>
+  </div>
+
+
+  <div class="payment-address">
+
+    <div class="address-width w-100">
+      <div class="contact-space">
+        <div class="default-address bold-font">Contact Information</div>
+        <div>{{orderDetails?.email}}</div>
+      </div>
+    </div>
+
+    <div class="w-100 flex-display">
+    <div class="w-50">
+      <div>
+        <div class="default-address bold-font">SHIPPING ADDRESS</div>
+        <div class="transformText">{{orderDetails?.shipping_firstname}} {{orderDetails?.shipping_lastname}}</div>
+        <div>{{orderDetails?.shipping_company}}</div>
+        <div>{{orderDetails?.shipping_address_1}}</div>
+        <div>{{orderDetails?.shipping_address_2}}</div>
+        <div>{{orderDetails?.shipping_city}} {{orderDetails?.shipping_post_code}}</div>
+        <div>{{orderDetails?.shipping_zone}}</div>
+        <div>{{orderDetails?.shipping_country}}</div>
+      </div>
+    </div>
+
+    <div class="w-50">
+      <div>
+        <div class="default-address bold-font">BILLING ADDRESS</div>
+        <div class="transformText">{{orderDetails?.payment_firstname}} {{orderDetails?.payment_lastname}}</div>
+        <div>{{orderDetails?.payment_company}}</div>
+        <div>{{orderDetails?.payment_address_1}}</div>
+        <div>{{orderDetails?.payment_address_2}}</div>
+        <div>{{orderDetails?.payment_city}} {{orderDetails?.payment_post_code}}</div>
+        <div>{{orderDetails?.payment_zone}}</div>
+        <div>{{orderDetails?.payment_country}}</div>
+      </div>
+    </div>
+    </div>
+
+  </div>
+
+  <div class="top-container">
+    <span> Need help? </span>
+    <a class="return display update-left link-color" [routerLink]="'/about/Contact-Us/1'">
+     Contact us
+    </a>
+    <div class="checkout-align display right-align">
+      <a class="checkout cart-button" [routerLink]="'/'">
+        Continue to Shopping
+      </a>
+    </div>
+  </div>
+
+</div>
+

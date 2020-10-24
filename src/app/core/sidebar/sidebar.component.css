@@ -1,0 +1,45 @@
+
+.topbar-overflow {
+  height: 45px;
+  background: #FFFFFF;
+  overflow: hidden;
+}
+
+.header_site_name {
+  visibility: hidden;
+  display: inline-block;
+  width: 3%;
+}
+
+@media (max-width: 767px) {
+  .header_site_name {
+    visibility: visible;
+  }
+}
+
+.page-wrapper {
+  width: calc(100% - 250px);
+  float: right;
+}
+
+/*.page-wrapper .mat-drawer-content {*/
+/*margin-left: 289px;*/
+/*}*/
+
+/*header css starts here*/
+.header-margin {
+  margin-top: 27px;
+  height: 15px;
+}
+
+.header.mat-toolbar-single-row {
+  height: 1px;
+  padding: 0;
+}
+
+/*.page-wrapper.mat-drawer-content {*/
+/*overflow: hidden;*/
+/*}*/
+.sidebar-move {
+  overflow: auto;
+}

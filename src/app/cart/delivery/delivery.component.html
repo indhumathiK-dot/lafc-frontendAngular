@@ -1,0 +1,145 @@
+<div class="footer-padding">
+  <h5 class="contact-title">Contact Information</h5>
+  <div>
+    <div class="total-margin-left">
+    <div  class="image-width display">
+      <img src="assets/images/eb37eb8a6cb046a4476d0d6e4b662974.png">
+    </div>
+    <div class="display contact">
+    <div>
+      <span class="transformText">{{customerDetails.firstname}} {{customerDetails.lastname}} </span>
+      <span>({{customerDetails.email}})</span>
+    </div>
+      <br>
+    <a class="left-align mouse-events" (click)="userLogout()">logout</a>
+    </div>
+    </div>
+    <h5 class="contact-title">Shipping Address</h5>
+    <div class="address-design">
+      <form novalidate [formGroup]="addressForm" class="login-box">
+
+        <div class="w-100">
+          <label class="label-name">Saved Address</label>
+          <mat-form-field appearance="outline" class="w-100 delivery">
+            <select matNativeControl formControlName="savedAddress" (change)="getAddressListById(addressForm.value.savedAddress)">
+              <option [value]="address.value" *ngFor="let address of fullAddressList">{{address.label}}</option>
+            </select>
+          </mat-form-field>
+        </div>
+
+<!--        <div class="form-group form-default m-b-10  address-width">-->
+<!--          <ng-select [items]="fullAddressList" bindLabel="label" [searchable]="false"-->
+<!--                     bindValue="value" #address [clearable]="false"-->
+<!--                     [formControl]= "addressForm.controls['savedAddress']" (focus)="address.open()"-->
+<!--                     placeholder="Saved Address" (change)="getAddressListById($event.value)"-->
+<!--                     class="custom-select address delivery">-->
+<!--          </ng-select>-->
+<!--        </div>-->
+
+        <div class="w-100">
+          <div class="w-50 display">
+        <label class="label-name">First Name*</label>
+          <mat-form-field appearance="outline" class="w-100 delivery" [ngClass]="validationCheck['firstname'] ? 'errorClass' : ''">
+            <input matInput formControlName="firstname" (keydown)="checkValidationForm('firstname')">
+          </mat-form-field>
+          </div>
+
+          <div class="w-50 display">
+        <label class="label-name parellel-field">Last Name*</label>
+          <mat-form-field appearance="outline" class="w-100 parellel-field delivery" [ngClass]="validationCheck['lastname'] ? 'errorClass' : ''">
+            <input matInput formControlName="lastname" (keydown)="checkValidationForm('lastname')">
+          </mat-form-field>
+          </div>
+        </div>
+
+        <label class="label-name">Company</label>
+          <mat-form-field appearance="outline" class="w-100 delivery">
+            <input matInput formControlName="company">
+          </mat-form-field>
+
+        <label class="label-name">Address*</label>
+          <mat-form-field appearance="outline" class="w-100 delivery" [ngClass]="validationCheck['address'] ? 'errorClass' : ''">
+            <input matInput formControlName="address" (keydown)="checkValidationForm('address')">
+          </mat-form-field>
+
+        <label class="label-name">Apartment, suite, etc (optional)</label>
+          <mat-form-field appearance="outline" class="w-100 delivery">
+            <input matInput formControlName="subAddress">
+          </mat-form-field>
+
+        <label class="label-name">City*</label>
+          <mat-form-field appearance="outline" class="w-100 city-padding delivery" [ngClass]="validationCheck['city'] ? 'errorClass' : ''">
+            <input matInput formControlName="city" (keydown)="checkValidationForm('city')">
+          </mat-form-field>
+
+
+        <div class="w-100 botton-padding csz-control">
+<!--          <div class="field-width display">-->
+<!--          <label class="label-name">Country*</label>-->
+<!--          <ng-select [items]="countriesList" name="projectCategoryId" bindLabel="label" [searchable]="false"-->
+<!--                     bindValue="value" #country [clearable]="false" [ngClass]="validationCheck['country'] ? 'errorClass' : ''"-->
+<!--                     [formControl]= "addressForm.controls['country']" (focus)="country.open()"-->
+<!--                    (change)="onSelectCountry($event)"-->
+<!--                     class="custom-select delivery country">-->
+<!--          </ng-select>-->
+<!--        </div>-->
+
+          <div class="display field-width">
+            <label class="label-name">Country*</label>
+            <mat-form-field appearance="outline" class="w-100 delivery" [ngClass]="validationCheck['country'] ? 'errorClass' : ''">
+              <select matNativeControl formControlName="country" (change)="onSelectCountry(addressForm.value.country)">
+                <option value=""></option>
+                <option [value]="country.value" *ngFor="let country of countriesList">{{country.label}}</option>
+              </select>
+            </mat-form-field>
+          </div>
+
+
+          <div class="display field-width parellel-field">
+            <label class="label-name">State*</label>
+            <mat-form-field appearance="outline"  class="w-100 delivery" [ngClass]="validationCheck['state'] ? 'errorClass' : ''">
+              <select matNativeControl formControlName="state" (change)="checkValidationForm('state')">
+                <option value=""></option>
+                <option [value]="state.value" *ngFor="let state of statesList">{{state.label}}</option>
+              </select>
+            </mat-form-field>
+          </div>
+
+
+<!--        <div class="parellel-field display field-width">-->
+<!--          <label class="label-name parellel-field">State*</label>-->
+<!--          <ng-select [items]="statesList" bindLabel="label" [ngClass]="validationCheck['state'] ? 'errorClass' : ''"-->
+<!--                     bindValue="value" #states [clearable]="false" [searchable]="false"-->
+<!--                     [formControl]= "addressForm.controls['state']" (focus)="states.open()"-->
+<!--                    (change)="checkValidationForm('state')"-->
+<!--                     class="custom-select delivery state">-->
+<!--          </ng-select>-->
+<!--        </div>-->
+
+          <div class="field-width display">
+          <label class="label-name parellel-field">Zip code*</label>
+          <mat-form-field appearance="outline" class="parellel-field w-100 zip-pad-remove zip-code delivery" [ngClass]="validationCheck['pincode'] ? 'errorClass' : ''">
+            <input matInput formControlName="pincode" (keydown)="checkValidationForm('pincode')">
+          </mat-form-field>
+          </div>
+        </div>
+
+        <label class="label-name">Phone</label>
+          <mat-form-field appearance="outline" class="w-100 delivery">
+            <input type="tel" ng2TelInput [ng2TelInputOptions]="cell1TelInput" matInput formControlName="phone">
+          </mat-form-field>
+
+      </form>
+    </div>
+    <div>
+      <a class="return display update-left" [routerLink]="'/cart/items'">
+        <i class="fa fa-angle-left"></i> Return to Cart
+      </a>
+      <div class="checkout-align display right-align">
+        <div class="checkout cart-button" (click)="onSubmitValue()">
+          Continue to Shipping
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,42 @@
+<div class="detail-padding footer-padding">
+  <div>
+    <form novalidate [formGroup]="searchForm" class="login-box">
+      <div class="col-md-12 zero-left-padding">
+        <div class="col-md-10 zero-left-padding display right-padding-remove">
+        <mat-form-field appearance="outline" class="w-100 search">
+          <input matInput (keydown)="enterSearch($event)" formControlName="search" id="search" placeholder="Search">
+        </mat-form-field>
+        </div>
+
+        <div class="col-md-2 display zero-left-padding top-align">
+          <div class="checkout-row" (click)="onSubmit('24', '1')">
+            <div class="checkout cart-button">
+              Search
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </form>
+
+    <div class="w-100 top-margin" *ngIf="products.length">
+      <div class="display w-50 common-color">You searched for: {{searchWord}}, we found {{products?.length}} results</div>
+      <div class="display w-50">
+        <mat-paginator class="paginator-margin" #paginator [pageSize]="24" [hidePageSize]="true" (page)="onChange($event)"
+                       [showFirstLastButtons]="true" [length]="products?.length">
+        </mat-paginator>
+      </div>
+    </div>
+
+    <div class="w-100 top-margin" *ngIf="!products.length && searchCheck">
+      <div class="display w-50 common-color">No result found for {{searchWord}}</div>
+      <div class="display w-50">
+        <mat-paginator class="paginator-margin" #paginator [pageSize]="24" [hidePageSize]="true" (page)="onChange($event)"
+                       [showFirstLastButtons]="true" [length]="products?.length">
+        </mat-paginator>
+      </div>
+    </div>
+
+    <app-product-list [productList]="products"></app-product-list>
+  </div>
+</div>

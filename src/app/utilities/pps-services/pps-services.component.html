@@ -1,0 +1,17 @@
+<div class="serviceWrapper container">
+    <div class="serviceInnerWrapper">
+        <div>
+            <h5 class="subheader" [innerHTML]="title"> title </h5> 
+        </div>
+        <div>
+             <img [src]="image" alt=""> 
+        </div>
+        <div class="card service-descp">
+            <div class="description">
+                <div [innerHTML]="info?.description"> {{info?.description}} </div>
+            </div>
+        </div>    
+
+    </div>
+
+</div>

@@ -1,0 +1,11 @@
+<div class="container" style="padding: 0px">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item" *ngFor="let item of bcData; let i = index">
+                <a (click) = loadProductsByCategory(item) > {{item.cat.name | titlecase}} </a> </li>
+                  <li class="breadcrumb-item">
+                      <a> {{productName}} </a>
+                  </li>
+        </ol>
+    </nav>
+</div>

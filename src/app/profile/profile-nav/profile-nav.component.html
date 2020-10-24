@@ -1,0 +1,15 @@
+<div class="">
+  <div>
+    <a class="checkout" [ngClass]="account === 1 ? 'active-button' : 'inactive-button'"
+         [routerLink]="[ '/account', 'orders']" (click)="tabChangeUpdate('account')">My Account </a>
+    <a class="checkout" [ngClass]="account === 2 ? 'active-button' : 'inactive-button'"
+         [routerLink]="[ '/account', 'address']" (click)="tabChangeUpdate('address')">My Addresses </a>
+    <a class="checkout" [ngClass]="account === 3 ? 'active-button' : 'inactive-button'"
+         [routerLink]="[ '/account', 'wishlist']" (click)="tabChangeUpdate('wishlist')">My Wishlist </a>
+    <a class="checkout" [ngClass]="account === 4 ? 'active-button' : 'inactive-button'"
+       [routerLink]="[ '/account', 'cards']" (click)="tabChangeUpdate('cards')">My Cards </a>
+  </div>
+  <div class="container-padding">
+    <router-outlet></router-outlet>
+  </div>
+</div>

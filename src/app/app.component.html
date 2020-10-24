@@ -1,0 +1,44 @@
+
+<div *ngIf="(router.url !== '/cart/checkout' && router.url !== '/cart/delivery' && router.url !== '/cart/orderSuccess' )">
+  <app-sidebar></app-sidebar>
+</div>
+<div *ngIf="(router.url === '/cart/checkout' || router.url === '/cart/delivery' || router.url === '/cart/orderSuccess' )">
+  <router-outlet></router-outlet>
+</div>
+
+
+
+
+
+
+
+
+
+
+<!--
+<div class="cart" *ngIf="(router.url !== '/cart/items') && (router.url !== '/cart/delivery') &&
+(router.url !== '/cart/address') && (router.url !== '/cart/payment') &&
+(router.url !== '/cart/orderSuccess') && (router.url !== '/cart/orderFailed')">
+    <div class="head">
+        <app-header></app-header>
+        <app-nav></app-nav>
+    </div>
+    <div>
+        <router-outlet (activate)="scrollTop($event)">
+            <div class="spacer"></div>
+        </router-outlet>
+    </div>
+    <app-footer></app-footer>
+    <ngx-spinner></ngx-spinner>
+    <button type="button" class="btn btn-danger scrollup-btn" *ngIf="isScrolled" (click)="gotoTop()">
+        <i class="fa fa-angle-up" aria-hidden="true"></i>
+    </button>
+</div>
+<router-outlet class="all" *ngIf="(router.url === '/cart/items') || (router.url === '/cart/delivery') ||
+(router.url === '/cart/address') || (router.url === '/cart/payment') || (router.url === '/cart/orderSuccess')
+|| (router.url === '/cart/orderFailed')"></router-outlet>
+
+<div class="not-web">
+    <app-download-app></app-download-app>
+</div>
+-->

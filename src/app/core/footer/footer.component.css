@@ -1,0 +1,84 @@
+.page-footer.cust-footer {
+  right: 0;
+  bottom: 0;
+  z-index: 109;
+  font-weight: 400;
+  position: fixed;
+  width: calc(100% - 250px);
+  height: 50px;
+  background: #F8F7F7;
+  margin: 0 0 0px 289px;
+  color: #505050;
+  padding: 0 10px;
+  text-align: right;
+  font-size: 14px;
+}
+.footer-menu {
+  display: inline;
+  list-style: none;
+  margin: 0 6px 0 0;
+}
+.footer-align {
+  margin-bottom: 10px;
+  margin-top: 10px;
+  padding-left: 0;
+  padding-right: 70px;
+}
+.separators {
+  font-size: 13px;
+  margin-right: 8px;
+}
+.social-icon-fb {
+  border: 1px solid white;
+  padding: 3px 4px 0px 4px;
+  background: white;
+  color: #998c88;
+  font-size: 14px;
+}
+.footer-color {
+  color: #787878;
+}
+.social-icon-insta {
+  padding: 3px 4px 0px 4px;
+  background: #998c88;
+  color: white;
+  font-size: 20px;
+}
+.social-links {
+  margin-right: 10px;
+}
+.social {
+  margin: 14px 0;
+}
+.copy {
+  color: #505050;
+}
+.spacing {
+  padding-right: 2px;
+}
+.g-pay-icon {
+  border: 1px solid #988c88;
+  padding: 2px;
+  border-radius: 2px;
+  width: 35px;
+}
+.amex-width {
+  width: 35px;
+}
+.venmo {
+  width: 20px;
+}
+.mastercard {
+  width: 28px;
+}
+.paypal {
+  width: 24px;
+}
+
+@media(max-width:480px){
+  .page-footer.cust-footer .alignright {
+    float: unset;
+    border-right:2px;
+    display: inline-block
+  }
+}

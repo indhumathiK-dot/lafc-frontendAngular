@@ -1,0 +1,36 @@
+.heading {
+    text-align: center;
+    font-size: 28px;
+    margin: 0 auto;
+    padding-bottom: 3em;
+    padding-top: 60px;
+    background-color: whitesmoke;
+    font-family:  Opensans-bold;
+}
+img {
+   width: 100%;
+}
+
+h3{
+    text-align: center;
+}
+
+.name {
+    text-align: center;
+    font-weight: 600;
+}
+.thumb-wrapper {
+  margin-top: 15px;
+}
+.img-fluid {
+  width: 100%;
+}
+.project-name{
+  font-size: 15px;
+  color: #414141;
+  font-weight: 600;
+}
+.img-box {
+  border-bottom: 1px solid #D5CEC8;
+  margin-bottom: 10px;
+}

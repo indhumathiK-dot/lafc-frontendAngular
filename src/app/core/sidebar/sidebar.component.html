@@ -1,0 +1,60 @@
+<div class="main-container">
+
+  <mat-sidenav-container class="example-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 0 : 0"
+                         style="visibility: visible" *ngIf="(router.url !== 'cart/checkout' && router.url !== '/cart/delivery')">
+    <!-- ============================================================== -->
+    <!-- Sidebar - style you can find in sidebar.scss -->
+    <!-- ============================================================== -->
+    <mat-sidenav #snav id="snav" class="dark-sidebar pl-xs sidebar-background" [mode]="mobileQuery.matches ? 'side' : 'over'"
+                 fixedTopGap="0" [opened]="mobileQuery.matches" [disableClose]="mobileQuery.matches">
+
+      <app-menubar></app-menubar>
+<!--      </div>-->
+    </mat-sidenav>
+    <!-- ============================================================== -->
+    <!-- Sidebar - style you can find in sidebar.scss -->
+    <!-- ============================================================== -->
+    <mat-sidenav-content class="topbar-overflow">
+      <mat-toolbar class="header">
+        <div class="header-margin">
+        <!-- ============================================================== -->
+        <!-- sidebar toggle -->
+        <!-- ============================================================== -->
+        <div class="header_site_name">
+          <button mat-icon-button (click)="snav.toggle()" value="sidebarclosed">
+            <mat-icon class="header-icon">menu</mat-icon>
+          </button>
+        </div>
+
+        </div>
+      </mat-toolbar>
+      <!-- ============================================================== -->
+      <!-- End Topbar - style you can find in pages.scss -->
+      <!-- ============================================================== -->
+    </mat-sidenav-content>
+    <!-- ============================================================== -->
+    <!-- Header container - style you can find in header.scss -->
+    <!-- ============================================================== -->
+
+    <!-- ============================================================== -->
+    <!-- Page container - style you can find in pages.scss -->
+    <!-- ============================================================== -->
+
+    <mat-sidenav-content class="page-wrapper back-color">
+
+      <div class="sidebar-move">
+        <router-outlet> </router-outlet>
+        <app-footer></app-footer>
+      </div>
+    </mat-sidenav-content>
+    <!-- ============================================================== -->
+    <!-- Page container - style you can find in pages.scss -->
+    <!-- ============================================================== -->
+  </mat-sidenav-container>
+
+  <div *ngIf="(router.url === 'cart/checkout' || router.url === '/cart/delivery')">
+    <router-outlet></router-outlet>
+  </div>
+
+</div>
+

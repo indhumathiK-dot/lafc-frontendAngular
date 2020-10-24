@@ -1,0 +1,237 @@
+.empty-list {
+    text-align: center;
+    padding: 42px !important;
+}
+.jumbotron{
+    background: url('http://opencart.kalanjiamhardwares.com/image/catalog/catagory banner/catagory banner big.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 300px;
+}
+.brand-slide {
+    text-align: center;
+    padding-bottom: 16px;
+    background: whitesmoke;
+}
+.brand-image {
+    width: 100%;
+    height: 150px;
+    object-fit: contain;
+    margin: 32px 0px;
+}
+hr {
+    margin-top: 0px;
+}
+.category-banner {
+    width: 100%;
+    height: 284px;
+    object-fit: cover;
+    margin-bottom: 32px;
+}
+.container {
+    padding: 0px;
+}
+.tree-container {
+    border-right: 1px solid whitesmoke;
+    padding: 32px 16px 32px 32px;
+}
+.product-container {
+    padding-top: 24px; 
+}
+/* .col-md-3 {
+    padding: 0px 32px;
+} */
+.price {
+    width: 200px
+}
+::ng-deep .popover {
+    margin-left: 90.203px;
+    width: 275px;
+}
+::ng-deep .popover .popover-body {
+    padding: 32px 8px;
+}
+.products-col {
+    display: flex;
+    flex-flow: row;
+    flex-wrap: wrap;
+    padding-left: 9px;
+}
+.container .row .col{
+    display: inline-flex;
+    padding: 0px;
+}
+mat-slider {
+  width: 300px;
+}
+/* .mat-form-field {
+    width: 100px;
+} */
+::ng-deep .mat-select-arrow {
+    visibility: hidden;
+}
+::ng-deep .filters-wrap .mat-form-field-infix {
+    border: 1px solid lightgray;
+    border-radius: 3px;
+    padding: .4375em 5px .4375em 16px;
+}
+::ng-deep .mat-form-field-label-wrapper {
+    margin-left: 8px;
+    font-weight: 400;
+}
+::ng-deep  .mat-form-field-appearance-legacy .mat-form-field-underline {
+    color: #C1BDBD;
+}
+::ng-deep .mat-form-field-appearance-legacy .mat-form-field-label{
+    color: black;
+}
+
+::ng-deep .mat-form-field {
+    margin-right: 5px;
+}
+
+::ng-deep .mat-select {
+    font-family: 'Open Sans';
+}
+
+  /* // mat-icon-stepper selected color change  */
+  ::ng-deep .mat-step-header .mat-step-icon-selected, .mat-step-header .mat-step-icon-state-done, .mat-step-header .mat-step-icon-state-edit {
+    background-color: lightgray !important;
+}
+
+/* //input outline color */
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
+    color: lightgray !important;
+    /* // opacity: 1!important; */
+}
+
+/* //mat-input focused color */
+::ng-deep .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
+    color: lightgray !important;
+}
+
+/* // mat-input carent color */
+::ng-deep .mat-input-element {
+    caret-color: lightgray !important;
+}
+
+/* // mat-label normal state style */
+::ng-deep .mat-form-field-label {
+    color: black;
+    font-size: 14px !important;
+    margin-top: 4px !important;
+    /* // color: $mainColor!important; */
+}
+
+/* // mat-label focused style */
+::ng-deep .mat-form-field.mat-focused .mat-form-field-label {
+    color: gray !important;
+}
+::ng-deep .mat-form-field-appearance-legacy .mat-form-field-underline {
+    background-color: lightgray;
+}
+/* To change the icon of dropdown */
+.select {
+    position: relative;
+    display: inline-block;
+}
+.select select {
+    width: 156px !important;
+    -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+}
+.select::after {
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    position: absolute;
+    top: 30%;
+    right: .5em;
+    margin-left: 8px !important;
+    font-size: 16px;
+    content: "\f107";
+}
+
+/* Tabs */
+
+::ng-deep .nav-tabs {
+    direction: rtl;
+    border-bottom: 0px;
+    padding: 0px;
+}
+::ng-deep .nav-tabs .nav-link:first-child {
+    border-right: 1px solid #C1BDBD; 
+    border-radius: unset;
+}
+::ng-deep .nav-tabs .nav-link.active {
+    border: 0px;
+    color: #Ed2f2f;
+}
+::ng-deep .nav-link {
+    color: #C1BDBD;
+}
+.barClass {
+    width:80%;
+    height:5px;
+    background:#C1BDBD;
+    border-radius:5px;
+    }
+
+.sliderClass
+{
+    width:14px;
+    height:14px;
+    background:white;
+    border-radius:50%;    
+    border:1px solid blue;
+    bottom:-72% !important;
+    }
+.highlightClass{
+    background:blue;
+    }
+
+    .title{
+        margin-right: 8px;
+        font-size: 14px;
+        color: gray;
+        font-family: Opensans-Semibold;
+    }
+    .tab-container > .nav > .nav-tabs{
+    direction: rtl !important;
+
+}
+.filter-title {
+    font-size: 14px;
+    color: #Ed2f2f;
+    font-family: Opensans-Semibold;
+    margin-bottom: 8px !important;
+}
+.filterPrice {
+    margin-right: 5px;
+    display: inline;
+}
+.btn-outline-secondary {
+    border: 1px solid lightgray;
+}
+.btn-outline-secondary:hover {
+    background: white;
+}
+::ng-deep .mat-primary .mat-pseudo-checkbox-checked, .mat-primary .mat-pseudo-checkbox-indeterminate {
+    background: #EF4040;
+}
+.side-nav-service{
+    margin-top: 15px;
+    font-family: lato-bold;
+    padding: 10px 0px;
+    letter-spacing: 0.04em;
+}
+.col[_ngcontent-ftk-c6] {
+    display: -webkit-inline-box;
+    display: inline-flex;
+    padding: 0px;
+}
+.filters-wrap{
+    display: flex;
+    justify-content: space-around;
+    align-items: baseline;
+}

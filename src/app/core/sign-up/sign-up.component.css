@@ -1,0 +1,53 @@
+.modal-title {
+  margin-top: 8px;
+}
+::ng-deep .mat-form-field-wrapper {
+  padding-bottom: 8px;
+}
+.form-container {
+    display: flex;
+    flex-direction: column;
+  }
+  .form-container > * {
+      width: 100%;
+  }
+.btn {
+    margin: 10px 0 10px 0;
+    font-size: 15px
+  }
+  .help-bpx {
+    font-size: 12px;
+    color: #ED2F2F;
+  }
+  .facebook {
+    background:  #3b5998;
+    color: white;
+    width: 100%;
+    font-size: 14px;
+  }
+  .gmail {
+    border: 1px solid #ED2F2F;
+    width: 100%;
+    font-size: 14px;
+  }
+
+.register-wrapper{
+    width: 100%;
+    float: left;
+    font-family: Opensans-Semibold;
+    color: #414141;
+  }
+  .link-signup{
+    font-size: 13px;
+    margin-bottom: 10px;
+  }
+  .social-login{
+    margin: 0 !important;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    padding-bottom: 10px;
+  }
+  .loginInnerForm {
+    margin: 0 20px;
+  }

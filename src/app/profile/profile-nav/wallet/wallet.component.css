@@ -1,0 +1,29 @@
+.walletBalance{
+    text-align: center;
+    font-size: 20px;
+}
+.cost{
+    color: #ED2F2F;
+}
+
+.walletTotalwrapper{
+    padding: 20px;
+}
+
+.walletTotalOuterWrapper{
+    margin-bottom: 20px;
+    background: rgba(107,125,133,.15) !important;
+    border: unset;
+    box-shadow: 0px 2px 5px 0px #e4e4e4;
+}
+
+.walletDescriptionWrapper{
+    margin-bottom: 20px;
+    padding: 10px;
+}
+
+.walletdescone{
+    display: flex;
+    justify-content: space-between;
+
+}

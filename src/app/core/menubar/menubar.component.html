@@ -1,0 +1,142 @@
+<div class="sidenav">
+  <a href="/">
+    <img src="/assets/images/LA%20Marketplace%20Logo.jpg" class="logo-image">
+  </a>
+  <div class="mainnav">
+    <div class="tier">
+      <ul>
+        <li class="menu-hover">  <a [routerLink]="'/collections/new-arrival/New Arrival'">New Arrival</a> </li>
+
+        <li class="menu-hover" *ngFor="let category of categoriesList">
+          <span class="fd-arrow-left"></span>
+          <a id="tier2" routerLink="/products/collections/{{category.cat.name}}/{{category.cat.category_id}}">{{category.cat.name}}
+            <span class="menu-icon" *ngIf="category.children.length">
+               <svg xmlns="http://www.w3.org/2000/svg" width="11.121" height="15.243" viewBox="0 0 11.121 19.243">
+                 <path id="Icon_feather-chevron-down" data-name="Icon feather-chevron-down" d="M15,0,7.5,7.5,0,0" transform="translate(2.121 17.121) rotate(-90)" fill="none" stroke="#998c88" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+               </svg>
+             </span>
+          </a>
+          <ul *ngIf="category.children.length">
+            <li *ngFor="let childCategory of category.children">
+              <a class="sub-menu" routerLink="/products/collections/{{childCategory.cat.name}}/{{childCategory.cat.category_id}}" title="">{{childCategory.cat.name}}</a>
+            </li>
+          </ul>
+        </li>
+
+        <li class="menu-hover">
+          <span class="fd-arrow-left"></span>
+          <a id="tier2" [routerLink]="'/brands'">OUR BRANDS
+            <span class="menu-icon" *ngIf="brands.length">
+               <svg xmlns="http://www.w3.org/2000/svg" width="11.121" height="15.243" viewBox="0 0 11.121 19.243">
+                 <path id="Icon_feather-chevron-down" data-name="Icon feather-chevron-down" d="M15,0,7.5,7.5,0,0" transform="translate(2.121 17.121) rotate(-90)" fill="none" stroke="#998c88" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+               </svg>
+             </span>
+          </a>
+
+          <ul *ngIf="brands.length">
+            <li *ngFor="let brand of brands">
+              <a class="sub-menu" routerLink="/products/collections/brands/{{brand.name}}/{{brand.manufacturer_id}}" title="">{{brand.name}}</a>
+            </li>
+          </ul>
+        </li>
+
+        <li class="menu-hover">
+          <span class="fd-arrow-left"></span>
+          <a id="tier2" [routerLink]="'about/Contact-Us/1'">About LAFC
+            <span class="menu-icon" *ngIf="aboutMenu.length">
+               <svg xmlns="http://www.w3.org/2000/svg" width="11.121" height="15.243" viewBox="0 0 11.121 19.243">
+                 <path id="Icon_feather-chevron-down" data-name="Icon feather-chevron-down" d="M15,0,7.5,7.5,0,0" transform="translate(2.121 17.121) rotate(-90)" fill="none" stroke="#998c88" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+               </svg>
+             </span>
+          </a>
+
+          <ul *ngIf="aboutMenu.length">
+            <li *ngFor="let menu of aboutMenu">
+              <a *ngIf="menu.title !== 'Contact-Us'" class="sub-menu" routerLink="/about/{{menu.title}}/{{menu.id}}" title="">{{menu.title}}</a>
+              <a *ngIf="menu.title === 'Contact-Us'" class="sub-menu" routerLink="/about/{{menu.title}}/{{menu.id}}" title="">Contact Us</a>
+            </li>
+          </ul>
+        </li>
+
+        <li class="menu-hover">  <a [routerLink]="'/signup'">APPLY</a></li>
+        <li class="menu-hover">  <a [routerLink]="'/login'" *ngIf="!this.customerName">LOGIN</a></li>
+        <li class="menu-hover">  <a class="mouse-events" (click)="userLogout()" *ngIf="this.customerName">LOGOUT</a></li>
+      </ul>
+
+    </div>
+  </div>
+  <div class="cart-icon-wrap">
+    <div class="cart-li">
+      <a [routerLink]="'/search'" class="mouse-events">
+      <img src="assets/icons/search.svg" alt="" class="search-img" /></a>
+    </div>
+    <div class="cart-li">
+      <a (click)="loginNavidate('/cart/items')" class="mouse-events">
+      <img src="assets/icons/cart.svg" alt="" class="cart-img" />
+        <span class="cart-count">{{cartItemsCount}}</span></a>
+    </div>
+    <div class="cart-li">
+      <a (click)="loginNavidate('/account/wishlist')" class="mouse-events">
+      <img src="assets/icons/heart.svg" alt="" class="heart-img" />
+      <span class="cart-count">{{wishlistCount}}</span></a>
+    </div>
+  </div>
+
+  <div class="social-login">
+    <div class="username" *ngIf="this.customerName">
+
+<!--      <span class="user-padding">-->
+<!--    <svg xmlns="http://www.w3.org/2000/svg" width="16.41" height="11.211" viewBox="0 0 16.41 18.211">-->
+<!--      <g id="Icon_feather-user" data-name="Icon feather-user" transform="translate(-5 -3.5)">-->
+<!--        <path id="Path_100" data-name="Path 100" d="M20.41,27.9V26.1a3.6,3.6,0,0,0-3.6-3.6H9.6A3.6,3.6,0,0,0,6,26.1v1.8" transform="translate(0 -7.193)" fill="none" stroke="#998c88" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>-->
+<!--        <path id="Path_101" data-name="Path 101" d="M19.2,8.1a3.6,3.6,0,1,1-3.6-3.6,3.6,3.6,0,0,1,3.6,3.6Z" transform="translate(-2.398 0)" fill="none" stroke="#998c88" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>-->
+<!--      </g>-->
+<!--    </svg>-->
+<!--    </span>-->
+      <a [routerLink]="'/account/orders'" class="name-color">Hi {{this.customerName}}
+        <span class="menu-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="11.121" height="15.243" viewBox="0 0 11.121 19.243">
+            <path id="Icon_feather-chevron-down" data-name="Icon feather-chevron-down" d="M15,0,7.5,7.5,0,0" transform="translate(2.121 17.121) rotate(-90)" fill="none" stroke="#998c88" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+          </svg>
+        </span>
+      </a>
+    </div>
+    <span class="margin-lft">
+              <a target="_blank" class="social-icon-pad" href="https://www.facebook.com/lafashionseekers/">
+              <svg xmlns="http://www.w3.org/2000/svg" width="9.641" height="18" viewBox="0 0 9.641 18">
+                <path id="Icon_awesome-facebook-f" data-name="Icon awesome-facebook-f" d="M10.618,10.125l.5-3.258H7.992V4.753a1.629,1.629,0,0,1,1.837-1.76H11.25V.22A17.329,17.329,0,0,0,8.728,0C6.153,0,4.471,1.56,4.471,4.385V6.867H1.609v3.258H4.471V18H7.992V10.125Z" transform="translate(-1.609)" fill="#998c88"/>
+              </svg></a>
+
+              <a target="_blank" class="social-icon-pad" href="https://www.instagram.com/lafashionconcepts/"><svg xmlns="http://www.w3.org/2000/svg" width="19.1" height="19.1" viewBox="0 0 19.1 19.1">
+                <g id="Icon_ionic-logo-instagram" data-name="Icon ionic-logo-instagram" transform="translate(-4.5 -4.5)">
+                  <path id="Path_85" data-name="Path 85" d="M18.029,6.092a3.991,3.991,0,0,1,3.979,3.979v7.958a3.991,3.991,0,0,1-3.979,3.979H10.071a3.991,3.991,0,0,1-3.979-3.979V10.071a3.991,3.991,0,0,1,3.979-3.979h7.958m0-1.592H10.071A5.587,5.587,0,0,0,4.5,10.071v7.958A5.587,5.587,0,0,0,10.071,23.6h7.958A5.587,5.587,0,0,0,23.6,18.029V10.071A5.587,5.587,0,0,0,18.029,4.5Z" transform="translate(0 0)" fill="#998c88"/>
+                  <path id="Path_86" data-name="Path 86" d="M24.819,11.387a1.194,1.194,0,1,1,1.194-1.194A1.191,1.191,0,0,1,24.819,11.387Z" transform="translate(-5.596 -1.317)" fill="#998c88"/>
+                  <path id="Path_87" data-name="Path 87" d="M16.025,12.842a3.183,3.183,0,1,1-3.183,3.183,3.186,3.186,0,0,1,3.183-3.183m0-1.592A4.775,4.775,0,1,0,20.8,16.025a4.776,4.776,0,0,0-4.775-4.775Z" transform="translate(-1.975 -1.975)" fill="#998c88"/>
+                </g>
+              </svg></a>
+
+
+              <a target="_blank" class="social-icon-pad"><svg xmlns="http://www.w3.org/2000/svg" width="23.502" height="19.1" viewBox="0 0 23.502 19.1">
+                <path id="Icon_metro-twitter" data-name="Icon metro-twitter" d="M26.073,7.078a9.64,9.64,0,0,1-2.769.759,4.836,4.836,0,0,0,2.12-2.668,9.653,9.653,0,0,1-3.062,1.17,4.826,4.826,0,0,0-8.216,4.4A13.689,13.689,0,0,1,4.207,5.7,4.827,4.827,0,0,0,5.7,12.137a4.8,4.8,0,0,1-2.184-.6c0,.02,0,.04,0,.061a4.825,4.825,0,0,0,3.868,4.728,4.83,4.83,0,0,1-2.178.083,4.827,4.827,0,0,0,4.5,3.349,9.674,9.674,0,0,1-5.988,2.064,9.779,9.779,0,0,1-1.15-.067,13.647,13.647,0,0,0,7.391,2.166A13.625,13.625,0,0,0,23.681,10.2q0-.314-.014-.624a9.8,9.8,0,0,0,2.406-2.5Z" transform="translate(-2.571 -4.817)" fill="#998c88"/>
+              </svg></a>
+
+            </span>
+
+  </div>
+
+</div>
+<!--<div class="tier2  " id="tier2-1" (mouseenter)="subHoverMenu()" (mouseleave)="subHoverLeave()" >-->
+  <!--<ul class="fd-side-bar">-->
+
+    <!--<li class="sidebar-hover" *ngFor="let subcategory of subCategoryList">-->
+      <!--<a *ngIf="subcategory.cat" href="/products/collections/{{subcategory.cat.name}}/{{subcategory.cat.category_id}}" >{{subcategory.cat.name}}</a>-->
+      <!--<div *ngIf="!subcategory.cat">{{subcategory.cat}}-->
+        <!--<div *ngIf="!subcategory.manufacturer_id">-->
+          <!--<a *ngIf="subcategory.title ==='Contact-Us'" href="/about/{{subcategory.title}}/{{subcategory.id}}">Contact Us </a>-->
+          <!--<a *ngIf="subcategory.title !=='Contact-Us'" href="/about/{{subcategory.title}}/{{subcategory.id}}"> {{subcategory.title}} </a></div>-->
+      <!--<a *ngIf="subcategory.manufacturer_id" href="/products/collections/brands/{{subcategory.name}}/{{subcategory.manufacturer_id}}">{{subcategory.name}}</a>-->
+      <!--</div>-->
+    <!--</li>-->
+
+  <!--</ul>-->
+<!--</div>-->

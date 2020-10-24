@@ -1,0 +1,51 @@
+.close-icon {
+  padding-top: 10px;
+}
+.img-box {
+  height: 400px;
+  width: 100%;
+  position: relative;
+}
+.image-hover {
+  position: relative;
+  width: 100%;
+}
+.image-hover .image {
+  opacity: 0.3;
+}
+
+.image-hover .middle {
+  opacity: 1;
+}
+.mySlides {
+  display:none;
+  width: 100%;
+  height: auto;
+}
+.image-hover .middle {
+  opacity: 1;
+}
+.text {
+  color: white;
+  font-size: 16px;
+}
+.icon-circle {
+  background: #FFFFFF;
+  padding: 5px;
+}
+.display-left {
+  position: absolute;
+  top: 50%;
+  left: 0%;
+  transform: translate(0%,-50%);
+}
+.display-right {
+  position: absolute;
+  top: 50%;
+  right: 0%;
+  transform: translate(0%,-50%);
+}
+.tag {
+  position: absolute;
+  right: 10px;
+}

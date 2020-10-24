@@ -1,0 +1,78 @@
+.checkout-row {
+  margin-top: 12px;
+}
+.checkout {
+  display: inline-block;
+  margin: 0;
+  padding: 14px 1em;
+  font-family: Raleway,sans-serif;
+  font-style: normal;
+  font-size: 15px;
+  line-height: 17px;
+  text-transform: uppercase;
+  cursor: pointer;
+  letter-spacing: 1px;
+  height: auto;
+}
+.address-width {
+  width: 45%;
+  display: inline-grid;
+}
+.mat-column-Date {
+  width: 12%;
+}
+.mat-column-Payment-Status {
+  width: 12%;
+}
+.mat-column-Fulfillment-Status {
+  width: 12%;
+}
+.mat-column-Total {
+  width: 12%;
+  text-align: right;
+}
+.mat-column-Order-No {
+  width: 12%;
+}
+.mat-header-cell {
+  background: #F8F7F7;
+  font-size: 15px;
+  color: #414141;
+}
+.mat-cell {
+  background: #FFFFFF;
+  font-size: 15px;
+  color: #414141;
+}
+.mat-cell:last-child {
+  border-bottom: 1px solid #d5cec8;
+}
+
+.cart-button {
+  border: 1px solid #dae6ff;
+  background: #dae6ff;
+  color: #414141;
+}
+.cart-button:hover {
+  border: 1px solid black;
+  background: black;
+  color: #FFFFFF;
+}
+.box-design {
+  border: 1px solid #988c88;
+  padding: 15px;
+  line-height: 25px;
+}
+.empty-order {
+  padding: 30px 0;
+}
+@media (min-width: 1310px) {
+  .default-address {
+    width: 50%;
+  }
+}
+@media (min-width: 960px) and (max-width: 1309px) {
+  .default-address {
+    width: 100%;
+  }
+}

@@ -1,0 +1,29 @@
+.checkout {
+  display: inline-block;
+  margin: 0;
+
+  font-family: Raleway,sans-serif;
+  font-style: normal;
+  font-size: 16px;
+  line-height: 17px;
+  text-transform: uppercase;
+  cursor: pointer;
+  letter-spacing: 1px;
+  height: auto;
+  text-decoration: none;
+}
+.active-button {
+  /*border: 1px solid #000000;*/
+  background: #000000;
+  color: #FFFFFF;
+  padding: 16px 1em;
+}
+.inactive-button {
+  border: 1px solid #FFFFFF;
+  background: #FFFFFF;
+  color: #414141;
+  padding: 16px 1em;
+}
+.padding-remove {
+  padding: 16px 1em 16px 0 !important;
+}

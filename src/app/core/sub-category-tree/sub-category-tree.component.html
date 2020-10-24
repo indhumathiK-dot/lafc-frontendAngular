@@ -1,0 +1,25 @@
+<div class="tree-view" *ngIf="categories">
+      <div class="tree-view-level-1" *ngFor="let cat2 of categories">
+            <!-- <span class="level-2"> <strong> <a [routerLink]="['/category',cat2.category_id,'products']"
+                  routerLinkActive="router-link-active"> {{cat2.name | uppercase }} </a> </strong> </span> -->
+            <span class="level-2"> <strong> <a (click)="clickedCategory($event)"
+                              [routerLink]="['/category',category_l1_id, category_l1_name, cat2.category_id, slug(cat2.name),'products']"
+                              class="cat-level" [innerHTML]="cat2.name | uppercase"> </a> </strong> </span>
+            <div class="tree-view-level-2" *ngFor="let cat3 of cat2.categories">
+                  <span class="level-3"> <a (mouseenter)="onHover($event,'enter',cat3.image)" class="cat-level"
+                              (mouseleave)="onHover($event, 'leave', '')" (click)="clickedCategory($event)"
+                              [routerLink]="['/category', category_l1_id, category_l1_name, cat2.category_id, slug(cat2.name), cat3.category_id, slug(cat3.name) ,'products']"
+                              [innerHTML]="cat3.name | titlecase"> </a>
+                  </span>
+                  <div class="tree-view-level-3" *ngFor="let cat4 of cat3.categories">
+                        <span class="level-4"> <a (mouseenter)="onHover($event,'enter',cat4.image)" class="cat-level"
+                                    (mouseleave)="onHover($event, 'leave', '')" (click)="clickedCategory($event)"
+                                    [routerLink]="['/category', category_l1_id, category_l1_name, cat2.category_id, slug(cat2.name), cat3.category_id, slug(cat3.name), cat4.category_id, slug(cat4.name) ,'products']"
+                                    [innerHTML]="cat4.name | titlecase">
+                              </a>
+                        </span>
+                  </div>
+            </div>
+      </div>
+
+</div>

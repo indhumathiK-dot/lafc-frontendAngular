@@ -1,0 +1,57 @@
+<div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="4">
+  <div  fxFlex="25" fxFlex.lt-sm="100" *ngFor="let product of productList;let i = index">
+    <div class="thumb-wrapper">
+      <div class="img-box image-hover"(mouseenter)="wishlistCheck(product.product_id)" (mouseleave)="wishListPresent = false">
+        <div *ngIf="!product.thumb && product.thumb !== null" class="image-spacing">
+        <a *ngIf="product?.category?.length" routerLink="/products/{{product?.category[0]?.name}}/{{product.product_id}}">
+          <img [src]="!over[i] ? product.image : (product?.images.length ? product?.images[0] : product.image)" class="img-fluid" alt="" (mouseover)="hover(i)" (mouseout)="unhover(i)">
+        </a>
+        <a *ngIf="!product?.category?.length" routerLink="/products/{{product.product_id}}">
+        <img [src]="!over[i] ? product.image : (product?.images.length ? product?.images[0] : product.image)" class="img-fluid" alt="" (mouseover)="hover(i)" (mouseout)="unhover(i)" >
+        </a>
+        </div>
+        <div *ngIf="product.thumb || product.thumb === null" class="image-spacing">
+          <a routerLink="/products/{{product.product_id}}">
+            <img [src]="!over[i] ? product.thumb : (product?.$images.length ? product?.$images[0] : product.thumb)"  class="img-fluid" alt="" (mouseover)="hover(i)" (mouseout)="unhover(i)">
+          </a>
+        </div>
+        <div class="middle">
+          <div class="text">
+            <span *ngIf="loginCheck === 'true'">
+            <a *ngIf="wishListPresent" class="icon-circle heart-icon padding-rgt">
+              <i class="fa fa-heart my-icon" aria-hidden="true"></i></a>
+            <a *ngIf="!wishListPresent" class="icon-circle heart-icon padding-rgt" (click)="addWishList(product.product_id)">
+              <i class="fa fa-heart-o my-icon" aria-hidden="true"></i></a>
+          </span>
+            <a class="icon-circle eye-icon" (click)="openQuickView(product.product_id)">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18.172" height="20.954" viewBox="0 0 22.172 16.954">
+                <g id="Icon_feather-eye" data-name="Icon feather-eye" transform="translate(0.65 0.65)">
+                  <path id="Path_90" data-name="Path 90" d="M1.5,13.827S5.295,6,11.936,6s10.436,7.827,10.436,7.827-3.795,7.827-10.436,7.827S1.5,13.827,1.5,13.827Z" transform="translate(-1.5 -6)" fill="none" stroke="#998c88" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.3"/>
+                  <path id="Path_91" data-name="Path 91" d="M18.631,16.065A2.566,2.566,0,1,1,16.066,13.5,2.566,2.566,0,0,1,18.631,16.065Z" transform="translate(-5.63 -8.238)" fill="none" stroke="#998c88" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.3"/>
+                </g>
+              </svg>
+              <span></span>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="thumb-content">
+        <div class="project-name">
+          <div *ngIf="!product.thumb && product.thumb !== null">
+          <a *ngIf="product?.category?.length" class="project-name" routerLink="/products/{{product?.category[0]?.name}}/{{product.product_id}}">{{product.name}}</a>
+          <a *ngIf="!product?.category?.length" class="project-name" routerLink="/products/{{product.product_id}}">{{product.name}}</a>
+          </div>
+          <div *ngIf="product.thumb || product.thumb === null">
+            <a class="project-name" routerLink="/products/{{product.product_id}}">{{product.name}}</a>
+          </div>
+          </div>
+        <div class="apply-wholesale" *ngIf="loginCheck === 'true'">
+          {{product.bundle_price}}
+        </div>
+        <div class="apply-wholesale mouse-events" *ngIf="loginCheck !== 'true'" [routerLink]="'/signup'">
+          Apply for wholesale pricing
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

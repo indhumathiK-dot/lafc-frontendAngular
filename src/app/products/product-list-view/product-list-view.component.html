@@ -1,0 +1,65 @@
+<div class="card hover font-semi" id="list-view">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-3 image-container">
+                <a>
+                    <img [src]="productItem.image" alt="product image"
+                        [ngStyle]="{'opacity' :  productItem.quantity < 1 ? 0.4 : 1}"
+                        [routerLink]="getLink(productItem.name, productItem.product_id)" class="list-view-img">
+                </a>
+            </div>
+            <a>
+                <i class="fa fa-heart-o" *ngIf="!productItem?.isWishList"
+                    (click)="postWishListItem(productItem.product_id)" aria-hidden="true" tooltip="Add To Wishlist"
+                    placement="top"></i>
+                <i class="fa fa-heart" *ngIf="productItem?.isWishList"
+                    (click)="postWishListItem(productItem.product_id)" aria-hidden="true" tooltip="Remove from Wishlist"
+                    placement="top"></i>
+            </a>
+            <div class=col-md-5>
+                <a>
+                    <p class="card-title" [routerLink]="getLink(productItem.name, productItem.product_id)">
+                        {{productItem.name}} </p>
+                </a>
+                <span class="vender-name" *ngIf="productItem.manufacturer"> By {{productItem.manufacturer}} </span>
+                <p class="info-text" *ngFor="let attr of getAttributeByGroupName('Delivery date')?.attribute"> Limited
+                    time
+                    offer | Ships in {{attr.text}} Days </p>
+                <span *ngIf="getAttributeByName('Tags', 'BestSeller') as tag">
+                    <button class="btn btn-light btn-sm list-view-btn"
+                        *ngIf="(tag.text !== null) && (tag.text !== undefined) && (tag.text !== '')">
+                        {{tag?.text}} </button>
+                </span>
+                <button type="button" class="btn btn-light btn-sm review"
+                    *ngIf="productItem.reviews.review_total !== '0'"> {{productItem.reviews.review_total}} <i
+                        class="fa fa-star" aria-hidden="true"></i> </button>
+            </div>
+            <div class="col-md-3">
+
+                <h5 class="price" *ngIf="(productItem.special > 0) && (productItem.special !== productItem.price)"> {{productItem.special_formated}} </h5>
+                <h5 class="price" *ngIf="(productItem.special === 0 || productItem.special === productItem.price)"> {{productItem.price_formated}} </h5>
+                <p class="actual-price" *ngIf="(productItem.special > 0) && (productItem.special !== productItem.price)"> {{productItem.price_formated}} </p>
+                <p class="info-text" *ngIf="(productItem.special > 0) && (productItem.special !== productItem.price)"> Save &#x20b9; {{productItem.discountPrice}}
+                    ({{productItem.discountPercentile}} % OFF)                 
+                    <!-- <span class="info-text" *ngIf="getAttributeByName('Tags', 'CashBackOffer') as tag"> | Cashback worth &#x20b9;
+                            {{tag.text}}
+                        </span> -->
+                </p>
+
+                <button type="button" class="btn btn-light list-view-btn" (click)="addToCart($event)"
+                    *ngIf="productItem.quantity > 0">
+                    Add
+                    to
+                    Cart </button>
+                <!-- <div class="row error-wrapper" *ngIf="co.isError" style="margin-top: 8px;">
+                    <alert type="danger">{{ co.addToCartError }} click on product to select </alert>
+                </div> -->
+                <button type="button" class="btn btn-dark" style="margin-top: 8px;"
+                    [routerLink]="getLink(productItem.name, productItem.product_id)" *ngIf="productItem.quantity < 1">
+                    NOTIFY ME </button>
+            </div>
+        </div>
+        <div>
+        </div>
+    </div>
+</div>

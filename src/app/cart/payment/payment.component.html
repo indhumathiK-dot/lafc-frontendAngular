@@ -1,0 +1,158 @@
+<nav class="navbar container-fluid navbar-expand-lg navbar-fixed-top navbar-light elevation">
+  <div class="container">
+    <a class="navbar-brand" href="#">
+      <img class="logo" src="../../assets/images/kalanjiam_logo3.png" alt="kalanjiam logo" />
+    </a>
+    <div class="cart-nav">
+      <ul class="nav navbar-nav navbar-center">
+        <li class="nav-item">
+          <div class="shopping-cart">
+            <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+          </div>
+          <a class="nav-link" [routerLink]="['/cart', 'items']" routerLinkActive="router-link-active"> Cart </a>
+        </li>
+        <div style="margin-top: 4px;"> ------ </div>
+        <li class="nav-item">
+          <div class="truck">
+            <i class="fa fa-truck" aria-hidden="true"></i>
+          </div>
+          <a class="nav-link" [routerLink]="['/cart', 'delivery']" routerLinkActive="router-link-active"> Delivery </a>
+        </li>
+        <div style="margin-top: 4px;"> ------ </div>
+        <li class="nav-item">
+          <div class="inr" style="padding-top: 3px;">
+            <i class="fa fa-inr" aria-hidden="true"></i>
+          </div>
+          <a class="nav-link"> Payment </a>
+        </li>
+        <div style="margin-top: 4px;"> ------ </div>
+        <li class="nav-item">
+          <div class="file-text">
+            <i class="fa fa-file-text-o" aria-hidden="true"></i>
+          </div>
+          <a class="nav-link" style="margin-left: 16px;"> Order </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<div class="container-fluid" style="border-bottom: 1px solid #ccc;font-family: Opensans-semibold;">
+  <div class="container p-40">
+    <div class="row">
+      <div class="col-lg-8">
+        <!-- <div *ngIf="checkoutService.isOrderSummaryFailed">
+            <alert type="danger" dismissOnTimeout="150000"> Sorry for inconvenience. Currently we don't deliver to the given pincode. Please change pincode and retry. </alert>
+        </div> -->
+        <div class="row">
+          <div class="col-md-6">
+            <div class="card">
+              <div class="card-header" style="padding-bottom: 0px;">
+                <span style="font-weight: 500"> Shipping Address </span>
+                <button class="btn btn-outline-danger btn-sm" [routerLink]="['/cart', 'delivery']">
+                  CHANGE
+                </button>
+              </div>
+              <div class="card-body">
+                <p style="font-weight: 500; margin-bottom: 0px">
+                  {{ createOrderService.shippingAddress?.firstname }}
+                  {{ createOrderService.shippingAddress?.lastname }}
+                </p>
+                <span>
+                  {{ createOrderService.shippingAddress?.address_1 }}
+                </span>
+                <span>
+                  {{ createOrderService.shippingAddress?.city }},
+                  {{ createOrderService.shippingAddress?.zone }},
+                  {{ createOrderService.shippingAddress?.country }} -
+                  {{ createOrderService.shippingAddress?.postcode }}
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="card">
+              <div class="card-header" style="padding-bottom: 0px">
+                <span style="font-weight: 500"> Billing Address </span>
+                <button class="btn btn-outline-danger btn-sm" [routerLink]="['/cart', 'delivery']">
+                  CHANGE
+                </button>
+              </div>
+              <div class="card-body">
+                <p style="font-weight: 500; margin-bottom: 0px">
+                  {{ createOrderService.paymentAddress?.firstname }}
+                  {{ createOrderService.paymentAddress?.lastname }}
+                </p>
+                <span>
+                  {{ createOrderService.paymentAddress?.address_1 }}
+                </span>
+                <span>
+                  {{ createOrderService.paymentAddress?.city }},
+                  {{ createOrderService.paymentAddress?.zone }},
+                  {{ createOrderService.paymentAddress?.country }} -
+                  {{ createOrderService.paymentAddress?.postcode }}
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <h6 style="margin: 32px 0px;">CHOOSE PAYMENT METHOD</h6>
+            <div data-toggle="payment_method" *ngIf="createOrderService.paymentMethod as pm">
+              <div class="card" style="margin-bottom: 16px">
+                <div class="card-header">
+                  <label class="payment-methods">
+                    <input type="radio" name="payment_method" [value]="pm.payment_methods.ccavenuepay.code"
+                      [(ngModel)]="createOrderService.payment_method" (change)="
+                        onPaymentMethodSelect(
+                          $event,
+                          createOrderService.payment_method
+                        )
+                      " [disabled]="checkoutService.isCCAvenue" />
+                    <span style="margin-left: 12px;" [innerHTML]="pm.payment_methods.ccavenuepay.title"
+                      class="ccavenue"></span>
+                  </label>
+                </div>
+              </div>
+              <div class="card" *ngIf="createOrderService.isCodAvailable">
+                <div class="card-header">
+                  <label class="payment-methods">
+                    <input type="radio" name="payment_method" [value]="pm.payment_methods.cod.code"
+                      [(ngModel)]="createOrderService.payment_method" (change)="
+                        onPaymentMethodSelect(
+                          $event,
+                          createOrderService.payment_method
+                        )
+                      " [disabled]="checkoutService.isCCAvenue" />
+                    <span style="margin-left: 12px;">{{
+                      pm.payment_methods.cod.title
+                    }}</span>
+                  </label>
+                </div>
+              </div>
+
+              <div style="margin-top: 16px;" *ngIf="checkoutService.isError">
+                <alert type="danger" dismissOnTimeout="10000"> OOPS !! Something Went Wrong
+                  <a class="goback-link" (click)="retry()"> CLICK HERE TO RETRY </a>
+                </alert>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <app-price-details [cart]="createOrderService.cart"></app-price-details>
+        <button style="margin-top: 16px" *ngIf="!checkoutService.isCCAvenue" class="btn btn-danger btn-block"
+          (click)="onCheckoutProceed()" [disabled]="!createOrderService.payment_method">
+          CONTINUE
+        </button>
+        <div style="margin-top: 16px;" *ngIf="checkoutService.isCCAvenue"
+          [innerHTML]="checkoutService.getSanitizedValue()"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<app-cart-footer></app-cart-footer>

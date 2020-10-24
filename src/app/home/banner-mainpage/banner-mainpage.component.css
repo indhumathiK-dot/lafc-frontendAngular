@@ -1,0 +1,158 @@
+.banner {
+    background-color: #f3f5f7;
+    padding-bottom: 50px;
+  }
+  .section-title {
+    padding: 30px 0px 40px 0px;
+  }
+  .mainwrapperone {
+    display: inline-block;
+    position: relative;
+    background: white;
+    width: 90%;
+    text-align: center;
+    box-shadow: 0 1px 6px 0px #ccc;
+    font-family: Opensans-semibold;
+  }
+  .mainwrapperone > .link, .image-wrapper {
+    width: 70%;
+    float: left;
+  }
+  .image-wrapper {
+    overflow: hidden;
+  }
+  .mainsubwrapper {
+    width: 30%;
+    float: left;
+    padding: 5px;
+  }
+  .mainwrapperoneheader {
+    font-size: 12px;
+    margin-top: 40px;
+    text-align: left;
+    padding-left: 5px;
+    color: #414141;
+  }
+  .mainsubwrapper .link {
+    font-size: 11px;
+    color: #ed2f2f;
+    position: absolute;
+    bottom: 25px;
+    right: 20px;
+    cursor: pointer;
+  }
+  .text {
+    font-size: 15px;
+    text-align: center;
+    color: #707070;
+  }
+  .text > p {
+    font-family: "futura";
+    display: inline-block;
+    text-align: justify;
+    width: 90%;
+  }
+  .logo {
+    /* width: 200px; */
+    width: 100%;
+    height: 190px;
+    float: left;
+    transition: transform .5s ease;
+  }
+  .logo:hover {
+    -ms-transform: scale(1.1); /* IE 9 */
+    -webkit-transform: scale(1.1); /* Safari 3-8 */
+    transform: scale(1.1);
+  }
+  
+  .bannerthreelogos {
+    display: flex;
+    width: 60%;
+    height: 130px;
+    justify-content: space-around;
+    margin-top: 8px;
+    padding: 10px 10px 10px 20px;
+  }
+  
+  .bannerthreelogos p {
+    font-size: 10px;
+    text-align: center;
+    margin-top: 10px;
+  }
+  .bannerthreelogos img{
+      height: 60px;
+  }
+  .shipping img {
+    width: 102px;
+  }
+  .bannerthreewrapper {
+    display: flex;
+    box-shadow: 0 1px 6px 0px #ccc;
+    margin: 0 17px;
+  }
+  
+  .bannerfourwrapper {
+    font-family: "futura";
+    margin: 20px;
+    width: 70%;
+    word-break: break-word;
+  }
+  
+  .bannerfourwrapper div {
+    font-size: 15px;
+    margin-top: 12px;
+    font-family: "futura";
+    color: #707070;
+  }
+  
+  .mainheadingwrapperone {
+    display: flex;
+    margin-bottom: 30px;
+  }
+  .main-header {
+    margin-bottom: 40px;
+  }
+  .service-title {
+    font-weight: 600;
+    color: #414141;
+  }
+  
+  @media only screen and (max-width: 1024px) and (min-width: 768px) {
+    .mainwrapperoneheader {
+      font-size: 7px;
+      margin-top: 20px;
+      padding-left: 0;
+    }
+    .logo {
+      width: 130px;
+      height: 130px;
+      float: left;
+      transition: transform .5s ease;
+    }
+    .logo:hover {
+      -ms-transform: scale(1.1); /* IE 9 */
+      -webkit-transform: scale(1.1); /* Safari 3-8 */
+      transform: scale(1.1);
+    }
+    .text {
+      font-size: 10px;
+    }
+    .mainsubwrapper .link .image-wrapper {
+      font-size: 7px;
+      right: 10px;
+    }
+    
+    .bannerthreelogos p {
+      font-size: 7px;
+    }
+  
+    .mainheadingwrapperone {
+      display: flex;
+      margin-bottom: 20px;
+    }
+  
+    .main-header {
+      margin-bottom: 40px;
+    }
+  }
+  

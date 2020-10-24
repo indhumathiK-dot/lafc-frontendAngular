@@ -1,0 +1,75 @@
+.wishlist-image {
+  margin-top: 15px;
+}
+.image-width {
+  width: 275px;
+}
+.thumb-content {
+  padding: 10px 10px 10px 0;;
+}
+.project-name{
+  font-size: 15px;
+  color: #414141;
+  font-weight: 600;
+}
+.apply-wholesale {
+  font-size: 15px;
+  color: #414141;
+}
+.checkout-row {
+  margin-bottom: 5em;
+}
+.checkout {
+  display: inline-block;
+  margin: 0;
+  padding: 10px 2em;
+  font-family: Raleway,sans-serif;
+  font-weight: bold;
+  font-style: normal;
+  font-size: 15px;
+  line-height: 17px;
+  text-transform: uppercase;
+  cursor: pointer;
+  letter-spacing: 1px;
+  height: auto;
+}
+.cart-button {
+  border: 1px solid #dae6ff;
+  background: #dae6ff;
+  color: #414141;
+}
+.cart-button:hover {
+  border: 1px solid black;
+  background: black;
+  color: #FFFFFF;
+}
+.middle {
+  transition: .5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 12px;
+  right: 0;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+}
+.text {
+  color: white;
+  font-size: 16px;
+}
+.my-icon {
+  color: grey;
+}
+.icon-circle {
+  padding: 8px;
+  background: #FFFFFF;
+}
+.image-hover {
+  position: relative;
+}
+.image-hover:hover .image {
+  opacity: 0.3;
+}
+
+.image-hover:hover .middle {
+  opacity: 1;
+}

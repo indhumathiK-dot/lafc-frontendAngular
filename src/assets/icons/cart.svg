@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 23.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 38 38" style="enable-background:new 0 0 38 38;" xml:space="preserve">
+<style type="text/css">
+	.st0{display:none;}
+	.st1{display:inline;}
+	.st2{fill:#998C88;}
+	.st3{fill:none;stroke:#998C88;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+</style>
+<g id="Group_58" transform="translate(57.813 492.57)" class="st0">
+	<g class="st1">
+		<path id="Icon_ionic-ios-search" class="st2" d="M-28.87-464.87l-5.69-5.74c2.78-3.5,2.19-8.6-1.31-11.38
+			c-3.5-2.78-8.6-2.19-11.38,1.31c-2.78,3.5-2.19,8.6,1.31,11.38c2.98,2.36,7.2,2.34,10.15-0.07l5.65,5.7
+			c0.33,0.35,0.88,0.36,1.24,0.03C-28.55-463.97-28.54-464.52-28.87-464.87z M-40.92-469.3c-3.53,0-6.4-2.87-6.4-6.4
+			c0-3.53,2.87-6.4,6.4-6.4c3.53,0,6.4,2.87,6.4,6.4c0,1.7-0.67,3.32-1.88,4.52C-37.59-469.97-39.22-469.29-40.92-469.3z"/>
+	</g>
+</g>
+<g id="Icon_feather-shopping-cart" transform="translate(0.001 10.16)">
+	<path id="Path_96" class="st3" d="M16.77,17.99c0,0.5-0.4,0.9-0.9,0.9s-0.9-0.4-0.9-0.9c0-0.5,0.4-0.9,0.9-0.9c0,0,0,0,0,0
+		C16.37,17.09,16.77,17.49,16.77,17.99z"/>
+	<path id="Path_97" class="st3" d="M26.65,17.99c0,0.5-0.4,0.9-0.9,0.9s-0.9-0.4-0.9-0.9c0-0.5,0.4-0.9,0.9-0.9l0,0
+		C26.25,17.09,26.65,17.49,26.65,17.99z"/>
+	<path id="Path_98" class="st3" d="M8.68,0.02h3.59l2.41,12.03c0.17,0.85,0.93,1.46,1.8,1.45h8.73c0.87,0.02,1.63-0.59,1.8-1.45
+		l1.44-7.54H13.18"/>
+</g>
+</svg>

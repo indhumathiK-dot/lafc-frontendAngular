@@ -1,0 +1,17 @@
+.container {
+    text-align: center;
+    margin-top: 100px !important;
+    margin-bottom: 160px !important;
+}
+.fa-frown-o {
+    font-size: 140px !important;
+    color: #EF4040;
+}
+h3 {
+    font-family: Opensans-bold;
+    margin-top: 16px !important;
+}
+p {
+    font-family: Opensans-semibold;
+    margin-bottom: 30px !important;
+}

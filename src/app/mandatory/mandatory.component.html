@@ -1,0 +1,18 @@
+<div #mobileNumberModal id="mobileNumberModal">
+    <div class="modal-header">
+        <h4 class="modal-title pull-left"> Enter Your Mobile Number </h4>
+        <button type="button" class="close pull-right" (click)="bsModalRef.hide()">
+            <span aria-hidden="true"> &times; </span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form class="form" #mobileForm="ngForm" (ngSubmit)="updateAccount(mobileForm.value)">
+            <mat-form-field class="w-100">
+                <input matInput placeholder="Mobile Number" required type="number" name="mobileNumber" required ngModel>
+            </mat-form-field>
+            <button class=" btn btn-danger btn-block" type="submit">
+                <i class="fa fa-paper-plane" aria-hidden="true" style="padding-right: 16px;"></i>
+                SUBMIT </button>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,35 @@
+<div class="footer-padding right-adjust">
+  <div class="center-align">
+    <h1>Our Collections</h1>
+  </div>
+<!--  <div>-->
+
+<!--    <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="4">-->
+<!--      <div class="card innerwrapper" fxFlex="25" fxFlex.lt-sm="100" *ngFor="let brand of brands?.data">-->
+<!--        <a [routerLink]="['/products/collections/brands', brand.name, brand.manufacturer_id]"><img src={{brand.image}}>-->
+<!--        <p class="name link-color"> {{brand.name}} </p></a>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
+
+
+<div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="4">
+  <div  fxFlex="25" fxFlex.lt-sm="100" *ngFor="let brand of brands?.data;let i = index">
+    <div class="thumb-wrapper">
+      <div class="img-box">
+     <a [routerLink]="['/products/collections/brands', brand.name, brand.manufacturer_id]">
+      <img src="{{brand.image}}"  class="img-fluid" alt="">
+     </a>
+      </div>
+      <div class="thumb-content center-align">
+        <div class="project-name">
+          <div>
+            <a class="project-name" [routerLink]="['/products/collections/brands', brand.name, brand.manufacturer_id]">{{brand.name}}</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>

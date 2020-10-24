@@ -1,0 +1,8 @@
+<h4 mat-dilog-title> OOPS! Error Occurred </h4>
+<div mat-dialog-content>
+    <p> {{data.errorMessage}} </p>
+</div>
+<div mat-dialog-actions class="action-btn">
+    <button mat-button *ngIf="isContinue" class="btn btn-danger col-md-5" (click)="onClickContinue()"> Continue </button>
+    <button mat-button class="btn btn-dark col-md-5" style="margin-left:20px" (click)="onClickCancel()"> Cancel </button>
+</div>

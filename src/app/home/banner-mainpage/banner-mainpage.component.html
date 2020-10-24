@@ -1,0 +1,65 @@
+<div class="banner container-fluid">
+  <div class="container">
+    <h6 class="section-title">ALWAYS WILING TO SERVE</h6>
+    <div class="main-header row" *ngIf="infoData.length > 0">
+      <div class="mainheadingwrapperone">
+        <div class="col-md-4 text">
+          <p>
+            We believe that Servitude is the best attitude. Whether it’s the basics or premium services, exceeding
+            customer expectations have always been our top most priority.
+          </p>
+        </div>
+
+        <div class="col-md-4 text-center" *ngFor="let info of infoData | slice: 0:2">
+          <div class="mainwrapperone">
+            <a (click)="getImage(info)" class="image-wrapper"><img class="logo" [src]="info.image" alt="KWDesign" />
+            </a>
+            <div class=" mainsubwrapper">
+              <div class="mainwrapperoneheader">
+                <a [innerHTML]="info.title" (click)="getImage(info)">info.title</a>
+              </div>
+              <a (click)="getImage(info)" class="link">-Know More</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4 text-center" *ngFor="let info of infoData | slice: 2:5">
+        <div class="mainwrapperone">
+          <a (click)="getImage(info)" class="image-wrapper"><img class="logo" [src]="info.image" alt="KWDesign" />
+          </a>
+          <div class="mainsubwrapper">
+            <div class="mainwrapperoneheader">
+              <a [innerHTML]="info.title" (click)="getImage(info)">info.title</a>
+            </div>
+            <a (click)="getImage(info)" class="link">-Know More</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="bannerthreewrapper">
+      <div class="bannerthreelogos">
+        <div class="col-md-4 text-center">
+          <img src="../../assets/images/modular-kitchen.png" alt="" />
+          <p class="service-title">FREE MODULAR KITCHEN CONSULTATION</p>
+        </div>
+        <div class="col-md-4 text-center">
+          <img class="shippinglogo" src="../../assets/images/shipping.png" alt="" />
+          <p class="service-title">FREE SHIPPING</p>
+        </div>
+        <div class="col-md-4 text-center">
+          <img src="../../assets/images/LockFixing.png" alt="" />
+          <p class="service-title">LOCKING FIXING BY EXPERTS</p>
+        </div>
+      </div>
+
+      <div class="bannerfourwrapper">
+        <span style="color: #424242;"> Value Added Services </span>
+        <div>
+          Get expert consultation, free shipping, doorstep fixing & installation by our professional crew
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

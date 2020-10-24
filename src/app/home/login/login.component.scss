@@ -1,0 +1,51 @@
+.full-container {
+  padding-left: 50px;
+  max-width: 600px;
+}
+.label-name {
+  display: block;
+  color: #212121;
+  margin-bottom: 0.5em;
+  font-size: 15px;
+}
+::ng-deep .mat-form-field-flex > .mat-form-field-infix {
+  padding: 10px 0 1em 0;
+}
+.login-submit {
+  padding: 14px 3em;
+  font-family: Raleway,sans-serif;
+  font-weight: bold;
+  font-style: normal;
+  font-size: 14px;
+  line-height: 17px;
+  text-decoration: none;
+  text-transform: uppercase;
+  cursor: pointer;
+  letter-spacing: 1px;
+  height: auto;
+  border-radius: 2px;
+  transition: all 100ms linear;
+}
+.forgot-password {
+  color: #998c88 !important;
+  -webkit-transition: color 100ms;
+  transition: color 100ms;
+  text-decoration: none;
+}
+.buttonrow {
+  clear: both;
+  margin: 1.5em 0;
+}
+.margin-zero {
+  margin-left: 0 !important;
+}
+.cart-button {
+  border: 1px solid #dae6ff;
+  background: #dae6ff;
+  color: #414141;
+}
+.cart-button:hover {
+  border: 1px solid black;
+  background: black;
+  color: #FFFFFF;
+}

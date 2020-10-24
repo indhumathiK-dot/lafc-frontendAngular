@@ -1,0 +1,163 @@
+<div class="footer-padding detail-container">
+  <div class="checkout-row">
+    <div class="checkout cart-button" [routerLink]="'/account/orders'">
+      Return to my orders
+    </div>
+  </div>
+
+  <div class="container-top common-color" fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="4">
+    <div  fxFlex="50" fxFlex.lt-sm="100" class="botton-padding">
+      <div class="left-align display w-50">Order No</div>
+      <div class="left-align display bold-font">#{{orderDetails?.order_id}}</div>
+    </div>
+    <div  fxFlex="50" fxFlex.lt-sm="100" class="botton-padding">
+      <div class="left-align display w-50">Order Placed on</div>
+      <div class="left-align display bold-font">{{orderDetails?.date_added}}</div>
+    </div>
+    <div  fxFlex="50" fxFlex.lt-sm="100" class="botton-padding">
+      <div class="left-align display w-50">Order Status</div>
+      <div class="left-align display bold-font">{{orderDetails?.status}}</div>
+    </div>
+  </div>
+
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="4">
+    <div  fxFlex="45" fxFlex.lt-sm="100" class="address-box">
+      <div>
+        <div class="default-address bold-font">SHIPPING ADDRESS</div>
+        <div class="transformText">{{orderDetails?.shipping_firstname}} {{orderDetails?.shipping_lastname}}</div>
+        <div>{{orderDetails?.shipping_company}}</div>
+        <div>{{orderDetails?.shipping_address_1}}</div>
+        <div>{{orderDetails?.shipping_address_2}}</div>
+        <div>{{orderDetails?.shipping_city}} {{orderDetails?.shipping_post_code}}</div>
+        <div>{{orderDetails?.shipping_zone}}</div>
+        <div>{{orderDetails?.shipping_country}}</div>
+      </div>
+    </div>
+    <div fxFlex="50" fxFlex.lt-sm="100" class="payment-address">
+      <div>
+        <div class="default-address bold-font">BILLING ADDRESS</div>
+        <div class="transformText">{{orderDetails?.payment_firstname}} {{orderDetails?.payment_lastname}}</div>
+        <div>{{orderDetails?.payment_company}}</div>
+        <div>{{orderDetails?.payment_address_1}}</div>
+        <div>{{orderDetails?.payment_address_2}}</div>
+        <div>{{orderDetails?.payment_city}} {{orderDetails?.payment_post_code}}</div>
+        <div>{{orderDetails?.payment_zone}}</div>
+        <div>{{orderDetails?.payment_country}}</div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="orderDetails?.comment !==''">
+    <div class="bold-font comments-sec">Order Notes</div>
+    <div class="comment-box"[innerHTML]="orderDetails?.comment"></div>
+  </div>
+
+  <div class="container-top">
+    <table mat-table [dataSource]="dataSource">
+
+      <ng-container matColumnDef="Product">
+        <th mat-header-cell *matHeaderCellDef> Product</th>
+        <td mat-cell *matCellDef="let element">
+          <a class="link-color">{{element.name}}
+            <br>
+            <div class="link-color" *ngFor="let option of element.option">
+              <span>- {{option.name}} : </span>
+              <span>{{option.value}}</span>
+            </div>
+          </a>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="SKU">
+        <th mat-header-cell *matHeaderCellDef>SKU</th>
+        <td mat-cell *matCellDef="let element">
+          {{element.model}}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Price">
+        <th mat-header-cell *matHeaderCellDef>Price</th>
+        <td mat-cell *matCellDef="let element">
+          <div>
+            <span>{{element.price}}</span>
+          </div>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Quantity">
+        <th mat-header-cell *matHeaderCellDef>Quantity</th>
+        <td mat-cell *matCellDef="let element">
+          {{element.bundleQuantity}}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Tracking Code">
+        <th mat-header-cell *matHeaderCellDef>Tracking Code</th>
+        <td mat-cell *matCellDef="let element">
+          <div *ngIf="orderDetails?.tracking_code"
+               matTooltip="Tracking code will be copied to clipboard">{{orderDetails?.tracking_code}}
+            <span class="cart-icon-pad">
+            <a (click)="copyMessage(orderDetails?.tracking_code)">
+            <svg xmlns="http://www.w3.org/2000/svg" width="17.74" height="17.74" viewBox="0 0 20.74 20.74">
+              <g id="Icon_feather-copy" data-name="Icon feather-copy" transform="translate(-2 -2)">
+                 <a >
+                   <path id="Path_109" data-name="Path 109" d="M15.374,13.5h8.433a1.874,1.874,0,0,1,1.874,1.874v8.433a1.874,1.874,0,0,1-1.874,1.874H15.374A1.874,1.874,0,0,1,13.5,23.807V15.374A1.874,1.874,0,0,1,15.374,13.5Z" transform="translate(-3.941 -3.941)" fill="none" stroke="#998c88" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/></a>
+                <a>
+                  <path id="Path_110" data-name="Path 110" d="M5.811,15.181H4.874A1.874,1.874,0,0,1,3,13.307V4.874A1.874,1.874,0,0,1,4.874,3h8.433a1.874,1.874,0,0,1,1.874,1.874v.937" fill="none" stroke="#998c88" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+
+                </a>
+              </g>
+            </svg>
+            </a>
+
+          </span></div>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Total">
+        <th mat-header-cell *matHeaderCellDef>Total</th>
+        <td mat-cell *matCellDef="let element">
+          <div>
+            <span class="bold-font">{{element.total}}</span>
+          </div>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+
+
+  <div class="col-md-12 row no-padding no-margin line-spacing"  *ngFor="let total of totalArray">
+    <div class="col-md-6 no-padding sub-total-change left-align bottom-border">
+      {{total?.title}}
+    </div>
+    <div class="col-md-6 right-align textAlignRight bold-font bottom-border total-padding">
+      {{total?.value}}
+    </div>
+
+  </div>
+
+  <div *ngIf="orderHistory.data.length">
+    <div class="order-history-label bold-font common-font-size">Order History</div>
+    <table mat-table [dataSource]="orderHistory">
+
+      <ng-container matColumnDef="Date">
+        <th mat-header-cell *matHeaderCellDef> Date</th>
+        <td mat-cell *matCellDef="let element">
+          {{element.date_added}}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Comment">
+        <th mat-header-cell *matHeaderCellDef>Comment</th>
+        <td mat-cell *matCellDef="let element" [innerHTML]="element.comment">
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="commentColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: commentColumns;"></tr>
+    </table>
+  </div>
+</div>

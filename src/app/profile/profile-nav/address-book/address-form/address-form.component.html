@@ -1,0 +1,123 @@
+<div>
+  <div class="detail-padding footer-padding common-color">
+    <div class="login-box-heading">
+      <h1 class="head-font" *ngIf="this.addressId">Update Address</h1>
+      <h1 class="head-font" *ngIf="!this.addressId">Add a New Address</h1>
+    </div>
+
+<div class="address-design w-75">
+  <form novalidate [formGroup]="addressForm" class="login-box">
+
+    <div class="w-100">
+      <div class="w-50 display">
+    <label class="label-name">First Name*</label>
+    <mat-form-field appearance="outline" class="w-100 address-form" [ngClass]="validationCheck['firstname'] ? 'errorClass' : ''">
+      <input matInput formControlName="firstname" (keydown)="checkValidationForm('firstname')">
+    </mat-form-field>
+      </div>
+
+      <div class="w-50 display">
+    <label class="label-name parellel-field">Last Name*</label>
+    <mat-form-field appearance="outline" class="w-100 parellel-field address-form" [ngClass]="validationCheck['lastname'] ? 'errorClass' : ''">
+      <input matInput formControlName="lastname" (keydown)="checkValidationForm('lastname')">
+    </mat-form-field>
+      </div>
+    </div>
+
+    <label class="label-name">Company</label>
+    <mat-form-field appearance="outline" class="w-100 address-form">
+      <input matInput formControlName="company">
+    </mat-form-field>
+
+    <label class="label-name">Address*</label>
+    <mat-form-field appearance="outline" class="w-100 address-form" [ngClass]="validationCheck['address'] ? 'errorClass' : ''">
+      <input matInput formControlName="address" (keydown)="checkValidationForm('address')">
+    </mat-form-field>
+
+    <label class="label-name">Apartment, suite, etc (optional)</label>
+    <mat-form-field appearance="outline" class="w-100 address-form">
+      <input matInput formControlName="subAddress">
+    </mat-form-field>
+
+    <label class="label-name">City*</label>
+    <mat-form-field appearance="outline" class="w-100 address-form" [ngClass]="validationCheck['city'] ? 'errorClass' : ''">
+      <input matInput formControlName="city" (keydown)="checkValidationForm('city')">
+    </mat-form-field>
+
+    <div class="w-100 botton-padding csz-control">
+<!--      <div class="field-width display">-->
+<!--    <label class="label-name">Country*</label>-->
+<!--    <div class="form-group form-default m-b-10 field-width display w-100">-->
+<!--      <ng-select [items]="countriesList" name="projectCategoryId" bindLabel="label"-->
+<!--                 bindValue="value" #country [searchable]="false" [ngClass]="validationCheck['country'] ? 'errorClass' : ''"-->
+<!--                 [formControl]= "addressForm.controls['country']" (focus)="country.open()"-->
+<!--                 (change)="onSelectCountry($event)"-->
+<!--                 class="custom-select country">-->
+<!--      </ng-select>-->
+<!--    </div>-->
+<!--      </div>-->
+
+      <div class="display field-width">
+        <label class="label-name">Country*</label>
+        <mat-form-field appearance="outline" class="w-100 address-form" [ngClass]="validationCheck['country'] ? 'errorClass' : ''">
+          <select matNativeControl formControlName="country" (change)="onSelectCountry(addressForm.value.country)">
+            <option value=""></option>
+            <option [value]="country.value" *ngFor="let country of countriesList">{{country.label}}</option>
+          </select>
+        </mat-form-field>
+      </div>
+
+      <div class="display field-width parellel-field">
+        <label class="label-name">State*</label>
+        <mat-form-field appearance="outline"  class="w-100 address-form" [ngClass]="validationCheck['state'] ? 'errorClass' : ''">
+          <select matNativeControl formControlName="state" (change)="checkValidationForm('state')">
+            <option value=""></option>
+            <option [value]="state.value" *ngFor="let state of statesList">{{state.label}}</option>
+          </select>
+        </mat-form-field>
+      </div>
+
+<!--      <div class="field-width display">-->
+<!--    <label class="label-name parellel-field">State*</label>-->
+<!--    <div class="form-group form-default m-b-10 field-width parellel-field display w-100">-->
+<!--      <ng-select [items]="statesList" bindLabel="label" [ngClass]="validationCheck['state'] ? 'errorClass' : ''"-->
+<!--                 bindValue="value" #states [searchable]="false" (change)="checkValidationForm('state')"-->
+<!--                 [formControl]= "addressForm.controls['state']" (focus)="states.open()"-->
+<!--                 class="custom-select state">-->
+<!--      </ng-select>-->
+<!--    </div>-->
+<!--      </div>-->
+
+      <div class="field-width display">
+    <label class="label-name parellel-field">Zip code*</label>
+    <mat-form-field appearance="outline" class="field-width parellel-field w-100 zip-code address-form" [ngClass]="validationCheck['pincode'] ? 'errorClass' : ''">
+      <input matInput formControlName="pincode" (keydown)="checkValidationForm('pincode')">
+    </mat-form-field>
+      </div>
+    </div>
+
+    <label class="label-name top-padding">Phone</label>
+    <mat-form-field appearance="outline" class="w-100 address-form">
+      <input type="tel" matInput placeholder="Phone" formControlName="phone"
+             ng2TelInput [ng2TelInputOptions]="cell1TelInput">
+    </mat-form-field>
+
+      <mat-checkbox formControlName="defaultAddress">Set as default address</mat-checkbox>
+
+    <div>
+      <div class="checkout cart-button display user-padding" *ngIf="!addressId" (click)="saveAddress()">
+        Add Address
+      </div>
+      <div class="checkout cart-button display user-padding" *ngIf="addressId" (click)="saveAddress()">
+        Update Address
+      </div>
+
+      <a class="checkout cancel-button display" [routerLink]="'/account/address'">
+        Cancel
+      </a>
+    </div>
+
+  </form>
+</div>
+  </div>
+</div>

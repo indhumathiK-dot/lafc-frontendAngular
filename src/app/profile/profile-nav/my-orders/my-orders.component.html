@@ -1,0 +1,92 @@
+<div class="footer-padding">
+<div>
+  <div class="botton-padding">
+    <span class="user-padding">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16.41" height="18.211" viewBox="0 0 16.41 18.211">
+      <g id="Icon_feather-user" data-name="Icon feather-user" transform="translate(-5 -3.5)">
+        <path id="Path_100" data-name="Path 100" d="M20.41,27.9V26.1a3.6,3.6,0,0,0-3.6-3.6H9.6A3.6,3.6,0,0,0,6,26.1v1.8" transform="translate(0 -7.193)" fill="none" stroke="#998c88" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+        <path id="Path_101" data-name="Path 101" d="M19.2,8.1a3.6,3.6,0,1,1-3.6-3.6,3.6,3.6,0,0,1,3.6,3.6Z" transform="translate(-2.398 0)" fill="none" stroke="#998c88" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+      </g>
+    </svg>
+    </span>
+    <span class="transformText">{{customerDetails?.firstname}} {{customerDetails?.lastname}}</span>
+  </div>
+  <div class="botton-padding">
+     <span class="icon-padding">
+    <svg xmlns="http://www.w3.org/2000/svg" width="22.32" height="17.628" viewBox="0 0 22.32 17.628">
+      <g id="Icon_feather-mail" data-name="Icon feather-mail" transform="translate(-1.607 -5)">
+        <path id="Path_102" data-name="Path 102" d="M4.953,6H20.581a1.959,1.959,0,0,1,1.953,1.953V19.674a1.959,1.959,0,0,1-1.953,1.953H4.953A1.959,1.959,0,0,1,3,19.674V7.953A1.959,1.959,0,0,1,4.953,6Z" fill="none" stroke="#998c88" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+        <path id="Path_103" data-name="Path 103" d="M22.535,9l-9.767,6.837L3,9" transform="translate(0 -1.047)" fill="none" stroke="#998c88" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+      </g>
+    </svg>
+     </span>
+    {{customerDetails?.email}}
+  </div>
+</div>
+
+<div class="w-100">
+  <div class="default-address" *ngIf="address?.length">
+  <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="4" fxLayoutAlign="space-around" class="box-design">
+    <div fxFlex="65" fxFlex.lt-sm="100">
+      <div>
+        <div class="link-color">&#42; Default Address</div>
+        <div class="transformText">{{defaultAddress?.firstname}} {{defaultAddress?.lastname}}</div>
+        <div>{{defaultAddress?.company}}</div>
+        <div>{{defaultAddress?.address_1}}</div>
+        <div>{{defaultAddress?.address_2}}</div>
+        <div>{{defaultAddress?.city}} {{defaultAddress?.post_code}}</div>
+        <div>{{defaultAddress?.zone}}</div>
+        <div>{{defaultAddress?.country}}</div>
+        <div>{{defaultAddress?.phone ? defaultAddress?.phone : ''}}</div>
+      </div>
+    </div>
+    <div fxFlex="48" fxFlex.lt-sm="100">
+      <div class="checkout-row">
+        <a class="checkout cart-button" [routerLink]="'/account/address'">
+          View Addresses({{address?.length}})
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="" *ngIf="dataSource.data.length">
+  <table mat-table [dataSource]="dataSource">
+
+    <ng-container matColumnDef="Order No">
+      <th mat-header-cell *matHeaderCellDef> Order No</th>
+      <td mat-cell *matCellDef="let element">
+        <a class="link-color" href="/orders/{{element.order_id}}">#{{element.order_id}}</a>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Date">
+      <th mat-header-cell *matHeaderCellDef>Date</th>
+      <td mat-cell *matCellDef="let element">
+        {{element.date_added}}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Payment Status">
+      <th mat-header-cell *matHeaderCellDef>Order Status</th>
+      <td mat-cell *matCellDef="let element">
+        {{element.status}}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Total">
+      <th mat-header-cell *matHeaderCellDef>Total</th>
+      <td mat-cell *matCellDef="let element">{{element.total}}
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>
+
+  <div class="empty-order" *ngIf="!dataSource.data.length">
+    You have not placed any orders yet
+  </div>
+</div>

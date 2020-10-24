@@ -1,0 +1,45 @@
+<div class="heading"> SHOWROOM </div>
+<div class="container">
+    <div class="card card-wrapper shadow p-1 mb-5 rounded" *ngIf="images.length > 0">
+        <div class="card-body wrapper-content">
+            <div class="card-columns">
+                <div class="card card-item" (click)="openModal(image)" data-toggle="modal" data-target="#imageModelId"
+                    *ngFor="let image of images; let i = index">
+                    <img class="card-img-top" [src]="image?.URL">
+                    <div class="card-body">
+                        <h6 class="card-title" [innerHTML]="image?.GAL_Name"></h6>
+                    </div>
+                    <!-- Modal -->
+                    <div class="modal fade" id="imageModelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId"
+                        aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title"> {{selectedImageObject?.GAL_Name}} </h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="container-fluid">
+                                        <img [src]="selectedImageObject?.Bigimage_URL">
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card empty-card shadow p-1 mb-5 rounded" *ngIf="images.length === 0">
+        <div class="card-body">
+            <h5> No Photos Available </h5>
+            <button class="btn btn-danger btn-sm" (click)="gotoHome()"> Go To Home </button>
+        </div>
+    </div>
+</div>

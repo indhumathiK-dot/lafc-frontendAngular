@@ -1,0 +1,23 @@
+<div class="container customer-review-container" *ngIf="reviews">
+    <owl-carousel-o [options]="reviewOptions">
+        <ng-template carouselSlide *ngFor="let reviewItem of reviews; let i = index">
+            <div class="card">
+                <div class="card-header">
+                    <ngx-avatar [name]="reviewItem.author"></ngx-avatar>
+                    <h6> {{reviewItem.author}} </h6>
+                </div>
+                <div class="card-body">
+                    <div class="rating">
+                        <rating style="font-size: 25px; color: orange" [(ngModel)]="reviewItem.rating" max="5"
+                            [readonly]="true"></rating>
+                    </div>
+                    <p style="overflow-y: auto; overflow-x:hidden;"> {{reviewItem.text}} </p>
+                </div>
+                <!-- <div class="card-footer">
+                    <a (click)="openModal(reviewItem)"> Read more </a>
+                </div> -->
+            </div>
+        </ng-template>
+    </owl-carousel-o>
+</div>
+ 

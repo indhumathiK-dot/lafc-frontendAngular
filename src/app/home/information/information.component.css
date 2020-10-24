@@ -1,0 +1,26 @@
+/* .row {
+    margin-top: 4em;
+    margin-bottom: 4em;
+} */
+.heading {
+    text-align: center;
+    font-size: 28px;
+    color: whitesmoke;
+    margin: 0 auto;
+    padding-bottom: 3em;
+    padding-top: 60px;
+    background-color: #EF4040;
+    font-family:  Opensans-bold;
+}
+.termsContent {
+    font-family:  Opensans-regular;
+}
+.row {
+    margin: 0px;
+}
+.card {
+    margin-top: -40px !important;
+}
+.card-body {
+    padding: 2em;
+}

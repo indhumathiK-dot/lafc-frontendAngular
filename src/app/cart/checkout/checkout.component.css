@@ -1,0 +1,105 @@
+.checkout-container {
+  padding: 0px 100px;
+}
+
+.contact-details {
+  border: 1px solid #d9d9d9;
+  padding: 15px 10px;
+  border-radius: 5px;
+}
+.contact-height {
+  height: 100px;
+}
+.ship-height {
+  height: 50px;
+}
+.contact-row {
+  font-size: 14px;
+  color: #414141;
+}
+.header-width {
+  width: 12%;
+}
+.value-width {
+  width: 70%;
+}
+.separate-box {
+  margin-top: 10px;
+  border-bottom: 1px solid  #d9d9d9;
+}
+.top-margin {
+  margin-top: 10px
+}
+.ship-title {
+  font-size: 1rem;
+  margin-top: 55px;
+}
+.right-mar {
+  margin-right: 10px;
+}
+.checkout-row {
+  margin-top: 3em;
+  text-align: right;
+}
+.checkout {
+  display: inline-block;
+  margin: 0;
+  padding: 14px 2em;
+  font-family: Raleway,sans-serif;
+  font-weight: bold;
+  font-style: normal;
+  font-size: 15px;
+  line-height: 17px;
+  text-transform: uppercase;
+  cursor: pointer;
+  letter-spacing: 1px;
+  height: auto;
+  border-radius: 2px;
+}
+.return {
+  margin-right: 1pc;
+  font-size: 15px !important;
+  color: #988c88 !important;
+  margin-top: 60px;
+}
+.cart-button {
+  border: 1px solid #dae6ff;
+  background: #dae6ff;
+  color: #414141;
+}
+.cart-button:hover {
+  border: 1px solid black;
+  background: black;
+  color: #FFFFFF;
+}
+
+::ng-deep .checkout-select.ng-select.ng-select-single .ng-select-container {
+  height: 48px;
+  top: -9px;
+  width: 135%;
+  margin-left: -13px;
+  border-radius: 0;
+}
+::ng-deep ng-select .ng-select-container span.ng-arrow-wrapper span.ng-arrow {
+  mask-image: url('/assets/images/Icon feather-chevron-down - Copy.png')!important;
+  mask-size: contain !important;
+
+  -webkit-mask-image: url('/assets/images/Icon feather-chevron-down - Copy.png') !important;
+  -webkit-mask-size: contain !important;
+
+  height: 24px;
+  top: 4px;
+  width: 15px;
+}
+::ng-deep .checkout-select.ng-select .ng-arrow-wrapper {
+  padding-top: 7px !important;
+}
+::ng-deep .checkout-select.ng-select .ng-arrow-wrapper .ng-arrow {
+  border-width: 12px 8px 2.5px !important;
+}
+.shiiping-dd-width {
+  width: 60%;
+}
+.validate-note {
+  border: 2px solid red;
+}

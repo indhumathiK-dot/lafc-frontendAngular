@@ -1,0 +1,42 @@
+<div class="footer-padding">
+  <div  *ngIf="wishlist?.length">
+    <div>All of your favorites, in one place</div>
+    <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="4">
+
+      <div  fxFlex="23" fxFlex.lt-sm="100" *ngFor="let wish of wishlist">
+        <div class="">
+          <div class="image-hover wishlist-image">
+            <img src="{{wish.thumb}}" class="image-width">
+            <div class="middle">
+              <div class="text">
+                <a class="icon-circle padding-rgt" (click)="removeFromWishlist(wish.product_id)">
+                  <i class="fa fa-close my-icon" aria-hidden="true"></i></a>
+              </div>
+            </div>
+          </div>
+
+          <div class="thumb-content">
+            <div class="project-name">
+              <a class="project-name" href="/products/{{wish.product_id}}">{{wish.name}}</a>
+            </div>
+            <div class="apply-wholesale top-pad">
+              {{wish.bundle_price}}
+            </div>
+          </div>
+
+          <div class="checkout-row">
+            <div class="checkout cart-button" (click)="addTocart(wish)">
+              Add to cart
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div *ngIf="!wishlist?.length && firstLoadCheck">
+    <div>Sorry, there are no products in your wishlist.</div>
+  </div>
+</div>

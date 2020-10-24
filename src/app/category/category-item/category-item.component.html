@@ -1,0 +1,8 @@
+<div class="card hover clickable" [routerLink]="getLink(subCategoryItem.category_id, subCategoryItem.name)">
+  <div class="card-header" *ngIf="subCategoryItem.image">
+        <img [src]="subCategoryItem.image" alt="">
+  </div>
+  <div class="card-body" *ngIf="subCategoryItem.name">
+    <span class="card-title">{{subCategoryItem.name | uppercase}}</span>
+  </div>
+</div>

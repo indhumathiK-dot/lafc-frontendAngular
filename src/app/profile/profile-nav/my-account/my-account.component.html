@@ -1,0 +1,22 @@
+<div class="w-75">
+
+  <div>
+    <span>Complete this </span> <a target="_blank" href="https://drive.google.com/file/d/1ltwy1D3kwqTp7kJ6AoyvQTywq9g9XoCs/view"
+                                   class="link-color">Credit Card Authorization Form </a> <span> and upload completed form below:</span></div>
+
+  <label class="label-name website-design">Upload completed CC Auth Form </label>
+  <div class="custom-file success-padd">
+    <!--          <form  method="post" enctype="multipart/form-data">-->
+    <input  (change)="fileChange($event)"  type="file" name="invoice" class="custom-file-input"
+            id="inputGroupFile01"  aria-describedby="inputGroupFileAddon01">
+    <!--          </form>-->
+    <label class="custom-file-label" for="inputGroupFile01">{{fileName}}</label>
+  </div>
+  <span class="success-msg" *ngIf="uploadSuccess">CC Auth form uploaded successfully</span>
+
+  <br>
+
+  <div class="checkout cart-button display user-padding" (click)="upload()">
+    Save
+  </div>
+</div>

@@ -1,0 +1,25 @@
+<div class="heading">
+    <h3> Testimonials </h3>
+    <p> Some impressions from our customers ! </p>
+</div>
+<div class="testimonial-wrapper" *ngIf="testimonials.length > 0">
+    <div class="card shadow bg-white rounded" *ngFor="let testimonial of testimonials">
+        <div class="card-body text-center">
+            <i class="fa fa-quote-right" aria-hidden="true" style="font-size: 24px; float: right;color: #ED2F2F"></i>
+            <div [innerHTML]="decodeTestimonials(testimonial?.description)"></div>
+            <div class="author-wrapper">
+                <ngx-avatar [name]="testimonial?.name"></ngx-avatar>
+                <h5> {{testimonial?.name}} </h5>
+                <p style="font-size: 13px; color: gray"> {{testimonial?.date_modified}} </p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="testimonial-wrapper" *ngIf="testimonials.length === 0"> 
+    <div class="card">
+        <div class="card-body">
+            <h5> No Testimonials to View </h5>
+            <button class="btn btn-danger btn-sm" (click)="gotoHome()"> Go Back To Home </button>
+        </div>
+    </div>
+</div>

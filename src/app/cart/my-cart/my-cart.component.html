@@ -1,0 +1,90 @@
+<div class="footer-padding">
+  <div class="full-container">
+
+    <h1 class="head-font">Your Cart</h1>
+
+    <div *ngIf="dataSource.data.length">
+    <div class="">
+      <table mat-table [dataSource]="dataSource" class="w-100">
+
+        <ng-container matColumnDef="Product">
+          <th mat-header-cell *matHeaderCellDef>Product</th>
+          <td mat-cell *matCellDef="let element" class="border-table">
+            <a href="/products/{{element.product_id}}" class="col-image">
+              <img *ngIf="element.imageCheck" src="{{element.thumb}}" class="image-width">
+              <img *ngIf="!element.imageCheck" src="/assets/images/LA%20Marketplace%20Logo.jpg" class="image-width">
+            </a>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Desc">
+          <th mat-header-cell *matHeaderCellDef></th>
+          <td mat-cell *matCellDef="let element" class="border-table">
+            {{element.name}}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Price">
+          <th mat-header-cell *matHeaderCellDef>Price</th>
+          <td mat-cell *matCellDef="let element" class="border-table">
+            {{element.bundle_price}}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Quantity">
+          <th mat-header-cell *matHeaderCellDef>Quantity</th>
+          <td mat-cell *matCellDef="let element" class="border-table">
+            <div class="quantity-and-remove">
+              <mat-form-field class="selectQ w-100">
+                <input type="number" min="1" matInput name="quantity" (keyup)="quantityUpdate($event.target.value, element)" [value]="element.cartBundleQuantity">
+              </mat-form-field>
+            </div>
+            <div class="link-color mouse-events" (click)="removeCartItem(element.key)">Remove</div>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Total">
+          <th mat-header-cell *matHeaderCellDef>Total</th>
+          <td mat-cell *matCellDef="let element" class="border-table">{{element.bundle_total}}
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </div>
+
+
+      <div class="right-align cart-update-row right-total-padding">
+        <a (click)="updateCart()" class="mouse-events">Update cart</a>
+      </div>
+      <br>
+
+      <div class="col-md-12 no-padding no-margin row line-spacing update-cart-design flex-display"  *ngFor="let total of cartDetails?.totals">
+        <div class="col-md-6 no-padding left-total-padding left-align">
+          {{total?.title}}
+        </div>
+        <div class="col-md-6 no-padding right-total-padding textAlignRight bold-font">
+          {{total?.text}}
+        </div>
+
+      </div>
+
+    <div class="right-align tax">Shipping calculated later</div>
+
+    <div class="checkout-row">
+      <div class="checkout cart-button" [routerLink]="'/cart/delivery'">
+        Proceed to checkout
+      </div>
+    </div>
+    <div class="inner-row">
+      <a class="cart-update-row" [routerLink]="'/'"> <i class="fa fa-angle-left"></i> Continue shopping</a>
+    </div>
+
+    </div>
+
+    <div *ngIf="!dataSource.data.length && firstLoadCheck">
+      <span>Your cart is currently empty. <a class="link-color" [routerLink]="'/'">Start Shopping!</a></span>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,104 @@
+<div class="price-detail-wrapper">
+<h6 class="p-10"> Have a Coupon Code ? </h6>
+<div id="couponCode">
+    <form class="form-inline" #couponForm="ngForm" (ngSubmit)="onApplyCoupon(couponForm.value.couponcode);couponForm.reset()">
+        <div class="form-group">
+            <input type="text" class="form-control" id="couponcodeForm" name="couponcode" ngModel
+                required>
+            <button type="submit" [disabled]="!couponForm.valid" class="btn btn-danger"> APPLY </button>
+        </div>
+    </form>
+</div>
+<div style="margin-top: 16px;">
+    <alert type="danger" dismissible="true" *ngIf="isError" (onClosed)="close()">{{couponInvalid}}</alert>
+</div>
+<!-- <div class="card" *ngIf="getTotalsByTitle('Coupon') as couponDiscount" style="margin-bottom: 16px;">
+    <div class="card-header">
+        <div class="row" style="border: 1px solid black">
+            <div class="col-md-9">
+                <span> {{codeEntered}} </span>
+            </div>
+            <div class="col-md-3">
+                <button type="button" (click)="removeCouponApplied()" class="btn btn-outline-danger btn-sm"> Remove
+                </button>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+<accordion isAnimated="true">
+    <accordion-group [isOpen]="isListOpen">
+        <span accordion-heading>
+            <span style="font-weight: 500; font-size: 14px;"> {{cart?.total_product_count}} items </span>
+            <span style="float: right; font-weight: 500;font-size: 14px;" *ngIf="getTotalsByTitle('Total')?.text as total"> You Pay {{total}} <i class="fa"
+                [ngClass]=" isListOpen ? 'fa-angle-up': 'fa-angle-down'" style="margin-left: 10px; font-size: 24px;"></i> </span>
+        </span>
+
+        <!-- <div class="row" style="border: 1px solid black;">
+            <div class="col-md-9">
+                <span style="color: red"> {{codeEntered}} </span>
+            </div>
+            <div class="col-md-3">
+                <button type="button" (click)="removeCouponApplied()" class="btn btn-outline-danger btn-sm"> Remove
+                </button>
+            </div>
+        </div> -->
+        <div style="height: 36px; margin: 8px 0px;" *ngIf="(getTotalsByTitle('Coupon') !== undefined && getTotalsByTitle('Coupon') !== null)">
+            <p style="border: 1px solid lightgray; margin: 0px; padding: 8px;height: 36px;">
+            <span> {{cart?.coupon}} </span>
+            <span style="float: right;"> 
+                <button type="button" (click)="removeCouponApplied()"
+                    class="btn btn-outline-danger btn-sm" style="margin-top: -8px;"> REMOVE
+                </button> 
+            </span>
+            </p>
+        </div>
+        <div>
+            <span style="font-size: 14px;font-weight: 500"> Item Total </span>
+            <span style="float: right;font-size: 14px;" *ngIf="getTotalsByTitle('Sub-Total')?.text as subTotal"> 
+                 {{subTotal}} </span>
+        </div>
+        <div *ngIf="getTotalsByTitle('Applied Cash') as cash">
+            <span style="font-size: 14px;font-weight: 500"> Applied Cash </span>
+            <span style="float: right;font-size: 14px;" *ngIf="getTotalsByTitle('Applied Cash') as cash"> 
+                 {{cash.text}} </span>
+        </div>
+        <div *ngIf="getTotalsByTitle('Coupon') as couponDiscount">
+            <span style="color: #Ed2f2f;font-size: 14px;font-weight: 500"> Coupon Discount </span>
+            <span style="float: right;color:#Ed2f2f; font-weight: 500;font-size: 14px;"> {{couponDiscount.text}} </span>
+        </div>
+        <!-- <div *ngIf="getTotalsByTitle('Applied Cash') as cash">
+            <span style="font-size: 14px;font-weight: 500"> Applied Cash </span>
+            <span style="float: right; font-weight: 500;font-size: 14px;"> {{cash.text}} </span>
+        </div> -->
+        <!-- <div *ngIf="(router.url === '/cart/payment') || isShippingMethodApplied"> -->
+            <div *ngIf="getTotalsByTitle('Flat Shipping Rate') as rate">
+            <span style="font-size: 14px;font-weight: 500"> Shipping & Handling </span>
+            <!-- <span *ngIf="createOrderService.shippingMethodId === createOrderService?.shippingMethod?.flat?.quote?.flat?.code" 
+            style="float: right;color: #Ed2f2f; font-weight: 500;font-size: 14px;"> {{createOrderService.shippingMethod?.flat?.quote?.flat?.text}} </span>
+            <span *ngIf="createOrderService.shippingMethodId !== createOrderService?.shippingMethod?.flat?.quote?.flat?.code" 
+            style="float: right;color: #Ed2f2f; font-weight: 500;font-size: 14px;"> Free </span> -->
+            
+            <!-- <span style="float: right;color: #Ed2f2f; font-weight: 500;font-size: 14px;" *ngIf="!getTotalsByTitle('Flat Shipping Rate') as rate"> &#x20b9; {{shippingPrice}} </span> -->
+            <span style="float: right;color: #Ed2f2f; font-weight: 500;font-size: 14px;" *ngIf="getTotalsByTitle('Flat Shipping Rate') as rate"> {{rate.text}} </span>
+        </div>
+    </accordion-group>
+
+    <div class="card" style="margin: -8px 0px 0px 0px;">
+        <div class="card-body" style="padding: 8px 16px">
+            <span style="font-weight: 500"> Total </span>
+            <span style="float: right; font-weight: 500" 
+            *ngIf="getTotalsByTitle('Total') as total"> {{total.text}} 
+            </span>
+            <div class="row" style="margin: 0px;">
+                <div class="col-6"></div>
+                <div class="col-6" style="padding: 0px; margin: 0px;"> 
+                        <span style="float: right; color: lightgray;font-size: 14px;">
+                                (incl of all taxes)
+                            </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</accordion>
+</div>

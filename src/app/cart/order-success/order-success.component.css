@@ -1,0 +1,62 @@
+.contact {
+  padding: 23px 29px 0px 20px;
+}
+.flex-display{
+  display: flex;
+}
+.success-container {
+  padding: 0 100px;
+}
+.order-size {
+  font-size: 18px;
+}
+.thank-msg {
+  font-size: 30px;
+}
+.top-container {
+  padding-top: 50px;
+}
+.confirmation-msg {
+  font-size: 22px;
+  padding-bottom: 12px;
+}
+.view-order {
+  padding-bottom: 6px;
+}
+.payment-address {
+  border: 1px solid #D5CEC8;
+  padding: 15px;
+  line-height: 25px;
+  margin: 50px 0 0 0;
+}
+.address-width {
+  width: 55%;
+}
+.contact-space {
+  margin-bottom: 30px;
+}
+.checkout {
+  display: inline-block;
+  margin: 0;
+  padding: 14px 2em;
+  font-family: Raleway,sans-serif;
+  font-weight: bold;
+  font-style: normal;
+  font-size: 16px;
+  line-height: 17px;
+  text-transform: uppercase;
+  cursor: pointer;
+  letter-spacing: 1px;
+  height: auto;
+  border-radius: 2px;
+}
+.cart-button {
+  border: 1px solid #dae6ff;
+  background: #dae6ff;
+  color: #414141;
+}
+.cart-button:hover {
+  border: 1px solid black;
+  background: black;
+  color: #FFFFFF;
+}

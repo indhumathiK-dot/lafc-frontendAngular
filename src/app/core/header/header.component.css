@@ -1,0 +1,48 @@
+.details{
+    font-size: 12.75px;
+  font-family: Raleway, sans-serif;
+  font-weight: bold;
+  padding-top: 21px;
+}
+
+.login{
+  font-size: 12.75px;
+  font-weight: lighter;
+  /*letter-spacing: 0.5px;*/
+  padding-bottom: 30px;
+}
+.login-right {
+  width: 50%;
+  padding-right: 72px;
+}
+.vertical-margin {
+  margin: 20px;
+  display: inline-block;
+}
+.cart-show {
+  display: inline-block;
+}
+.cart-view {
+  padding-right: 13px;
+}
+
+.vertical {
+    border-left: 1px solid #EF4040;
+    margin-right: 5px;
+    height: 15px;
+}
+
+.parent {
+    display: flex;
+    justify-content: space-between;
+    padding: 0px;
+}
+
+
+.exclusive{
+    color: #212121;
+}
+.exclusive > a {
+    text-decoration: none;
+    color: #212121;
+}

@@ -1,0 +1,65 @@
+.header-search{
+  width: 100%;
+}
+input:focus {
+  outline: 0;
+}
+.input-padding {
+  padding-left: 10px;
+}
+.maginator-right {
+  padding-right: 12px;
+}
+.checkout-row {
+  margin-top: 0;
+}
+.top-margin {
+  margin-top: 1em;
+}
+.right-text {
+  text-align: right;
+}
+.paginator-margin {
+  margin-bottom: -20px;
+  margin-right: 8px;
+  margin-top: 10px;
+}
+.checkout {
+  display: inline-block;
+  margin: 0;
+  padding: 18px 43px;
+  font-family: Raleway,sans-serif;
+  font-weight: bold;
+  font-style: normal;
+  font-size: 14px;
+  line-height: 17px;
+  text-transform: uppercase;
+  cursor: pointer;
+  letter-spacing: 1px;
+  height: auto;
+  border-radius: 2px;
+}
+.search-field {
+  width: 100%;
+  height: 47px;
+  border: 1px solid #D5CEC8;
+}
+.cart-button {
+  border: 1px solid #dae6ff;
+  background: #dae6ff;
+  color: #414141;
+}
+.cart-button:hover {
+  border: 1px solid black;
+  background: black;
+  color: #FFFFFF;
+}
+.right-padding-remove {
+  padding-right: 0;
+}
+.top-align {
+  top: -5px;
+}
+::ng-deep.mat-form-field-appearance-outline .mat-form-field-infix {
+  padding: 10px 0 1em 0 !important;
+}

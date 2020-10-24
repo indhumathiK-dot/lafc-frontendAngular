@@ -818,3 +818,9 @@ and (-webkit-min-device-pixel-ratio: 1) {
 /*}*/
 
 
+@media screen and (max-width: 700px){
+  .container-padding {
+    padding-left: 0px;
+    padding-top: 30px;
+}
+}

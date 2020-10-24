@@ -7,7 +7,7 @@
     <div class="address-design form-width">
       <form novalidate [formGroup]="registerForm" (ngSubmit)="createAccount()" class="login-box">
     <div class="row col-md-12 row-space botton-padding">
-      <div class="col-md-6 row-space">
+      <div class="col-md-6 col-sm-6 fd-sep row-space">
         <label class="label-name">First Name*</label>
         <mat-form-field appearance="outline" class="w-100 mat-bottom-remove register"
                         [ngClass]="validationCheck['firstname'] ? 'errorClass' : ''">
@@ -16,9 +16,9 @@
         <span *ngIf="validationCheck['firstname']" class="password-check">Please enter first name </span>
        </div>
 
-       <div class="col-md-6 row-space">
-        <label class="label-name parellel-field">Last Name*</label>
-        <mat-form-field appearance="outline" class="w-100 parellel-field mat-bottom-remove register" [ngClass]="validationCheck['lastname'] ? 'errorClass' : ''">
+       <div class="col-md-6 col-sm-6 row-space">
+        <label class="label-name ">Last Name*</label>
+        <mat-form-field appearance="outline" class="w-100 mat-bottom-remove register" [ngClass]="validationCheck['lastname'] ? 'errorClass' : ''">
           <input matInput formControlName="lastname" (keydown)="checkValidationForm('lastname')">
         </mat-form-field>
          <span *ngIf="validationCheck['lastname']" class="password-check parellel-field">Please enter first name </span>
@@ -93,7 +93,7 @@
 <!--          </div>-->
 <!--          </div>-->
 
-          <div class="col-md-4 row-space">
+          <div class="col-md-4 fd-mob row-space">
             <label class="label-name">Country*</label>
             <mat-form-field appearance="outline" class="w-100 mat-bottom-remove register" [ngClass]="validationCheck['country'] ? 'errorClass' : ''">
             <select matNativeControl formControlName="country" (change)="onSelectCountry(registerForm.value.country)">

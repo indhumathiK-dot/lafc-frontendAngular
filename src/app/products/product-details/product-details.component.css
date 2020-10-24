@@ -350,6 +350,18 @@ div.scrollmenu a {
 .share-size {
   font-size: 13px;
 }
+.carousal-width{
+  width: 400px;
+}
+
+.swiper-slide {
+  text-align: center !important;
+}
+
+.swiper-container{
+  width: 800px;
+}
+
 .desc-pad {
   margin-bottom: 30px;
 }

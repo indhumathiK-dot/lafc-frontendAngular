@@ -83,7 +83,6 @@ export class CheckoutComponent implements OnInit {
   }
 
   getNotes(value: any) {
-    this.notesValidation = false;
     this.validateNote = false;
    this.createOrderService.shippingComment = value;
   }

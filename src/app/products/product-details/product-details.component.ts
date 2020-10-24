@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import {Component, ElementRef, OnInit} from "@angular/core";
 import {ActivatedRoute, Router} from "@angular/router";
 import {take} from "rxjs/operators";
 import {ProductsService} from "../../services/products.service";
@@ -8,6 +8,7 @@ import {animate, keyframes, state, style, transition, trigger} from "@angular/an
 import {ProductQuickViewComponent} from "../product-quick-view/product-quick-view.component";
 import {BsModalService} from "ngx-bootstrap";
 import {ImageViewComponent} from "../image-view/image-view.component";
+import Swiper from 'swiper';
 
 @Component({
   selector: "app-product-details",
@@ -15,6 +16,7 @@ import {ImageViewComponent} from "../image-view/image-view.component";
   styleUrls: ["./product-details.component.css"]
 })
 export class ProductDetailsComponent implements OnInit {
+  Swiper: any;
   productId;
   public slideIndex = 1;
   public optionList = [];
@@ -34,13 +36,15 @@ export class ProductDetailsComponent implements OnInit {
   private category: any;
   public fbName: any;
   public imagesList = [];
+  carouselOptions: any = {items: 3, dots: true, navigation: false};
 
   constructor(private route: ActivatedRoute,
               private productsService: ProductsService,
               private cartService: CartService,
               private router: Router,
               private wishListService: WishListService,
-              public modalService: BsModalService) {
+              public modalService: BsModalService,
+              public elementRef: ElementRef) {
     this.loginCheck = localStorage.getItem('loggedIn') === 'true';
     this.route.params.subscribe(params => {
       this.productId = params['product_id'];
@@ -62,6 +66,28 @@ export class ProductDetailsComponent implements OnInit {
 
   }
 
+  ngAfterViewInit() {
+    this.Swiper = new Swiper(this.elementRef.nativeElement.querySelector('.gallery-top'), {
+      spaceBetween: 10,
+      centeredSlides: true,
+      slidesPerView: 3,
+      touchRatio: 0.2,
+      slideToClickedSlide: true,
+      loop: true,
+      loopedSlides: 4,
+      // If we need pagination
+      pagination: {
+        el: '.swiper-pagination',
+      },
+    });
+    var galleryThumbs = new Swiper('.gallery-thumbs', {
+      spaceBetween: 10,
+      slidesPerView: 4,
+      freeMode: true,
+      watchSlidesVisibility: true,
+      watchSlidesProgress: true,
+    });
+  }
   getProductList() {
     this.productsService.getAllProducts().pipe(take(1))
       .subscribe((products) => {
@@ -90,6 +116,8 @@ export class ProductDetailsComponent implements OnInit {
       .subscribe((products) => {
         this.productsDetails = products;
         this.fbName = this.productsDetails.name.replaceAll(' ', '-');
+        this.productImages.push(this.productsDetails.image);
+        this.productImages.push(this.productsDetails.image);
         this.productImages.push(this.productsDetails.image);
         for(let i = 0; i < this.productsDetails.images.length; i++) {
           this.productImages.push(this.productsDetails.images[i]);
@@ -291,6 +319,6 @@ this.navigate();
 
 
     navigate() {
-    
+
     }
 }

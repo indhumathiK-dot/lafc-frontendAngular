@@ -68,7 +68,7 @@
 }
 
 .product-category-container {
-  padding: 20px 20px 60px 50px;
+  padding: 0 20px 60px 50px;
 }
 ::ng-deep .auto-grow .ng-dropdown-panel.ng-select-bottom {
   margin-top: 12px;
@@ -85,4 +85,13 @@
 }
 ::ng-deep .auto-grow select.mat-input-element {
   top: -12px;
+}
+::ng-deep .delivery-checkout.mat-form-field-appearance-outline .mat-form-field-flex {
+  padding: 0;
+}
+::ng-deep .delivery-checkout select.mat-input-element {
+  padding: 0 15px 0 15px;
+}
+::ng-deep .delivery-checkout.mat-form-field-type-mat-native-select .mat-form-field-infix::after {
+  right: 15px;
 }

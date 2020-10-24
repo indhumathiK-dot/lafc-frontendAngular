@@ -67,9 +67,8 @@
 
       <div class="display field-width">
         <label class="label-name">Country*</label>
-        <mat-form-field appearance="outline" class="w-100 address-form mat-bottom-remove" [ngClass]="validationCheck['country'] ? 'errorClass' : ''">
+        <mat-form-field appearance="outline" class="w-100 address-form mat-bottom-remove delivery-checkout" [ngClass]="validationCheck['country'] ? 'errorClass' : ''">
           <select matNativeControl formControlName="country" (change)="onSelectCountry(addressForm.value.country)">
-            <option value=""></option>
             <option [value]="country.value" *ngFor="let country of countriesList">{{country.label}}</option>
           </select>
         </mat-form-field>
@@ -77,9 +76,8 @@
 
       <div class="display field-width parellel-field">
         <label class="label-name">State*</label>
-        <mat-form-field appearance="outline"  class="w-100 address-form mat-bottom-remove" [ngClass]="validationCheck['state'] ? 'errorClass' : ''">
+        <mat-form-field appearance="outline"  class="w-100 address-form mat-bottom-remove delivery-checkout" [ngClass]="validationCheck['state'] ? 'errorClass' : ''">
           <select matNativeControl formControlName="state" (change)="checkValidationForm('state')">
-            <option value=""></option>
             <option [value]="state.value" *ngFor="let state of statesList">{{state.label}}</option>
           </select>
         </mat-form-field>

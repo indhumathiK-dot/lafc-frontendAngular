@@ -106,8 +106,8 @@
     <div *ngFor="let option of optionList">
     <label class="label-name botton-padding">{{option.name}}</label>
 
-        <mat-form-field appearance="outline" class="option-view">
-          <select matNativeControl (change)="optionSelect(option, $event.target.value)">
+        <mat-form-field appearance="outline" class="option-view delivery-checkout">
+          <select matNativeControl [(ngModel)]="option.option_value[0].value" (change)="optionSelect(option, $event.target.value)">
             <option value=""></option>
             <option [value]="state.value" *ngFor="let state of option.option_value">{{state.label}}</option>
           </select>

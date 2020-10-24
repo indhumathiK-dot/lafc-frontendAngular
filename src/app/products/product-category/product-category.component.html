@@ -1,6 +1,6 @@
 <div class="product-category-container">
   <div class="category-name">
-    <h1>{{categoryName ? categoryName : (manufactureName ? manufactureName : ArrivalsName)}}</h1>
+    <h1 class="no-margin">{{categoryName ? categoryName : (manufactureName ? manufactureName : ArrivalsName)}}</h1>
   </div>
   <div>
 
@@ -38,12 +38,12 @@
       </div>
 
 
-     
+
 
     </div>
 
     <div class="sort-space">
-      
+
       <div class="same-order">
         <div class="bottom-separator" *ngIf="filterClick">
           <span *ngFor="let tag of productsTags">
@@ -54,7 +54,7 @@
             <span>Sorry, there are no filter tags</span>
           </span>
         </div>
-        
+
         <div class="align-order">
           <span class="sort-order">Sort by</span>
         </div>
@@ -67,9 +67,8 @@
 <!--        </div>-->
 
         <div class="w-50 align-order sort">
-          <mat-form-field appearance="outline"  class="w-100 auto-grow">
-            <select placeholder="Sort By" matNativeControl (change)="sorting($event.target.value)">
-              <option value=""></option>
+          <mat-form-field appearance="outline"  class="w-100 auto-grow delivery-checkout">
+            <select placeholder="Sort By" [ngModel]="7" matNativeControl (change)="sorting($event.target.value)">
               <option [value]="sort.value" *ngFor="let sort of sortOrder">{{sort.label}}</option>
             </select>
           </mat-form-field>

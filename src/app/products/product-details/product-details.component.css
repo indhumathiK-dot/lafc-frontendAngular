@@ -241,8 +241,8 @@ html {
 }
 ::ng-deep .option-view select.mat-input-element{
   cursor: pointer !important;
-  font-size: 20px !important;
-  top: -24px !important;
+  font-size: 17px !important;
+  top: -22px !important;
 }
 
 ::ng-deep .option-view.mat-form-field-appearance-outline .mat-form-field-infix {
@@ -403,4 +403,13 @@ font-size: 18px;
 }
 #sync2 .synced .item{
 background: #0c83e7;
+}
+::ng-deep .delivery-checkout.mat-form-field-appearance-outline .mat-form-field-flex {
+  padding: 0;
+}
+::ng-deep .delivery-checkout select.mat-input-element {
+  padding: 0 15px 0 15px;
+}
+::ng-deep .delivery-checkout.mat-form-field-type-mat-native-select .mat-form-field-infix::after {
+  right: 15px;
 }

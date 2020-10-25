@@ -84,6 +84,14 @@
     width: 750px !important;
   }
 }
+@media (max-width: 600px) {
+  .image-hover{
+    width: 100%;
+  }
+  .thumb-content{
+    text-align: center;
+  }
+}
 
 
 

@@ -32,3 +32,8 @@
 .success-padd {
   margin-bottom: 10px;
 }
+@media (max-width:425px){
+  .w-75{
+    width: 100%!important;
+  }
+}

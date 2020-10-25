@@ -189,3 +189,12 @@
 .right-total-padding {
   padding-right: 10px;
 }
+@media(max-width:770px){
+  .full-container{
+    padding-left: 20px;
+  }
+  .image-width{
+    width: 70px;
+  }
+
+}

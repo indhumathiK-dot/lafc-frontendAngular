@@ -75,7 +75,6 @@ export class ProductDetailsComponent implements OnInit {
         observer: true,
   observeParents: true,
         spaceBetween: 234,
-        centeredSlides: true,
         slidesPerView: 3,
           navigation: {
             nextEl: '.swiper-button-n',
@@ -167,13 +166,9 @@ spaceBetween: 5
         this.productsDetails = products;
         this.fbName = this.productsDetails.name.replaceAll(' ', '-');
         this.productImages.push(this.productsDetails.image);
-        this.productImages.push(this.productsDetails.image);
-        this.productImages.push(this.productsDetails.image);
         for(let i = 0; i < this.productsDetails.images.length; i++) {
           this.productImages.push(this.productsDetails.images[i]);
         }
-
-this.navigate();
 
         for(let index = 0; index < this.productsDetails.options.length; index++) {
           var optionList = [];
@@ -194,10 +189,6 @@ this.navigate();
             option_value: optionList
           })
         }
-
-        setTimeout(() => {
-          this.showDivs(this.slideIndex);
-        }, 500);
       });
   }
 
@@ -365,14 +356,5 @@ this.navigate();
         } else {
             this.router.navigate(['/products/collections/' + this.productsDetails.category[0].name + '/' + this.productsDetails.category[0].id])
         }
-    }
-
-    imageNavigate() {
-
-    }
-
-
-    navigate() {
-
     }
 }

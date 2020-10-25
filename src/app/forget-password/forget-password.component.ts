@@ -29,10 +29,10 @@ export class ForgetPasswordComponent implements OnInit {
   }
 
   onSubmit() {
-    if (!this.resetForm.value.password || !this.resetForm.value.confirmPassword || this.resetForm.value.password !== this.resetForm.value.confirmPassword) {
+    if (!this.resetForm.value.password || !this.resetForm.value.confirmPassword || this.resetForm.value.password !== this.resetForm.value.confirmPassword || this.resetForm.value.password.length <6) {
       this.validationCheck = {
-        password: !this.resetForm.value.password,
-        confirmPassword: !this.resetForm.value.confirmPassword,
+        password: !(this.resetForm.value.password && (this.resetForm.value.password.length > 6 && this.resetForm.value.password.length < 20)),
+        confirmPassword: !((this.resetForm.value.confirmPassword) && (this.resetForm.value.confirmPassword.length > 6 && this.resetForm.value.confirmPassword.length < 20)),
         samePass: this.resetForm.value.password && this.resetForm.value.confirmPassword ? (this.resetForm.value.password !== this.resetForm.value.confirmPassword ) : false
       }
       return;
@@ -44,6 +44,7 @@ export class ForgetPasswordComponent implements OnInit {
       }
       this.bestSellerHttpService.postForgotPassword(data).subscribe(res => {
         if (res["success"]) {
+          alert('Password Resetted successfully');
           this.router.navigate(["/login"]);
         }
       });

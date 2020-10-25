@@ -112,3 +112,11 @@
 ::ng-deep .delivery-checkout.mat-form-field-type-mat-native-select .mat-form-field-infix::after {
   right: 15px;
 }
+@media (max-width:425px){
+  .detail-padding{
+    padding-left: 0;
+  }
+  .w-75{
+    width: 100%!important;
+  }
+}

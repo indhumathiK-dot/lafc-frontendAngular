@@ -95,3 +95,44 @@
 ::ng-deep .delivery-checkout.mat-form-field-type-mat-native-select .mat-form-field-infix::after {
   right: 15px;
 }
+
+@media(max-width:770px){
+  .product-category-container{
+    padding: 0 20px 0px 30px;
+  }
+  .delivery-checkout select.mat-input-element{
+    padding: 0 27px 0 15px;
+  }
+  ::ng-deep mat-paginator .mat-paginator-range-label{
+    margin:0!important
+  }
+}
+@media(max-width:550px){
+  .sort-space{
+    display: grid;
+  }
+  .same-order{
+    display: unset;
+    margin-bottom: 20px;
+    width: 100%;
+  }
+  .product-category-container{
+    padding: 0 20px 0px 10px;
+  }
+}
+
+
+
+/* Select Icon Arrow Fix  */
+
+::ng-deep .mat-form-field-type-mat-native-select .mat-form-field-infix::after {
+  content: "\f107"!important;
+  display: inline-block;
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: inherit;
+  top: 10%!important;
+  left: 80%!important;
+  border-left: 0!important;
+  border-right: 0!important;
+  text-rendering: auto;
+}

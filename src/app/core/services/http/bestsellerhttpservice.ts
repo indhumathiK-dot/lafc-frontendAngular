@@ -201,8 +201,8 @@ export class BestSellerHttpService {
   }
 
   forgotPassword(email): Observable<any> {
-    return this.http.post<any>(this.baseUrl + '/forgotten', email)
-      .pipe(map(this.extractData), catchError(this.handleErrorObservable));
+    return this.http.post<any>(this.baseUrl + '/forgotten', email);
+      // .pipe(map(this.extractData), catchError(this.handleErrorObservable));
   }
 
   postForgotPassword(obj) {

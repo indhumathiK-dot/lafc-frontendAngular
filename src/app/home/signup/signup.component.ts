@@ -163,9 +163,10 @@ export class SignupComponent implements OnInit {
     let user = JSON.parse(localStorage.getItem('user'));
     this.authService.getCustomerDetails(user['customer_id']).subscribe(res => {
       var customerDetails = res['data']['data'][0];
-      this.fileName = customerDetails.cc_auth_path;
+      var checkFileName = customerDetails.cc_auth_path.split('/');
+      this.fileName = checkFileName[2];
       this.registerForm.patchValue({
-        "uploadCC": customerDetails.cc_auth_path,
+        "uploadCC": checkFileName[2],
         "websiteUrl": customerDetails.social_url,
         "sellOption": customerDetails.sell_option === 'Online' ? '1' : (customerDetails.sell_option === 'Store Front' ? '2' : (customerDetails.sell_option === 'Both') ? '3' : '3'),
       })

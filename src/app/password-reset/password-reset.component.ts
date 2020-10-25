@@ -1,7 +1,7 @@
 import { BestSellerHttpService } from "./../core/services/http/bestsellerhttpservice";
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
-import {FormBuilder, FormGroup} from "@angular/forms";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 
 
 @Component({
@@ -11,6 +11,7 @@ import {FormBuilder, FormGroup} from "@angular/forms";
 })
 export class PasswordResetComponent implements OnInit {
   resetForm: FormGroup;
+  public validCheck: boolean = false;
 
   constructor(private fb: FormBuilder,
     public bestSellerHttpService: BestSellerHttpService,
@@ -20,18 +21,31 @@ export class PasswordResetComponent implements OnInit {
 
   ngOnInit() {
     this.resetForm = this.fb.group({
-      email: [""]
+      email: ["", [Validators.email, Validators.required, Validators.pattern('^([a-zA-Z0-9_\\-\\.\\+]+)@([a-zA-Z0-9_\\-\\.]+)\\.(\\b(?!web\\b)[a-zA-Z]{2,10})$')]]
     });
   }
 
   onSubmit() {
-    var data = {
-      email: this.resetForm.value.email
+    if(this.resetForm.invalid) {
+      this.validCheck = true;
+    } else {
+      var data = {
+        email: this.resetForm.value.email
+      }
+      this.bestSellerHttpService.forgotPassword(data).subscribe(res => {
+        if (res["success"]) {
+          alert('A mail has been sent to your registered email id with link to reset the password');
+          this.router.navigate(["/login"]);
+        } else {
+          alert('The E-Mail Address was not found in our records, please try again!');
+        }
+      }, (error) => {
+        alert('The E-Mail Address was not found in our records, please try again!');
+      });
     }
-    this.bestSellerHttpService.forgotPassword(data).subscribe(res => {
-          if (res["success"]) {
-            this.router.navigate(["/login"]);
-          }
-        });
+  }
+
+  emailUpdate() {
+    this.validCheck = this.validCheck ? (this.resetForm.invalid) : false;
   }
 }

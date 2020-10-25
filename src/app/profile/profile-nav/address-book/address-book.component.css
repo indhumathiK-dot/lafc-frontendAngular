@@ -38,3 +38,14 @@
   background: black;
   color: #FFFFFF;
 }
+@media (max-width:425px){
+  .checkout-row {
+    float: unset;
+    margin-left: 10px; 
+    margin-right: 0;
+    margin-top: 10px;
+}
+.address-box{
+  margin: 25px 0px 0 0;
+}
+}

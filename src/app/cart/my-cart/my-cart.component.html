@@ -1,5 +1,5 @@
 <div class="footer-padding">
-  <div class="full-container">
+  <div class="container">
 
     <h1 class="head-font">Your Cart</h1>
 
@@ -61,10 +61,10 @@
       <br>
 
       <div class="col-md-12 no-padding no-margin row line-spacing update-cart-design flex-display"  *ngFor="let total of cartDetails?.totals">
-        <div class="col-md-6 no-padding left-total-padding left-align">
+        <div class="  no-padding left-total-padding left-align" style="width: 50%;">
           {{total?.title}}
         </div>
-        <div class="col-md-6 no-padding right-total-padding textAlignRight bold-font">
+        <div class=" no-padding right-total-padding textAlignRight bold-font" style="width: 50%;">
           {{total?.text}}
         </div>
 

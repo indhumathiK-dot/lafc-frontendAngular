@@ -36,7 +36,7 @@
     <mat-form-field appearance="outline" class="w-100 address-form mat-bottom-remove" [ngClass]="validationCheck['address'] ? 'errorClass' : ''">
       <input matInput formControlName="address" (keydown)="checkValidationForm('address')">
     </mat-form-field>
-    <span *ngIf="validationCheck['address']" class="password-check">Please enter address </span>
+    <span *ngIf="validationCheck['address']" class="password-check">Please enter address (Address must be between 3 to 128 characters!)</span>
     </div>
 
     <label class="label-name">Apartment, suite, etc (optional)</label>
@@ -49,7 +49,7 @@
     <mat-form-field appearance="outline" class="w-100 address-form mat-bottom-remove" [ngClass]="validationCheck['city'] ? 'errorClass' : ''">
       <input matInput formControlName="city" (keydown)="checkValidationForm('city')">
     </mat-form-field>
-    <span *ngIf="validationCheck['city']" class="password-check">Please enter city </span>
+    <span *ngIf="validationCheck['city']" class="password-check">Please enter city (City must be between 3 to 128 characters!)</span>
     </div>
 
     <div class="w-100 botton-padding csz-control">
@@ -108,7 +108,7 @@
              ng2TelInput [ng2TelInputOptions]="cell1TelInput" (keydown)="checkValidationForm('phone')">
     </mat-form-field>
 
-    <span *ngIf="validationCheck['phone']" class="password-check">Please enter valid phone number </span>
+    <span *ngIf="validationCheck['phone']" class="password-check">Please enter phone number (Phone Number must be between 8 to 32 characters!)</span>
     <br>
 
       <mat-checkbox formControlName="defaultAddress">Set as default address</mat-checkbox>

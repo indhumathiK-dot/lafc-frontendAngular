@@ -37,7 +37,7 @@
                  ng2TelInput [ng2TelInputOptions]="cell1TelInput">
         </mat-form-field>
 
-        <span *ngIf="validationCheck['phoneNumber']" class="password-check">Please enter phone number </span>
+        <span *ngIf="validationCheck['phoneNumber']" class="password-check">Please enter phone number (Phone Number must be between 8 to 32 characters!)</span>
         </div>
 
         <label class="label-name">Email*</label>
@@ -54,7 +54,7 @@
           <input matInput type="password" formControlName="password" (blur)="checkValidationForm('password')">
         </mat-form-field>
         <label class="bottom-label" [ngClass]="validationCheck['password'] ? 'no-margin-bottom' : 'label-margin-bottom'">Used for account login</label>
-          <div *ngIf="validationCheck['password']" class="password-check">Please enter password </div>
+          <div *ngIf="validationCheck['password']" class="password-check">Please enter valid password (Password must be between 6 to 20 characters!) </div>
 
         <label class="label-name">Password Confirmation*</label>
         <mat-form-field appearance="outline" class="w-100 mat-bottom-remove register" [ngClass]="validationCheck['confirmPassword'] || passwordConfirmationCheck ? 'errorClass' : ''">
@@ -62,7 +62,7 @@
         </mat-form-field>
         </div>
         <span *ngIf="passwordConfirmationCheck && !loginCheck" class="password-check">Password and Confirm password should be same</span>
-        <div *ngIf="validationCheck['confirmPassword']" class="password-check">Please enter confirm password </div>
+        <div *ngIf="validationCheck['confirmPassword']" class="password-check">Please enter confirm password (Confirm password must be between 6 to 20 characters!) </div>
 
         <div class="botton-padding">
         <label class="label-name top-padding">Address*</label>
@@ -169,6 +169,13 @@
             <mat-radio-button value="3">Both</mat-radio-button>
           </mat-radio-group>
         </div>
+
+
+        <mat-checkbox formControlName="agree" (change)="checkValidationForm('agree')">I have read and agree to the
+          <a class="link-color bold-font]" target="_blank" href="/about/{{infoDetails?.title}}/{{infoDetails?.information_id}}">
+            {{infoDetails?.title}}</a></mat-checkbox>
+
+        <div *ngIf="validationCheck['agree']" class="password-check">Please agree to the  {{infoDetails?.title}}! </div>
 
 
         <div>

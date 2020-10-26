@@ -5,6 +5,7 @@ import {CreateOrderService} from "../../services/create-order.service";
 import {take} from "rxjs/operators";
 import {PaymentMethodsService} from "../../services/payment-methods.service";
 import {BestSellerHttpService} from "../../core/services/http/bestsellerhttpservice";
+import {informationServices} from "../../home/information/information.service";
 
 @Component({
   selector: 'app-checkout',
@@ -20,13 +21,16 @@ export class CheckoutComponent implements OnInit {
   private shippingValue = 'UPS Ground';
   public validateNote = false;
   private notes = '';
+  public infoDetails: any;
 
   constructor(private checkoutService: CheckoutService,
               public createOrderService: CreateOrderService,
               public paymentMethods: PaymentMethodsService,
-              public bestSellerHttpService: BestSellerHttpService) { }
+              public bestSellerHttpService: BestSellerHttpService,
+              private infoService: informationServices) { }
 
   ngOnInit() {
+    // this.loadStoreData();
     this.shippingMethods = [
       {
         value: 1,
@@ -45,6 +49,14 @@ export class CheckoutComponent implements OnInit {
     this.customerDetails = JSON.parse(user);
     var addressId = localStorage.getItem('shipAddrId');
     this.getAddressListById(addressId);
+  }
+
+  loadStoreData() {
+    this.infoService.getStoreInfo(0).subscribe(data => {
+      this.infoService.getInfoById(data.data['config_checkout_id']).subscribe(res => {
+        this.infoDetails = res.data;
+      });
+    });
   }
 
   paymentMethodSelect() {

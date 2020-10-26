@@ -7,6 +7,7 @@ import {CountryService} from "../../services/country.service";
 import {take} from "rxjs/operators";
 import {NgOption} from "@ng-select/ng-select";
 import {BestSellerHttpService} from "../../core/services/http/bestsellerhttpservice";
+import {informationServices} from "../information/information.service";
 
 @Component({
   selector: 'app-signup',
@@ -29,17 +30,20 @@ export class SignupComponent implements OnInit {
     initialCountry: '',
     separateDialCode: true,
   };
+  public infoDetails: any;
 
   constructor(private fb: FormBuilder,
               private authService: AuthenticationService,
               private router: Router,
               private profileService: ProfileService,
               private countryService: CountryService,
-              private bestSellerHttpService: BestSellerHttpService) { }
+              private bestSellerHttpService: BestSellerHttpService,
+              private infoService: informationServices) { }
 
   ngOnInit() {
     this.configForm();
     this.loadCountries();
+    this.loadStoreData();
     this.loginCheck = localStorage.getItem('loggedIn') === 'true';
     if(this.loginCheck) {
       this.loadProfile();
@@ -59,7 +63,8 @@ export class SignupComponent implements OnInit {
       zip: false,
       sellersPermit: false,
       uploadCC: false,
-      sellOption: false
+      sellOption: false,
+      agree: false
     }
   }
   configForm() {
@@ -80,7 +85,16 @@ export class SignupComponent implements OnInit {
       sellersPermit: [''],
       uploadCC: [''],
       websiteUrl: [''],
-      sellOption: ['3']
+      sellOption: ['3'],
+      agree: [, Validators.required]
+    });
+  }
+
+  loadStoreData() {
+    this.infoService.getStoreInfo(0).subscribe(data => {
+        this.infoService.getInfoById(data.data['config_account_id']).subscribe(res => {
+          this.infoDetails = res.data;
+        });
     });
   }
 
@@ -183,12 +197,12 @@ export class SignupComponent implements OnInit {
             lastname: !this.registerForm.value.lastname,
             phoneNumber: !this.registerForm.value.phoneNumber || (this.digits_count(this.registerForm.value.phoneNumber) > 7 && this.digits_count(this.registerForm.value.phoneNumber) < 32),
             email: !this.registerForm.value.email,
-            address: !this.registerForm.value.address || (this.registerForm.value.address.length > 3 && this.registerForm.value.address.length < 128),
-            city: !this.registerForm.value.city || (this.registerForm.value.city.length > 3 && this.registerForm.value.city.length < 128),
+            address: !this.registerForm.value.address || (this.registerForm.value.address.length > 2 && this.registerForm.value.address.length < 128),
+            city: !this.registerForm.value.city || (this.registerForm.value.city.length > 2 && this.registerForm.value.city.length < 128),
             country: !this.registerForm.value.country,
             state: !this.registerForm.value.state,
             zip: !this.registerForm.value.zip,
-            sellersPermit: !this.registerForm.value.sellersPermit
+            sellersPermit: !this.registerForm.value.sellersPermit,
           }
           return;
         } else {
@@ -229,14 +243,14 @@ export class SignupComponent implements OnInit {
           );
         }
       } else {
-        if(!this.registerForm.value.firstname || !this.registerForm.value.lastname || !this.registerForm.value.phoneNumber ||
-          !this.registerForm.value.email || (!this.registerForm.value.password && !this.registerForm.value.confirmPassword && this.registerForm.value.password === this.registerForm.value.confirmPassword) ||
+        if(!this.registerForm.value.firstname || !this.registerForm.value.lastname || !(this.registerForm.value.phoneNumber && (this.digits_count(this.registerForm.value.phoneNumber) > 7 && this.digits_count(this.registerForm.value.phoneNumber) < 32)) ||
+          !this.registerForm.value.email ||  !(this.registerForm.value.password && (this.registerForm.value.password.length > 5 && this.registerForm.value.password.length < 20)) || !((this.registerForm.value.confirmPassword && this.registerForm.value.password === this.registerForm.value.confirmPassword) && (this.registerForm.value.confirmPassword.length > 5 && this.registerForm.value.confirmPassword.length < 20)) ||
           !this.registerForm.value.address || !this.registerForm.value.city || !this.registerForm.value.country ||
-          !this.registerForm.value.state || !this.registerForm.value.zip || !this.uploadedFiles || !this.registerForm.value.sellersPermit) {
+          !this.registerForm.value.state || !this.registerForm.value.zip || !this.uploadedFiles || !this.registerForm.value.sellersPermit || !this.registerForm.value.agree) {
           this.validationCheck = {
             firstname: !this.registerForm.value.firstname,
             lastname: !this.registerForm.value.lastname,
-            phoneNumber: !this.registerForm.value.phoneNumber && (this.digits_count(this.registerForm.value.phoneNumber) > 7 && this.digits_count(this.registerForm.value.phoneNumber) < 32),
+            phoneNumber: !(this.registerForm.value.phoneNumber && (this.digits_count(this.registerForm.value.phoneNumber) > 7 && this.digits_count(this.registerForm.value.phoneNumber) < 32)),
             email: !this.registerForm.value.email,
             password: !(this.registerForm.value.password && (this.registerForm.value.password.length > 6 && this.registerForm.value.password.length < 20)),
             confirmPassword: !((this.registerForm.value.confirmPassword && this.registerForm.value.password === this.registerForm.value.confirmPassword) && (this.registerForm.value.confirmPassword.length > 6 && this.registerForm.value.confirmPassword.length < 20)),
@@ -247,8 +261,10 @@ export class SignupComponent implements OnInit {
             zip: !this.registerForm.value.zip,
             uploadCC: !this.uploadedFiles,
             sellOption: !this.registerForm.value.sellOption,
-            sellersPermit: !this.registerForm.value.sellersPermit
+            sellersPermit: !this.registerForm.value.sellersPermit,
+            agree: !this.registerForm.value.agree
           }
+          console.log(this.validationCheck)
           this.passwordConfirmationCheck = this.registerForm.value.password && this.registerForm.value.confirmPassword ? (this.registerForm.value.password === this.registerForm.value.confirmPassword ? false : true ) : false;
           return;
         } else {

@@ -57,7 +57,7 @@
     <ng-container matColumnDef="Order No">
       <th mat-header-cell *matHeaderCellDef> Order No</th>
       <td mat-cell *matCellDef="let element">
-        <a class="link-color" href="/orders/{{element.order_id}}">#{{element.order_id}}</a>
+        <a class="link-color" routerLink="/orders/{{element.order_id}}">#{{element.order_id}}</a>
       </td>
     </ng-container>
 

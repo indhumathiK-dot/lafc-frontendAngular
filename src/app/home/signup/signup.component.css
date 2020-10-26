@@ -223,3 +223,11 @@
   border: none!important;
   height: 12px!important;
 }
+::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-background {
+  background-color: white;
+  border: 2px solid rgba(0,0,0,.54);
+}
+::ng-deep .mat-checkbox-checkmark-path {
+  stroke: rgba(0,0,0,.54) !important;
+}
+

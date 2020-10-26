@@ -4,6 +4,9 @@
    <div class="center-align">
    <a [routerLink]="'/'">
      <img class="image" src="/assets/images/LA%20Marketplace%20Logo.jpg"></a>
+     <div class="display fd-mob">
+      <app-cart-item ></app-cart-item>
+    </div>
         <ul class="menu-align" *ngIf="router.url !== '/cart/orderSuccess'">
             <li class="cart-menu">
                 <a class="common-font-size icon-color" [routerLink]="'/cart/items'" routerLinkActive="router-link-active" > Cart </a>
@@ -27,7 +30,7 @@
    </div>
    <router-outlet></router-outlet>
 </div>
- <div class="display item-display">
+ <div class="display fd-dis item-display">
    <app-cart-item ></app-cart-item>
  </div>
 

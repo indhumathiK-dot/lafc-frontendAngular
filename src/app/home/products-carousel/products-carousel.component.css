@@ -157,6 +157,13 @@
    }
  }
 
+ @media (min-width: 576px) {
+   ::ng-deep .quick-width-adjust.modal-dialog {
+     max-width: 700px !important;
+     margin: 3rem auto !important;
+   }
+ }
+
  .img-box {
    border-bottom: 1px solid #D5CEC8;
    margin-bottom: 15px;

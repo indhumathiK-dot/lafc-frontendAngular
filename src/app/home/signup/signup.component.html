@@ -21,7 +21,7 @@
         <mat-form-field appearance="outline" class="w-100 mat-bottom-remove register" [ngClass]="validationCheck['lastname'] ? 'errorClass' : ''">
           <input matInput formControlName="lastname" (keydown)="checkValidationForm('lastname')">
         </mat-form-field>
-         <span *ngIf="validationCheck['lastname']" class="password-check parellel-field">Please enter first name </span>
+         <span *ngIf="validationCheck['lastname']" class="password-check">Please enter last name </span>
       </div>
     </div>
 

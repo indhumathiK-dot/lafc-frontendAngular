@@ -60,6 +60,7 @@ export class ProductsCarouselComponent implements OnInit {
     navSpeed: 700,
     autoHeight: true,
     autoWidth:true,
+    margin: 30,
     navText: [ '<i class="fa fa-angle-left" aria-hidden="true"></i>', '<i class="fa fa-angle-right" aria-hidden="true"></i>' ],
     navClass: [],
     responsive: {
@@ -81,7 +82,9 @@ export class ProductsCarouselComponent implements OnInit {
 
   openQuickView(value) {
     sessionStorage.setItem('productId', value);
-    var loginModalRef = this.modalService.show(ProductQuickViewComponent);
+    const initialState = {productList: this.productList};
+    var loginModalRef = this.modalService.show(ProductQuickViewComponent, Object.assign({}, { class: 'modal-sm quick-width-adjust', initialState })
+    );
   }
 
   detailRedirect(url: string) {

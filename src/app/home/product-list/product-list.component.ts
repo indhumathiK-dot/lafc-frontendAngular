@@ -47,7 +47,7 @@ export class ProductListComponent implements OnInit {
   openQuickView(value) {
     sessionStorage.setItem('productId', value);
     const initialState = {productList: this.productList};
-    var loginModalRef = this.modalService.show(ProductQuickViewComponent, Object.assign({}, { class: 'modal-sm', initialState })
+    var loginModalRef = this.modalService.show(ProductQuickViewComponent, Object.assign({}, { class: 'modal-sm quick-width-adjust', initialState })
     );
   }
 

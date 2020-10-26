@@ -125,13 +125,13 @@
 
 /* Select Icon Arrow Fix  */
 
-::ng-deep .mat-form-field-type-mat-native-select .mat-form-field-infix::after {
+::ng-deep .styled-select.mat-form-field-type-mat-native-select .mat-form-field-infix::after {
   content: "\f107"!important;
   display: inline-block;
   font: normal normal normal 14px/1 FontAwesome;
   font-size: inherit;
   top: 10%!important;
-  left: 80%!important;
+  left: 90%!important;
   border-left: 0!important;
   border-right: 0!important;
   text-rendering: auto;

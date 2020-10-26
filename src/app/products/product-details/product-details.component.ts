@@ -62,77 +62,80 @@ export class ProductDetailsComponent implements OnInit {
     this.productImages = [];
     this.optionList = [];
     this.selectedOptionList = [];
+    this.products = [];
+    this.imagesList = [];
     this.selectedProductIndex = this.productId;
     this.getWishList();
     this.getProductDetails(this.productId);
     this.getRelatedProducts(this.productId);
     this.getProductList();
-    this.getImageArray(this.productId);
+    // this.getImageArray(this.productId);
   }
 
   ngAfterViewInit() {
     var galleryTop = new Swiper('.gallery-top', {
-        observer: true,
-  observeParents: true,
-        spaceBetween: 234,
-        slidesPerView: 3,
-          navigation: {
-            nextEl: '.swiper-button-n',
-            prevEl: '.swiper-button-p',
-          },
-            loop: true,
-            loopedSlides: 3,
-            breakpoints:{
-               // when window width is >= 320px
-    320: {
-      slidesPerView: 2,
-      spaceBetween: 200
-    },
-    // when window width is >= 480px
-    480: {
-      slidesPerView: 1,
-      spaceBetween: 30
-    },
-    // when window width is >= 640px
-    640: {
-      slidesPerView: 2,
-      spaceBetween: 225
-    },
-    1659: {
+      observer: true,
+      observeParents: true,
+      spaceBetween: 234,
       slidesPerView: 3,
-      spaceBetween: 250
-    },
-    1080: {
-      slidesPerView: 2,
-      spaceBetween: 230
-    },
-    900: {
-      slidesPerView: 3,
-      spaceBetween: 234
-    },
-            }
+      // navigation: {
+      //   nextEl: '.swiper-button-n',
+      //   prevEl: '.swiper-button-p',
+      // },
+      loop: true,
+      loopedSlides: 3,
+      breakpoints: {
+        // when window width is >= 320px
+        320: {
+          slidesPerView: 2,
+          spaceBetween: 200
+        },
+        // when window width is >= 480px
+        480: {
+          slidesPerView: 1,
+          spaceBetween: 30
+        },
+        // when window width is >= 640px
+        640: {
+          slidesPerView: 2,
+          spaceBetween: 225
+        },
+        1659: {
+          slidesPerView: 3,
+          spaceBetween: 250
+        },
+        1080: {
+          slidesPerView: 2,
+          spaceBetween: 230
+        },
+        900: {
+          slidesPerView: 3,
+          spaceBetween: 234
+        },
+      }
     });
     var galleryThumbs = new Swiper('.gallery-thumbs', {
       observer: true,
-       observeParents: true,
-      spaceBetween: 3,
+      observeParents: true,
+      spaceBetween: 10,
       centeredSlides: true,
 
       slidesPerView: 'auto',
       touchRatio: 0.2,
       slideToClickedSlide: true,
-			loop: true,
+      loop: true,
       loopedSlides: 3,
-      breakpoints:{
+      breakpoints: {
         // when window width is >= 320px
-320: {
-slidesPerView: 2,
-spaceBetween: 5
-},
-900: {
-  slidesPerView: 3,
-  spaceBetween: 3
-  },}
+        320: {
+          slidesPerView: 2,
+          spaceBetween: 5
+        },
+        900: {
+          slidesPerView: 3,
+          spaceBetween: 3
+        },
+      }
     });
     galleryTop.controller.control = galleryThumbs;
     galleryThumbs.controller.control = galleryTop;
@@ -325,7 +328,7 @@ spaceBetween: 5
         this.productId = this.products[index-1]['product_id'];
         var category = this.products[index-1]['category'][0]['name'];
         this.router.navigate(['/products/' + category + '/' + this.productId]);
-        this.loadInit();
+        // this.loadInit();
         return
       }
     }
@@ -338,7 +341,7 @@ spaceBetween: 5
         this.productId = this.products[index+1]['product_id'];
         var category = this.products[index-1]['category'][0]['name'];
         this.router.navigate(['/products/' + category + '/' + this.productId]);
-        this.loadInit();
+        // this.loadInit();
         return
       }
     }
@@ -346,8 +349,8 @@ spaceBetween: 5
 
 
   imageView(index) {
-    const initialState = {imagesArray: this.imagesList, currentImage: index};
-    var loginModalRef = this.modalService.show(ImageViewComponent, Object.assign({}, { class: 'modal-sm', initialState }));
+    const initialState = {imagesArray: this.productImages, currentImage: index};
+    var loginModalRef = this.modalService.show(ImageViewComponent, Object.assign({}, { class: 'modal-md modal-dialog-centered', initialState }));
   }
 
     backRedirection(backname: any) {

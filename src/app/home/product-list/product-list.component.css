@@ -77,11 +77,17 @@
 ::ng-deep.modal-content {
   width: 600px !important;
   height: fit-content !important;
-  right: 72%;
+  /*right: 72%;*/
 }
 @media (min-width: 832px) and (max-width: 2011px) {
   ::ng-deep.modal-content {
     width: 750px !important;
+  }
+}
+@media (min-width: 576px) {
+  ::ng-deep .quick-width-adjust.modal-dialog {
+    max-width: 700px !important;
+    margin: 3rem auto !important;
   }
 }
 @media (max-width: 600px) {

@@ -11,7 +11,7 @@
 }
 
 .mainnav a {
-  padding: 9px 0;
+  padding: 8px 0;
   margin: 0 25px 0 42px;
   text-decoration: none;
   font-size: 15px;
@@ -218,6 +218,7 @@
 .sub-menu {
   font-size: 13px !important;
   margin: 0 20px 0 20px !important;
+  padding: 5px 0 !important;
 }
 
 .cart-icon-wrap {

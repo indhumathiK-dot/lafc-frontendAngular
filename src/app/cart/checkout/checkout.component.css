@@ -112,3 +112,15 @@
 ::ng-deep .delivery-checkout.mat-form-field-type-mat-native-select .mat-form-field-infix::after {
   right: 15px;
 }
+
+@media (max-width:450px){
+  .checkout-container{
+    padding: 0PX 10PX;
+  }
+  .contact-row {
+    font-size: 12px;
+  }
+  .common-font-size{
+    font-size: 12px;
+  }
+}

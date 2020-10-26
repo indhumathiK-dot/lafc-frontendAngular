@@ -41,3 +41,22 @@ a:active {
     color: #EF4040;
     background: white;
 }
+.fd-dis{
+  display: unset  ;
+}
+.fd-mob{
+  display: none;
+}
+@media (max-width:450px){
+  .fd-dis{
+    display: none;
+  }
+  .fd-mob{
+    display: unset;
+  }
+  .left-design{
+    width: 100%;
+    margin-top: 20px;
+  }
+  
+}

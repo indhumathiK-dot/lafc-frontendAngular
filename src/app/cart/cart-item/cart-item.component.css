@@ -84,4 +84,48 @@ table {
   .padd-item{
     width: 90%;
   }
+  
+}
+.fd-mob{
+  display: none;
+}
+.fd-dis{
+  display: unset;
+}
+@media (max-width:450px){
+  .fd-dis{
+    display: none;
+  }
+  .fd-mob{
+    display: unset;
+  }
+  .mob-head h5{
+    float:left;
+    padding: 10px 0;  
+    display: contents;
+  }
+  .table-overflow{
+    padding: 15px;
+  }
+  .fd-pad-15{
+    padding: 15px ;
+  }
+  .mob-head h5 i{
+    margin-right: 10px;
+  }
+  .fd-nope{
+    display: none;
+  }
+  .fd-faq .fd-nope{
+    display: unset;
+  }
+}
+.fd-thumb-content {
+  width: 100%;
+  background: #fff;
+  padding: 15px 0;
+  border: 1px solid #c7c7c7;
+  margin: 15px 0px;
+  height: auto;
+  position: relative;
 }

@@ -68,4 +68,9 @@ export class CartItemComponent {
     }
   }
 
+  navigateExpand() {
+    var element = document.getElementById("faq-1");
+    element.classList.toggle("fd-faq");
+  }
+
 }

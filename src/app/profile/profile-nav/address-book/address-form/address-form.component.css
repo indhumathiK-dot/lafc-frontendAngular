@@ -69,7 +69,7 @@
   padding-left: 14px;
 }
 ::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-background {
-  background-color: #4169E1 !important;
+  background-color: #D0CCCC !important;
 }
 .csz-control {
   display: flex;

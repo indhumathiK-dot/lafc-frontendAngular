@@ -68,10 +68,10 @@
   margin-left: 16px;
 }
 ::ng-deep .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
-  border-color: #4169E1;
+  border-color: #D0CCCC;
 }
 ::ng-deep .mat-radio-button.mat-accent .mat-radio-inner-circle {
-  background: #4169E1;
+  background: #D0CCCC;
 }
 .form-width {
   width: 65%;

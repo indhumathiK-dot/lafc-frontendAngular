@@ -1,17 +1,20 @@
 .container {
     text-align: center;
-    margin-top: 100px !important;
+    margin-top: 150px !important;
     margin-bottom: 160px !important;
 }
 .fa-frown-o {
     font-size: 140px !important;
-    color: #EF4040;
+    color: #c60000;
 }
-h3 {
-    font-family: Opensans-bold;
-    margin-top: 16px !important;
+.content {
+  text-align: left;
 }
-p {
-    font-family: Opensans-semibold;
-    margin-bottom: 30px !important;
-}
+/*h3 {*/
+/*    font-family: Opensans-bold;*/
+/*    margin-top: 16px !important;*/
+/*}*/
+/*p {*/
+/*    font-family: Opensans-semibold;*/
+/*    margin-bottom: 30px !important;*/
+/*}*/

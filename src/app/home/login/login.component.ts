@@ -54,7 +54,11 @@ export class LoginComponent implements OnInit {
           alert('No match for E-Mail Address and/or Password.')
         }
       }, (error) => {
-        alert('No match for E-Mail Address and/or Password.')
+        if(error === 'Bad Request') {
+          alert('Thanks for registering with us. We will email you the confirmation once it is verified')
+        } else {
+          alert('No match for E-Mail Address and/or Password.')
+        }
       });
     }
   }

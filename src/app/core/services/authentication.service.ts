@@ -67,18 +67,7 @@ export class AuthenticationService {
   }
 
   login(obj): Observable<any> {
-    return this.http.post<any>(this.baseUrl + '/login', obj, {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json'
-      })
-    }).pipe(
-      map((res: any) => {
-        if (res) {
-          localStorage.setItem('user', JSON.stringify(res.data));
-          this.currentUserSubject.next(res);
-        }
-        return res;
-      }), catchError(this.handleErrorObservable))
+    return this.http.post<any>(this.baseUrl + '/login', obj);
   }
 
   postSocialLogin(obj): Observable<any> {

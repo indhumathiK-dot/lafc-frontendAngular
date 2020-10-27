@@ -42,7 +42,7 @@ export class ProductCategoryComponent implements OnInit {
       if(this.categoryId) {
         this.getCategoryDetails(this.categoryId);
       } else if(this.ArrivalsName === 'New Arrival') {
-        this.getProductList(48, 1);
+        this.getProductList(48, 0);
         this.getProductListCount();
       } else {
         if(this.manufactureName === 'Manufactures') {
@@ -263,7 +263,7 @@ export class ProductCategoryComponent implements OnInit {
     if(this.categoryId) {
       this.getCategoryDetails(this.categoryId);
     } else if(this.ArrivalsName === 'New Arrival') {
-      this.getProductList(48, 1);
+      this.getProductList(48, 0);
     } else {
       if(this.manufactureName === 'Manufactures') {
         this.getManufactureDetails(this.manufacureId);

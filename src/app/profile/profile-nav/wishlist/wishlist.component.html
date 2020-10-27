@@ -3,14 +3,17 @@
     <div>All of your favorites, in one place</div>
     <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="4">
 
-      <div  fxFlex="23" fxFlex.lt-sm="100" *ngFor="let wish of wishlist">
+      <div  fxFlex="23" fxFlex.lt-sm="100" *ngFor="let wish of wishlist" class="shadow-apply">
         <div class="">
           <div class="image-hover wishlist-image">
             <img src="{{wish.thumb}}" class="image-width">
             <div class="middle">
               <div class="text">
                 <a class="icon-circle padding-rgt" (click)="removeFromWishlist(wish.product_id)">
-                  <i class="fa fa-close my-icon" aria-hidden="true"></i></a>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18.261" height="18.257" viewBox="0 0 16.261 16.257">
+                    <path id="Icon_ionic-ios-close" data-name="Icon ionic-ios-close" d="M21.343,19.417l5.808-5.808a1.361,1.361,0,1,0-1.925-1.925l-5.808,5.808L13.61,11.685a1.361,1.361,0,1,0-1.925,1.925l5.808,5.808-5.808,5.808A1.361,1.361,0,1,0,13.61,27.15l5.808-5.808,5.808,5.808a1.361,1.361,0,1,0,1.925-1.925Z" transform="translate(-11.285 -11.289)" fill="#998c88"/>
+                  </svg>
+                </a>
               </div>
             </div>
           </div>

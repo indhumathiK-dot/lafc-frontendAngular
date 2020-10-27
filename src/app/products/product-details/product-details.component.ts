@@ -4,11 +4,10 @@ import {take} from "rxjs/operators";
 import {ProductsService} from "../../services/products.service";
 import {CartService} from "../../services/cart.service";
 import {WishListService} from "../../core/services/wishlist.service";
-import {animate, keyframes, state, style, transition, trigger} from "@angular/animations";
-import {ProductQuickViewComponent} from "../product-quick-view/product-quick-view.component";
 import {BsModalService} from "ngx-bootstrap";
 import {ImageViewComponent} from "../image-view/image-view.component";
 import Swiper from 'swiper';
+declare var $:any;
 
 @Component({
   selector: "app-product-details",
@@ -76,14 +75,14 @@ export class ProductDetailsComponent implements OnInit {
     var galleryTop = new Swiper('.gallery-top', {
       observer: true,
       observeParents: true,
-      spaceBetween: 234,
-      slidesPerView: 3,
-      // navigation: {
-      //   nextEl: '.swiper-button-n',
-      //   prevEl: '.swiper-button-p',
-      // },
-      loop: true,
-      loopedSlides: 3,
+      spaceBetween: 10,
+      slidesPerView: 1,
+      navigation: {
+        nextEl: '.swiper-button-n',
+        prevEl: '.swiper-button-p',
+      },
+      loop: false,
+      loopedSlides: 1,
       breakpoints: {
         // when window width is >= 320px
         320: {
@@ -120,19 +119,23 @@ export class ProductDetailsComponent implements OnInit {
       spaceBetween: 10,
       centeredSlides: true,
 
-      slidesPerView: 'auto',
-      touchRatio: 0.2,
+      slidesPerView: 1,
+      touchRatio: 1,
       slideToClickedSlide: true,
-      loop: true,
-      loopedSlides: 3,
+      loop: false,
+      loopedSlides: 1,
+
+      keyboardControl: false,
+      mousewheelControl: false,
+
       breakpoints: {
         // when window width is >= 320px
         320: {
-          slidesPerView: 2,
+          slidesPerView: 1,
           spaceBetween: 5
         },
         900: {
-          slidesPerView: 3,
+          slidesPerView: 1,
           spaceBetween: 3
         },
       }

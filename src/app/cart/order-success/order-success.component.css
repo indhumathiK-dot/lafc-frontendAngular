@@ -60,3 +60,23 @@
   background: black;
   color: #FFFFFF;
 }
+@media (max-width:910px){
+  .success-container{
+    padding: 0 30px;
+  }
+}
+@media (max-width:600px){
+  .flex-display {
+    display: -webkit-box;
+    display: block;
+     text-align: center;
+  }
+}
+@media (max-width:350px){
+  .payment-address{
+   overflow: hidden;
+  }
+  .payment-address .w-50{
+    width: 100%!important;
+  }
+}

@@ -84,12 +84,19 @@
     border-right:2px;
     display: inline-block
   }
+  .footer-align{
+    padding-right: 0px;
+  }
 }
 @media screen and (max-width: 765px) {
 .page-footer.cust-footer{
   width: 100%;
+  position: inherit;
 }
-.footer-copyright{
+/* .footer-copyright{
   text-align: center;
+} */
+.footer-align{
+  padding-right: 0px;
 }
 }

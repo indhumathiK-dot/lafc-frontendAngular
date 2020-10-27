@@ -72,24 +72,10 @@
 
 
     <div id="arrivalcarousal" class="carousel slide" data-ride="carousel" data-interval="0">
-      <!-- Wrapper for carousel items -->
-          <!-- <div class="scrollmenu" fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="4" fxLayoutAlign="flex-start" style="overflow: scroll">
-            <div fxFlex="33.3" fxFlex.lt-sm="100" *ngFor="let image of productImages; let i = index;">
-              <a class="image-pad mouse-events"><img src="{{image}}" class="w-100" alt="" (click)="imageView(i)"></a>
-            </div>
-          </div> -->
-<!--
-      <div class="small-image-pad" fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="1" fxLayoutAlign="flex-start" style="overflow: scroll" *ngIf="productImages.length > 1">
-            <div fxFlex="15" fxFlex.lt-sm="100" *ngFor="let image of productImages; let i = index;">
-                  <a class="mouse-events"><img src="{{image}}" class="image-model" alt="" (click)="imageView(i)" ></a>
-            </div>
-          </div> -->
-
-
-          <div class="swiper-container gallery-top">
+          <div class="swiper-container gallery-top swiper-border">
             <div class="swiper-wrapper">
 
-              <div class="swiper-slide" *ngFor="let image of productImages; let i = index;">
+              <div class="swiper-slide swiper-margin" *ngFor="let image of productImages; let i = index;">
                 <div class="swiper-slide-container" >
                   <img src="{{image}}" alt="product-image" (click)="imageView(i)">
                 </div>
@@ -98,42 +84,19 @@
 
             </div>
             <!-- Add Arrows -->
-<!--            <div class="swiper-button-n"><i class="fa fa-angle-right" aria-hidden="true"></i></div>-->
-<!--            <div class="swiper-button-p"><i class="fa fa-angle-left" aria-hidden="true"></i></div>-->
+            <div class="swiper-button-n"><i class="fa fa-angle-right" aria-hidden="true"></i></div>
+            <div class="swiper-button-p"><i class="fa fa-angle-left" aria-hidden="true"></i></div>
 
         </div>
         <div class="swiper-container gallery-thumbs">
-            <div class="swiper-wrapper">
-              <div class="swiper-slide" *ngFor="let image of productImages; let i = index;">
-                <div  >
+            <div class="swiper-wrapper swiper-transform">
+              <div class="swiper-slide swiper-width" *ngFor="let image of productImages; let i = index;">
+<!--                <div  >-->
                   <img src="{{image}}"class="swiper-slide-container"  alt="product-image">
-                </div>
+<!--                </div>-->
                 </div>
             </div>
         </div>
-
-          <!-- slider comented  -->
-
-          <!-- <div class="swiper-container gallery-top">
-            <div class="swiper-wrapper"> -->
-              <!-- Slides -->
-              <!-- <div class="swiper-slide " *ngFor="let image of productImages;let i = index">
-                <img [src]="image" alt="product-image">
-              </div>
-            </div> -->
-            <!-- Add Arrows -->
-			<!-- <div class="swiper-button-next"></div>
-			<div class="swiper-button-prev"></div>
-          </div>
-          <div class="swiper-container gallery-thumbs">
-            <div class="swiper-wrapper"> -->
-              <!-- Slides -->
-              <!-- <div class="swiper-slide" *ngFor="let image of productImages;let i = index">
-                <img [src]="image" class="swiper-slide-container" alt="product-image">
-              </div>
-            </div>
-          </div> -->
-          <!-- Coment finished  -->
     </div>
   </div>
 

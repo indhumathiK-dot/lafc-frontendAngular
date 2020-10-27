@@ -77,10 +77,10 @@ export class ProductDetailsComponent implements OnInit {
       observeParents: true,
       spaceBetween: 10,
       slidesPerView: 1,
-      navigation: {
-        nextEl: '.swiper-button-n',
-        prevEl: '.swiper-button-p',
-      },
+      // navigation: {
+      //   nextEl: '.swiper-button-n',
+      //   prevEl: '.swiper-button-p',
+      // },
       loop: false,
       loopedSlides: 1,
       breakpoints: {

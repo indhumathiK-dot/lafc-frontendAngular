@@ -519,6 +519,34 @@ background: #0c83e7;
 }
 
 
+/* Select Icon Arrow Fix  */
+::ng-deep .option-view.mat-form-field-type-mat-native-select .mat-form-field-infix::after {
+  content: "\f107"!important;
+  display: inline-block;
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: inherit;
+  top: 27%!important;
+  left: 85%!important;
+  border-left: 0!important;
+  border-right: 0!important;
+  text-rendering: auto;
+}
+
+::ng-deep .option-view.iti .iti__arrow::before{
+  border: none!important;
+  content: "\f107"!important;
+  display: inline-block;
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: inherit;
+  height: 12px!important;
+  border-left: 0!important;
+  border-right: 0!important;
+  text-rendering: auto;
+}
+::ng-deep .option-view.iti .iti__arrow{
+  border: none!important;
+  height: 12px!important;
+}
 
 
 

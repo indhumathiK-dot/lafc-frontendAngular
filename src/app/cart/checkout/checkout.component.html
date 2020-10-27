@@ -18,7 +18,7 @@
 
 
     <div class="">
-      <mat-form-field appearance="outline"  class="w-100 delivery-checkout">
+      <mat-form-field appearance="outline"  class="w-100 delivery-checkout select-shipping">
         <select matNativeControl [ngModel]="1" (change)="shippingMethodChange($event.target.value)" placeholder="Shipping Method">
           <option [value]="ship.value" *ngFor="let ship of shippingMethods">{{ship.label}}</option>
         </select>

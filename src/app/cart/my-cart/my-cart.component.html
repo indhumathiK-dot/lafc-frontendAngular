@@ -3,8 +3,8 @@
 
     <h1 class="head-font">Your Cart</h1>
 
-    <div *ngIf="dataSource.data.length">
-    <div class="">
+    <div class="fd-w-80" *ngIf="dataSource.data.length">
+    <div >
       <table mat-table [dataSource]="dataSource" class="w-100">
 
         <ng-container matColumnDef="Product">
@@ -66,20 +66,28 @@
         </div>
         <div class=" no-padding right-total-padding textAlignRight bold-font" style="width: 50%;">
           {{total?.text}}
-        </div>
+        </div>  
 
       </div>
 
+      <div class="row">
+      <div class="col-md-12">
     <div class="right-align tax">Shipping calculated later</div>
 
-    <div class="checkout-row">
-      <div class="checkout cart-button" [routerLink]="'/cart/delivery'">
-        Proceed to checkout
       </div>
     </div>
-    <div class="inner-row">
-      <a class="cart-update-row" [routerLink]="'/'"> <i class="fa fa-angle-left"></i> Continue shopping</a>
-    </div>
+      <div class="row margin-update">
+        <div class="col-md-6 inner-row">
+          <a class="cart-update-row" [routerLink]="'/'"> <i class="fa fa-angle-left"></i> Continue shopping</a>
+        </div>
+        <div class="col-md-6 checkout-row">
+          <div class="checkout cart-button" [routerLink]="'/cart/delivery'">
+            Proceed to checkout
+          </div>
+        </div>
+      </div>
+    
+    
 
     </div>
 

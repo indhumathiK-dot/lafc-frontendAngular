@@ -26,8 +26,8 @@ export class MyAccountComponent implements OnInit {
     let user = JSON.parse(localStorage.getItem('user'));
     this.authService.getCustomerDetails(user['customer_id']).subscribe(res => {
       var customerDetails = res['data']['data'][0];
-      var checkFileName = customerDetails.cc_auth_path.split('/');
-      this.uploadedFileName = checkFileName[2];
+      var checkFileName = customerDetails.cc_auth_path ? customerDetails.cc_auth_path.split('/') : [];
+      this.uploadedFileName = customerDetails.cc_auth_path ? checkFileName[2] : '';
     });
   }
 

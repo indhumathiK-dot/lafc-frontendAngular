@@ -63,7 +63,6 @@ export class SignupComponent implements OnInit {
       state: false,
       zip: false,
       sellersPermit: false,
-      uploadCC: false,
       sellOption: false,
       agree: false
     }
@@ -248,7 +247,7 @@ export class SignupComponent implements OnInit {
         if(!this.registerForm.value.firstname || !this.registerForm.value.lastname || !(this.registerForm.value.phoneNumber && (this.digits_count(this.registerForm.value.phoneNumber) > 7 && this.digits_count(this.registerForm.value.phoneNumber) < 32)) ||
           !this.registerForm.value.email ||  !(this.registerForm.value.password && (this.registerForm.value.password.length > 5 && this.registerForm.value.password.length < 20)) || !((this.registerForm.value.confirmPassword && this.registerForm.value.password === this.registerForm.value.confirmPassword) && (this.registerForm.value.confirmPassword.length > 5 && this.registerForm.value.confirmPassword.length < 20)) ||
           !this.registerForm.value.address || !this.registerForm.value.city || !this.registerForm.value.country ||
-          !this.registerForm.value.state || !(this.registerForm.value.zip && (this.registerForm.value.zip.length > 4 && this.registerForm.value.zip.length < 10)) || !this.uploadedFiles || !this.registerForm.value.sellersPermit || !this.registerForm.value.agree) {
+          !this.registerForm.value.state || !(this.registerForm.value.zip && (this.registerForm.value.zip.length > 4 && this.registerForm.value.zip.length < 10)) || !this.registerForm.value.sellersPermit || !this.registerForm.value.agree) {
           this.validationCheck = {
             firstname: !this.registerForm.value.firstname,
             lastname: !this.registerForm.value.lastname,
@@ -261,7 +260,6 @@ export class SignupComponent implements OnInit {
             country: !this.registerForm.value.country,
             state: !this.registerForm.value.state,
             zip: !(this.registerForm.value.zip && (this.registerForm.value.zip.length > 4 && this.registerForm.value.zip.length < 10)),
-            uploadCC: !this.uploadedFiles,
             sellOption: !this.registerForm.value.sellOption,
             sellersPermit: !this.registerForm.value.sellersPermit,
             agree: !this.registerForm.value.agree
@@ -325,7 +323,6 @@ export class SignupComponent implements OnInit {
   }
 
   fileChange(element) {
-    this.validationCheck['uploadCC'] = false;
     this.uploadedFiles = element.target.files;
     this.fileName = this.uploadedFiles[0].name;
   }

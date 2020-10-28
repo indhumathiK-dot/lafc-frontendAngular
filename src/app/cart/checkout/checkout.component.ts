@@ -6,6 +6,8 @@ import {take} from "rxjs/operators";
 import {PaymentMethodsService} from "../../services/payment-methods.service";
 import {BestSellerHttpService} from "../../core/services/http/bestsellerhttpservice";
 import {informationServices} from "../../home/information/information.service";
+import {AuthenticationService} from "../../core/services/authentication.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-checkout',
@@ -22,12 +24,15 @@ export class CheckoutComponent implements OnInit {
   public validateNote = false;
   private notes = '';
   public infoDetails: any;
+  private checkFileName: boolean;
 
   constructor(private checkoutService: CheckoutService,
               public createOrderService: CreateOrderService,
               public paymentMethods: PaymentMethodsService,
               public bestSellerHttpService: BestSellerHttpService,
-              private infoService: informationServices) { }
+              private infoService: informationServices,
+              private authService: AuthenticationService,
+              private router: Router) { }
 
   ngOnInit() {
     // this.loadStoreData();
@@ -49,6 +54,7 @@ export class CheckoutComponent implements OnInit {
     this.customerDetails = JSON.parse(user);
     var addressId = localStorage.getItem('shipAddrId');
     this.getAddressListById(addressId);
+    this.getCustomerDetails();
   }
 
   loadStoreData() {
@@ -74,12 +80,25 @@ export class CheckoutComponent implements OnInit {
       this.createOrderService.shippingComment = comment;
       this.paymentMethodSelect();
       setTimeout(() => {
-        this.checkoutService.getOrderSummary();
+        if(this.checkFileName) {
+          this.checkoutService.getOrderSummary();
+        } else {
+          alert('Please upload the credit card authorization form before checkout');
+          this.router.navigate(['/account/cards']);
+        }
       }, 1000);
     } else {
       this.validateNote = true;
       alert('Please add the notes for the order');
     }
+  }
+
+  getCustomerDetails() {
+    let user = JSON.parse(localStorage.getItem('user'));
+    this.authService.getCustomerDetails(user['customer_id']).subscribe(res => {
+      var customerDetails = res['data']['data'][0];
+      this.checkFileName = !!customerDetails.cc_auth_path;
+    });
   }
 
   shippingMethodChange(value: any) {

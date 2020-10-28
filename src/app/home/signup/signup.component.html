@@ -149,14 +149,12 @@
           <span>Complete this </span> <a target="_blank" href="https://drive.google.com/file/d/1ltwy1D3kwqTp7kJ6AoyvQTywq9g9XoCs/view"
              class="link-color">Credit Card Authorization Form </a> <span> and upload completed form below:</span></div>
 
-        <label class="label-name website-design display-flex">Upload completed CC Auth Form<span class="astrix-size">*</span></label>
+        <label class="label-name website-design display-flex">Upload completed CC Auth Form</label>
         <div class="custom-file cc-space">
             <input  (change)="fileChange($event)"  type="file" name="invoice" class="custom-file-input"
                     id="inputGroupFile01"  aria-describedby="inputGroupFileAddon01" required>
           <label class="custom-file-label" for="inputGroupFile01">{{fileName}}</label>
         </div>
-
-        <span *ngIf="validationCheck['uploadCC']" class="password-check">Please select the CC Form </span>
 
         <label class="label-name website-design">Website or Facebook URL</label>
         <mat-form-field appearance="outline" class="w-100 mat-bottom-remove botton-padding register">

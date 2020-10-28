@@ -2,7 +2,7 @@
 
   <div>
 
-    <div class="file-pad">
+    <div class="file-pad" *ngIf="uploadedFileName">
       <label>Uploaded Credit card Authorization file : </label>
       <span class="file-name">{{uploadedFileName}}</span>
     </div>

@@ -126,3 +126,8 @@
   padding-right: 0;
   padding-left: 0;
 }
+.phone input { text-indent:35px; }
+.country-code {
+  position: absolute;
+  left: 0px;
+}

@@ -233,3 +233,8 @@
 ::ng-deep .mat-form-field-appearance-outline.mat-form-field-invalid.mat-form-field-invalid .mat-form-field-outline-thick {
   color: #c60000 !important;
 }
+.phone input { text-indent:35px; }
+.country-code {
+  position: absolute;
+  left: 0px;
+}

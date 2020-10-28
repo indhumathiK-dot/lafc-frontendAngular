@@ -12,12 +12,23 @@ export class MyAccountComponent implements OnInit {
   public fileName = 'Choose a file';
   public customerDetails: any;
   public uploadSuccess: boolean = false;
+  public uploadedFileName: any;
 
   constructor(private authService: AuthenticationService) { }
 
   ngOnInit() {
     let user = localStorage.getItem('user');
     this.customerDetails = JSON.parse(user);
+    this.getCustomerDetails();
+  }
+
+  getCustomerDetails() {
+    let user = JSON.parse(localStorage.getItem('user'));
+    this.authService.getCustomerDetails(user['customer_id']).subscribe(res => {
+      var customerDetails = res['data']['data'][0];
+      var checkFileName = customerDetails.cc_auth_path.split('/');
+      this.uploadedFileName = checkFileName[2];
+    });
   }
 
   fileChange(element) {
@@ -51,6 +62,7 @@ export class MyAccountComponent implements OnInit {
         this.uploadSuccess = true;
         this.uploadedFiles = [];
         this.fileName = 'Choose a file';
+        this.getCustomerDetails();
 
       }
     })

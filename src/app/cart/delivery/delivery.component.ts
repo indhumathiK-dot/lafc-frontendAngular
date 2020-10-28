@@ -31,6 +31,7 @@ export class DeliveryComponent implements OnInit {
   addressArr = [];
   newAddress: boolean = false;
   validationCheck = {};
+  public countryCode = '+1';
   cell1TelInput = {
     initialCountry: '',
     separateDialCode: true,
@@ -146,6 +147,8 @@ export class DeliveryComponent implements OnInit {
               this.loadStatesByCountryId(this.addressList[i].country_id, this.addressList[i].zone_id);
               this.createOrderService.shippingAddressId = this.addressList[i].address_id;
               this.createOrderService.paymentAddressId = this.addressList[i].address_id;
+              var phoneArray = this.addressList[i].phone.split(' ');
+              this.countryCode = phoneArray.length === 1 ? '+1' : phoneArray[0];
               this.addressForm.patchValue({
                 savedAddress: this.addressList[i].address_id,
                 firstname: this.addressList[i].firstname,
@@ -156,7 +159,7 @@ export class DeliveryComponent implements OnInit {
                 city: this.addressList[i].city,
                 country: Number(this.addressList[i].country_id),
                 pincode: this.addressList[i].postcode,
-                phone: []
+                phone: phoneArray.length === 1 ? phoneArray[0] : phoneArray[1],
               })
             }
           }
@@ -201,6 +204,8 @@ export class DeliveryComponent implements OnInit {
       this.createOrderService.paymentAddressId = addressId;
       this.bestSellerHttpService.getAddressById(addressId).pipe(take(1))
         .subscribe((res) => {
+          var phoneArray = res['data'].phone.split(' ');
+          this.countryCode = phoneArray.length === 1 ? '+1' : phoneArray[0];
           this.loadStatesByCountryId(res['data'].country_id, res['data'].zone_id);
           this.addressForm.patchValue({
             savedAddress: res['data'].address_id,
@@ -212,7 +217,7 @@ export class DeliveryComponent implements OnInit {
             city: res['data'].city,
             country: Number(res['data'].country_id),
             pincode: res['data'].postcode,
-            phone: res['data'].phone
+            phone: phoneArray.length === 1 ? phoneArray[0] : phoneArray[1],
           })
         });
     }
@@ -221,17 +226,18 @@ export class DeliveryComponent implements OnInit {
 
   onSubmitValue() {
     if (!this.addressForm.value.firstname || !this.addressForm.value.firstname ||
-      (!this.addressForm.value.address || this.addressForm.value.address.length < 2 && this.addressForm.value.address.length > 128) ||
-      (!this.addressForm.value.city || this.addressForm.value.city.length < 2 && this.addressForm.value.city.length > 128) || !this.addressForm.value.country ||
-      !this.addressForm.value.state || !this.addressForm.value.pincode) {
+      !(this.addressForm.value.address && this.addressForm.value.address.length > 2 && this.addressForm.value.address.length < 128) ||
+      !(this.addressForm.value.city && this.addressForm.value.city.length > 2 && this.addressForm.value.city.length < 128) || !this.addressForm.value.country ||
+      !this.addressForm.value.state || !(this.addressForm.value.pincode && (this.addressForm.value.pincode.length > 4 && this.addressForm.value.pincode.length < 10)) ||
+      (this.addressForm.value.phone ? !(this.digits_count(Number(this.addressForm.value.phone)) > 7 && this.digits_count(Number(this.addressForm.value.phone)) < 32) : false)) {
       this.validationCheck = {
         firstname: !this.addressForm.value.firstname,
         lastname: !this.addressForm.value.lastname,
-        address: !this.addressForm.value.address || (this.addressForm.value.address.length < 2 && this.addressForm.value.address.length > 128),
-        city: !this.addressForm.value.city || (this.addressForm.value.city.length < 2 && this.addressForm.value.city.length > 128),
+        address: !(this.addressForm.value.address && (this.addressForm.value.address.length > 2 && this.addressForm.value.address.length < 128)),
+        city: !(this.addressForm.value.city && (this.addressForm.value.city.length > 2 && this.addressForm.value.city.length < 128)),
         country: !this.addressForm.value.country,
         state: !this.addressForm.value.state,
-        pincode: !this.addressForm.value.pincode,
+        pincode: !(this.addressForm.value.pincode && (this.addressForm.value.pincode.length > 4 && this.addressForm.value.pincode.length < 10)),
         phone:  this.addressForm.value.phone ? !(this.digits_count(Number(this.addressForm.value.phone)) > 7 && this.digits_count(Number(this.addressForm.value.phone)) < 32) : false
       }
       return;
@@ -247,7 +253,7 @@ export class DeliveryComponent implements OnInit {
           "postcode": this.addressForm.value.pincode,
           "zone_id": this.addressForm.value.state,
           "company": this.addressForm.value.company,
-          "phone": this.addressForm.value.phone
+          "phone": this.addressForm.value.phone ? (this.countryCode + ' ' + this.addressForm.value.phone) : null
         };
 
         this.bestSellerHttpService.postNewAddress(obj).subscribe(res => {
@@ -258,14 +264,48 @@ export class DeliveryComponent implements OnInit {
           }
         });
       } else {
-        this.createOrderService.onOrderCreate();
+        let obj = {
+          "firstname": this.addressForm.value.firstname,
+          "lastname": this.addressForm.value.lastname,
+          "city": this.addressForm.value.city,
+          "address_1": this.addressForm.value.address,
+          "address_2": this.addressForm.value.subAddress,
+          "country_id": this.addressForm.value.country,
+          "postcode": this.addressForm.value.pincode,
+          "zone_id": this.addressForm.value.state,
+          "company": this.addressForm.value.company,
+          "phone": this.addressForm.value.phone ? (this.countryCode + ' ' + this.addressForm.value.phone) : null
+        };
+        this.bestSellerHttpService.updateAddressById(this.createOrderService.shippingAddressId, obj).subscribe(res => {
+          if (res) {
+            this.createOrderService.onOrderCreate();
+          }
+        });
+
       }
     }
   }
 
   checkValidationForm(type, value) {
-    if(value) {
-      this.validationCheck[type] = false;
+    if(type === 'address') {
+      this.validationCheck[type] = this.validationCheck[type] ? !(this.addressForm.value.address && this.addressForm.value.address.length > 2 && this.addressForm.value.address.length < 128) : false;
+    } else if(type === 'city') {
+      this.validationCheck[type] = this.validationCheck[type] ? !(this.addressForm.value.city && this.addressForm.value.city.length > 2 && this.addressForm.value.city.length < 128) : false;
+    } else if(type === 'pincode') {
+      this.validationCheck[type] = this.validationCheck[type] ? !(this.addressForm.value.pincode && this.addressForm.value.pincode.length > 4 && this.addressForm.value.pincode.length < 10) : false;
+    } else if(type === 'phone') {
+      var pattern = /^[0-9]*$/;
+      if(!pattern.test(value)) {
+        value = value.slice(0, -1);
+        this.addressForm.patchValue({
+          phone: value
+        });
+      }
+      this.validationCheck[type] =  this.validationCheck[type] ? (!(this.addressForm.value.phone && (this.digits_count(this.addressForm.value.phone) > 7 && this.digits_count(this.addressForm.value.phone) < 32))) : false;
+    } else {
+      if(value) {
+        this.validationCheck[type] = false;
+      }
     }
   }
   digits_count(n) {
@@ -278,6 +318,10 @@ export class DeliveryComponent implements OnInit {
     }
 
     return count;
+  }
+
+  onCell1CountryChange($event: any) {
+    this.countryCode =  '+' + $event.dialCode;
   }
 
 }

@@ -1,13 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CountryService } from 'src/app/services/country.service';
-import { ShippingAddressService } from 'src/app/services/shipping-address.service';
-import { OrdersService } from 'src/app/services/orders.service';
-import { CreateOrderService } from 'src/app/services/create-order.service';
 import { BestSellerHttpService } from 'src/app/core/services/http/bestsellerhttpservice';
-import { ActivatedRoute, Router } from '@angular/router';
-import { AuthService } from 'angularx-social-login';
-import { AppAccessService } from 'src/app/core/services/app-access.service';
-import { NgxSpinnerService } from 'ngx-spinner';
+import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { take } from 'rxjs/operators';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
@@ -36,15 +30,15 @@ export class AddressFormComponent implements OnInit {
   public addressId: string;
   validationCheck = {};
   cell1TelInput = {
-    initialCountry: 'In',
+    initialCountry: '',
     separateDialCode: true,
   };
   private addressList: [];
+  public countryCode = '+1';
 
   constructor(private countryService: CountryService,
     public router: Router,
     public bestSellerHttpService: BestSellerHttpService,
-    public spinner: NgxSpinnerService,
     public dialog: MatDialog, public fb: FormBuilder) { }
 
   ngOnInit() {
@@ -136,6 +130,8 @@ export class AddressFormComponent implements OnInit {
     this.bestSellerHttpService.getAddressById(addressId).pipe(take(1))
       .subscribe((res) => {
         this.loadStatesByCountryId(res['data'].country_id, res['data'].zone_id);
+        var phoneArray = res['data'].phone.split(' ');
+        this.countryCode = phoneArray.length === 1 ? '+1' : phoneArray[0];
         this.addressForm.patchValue({
           firstname: res['data'].firstname,
           lastname:  res['data'].lastname,
@@ -146,7 +142,7 @@ export class AddressFormComponent implements OnInit {
           country:  Number(res['data'].country_id),
           // state:  Number(res['data'].zone_id),
           pincode:  res['data'].postcode,
-          phone: res['data'].phone,
+          phone: phoneArray.length === 1 ? phoneArray[0] : phoneArray[1],
           defaultAddress:  res['data'].default
         })
       });
@@ -155,16 +151,17 @@ export class AddressFormComponent implements OnInit {
   saveAddress() {
     if(!this.addressForm.value.firstname || !this.addressForm.value.firstname ||
       (!this.addressForm.value.address || !(this.addressForm.value.address.length > 2 && this.addressForm.value.address.length < 128)) ||
-     (!this.addressForm.value.city || !(this.addressForm.value.city.length > 2 && this.addressForm.value.city.length < 128)) || !this.addressForm.value.country ||
-      !this.addressForm.value.state || !this.addressForm.value.pincode) {
+      !(this.addressForm.value.city && (this.addressForm.value.city.length > 2 && this.addressForm.value.city.length < 128)) || !this.addressForm.value.country ||
+      !this.addressForm.value.state || !(this.addressForm.value.pincode && (this.addressForm.value.pincode.length > 4 && this.addressForm.value.pincode.length < 10)) ||
+      (this.addressForm.value.phone ? !(this.digits_count(Number(this.addressForm.value.phone)) > 7 && this.digits_count(Number(this.addressForm.value.phone)) < 32) : false)) {
       this.validationCheck = {
         firstname: !this.addressForm.value.firstname,
         lastname: !this.addressForm.value.lastname,
-        address: !this.addressForm.value.address || !(this.addressForm.value.address.length > 2 && this.addressForm.value.address.length < 128),
-        city: !this.addressForm.value.city || !(this.addressForm.value.city.length > 2 && this.addressForm.value.city.length < 128),
+        address: !(this.addressForm.value.address && (this.addressForm.value.address.length > 2 && this.addressForm.value.address.length < 128)),
+        city: !(this.addressForm.value.city && (this.addressForm.value.city.length > 2 && this.addressForm.value.city.length < 128)),
         country: !this.addressForm.value.country,
         state: !this.addressForm.value.state,
-        pincode: !this.addressForm.value.pincode,
+        pincode: !(this.addressForm.value.pincode && (this.addressForm.value.pincode.length > 4 && this.addressForm.value.pincode.length < 10)),
         phone:  this.addressForm.value.phone ? !(this.digits_count(Number(this.addressForm.value.phone)) > 7 && this.digits_count(Number(this.addressForm.value.phone)) < 32) : false
       }
       console.log(this.validationCheck)
@@ -181,7 +178,7 @@ export class AddressFormComponent implements OnInit {
         "zone_id": this.addressForm.value.state,
         "company": this.addressForm.value.company,
         "default": this.addressForm.value.defaultAddress ? 1 : 0,
-        "phone": this.addressForm.value.phone ? this.addressForm.value.phone : null
+        "phone": this.addressForm.value.phone ? (this.countryCode + ' ' + this.addressForm.value.phone) : null
       }
       if (this.addressId) {
 
@@ -202,9 +199,27 @@ export class AddressFormComponent implements OnInit {
   }
 
   checkValidationForm(type, value) {
-    if(value) {
-      this.validationCheck[type] = false;
+    if(type === 'address') {
+      this.validationCheck[type] = this.validationCheck[type] ? !(this.addressForm.value.address && this.addressForm.value.address.length > 2 && this.addressForm.value.address.length < 128) : false;
+    } else if(type === 'city') {
+      this.validationCheck[type] = this.validationCheck[type] ? !(this.addressForm.value.city && this.addressForm.value.city.length > 2 && this.addressForm.value.city.length < 128) : false;
+    } else if(type === 'pincode') {
+      this.validationCheck[type] = this.validationCheck[type] ? !(this.addressForm.value.pincode && this.addressForm.value.pincode.length > 4 && this.addressForm.value.pincode.length < 10) : false;
+    } else if(type === 'phone') {
+      var pattern = /^[0-9]*$/;
+      if(!pattern.test(value)) {
+        value = value.slice(0, -1);
+        this.addressForm.patchValue({
+          phone: value
+        })
+      }
+      this.validationCheck[type] =  this.validationCheck[type] ? (!(this.addressForm.value.phone && (this.digits_count(this.addressForm.value.phone) > 7 && this.digits_count(this.addressForm.value.phone) < 32))) : false;
+    } else {
+      if(value) {
+        this.validationCheck[type] = false;
+      }
     }
+
   }
 
   digits_count(n) {
@@ -219,4 +234,7 @@ export class AddressFormComponent implements OnInit {
     return count;
   }
 
+  onCell1CountryChange($event: any) {
+    this.countryCode =  '+' + $event.dialCode;
+  }
 }

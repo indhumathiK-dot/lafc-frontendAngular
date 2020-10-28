@@ -308,3 +308,8 @@
   border: none!important;
   height: 12px!important;
 }
+.phone input { text-indent:35px; }
+.country-code {
+  position: absolute;
+  left: 0px;
+}

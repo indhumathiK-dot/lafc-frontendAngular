@@ -12,7 +12,7 @@
       <div class="col-md-6 row-space display">
     <label class="label-name display-flex">First Name<span class="astrix-size">*</span></label>
     <mat-form-field appearance="outline" class="w-100 address-form mat-bottom-remove" [ngClass]="validationCheck['firstname'] ? 'errorClass' : ''">
-      <input matInput formControlName="firstname" (keydown)="checkValidationForm('firstname', $event.target.value)">
+      <input matInput formControlName="firstname" (keyup)="checkValidationForm('firstname', $event.target.value)">
     </mat-form-field>
         <span *ngIf="validationCheck['firstname']" class="password-check">Please enter first name </span>
       </div>
@@ -20,13 +20,13 @@
       <div class="col-md-6 row-space display">
     <label class="label-name parellel-field display-flex">Last Name<span class="astrix-size">*</span></label>
     <mat-form-field appearance="outline" class="w-100 parellel-field address-form mat-bottom-remove" [ngClass]="validationCheck['lastname'] ? 'errorClass' : ''">
-      <input matInput formControlName="lastname" (keydown)="checkValidationForm('lastname', $event.target.value)">
+      <input matInput formControlName="lastname" (keyup)="checkValidationForm('lastname', $event.target.value)">
     </mat-form-field>
         <span *ngIf="validationCheck['lastname']" class="password-check parellel-field">Please enter last name </span>
       </div>
     </div>
 
-    <label class="label-name">Company</label>
+    <label class="label-name">Business Name</label>
     <mat-form-field appearance="outline" class="w-100 address-form mat-bottom-remove botton-padding">
       <input matInput formControlName="company">
     </mat-form-field>
@@ -34,7 +34,7 @@
     <div class="botton-padding">
     <label class="label-name display-flex">Address<span class="astrix-size">*</span></label>
     <mat-form-field appearance="outline" class="w-100 address-form mat-bottom-remove" [ngClass]="validationCheck['address'] ? 'errorClass' : ''">
-      <input matInput formControlName="address" (keydown)="checkValidationForm('address', $event.target.value)">
+      <input matInput formControlName="address" (keyup)="checkValidationForm('address', $event.target.value)">
     </mat-form-field>
     <span *ngIf="validationCheck['address']" class="password-check">Please enter address (Address must be between 3 to 128 characters!)</span>
     </div>
@@ -47,7 +47,7 @@
     <div class="botton-padding">
     <label class="label-name display-flex">City<span class="astrix-size">*</span></label>
     <mat-form-field appearance="outline" class="w-100 address-form mat-bottom-remove" [ngClass]="validationCheck['city'] ? 'errorClass' : ''">
-      <input matInput formControlName="city" (keydown)="checkValidationForm('city', $event.target.value)">
+      <input matInput formControlName="city" (keyup)="checkValidationForm('city', $event.target.value)">
     </mat-form-field>
     <span *ngIf="validationCheck['city']" class="password-check">Please enter city (City must be between 3 to 128 characters!)</span>
     </div>
@@ -99,16 +99,18 @@
       <div class="col-md-4 row-space display">
     <label class="label-name parellel-field display-flex">Zip code<span class="astrix-size">*</span></label>
     <mat-form-field appearance="outline" class="field-width parellel-field w-100 zip-code address-form mat-bottom-remove" [ngClass]="validationCheck['pincode'] ? 'errorClass' : ''">
-      <input matInput formControlName="pincode" (keydown)="checkValidationForm('pincode', $event.target.value)">
+      <input matInput formControlName="pincode" (keyup)="checkValidationForm('pincode', $event.target.value)">
     </mat-form-field>
-        <div *ngIf="validationCheck['pincode']" class="password-check parellel-field">Please enter zipcode </div>
+        <div *ngIf="validationCheck['pincode']" class="password-check parellel-field">Please enter valid zipcode </div>
       </div>
     </div>
 
     <label class="label-name top-padding">Phone</label>
-    <mat-form-field appearance="outline" class="w-100 address-form mat-bottom-remove" [ngClass]="validationCheck['phone'] ? 'errorClass' : ''">
+    <mat-form-field appearance="outline" class="w-100 phone address-form mat-bottom-remove" [ngClass]="validationCheck['phone'] ? 'errorClass' : ''">
       <input type="tel" matInput placeholder="Phone" formControlName="phone"
-             ng2TelInput [ng2TelInputOptions]="cell1TelInput" (keydown)="checkValidationForm('phone', 'true')">
+             ng2TelInput [ng2TelInputOptions]="cell1TelInput"
+             (keyup)="checkValidationForm('phone', $event.target.value)" (countryChange)="onCell1CountryChange($event)">
+      <span class="country-code">{{countryCode}}</span>
     </mat-form-field>
 
     <span *ngIf="validationCheck['phone']" class="password-check">Please enter phone number (Phone Number must be between 8 to 32 characters!)</span>

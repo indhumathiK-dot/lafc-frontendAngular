@@ -37,3 +37,14 @@
     width: 100%!important;
   }
 }
+.file-name {
+  font-weight: 600;
+  margin-left: 15px;
+  border: 1px solid #988c88;
+  background: #F8F7F7;
+  padding: 8px;
+  border-radius: 10px;
+}
+.file-pad {
+  padding-bottom: 20px;
+}

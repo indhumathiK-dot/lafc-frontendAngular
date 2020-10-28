@@ -55,15 +55,7 @@ export class AuthenticationService {
 
   updateAccount(obj): Observable<any> {
     return this.http
-      .put(this.baseUrl + '/account', obj)
-      .pipe(
-        map((res: any) => {
-          if (res) {
-            localStorage.setItem('user', JSON.stringify(res.data));
-            this.currentUserSubject.next(res);
-          }
-          return res;
-        }), catchError(this.handleErrorObservable));
+      .put(this.baseUrl + '/account', obj);
   }
 
   login(obj): Observable<any> {

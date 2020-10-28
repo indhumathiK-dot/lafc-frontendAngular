@@ -221,14 +221,14 @@ export class DeliveryComponent implements OnInit {
 
   onSubmitValue() {
     if (!this.addressForm.value.firstname || !this.addressForm.value.firstname ||
-      !(this.addressForm.value.address || this.addressForm.value.address.length < 2 || this.addressForm.value.address.length > 128) ||
-      !(this.addressForm.value.city || this.addressForm.value.city.length < 2 || this.addressForm.value.city.length > 128) || !this.addressForm.value.country ||
+      (!this.addressForm.value.address || this.addressForm.value.address.length < 2 && this.addressForm.value.address.length > 128) ||
+      (!this.addressForm.value.city || this.addressForm.value.city.length < 2 && this.addressForm.value.city.length > 128) || !this.addressForm.value.country ||
       !this.addressForm.value.state || !this.addressForm.value.pincode) {
       this.validationCheck = {
         firstname: !this.addressForm.value.firstname,
         lastname: !this.addressForm.value.lastname,
-        address: !(this.addressForm.value.address || this.addressForm.value.address.length < 2 || this.addressForm.value.address.length > 128),
-        city: !(this.addressForm.value.city || this.addressForm.value.city.length < 2 || this.addressForm.value.city.length > 128),
+        address: !this.addressForm.value.address || (this.addressForm.value.address.length < 2 && this.addressForm.value.address.length > 128),
+        city: !this.addressForm.value.city || (this.addressForm.value.city.length < 2 && this.addressForm.value.city.length > 128),
         country: !this.addressForm.value.country,
         state: !this.addressForm.value.state,
         pincode: !this.addressForm.value.pincode,
@@ -263,8 +263,10 @@ export class DeliveryComponent implements OnInit {
     }
   }
 
-  checkValidationForm(type) {
-    this.validationCheck[type] = false;
+  checkValidationForm(type, value) {
+    if(value) {
+      this.validationCheck[type] = false;
+    }
   }
   digits_count(n) {
     var count = 0;

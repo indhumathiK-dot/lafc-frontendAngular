@@ -38,17 +38,17 @@
 
         <div class="row col-md-12 row-space botton-padding">
           <div class="col-md-6 row-space">
-        <label class="label-name">First Name*</label>
+        <label class="label-name display-flex">First Name<span class="astrix-size">*</span></label>
           <mat-form-field appearance="outline" class="w-100 delivery mat-bottom-remove" [ngClass]="validationCheck['firstname'] ? 'errorClass' : ''">
-            <input matInput formControlName="firstname" (keydown)="checkValidationForm('firstname')">
+            <input matInput formControlName="firstname" (keydown)="checkValidationForm('firstname', $event.target.value)">
           </mat-form-field>
             <span *ngIf="validationCheck['firstname']" class="password-check">Please enter first name </span>
           </div>
 
           <div class="col-md-6 row-space">
-        <label class="label-name parellel-field">Last Name*</label>
+        <label class="label-name parellel-field display-flex">Last Name<span class="astrix-size">*</span></label>
           <mat-form-field appearance="outline" class="w-100 parellel-field delivery mat-bottom-remove" [ngClass]="validationCheck['lastname'] ? 'errorClass' : ''">
-            <input matInput formControlName="lastname" (keydown)="checkValidationForm('lastname')">
+            <input matInput formControlName="lastname" (keydown)="checkValidationForm('lastname', $event.target.value)">
           </mat-form-field>
             <span *ngIf="validationCheck['lastname']" class="password-check parellel-field">Please enter last name </span>
           </div>
@@ -60,9 +60,9 @@
           </mat-form-field>
 
         <div class="botton-padding">
-        <label class="label-name">Address*</label>
+        <label class="label-name display-flex">Address<span class="astrix-size">*</span></label>
           <mat-form-field appearance="outline" class="w-100 delivery mat-bottom-remove" [ngClass]="validationCheck['address'] ? 'errorClass' : ''">
-            <input matInput formControlName="address" (keydown)="checkValidationForm('address')">
+            <input matInput formControlName="address" (keydown)="checkValidationForm('address', $event.target.value)">
           </mat-form-field>
         <span *ngIf="validationCheck['address']" class="password-check">Please enter address (Address must be between 3 to 128 characters!)</span>
         </div>
@@ -73,9 +73,9 @@
           </mat-form-field>
 
         <div class="botton-padding">
-        <label class="label-name">City*</label>
+        <label class="label-name display-flex">City<span class="astrix-size">*</span></label>
           <mat-form-field appearance="outline" class="w-100 city-padding delivery mat-bottom-remove" [ngClass]="validationCheck['city'] ? 'errorClass' : ''">
-            <input matInput formControlName="city" (keydown)="checkValidationForm('city')">
+            <input matInput formControlName="city" (keydown)="checkValidationForm('city', $event.target.value)">
           </mat-form-field>
         <span *ngIf="validationCheck['city']" class="password-check">Please enter city (City must be between 3 to 128 characters!)</span>
         </div>
@@ -93,7 +93,7 @@
 <!--        </div>-->
 
           <div class="col-md-4 row-space">
-            <label class="label-name">Country*</label>
+            <label class="label-name display-flex">Country<span class="astrix-size">*</span></label>
             <mat-form-field appearance="outline" class="w-100 delivery mat-bottom-remove delivery-checkout select-address" [ngClass]="validationCheck['country'] ? 'errorClass' : ''">
               <select matNativeControl formControlName="country" (change)="onSelectCountry(addressForm.value.country)">
                 <option value=""></option>
@@ -105,9 +105,9 @@
 
 
           <div class="col-md-4 row-space">
-            <label class="label-name parellel-field">State*</label>
+            <label class="label-name parellel-field display-flex">State<span class="astrix-size">*</span></label>
             <mat-form-field appearance="outline"  class="w-100 delivery delivery-checkout select-address parellel-field mat-bottom-remove" [ngClass]="validationCheck['state'] ? 'errorClass' : ''">
-              <select matNativeControl formControlName="state" (change)="checkValidationForm('state')">
+              <select matNativeControl formControlName="state" (change)="checkValidationForm('state', $event.target.value)">
                 <option value=""></option>
                 <option [value]="state.value" *ngFor="let state of statesList">{{state.label}}</option>
               </select>
@@ -127,10 +127,10 @@
 <!--        </div>-->
 
           <div class="col-md-4 row-space">
-          <label class="label-name parellel-field">Zip code*</label>
+          <label class="label-name parellel-field display-flex">Zip code<span class="astrix-size">*</span></label>
           <mat-form-field appearance="outline" class="parellel-field w-100 zip-pad-remove zip-code delivery mat-bottom-remove"
                           [ngClass]="validationCheck['pincode'] ? 'errorClass' : ''">
-            <input matInput formControlName="pincode" (keydown)="checkValidationForm('pincode')">
+            <input matInput formControlName="pincode" (keydown)="checkValidationForm('pincode', $event.target.value)">
           </mat-form-field>
             <span *ngIf="validationCheck['pincode']" class="password-check parellel-field">Please enter zip </span>
           </div>
@@ -140,7 +140,7 @@
           <mat-form-field appearance="outline" class="w-100 delivery mat-bottom-remove botton-padding"
                           [ngClass]="validationCheck['phone'] ? 'errorClass' : ''">
             <input type="tel" ng2TelInput [ng2TelInputOptions]="cell1TelInput" matInput formControlName="phone"
-                   (keydown)="checkValidationForm('phone')">
+                   (keydown)="checkValidationForm('phone', 'true')">
           </mat-form-field>
 
         <span *ngIf="validationCheck['phone']" class="password-check">Please enter valid phone number (Phone number must be between 8 to 32 characters!) </span>

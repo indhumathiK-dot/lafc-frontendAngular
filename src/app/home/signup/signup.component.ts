@@ -252,8 +252,8 @@ export class SignupComponent implements OnInit {
             lastname: !this.registerForm.value.lastname,
             phoneNumber: !(this.registerForm.value.phoneNumber && (this.digits_count(this.registerForm.value.phoneNumber) > 7 && this.digits_count(this.registerForm.value.phoneNumber) < 32)),
             email: !this.registerForm.value.email,
-            password: !(this.registerForm.value.password && (this.registerForm.value.password.length > 6 && this.registerForm.value.password.length < 20)),
-            confirmPassword: !((this.registerForm.value.confirmPassword && this.registerForm.value.password === this.registerForm.value.confirmPassword) && (this.registerForm.value.confirmPassword.length > 6 && this.registerForm.value.confirmPassword.length < 20)),
+            password: !(this.registerForm.value.password && (this.registerForm.value.password.length > 5 && this.registerForm.value.password.length < 20)),
+            confirmPassword: !((this.registerForm.value.confirmPassword && this.registerForm.value.password === this.registerForm.value.confirmPassword) && (this.registerForm.value.confirmPassword.length > 5 && this.registerForm.value.confirmPassword.length < 20)),
             address: !this.registerForm.value.address,
             city: !this.registerForm.value.city,
             country: !this.registerForm.value.country,
@@ -360,17 +360,26 @@ export class SignupComponent implements OnInit {
     })
   }
 
-  checkValidationForm(type) {
-    this.validationCheck[type] = false;
-    if(type === 'confirmPassword' || type === 'password') {
-      this.passwordConfirmationCheck = this.registerForm.value.password && this.registerForm.value.confirmPassword ? (this.registerForm.value.password === this.registerForm.value.confirmPassword ? false : true ) : false;
+  checkValidationForm(type, value) {
+    if(value && type !== 'confirmPassword' && type !== 'password') {
+      this.validationCheck[type] = false;
+    } else {
+      if(this.validationCheck[type] === true && (type === 'confirmPassword' || type === 'password')) {
+        if(type === 'password') {
+          this.validationCheck[type] = !(this.registerForm.value.password && (this.registerForm.value.password.length > 4 && this.registerForm.value.password.length < 20));
+          // console.log(this.validationCheck[type])
+        } else if(type === 'confirmPassword') {
+          this.validationCheck[type] = !(this.registerForm.value.confirmPassword && (this.registerForm.value.confirmPassword.length > 4 && this.registerForm.value.confirmPassword.length < 20));
+          // console.log(this.validationCheck[type])
+        }
+        console.log(this.validationCheck[type] + 'kkkkk')
+        this.passwordConfirmationCheck = !(!this.validationCheck['password'] && !this.validationCheck['confirmPassword']);
+        console.log(this.passwordConfirmationCheck)
+      }
     }
+
   }
 
-  customSearchFn(term: string, item) {
-    term = term.toLocaleLowerCase();
-    return item.code.toLocaleLowerCase().indexOf(term) > -1 || item.countryName.toLocaleLowerCase() === term;
-  }
 
   digits_count(n) {
     var count = 0;

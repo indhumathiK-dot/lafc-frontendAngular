@@ -8,18 +8,18 @@
       <form novalidate [formGroup]="registerForm" (ngSubmit)="createAccount()" class="login-box">
     <div class="row col-md-12 row-space botton-padding">
       <div class="col-md-6 col-sm-6 fd-sep row-space">
-        <label class="label-name">First Name*</label>
+        <label class="label-name display-flex">First Name<span class="astrix-size">*</span></label>
         <mat-form-field appearance="outline" class="w-100 mat-bottom-remove register"
                         [ngClass]="validationCheck['firstname'] ? 'errorClass' : ''">
-          <input matInput formControlName="firstname" (keydown)="checkValidationForm('firstname')">
+          <input matInput formControlName="firstname" (keydown)="checkValidationForm('firstname', $event.target.value)">
         </mat-form-field>
         <span *ngIf="validationCheck['firstname']" class="password-check">Please enter first name </span>
        </div>
 
        <div class="col-md-6 col-sm-6 row-space">
-        <label class="label-name ">Last Name*</label>
+        <label class="label-name display-flex ">Last Name<span class="astrix-size">*</span></label>
         <mat-form-field appearance="outline" class="w-100 mat-bottom-remove register" [ngClass]="validationCheck['lastname'] ? 'errorClass' : ''">
-          <input matInput formControlName="lastname" (keydown)="checkValidationForm('lastname')">
+          <input matInput formControlName="lastname" (keydown)="checkValidationForm('lastname', $event.target.value)">
         </mat-form-field>
          <span *ngIf="validationCheck['lastname']" class="password-check">Please enter last name </span>
       </div>
@@ -31,51 +31,51 @@
         </mat-form-field>
 
         <div class="botton-padding">
-        <label class="label-name">Phone Number*</label>
+        <label class="label-name display-flex">Phone Number<span class="astrix-size">*</span></label>
         <mat-form-field appearance="outline" class="w-100 mat-bottom-remove register" [ngClass]="validationCheck['phoneNumber'] ? 'errorClass' : ''">
-          <input matInput type="number" formControlName="phoneNumber" (keydown)="checkValidationForm('phoneNumber')"
+          <input matInput type="number" formControlName="phoneNumber" (keydown)="checkValidationForm('phoneNumber', $event.target.value)"
                  ng2TelInput [ng2TelInputOptions]="cell1TelInput">
         </mat-form-field>
 
         <span *ngIf="validationCheck['phoneNumber']" class="password-check">Please enter phone number (Phone Number must be between 8 to 32 characters!)</span>
         </div>
 
-        <label class="label-name">Email*</label>
+        <label class="label-name display-flex">Email<span class="astrix-size">*</span></label>
         <mat-form-field appearance="outline" class="w-100 mat-bottom-remove register" [ngClass]="validationCheck['email'] ? 'errorClass' : ''">
-          <input matInput type="email" formControlName="email" (keydown)="checkValidationForm('email')">
+          <input matInput type="email" formControlName="email" (keydown)="checkValidationForm('email', $event.target.value)">
         </mat-form-field>
         <label class="bottom-label" [ngClass]="validationCheck['email'] ? 'no-margin-bottom' : 'label-margin-bottom'">Used for account login and order notifications</label>
 
         <div *ngIf="validationCheck['email']" class="password-check">Please enter email </div>
 
         <div *ngIf="!loginCheck">
-        <label class="label-name">Password*</label>
+        <label class="label-name display-flex">Password<span class="astrix-size">*</span></label>
         <mat-form-field appearance="outline" class="w-100 mat-bottom-remove register" [ngClass]="validationCheck['password'] ? 'errorClass' : ''">
-          <input matInput type="password" formControlName="password" (blur)="checkValidationForm('password')">
+          <input matInput type="password" formControlName="password" (keydown)="checkValidationForm('password', $event.target.value)">
         </mat-form-field>
         <label class="bottom-label" [ngClass]="validationCheck['password'] ? 'no-margin-bottom' : 'label-margin-bottom'">Used for account login</label>
           <div *ngIf="validationCheck['password']" class="password-check">Please enter valid password (Password must be between 6 to 20 characters!) </div>
 
-        <label class="label-name">Password Confirmation*</label>
+        <label class="label-name display-flex">Password Confirmation<span class="astrix-size">*</span></label>
         <mat-form-field appearance="outline" class="w-100 mat-bottom-remove register" [ngClass]="validationCheck['confirmPassword'] || passwordConfirmationCheck ? 'errorClass' : ''">
-          <input matInput type="password" formControlName="confirmPassword" (blur)="checkValidationForm('confirmPassword')">
+          <input matInput type="password" formControlName="confirmPassword" (keydown)="checkValidationForm('confirmPassword', $event.target.value)">
         </mat-form-field>
         </div>
         <span *ngIf="passwordConfirmationCheck && !loginCheck" class="password-check">Password and Confirm password should be same</span>
-        <div *ngIf="validationCheck['confirmPassword']" class="password-check">Please enter confirm password (Confirm password must be between 6 to 20 characters!) </div>
+        <div *ngIf="validationCheck['confirmPassword']" class="password-check">Please enter confirm password </div>
 
         <div class="botton-padding">
-        <label class="label-name top-padding">Address*</label>
+        <label class="label-name top-padding display-flex">Address<span class="astrix-size">*</span></label>
         <mat-form-field appearance="outline" class="w-100 mat-bottom-remove register" [ngClass]="validationCheck['address'] ? 'errorClass' : ''">
-          <input matInput formControlName="address" (keydown)="checkValidationForm('address')">
+          <input matInput formControlName="address" (keydown)="checkValidationForm('address', $event.target.value)">
         </mat-form-field>
         <span *ngIf="validationCheck['address']" class="password-check">Please enter address </span>
         </div>
 
         <div class="botton-padding">
-        <label class="label-name">City*</label>
+        <label class="label-name display-flex">City<span class="astrix-size">*</span></label>
         <mat-form-field appearance="outline" class="w-100 mat-bottom-remove register" [ngClass]="validationCheck['city'] ? 'errorClass' : ''">
-          <input matInput formControlName="city"  (keydown)="checkValidationForm('city')">
+          <input matInput formControlName="city"  (keydown)="checkValidationForm('city', $event.target.value)">
         </mat-form-field>
         <span *ngIf="validationCheck['city']" class="password-check">Please enter city </span>
         </div>
@@ -94,7 +94,7 @@
 <!--          </div>-->
 
           <div class="col-md-4 fd-mob row-space">
-            <label class="label-name">Country*</label>
+            <label class="label-name display-flex">Country<span class="astrix-size">*</span></label>
             <mat-form-field appearance="outline" class="w-100 mat-bottom-remove register delivery-checkout" [ngClass]="validationCheck['country'] ? 'errorClass' : ''">
             <select matNativeControl formControlName="country" (change)="onSelectCountry(registerForm.value.country)">
               <option value=""></option>
@@ -105,9 +105,9 @@
           </div>
 
           <div class="col-md-4 row-space">
-            <label class="label-name parellel-field">State*</label>
+            <label class="label-name parellel-field display-flex">State<span class="astrix-size">*</span></label>
             <mat-form-field appearance="outline"  class="w-100 mat-bottom-remove register parellel-field delivery-checkout" [ngClass]="validationCheck['state'] ? 'errorClass' : ''">
-              <select matNativeControl formControlName="state" (change)="checkValidationForm('state')">
+              <select matNativeControl formControlName="state" (change)="checkValidationForm('state', $event.target.value)">
                 <option value=""></option>
                 <option [value]="state.value" *ngFor="let state of statesList">{{state.label}}</option>
               </select>
@@ -127,18 +127,18 @@
 <!--            </div>-->
 <!--          </div>-->
           <div class="col-md-4 row-space">
-        <label class="label-name parellel-field">Zip code*</label>
+        <label class="label-name parellel-field display-flex">Zip code<span class="astrix-size">*</span></label>
         <mat-form-field appearance="outline" class="w-100 parellel-field mat-bottom-remove zip-code register" [ngClass]="validationCheck['zip'] ? 'errorClass' : ''">
-          <input matInput formControlName="zip"  (keydown)="checkValidationForm('zip')">
+          <input matInput formControlName="zip"  (keydown)="checkValidationForm('zip', $event.target.value)">
         </mat-form-field>
             <div *ngIf="validationCheck['zip']" class="password-check parellel-field">Please enter zipcode </div>
           </div>
         </div>
 
         <div class="botton-padding">
-        <label class="label-name">Sellers Permit OR Tax ID* </label>
+        <label class="label-name display-flex">Sellers Permit OR Tax ID<span class="astrix-size">*</span> </label>
         <mat-form-field appearance="outline" class="w-100 register mat-bottom-remove" [ngClass]="validationCheck['sellersPermit'] ? 'errorClass' : ''">
-          <input matInput formControlName="sellersPermit" (keydown)="checkValidationForm('sellersPermit')">
+          <input matInput formControlName="sellersPermit" (keydown)="checkValidationForm('sellersPermit', $event.target.value)">
         </mat-form-field>
         <span *ngIf="validationCheck['sellersPermit']" class="password-check">Please enter Sellers Permit OR Tax ID </span>
         </div>
@@ -147,7 +147,7 @@
           <span>Complete this </span> <a target="_blank" href="https://drive.google.com/file/d/1ltwy1D3kwqTp7kJ6AoyvQTywq9g9XoCs/view"
              class="link-color">Credit Card Authorization Form </a> <span> and upload completed form below:</span></div>
 
-        <label class="label-name website-design">Upload completed CC Auth Form*</label>
+        <label class="label-name website-design display-flex">Upload completed CC Auth Form<span class="astrix-size">*</span></label>
         <div class="custom-file cc-space">
             <input  (change)="fileChange($event)"  type="file" name="invoice" class="custom-file-input"
                     id="inputGroupFile01"  aria-describedby="inputGroupFileAddon01" required>
@@ -161,7 +161,7 @@
           <input matInput formControlName="websiteUrl">
         </mat-form-field>
 
-        <label class="label-name">Where You Sell*</label>
+        <label class="label-name display-flex">Where You Sell<span class="astrix-size">*</span></label>
         <div class="botton-padding sell-space">
           <mat-radio-group aria-label="Select an option" formControlName="sellOption" required>
             <mat-radio-button value="1">Online</mat-radio-button>
@@ -171,7 +171,7 @@
         </div>
 
 
-        <mat-checkbox formControlName="agree" (change)="checkValidationForm('agree')">I have read and agree to the
+        <mat-checkbox formControlName="agree" (change)="checkValidationForm('agree', 'true')">I have read and agree to the
           <a class="link-color bold-font]" target="_blank" href="/about/{{infoDetails?.title}}/{{infoDetails?.information_id}}">
             {{infoDetails?.title}}</a></mat-checkbox>
 

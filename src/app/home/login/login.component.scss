@@ -49,3 +49,6 @@
   background: black;
   color: #FFFFFF;
 }
+::ng-deep .mat-form-field-appearance-outline.mat-form-field-invalid.mat-form-field-invalid .mat-form-field-outline-thick {
+  color: #c60000 !important;
+}

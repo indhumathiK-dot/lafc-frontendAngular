@@ -69,7 +69,7 @@
         <div>
           {{productsDetails?.name}}
         </div>
-        <div class="stock-status" *ngIf="productsDetails?.stock_status_id !== 7">
+        <div class="stock-status" *ngIf="productsDetails?.stock_status_id !== 7 && loginCheck">
           <label>*{{productsDetails?.stock_status}}</label>
         </div>
         <div *ngIf="loginCheck">

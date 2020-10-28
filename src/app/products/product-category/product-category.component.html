@@ -85,7 +85,7 @@
     <div class="display common-color"> Showing all {{products.length}} results</div>
     <div class="display">
     <mat-paginator class="paginator-margin" #paginator [pageSize]="48" [hidePageSize]="true" (page)="onChange($event)"
-    [showFirstLastButtons]="true" [length]="productsTotalCount">
+    [showFirstLastButtons]="true" [length]="products.length">
     </mat-paginator>
     </div>
     </div>

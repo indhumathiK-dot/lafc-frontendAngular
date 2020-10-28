@@ -83,8 +83,8 @@ export class AddressFormComponent implements OnInit {
       address: [""],
       subAddress: [""],
       city: [""],
-      country: [[]],
-      state: [[]],
+      country: [''],
+      state: [''],
       pincode: [""],
       phone: [""],
       defaultAddress: [false]
@@ -154,24 +154,25 @@ export class AddressFormComponent implements OnInit {
 
   saveAddress() {
     if(!this.addressForm.value.firstname || !this.addressForm.value.firstname ||
-      !(this.addressForm.value.address || !(this.addressForm.value.address.length > 2 && this.addressForm.value.address.length < 128)) ||
-      !(this.addressForm.value.city || !(this.addressForm.value.city.length > 2 && this.addressForm.value.city.length < 128)) || !this.addressForm.value.country.length ||
-      !this.addressForm.value.state.length || !this.addressForm.value.pincode) {
+      (!this.addressForm.value.address || !(this.addressForm.value.address.length > 2 && this.addressForm.value.address.length < 128)) ||
+     (!this.addressForm.value.city || !(this.addressForm.value.city.length > 2 && this.addressForm.value.city.length < 128)) || !this.addressForm.value.country ||
+      !this.addressForm.value.state || !this.addressForm.value.pincode) {
       this.validationCheck = {
         firstname: !this.addressForm.value.firstname,
         lastname: !this.addressForm.value.lastname,
-        address: !(this.addressForm.value.address || !(this.addressForm.value.address.length > 2 && this.addressForm.value.address.length < 128)),
-        city: !(this.addressForm.value.city || !(this.addressForm.value.city.length > 2 && this.addressForm.value.city.length < 128)),
-        country: !this.addressForm.value.country.length,
-        state: !this.addressForm.value.state.length,
+        address: !this.addressForm.value.address || !(this.addressForm.value.address.length > 2 && this.addressForm.value.address.length < 128),
+        city: !this.addressForm.value.city || !(this.addressForm.value.city.length > 2 && this.addressForm.value.city.length < 128),
+        country: !this.addressForm.value.country,
+        state: !this.addressForm.value.state,
         pincode: !this.addressForm.value.pincode,
         phone:  this.addressForm.value.phone ? !(this.digits_count(Number(this.addressForm.value.phone)) > 7 && this.digits_count(Number(this.addressForm.value.phone)) < 32) : false
       }
+      console.log(this.validationCheck)
       return;
     } else {
       var data = {
         "firstname": this.addressForm.value.firstname,
-        "lastname": this.addressForm.value.firstname,
+        "lastname": this.addressForm.value.lastname,
         "city": this.addressForm.value.city,
         "address_1": this.addressForm.value.address,
         "address_2": this.addressForm.value.subAddress,
@@ -200,8 +201,10 @@ export class AddressFormComponent implements OnInit {
     }
   }
 
-  checkValidationForm(type) {
-    this.validationCheck[type] = false;
+  checkValidationForm(type, value) {
+    if(value) {
+      this.validationCheck[type] = false;
+    }
   }
 
   digits_count(n) {

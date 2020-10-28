@@ -230,4 +230,6 @@
 ::ng-deep .mat-checkbox-checkmark-path {
   stroke: rgba(0,0,0,.54) !important;
 }
-
+::ng-deep .mat-form-field-appearance-outline.mat-form-field-invalid.mat-form-field-invalid .mat-form-field-outline-thick {
+  color: #c60000 !important;
+}

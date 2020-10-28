@@ -33,6 +33,11 @@ body{
   z-index: 1000000 !important;
 }
 
+.astrix-size {
+  font-size: 27px;
+  margin-top: -7px;
+}
+
 .iti__flag-box{
   display: none;
 }
@@ -75,6 +80,9 @@ html {
 }
 .zero-right-padding {
   padding-right: 0;
+}
+.display-flex {
+  display: flex !important;
 }
 .transformText {
   text-transform: capitalize;

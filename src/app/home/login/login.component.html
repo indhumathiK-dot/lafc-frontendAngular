@@ -5,11 +5,11 @@
       </div>
       <form novalidate [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-box">
 
-        <label class="label-name">Email *</label>
+        <label class="label-name display-flex">Email<span class="astrix-size">*</span></label>
           <mat-form-field appearance="outline" class="label-width w-100">
             <input matInput formControlName="email" required>
           </mat-form-field>
-        <label class="label-name">Password *</label>
+        <label class="label-name display-flex">Password<span class="astrix-size">*</span></label>
           <mat-form-field appearance="outline" class="label-width w-100">
             <input type="password" matInput formControlName="password" required>
           </mat-form-field>

@@ -260,7 +260,9 @@ export class ProductDetailsComponent implements OnInit {
   }
 
   addTocart(type, productId) {
-    this.cartLabel = 'Adding';
+    if(type !== 'buy') {
+      this.cartLabel = 'Adding';
+    }
     this.cartService.getCartProducts().pipe(take(1))
       .subscribe((res) => {
         var cartlist = res['products'] ? res['products'] : [];
@@ -277,9 +279,12 @@ export class ProductDetailsComponent implements OnInit {
             "quantity": Number(cartData['quantity']) + Number(this.quantity * this.productsDetails.bundle_quantity)
           }
           this.cartService.updateProductQuantity(quantityData).pipe(take(1)).subscribe(e => {
-            this.cartLabel = 'Added to cart';
+
             if (type === 'buy') {
+              sessionStorage.setItem('buyNowProduct', this.productId);
               this.router.navigate(['/cart/delivery']);
+            } else {
+              this.cartLabel = 'Added to cart';
             }
           }, (error) => {
           });
@@ -295,11 +300,13 @@ export class ProductDetailsComponent implements OnInit {
             "option": options
           }
           this.cartService.addProductToCart(data, '').pipe(take(1)).subscribe(e => {
-            this.cartLabel = 'Added to cart';
+
             this.cartService.addToCartCountSub.next();
             if (type === 'buy') {
               sessionStorage.setItem('buyNowProduct', this.productId);
               this.router.navigate(['/cart/delivery']);
+            } else {
+              this.cartLabel = 'Added to cart';
             }
           }, (error) => {
           });

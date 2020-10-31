@@ -124,7 +124,7 @@
               <div *ngFor="let option of optionList">
                 <label class="label-name botton-padding">{{option.name}}</label>
                 <mat-form-field class="select-mat-dd quick-select" appearance="outline">
-                  <mat-select [(ngModel)]="option.option_value[0].value" formControlName="country" (selectionChange)="optionSelect(option, $event.value)"
+                  <mat-select [(ngModel)]="option.option_value[0].value" (selectionChange)="optionSelect(option, $event.value)"
                                panelClass="select-dd-panel">
                     <mat-option [value]="state.value" *ngFor="let state of option.option_value">{{state.label}}</mat-option>
                   </mat-select>

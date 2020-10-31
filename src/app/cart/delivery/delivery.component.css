@@ -150,8 +150,8 @@
   padding: 0 0.75rem 2.375rem 0.75rem !important;
 }
 ::ng-deep .delivery.mat-form-field-appearance-outline .mat-form-field-outline {
-  top: 7px !important;
-  height: 50px !important;
+  top: 0 !important;
+  height: 54px !important;
 }
 ::ng-deep .address.ng-select.ng-select-single .ng-select-container {
   width: 127% !important;

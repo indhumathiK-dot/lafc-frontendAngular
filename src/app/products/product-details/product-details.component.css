@@ -264,7 +264,7 @@ html {
   padding: 5px 0;
 }
 ::ng-deep .select-quantity input.mat-input-element {
-  font-size: 20px;
+  font-size: 17px;
   text-align: center;
 }
 .cart-redirect {
@@ -644,6 +644,9 @@ background-color: #ccc;
   border-right: none;
   border-top: none;
 }
-::ng-deep .quick-select.mat-form-field-appearance-outline .mat-select-arrow-wrapper {
-  /*transform: translateY(-60%);*/
+.select-mat-dd ::ng-deep .mat-select-value {
+  font-size: 17px;
+}
+::ng-deep.mat-select-panel .mat-option {
+  font-size: 17px !important;
 }

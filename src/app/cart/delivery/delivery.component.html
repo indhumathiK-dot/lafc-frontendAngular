@@ -18,7 +18,7 @@
     <div class="address-design">
       <form novalidate [formGroup]="addressForm" class="login-box">
 
-        <div class="w-100">
+        <div class="w-100 botton-padding">
           <label class="label-name">Saved Address</label>
 
           <mat-form-field class="select-mat-dd" appearance="outline">
@@ -122,7 +122,7 @@
           <div class="col-md-4 row-space">
             <label class="label-name parellel-field display-flex">State<span class="astrix-size">*</span></label>
             <mat-form-field class="select-mat-dd parellel-field" appearance="outline"  [ngClass]="validationCheck['state'] ? 'errorClass' : ''">
-              <mat-select  formControlName="state" [(ngModel)]="addressForm.value.state" (selectionChange)="checkValidationForm('state', addressForm.value.state)"
+              <mat-select formControlName="state" [ngModel]="statesList[stateIndex]?.value" (selectionChange)="checkValidationForm('state', addressForm.value.state)"
                            panelClass="select-dd-panel">
                 <mat-option [value]="state.value" *ngFor="let state of statesList">{{state.label}}</mat-option>
               </mat-select>

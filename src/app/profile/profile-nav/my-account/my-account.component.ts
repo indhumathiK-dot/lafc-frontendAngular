@@ -60,7 +60,7 @@ export class MyAccountComponent implements OnInit {
       customerId: customerId,
       ccAuthPath: url
     }
-    this.authService.updatePath(data).subscribe((res) => {
+    this.authService.cartPathUpdate(data).subscribe((res) => {
       if(res['statusCode'] === 200) {
         this.uploadSuccess = true;
         this.uploadedFiles = [];

@@ -4,6 +4,8 @@ import { ICartData } from 'src/app/models/cart.model';
 import { CartService } from 'src/app/services/cart.service';
 import {MatTableDataSource} from "@angular/material/table";
 import {Router} from "@angular/router";
+import {ErrorComponentComponent} from "../../core/error-component/error-component.component";
+import {BsModalService} from "ngx-bootstrap";
 
 @Component({
   selector: 'app-my-cart',
@@ -19,7 +21,16 @@ export class itemsComponent implements OnInit {
   firstLoadCheck: boolean = false;
 
   constructor(private cartSerivce: CartService,
-              private router: Router) { }
+              private router: Router,
+              public modalService: BsModalService) {
+    this.cartSerivce.cartListUpdate.subscribe(value => {
+      if(value) {
+        this.cartSerivce.cartListUpdate.next(false);
+        this.getCartItems();
+      }
+
+    });
+  }
 
   ngOnInit() {
     this.getCartItems();
@@ -53,17 +64,21 @@ export class itemsComponent implements OnInit {
   }
 
   removeCartItem(key) {
-    var removeCheck = confirm('Are you sure you want to remove this item? ');
-    if(removeCheck) {
-      var data = {
-        key: key
-      }
-      this.cartSerivce.deleteCartProduct(key).pipe(take(1)).
-      subscribe(e => {
-        this.cartSerivce.addToCartCountSub.next();
-        this.getCartItems();
-      });
-    }
+    var data = {
+          key: key
+        }
+    this.errorUpdate(data);
+    // var removeCheck = confirm('Are you sure you want to remove this item? ');
+    // if(removeCheck) {
+    //   var data = {
+    //     key: key
+    //   }
+    //   this.cartSerivce.deleteCartProduct(key).pipe(take(1)).
+    //   subscribe(e => {
+    //     this.cartSerivce.addToCartCountSub.next();
+    //     this.getCartItems();
+    //   });
+    // }
 
   }
 
@@ -104,5 +119,17 @@ export class itemsComponent implements OnInit {
         this.updateCartArray.push(quantityData);
       }
     }
+  }
+
+  errorUpdate(cart) {
+    var data = {
+      title: 'Cart',
+      message: 'Are you sure you want to remove this item?',
+      type: 'confirm',
+      data: cart
+    }
+    const initialState = {data: data};
+    var loginModalRef = this.modalService.show(ErrorComponentComponent, Object.assign({}, { class: 'modal-md modal-dialog-centered', initialState }));
+    this.getCartItems();
   }
 }

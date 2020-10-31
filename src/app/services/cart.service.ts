@@ -17,6 +17,7 @@ export class CartService {
   public addtoCart: any;
   public addToCartSub: Subject<any> = new Subject();
   public cartimage: Subject<any> = new Subject();
+  public cartListUpdate: Subject<any> = new Subject();
 
 
   constructor(private http: HttpClient) { }

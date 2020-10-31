@@ -48,6 +48,11 @@ export class AuthenticationService {
     return this.http.post(this.vendorVendorUrl + '/updateCCPath', data);
   }
 
+  cartPathUpdate(data) {
+    return this.http.post(this.vendorVendorUrl + '/cardUpload', data);
+  }
+
+
   emailValidation(email) {
     return this.http.get(this.vendorVendorUrl + '/emailValidation'+ '?email=' + email);
   }

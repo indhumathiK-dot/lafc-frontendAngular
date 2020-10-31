@@ -47,3 +47,13 @@
   background: black;
   color: #FFFFFF;
 }
+.buy-now-button:hover {
+  border: 1px solid #dae6ff;
+  background: #dae6ff;
+  color: #414141;
+}
+.buy-now-button {
+  border: black;
+  background: black;
+  color: #FFFFFF;
+}

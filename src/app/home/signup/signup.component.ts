@@ -36,6 +36,7 @@ export class SignupComponent implements OnInit {
   };
   public infoDetails: any;
   public emailCheck: boolean = false;
+  stateIndex: any;
 
   constructor(private fb: FormBuilder,
               private authService: AuthenticationService,
@@ -144,13 +145,18 @@ export class SignupComponent implements OnInit {
     this.countryService.getStatesName(id).pipe(take(1)).subscribe(
       data => {
         var myObj = {};
-        data.zone.forEach(element => {
+        var staeIdIndex = 0;
+        data.zone.forEach((element, index) => {
+          if(element.zone_id === stateId) {
+            staeIdIndex = index;
+          }
           myObj = {
             value: element.zone_id,
             label: element.name
           };
           this.statesArr.push(myObj);
         });
+        this.stateIndex = staeIdIndex;
         this.statesList = this.statesArr;
         if(stateId) {
           this.registerForm.patchValue({state: Number(stateId)})

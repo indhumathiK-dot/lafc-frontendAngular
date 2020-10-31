@@ -156,19 +156,19 @@
 }
 
 
-.select-mat-dd {
+.check-select-mat-dd {
   width: 100%;
 }
-::ng-deep .select-dd-panel {
+::ng-deep .check-select-dd-panel {
   margin-top: 43px;
 }
 
-.select-mat-dd ::ng-deep .mat-form-field-wrapper {
+.check-select-mat-dd ::ng-deep .mat-form-field-wrapper {
   margin-top: 0;
   margin-bottom: 0;
   padding-bottom: 0;
 }
-.select-mat-dd ::ng-deep .mat-select-arrow {
+.check-select-mat-dd ::ng-deep .mat-select-arrow {
   width: 11px;
   height: 11px;
   background-color: #fff;

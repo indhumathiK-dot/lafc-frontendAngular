@@ -117,7 +117,7 @@
             <label class="label-name parellel-field display-flex">State<span class="astrix-size">*</span></label>
 
             <mat-form-field class="select-mat-dd parellel-field" appearance="outline">
-              <mat-select matNativeControl  formControlName="state" (selectionChange)="checkValidationForm('state', $event.value)" [ngClass]="validationCheck['state'] ? 'errorClass' : ''"
+              <mat-select matNativeControl [ngModel]="statesList[stateIndex]?.value"  formControlName="state" (selectionChange)="checkValidationForm('state', $event.value)" [ngClass]="validationCheck['state'] ? 'errorClass' : ''"
                            panelClass="select-dd-panel">
                 <mat-option [value]="state.value" *ngFor="let state of statesList">{{state.label}}</mat-option>
               </mat-select>

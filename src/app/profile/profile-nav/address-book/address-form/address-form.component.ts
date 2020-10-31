@@ -6,6 +6,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { take } from 'rxjs/operators';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {NgOption} from "@ng-select/ng-select";
+import {element} from "protractor";
 
 @Component({
   selector: 'app-address-form',
@@ -35,6 +36,7 @@ export class AddressFormComponent implements OnInit {
   };
   private addressList: [];
   public countryCode = '+1';
+  public stateIndex: number;
 
   constructor(private countryService: CountryService,
     public router: Router,
@@ -111,13 +113,18 @@ export class AddressFormComponent implements OnInit {
     this.countryService.getStatesName(id).pipe(take(1)).subscribe(
       data => {
         var myObj = {};
-        data.zone.forEach(element => {
+        var staeIdIndex = 0;
+        data.zone.forEach((element, index) => {
+          if(element.zone_id === stateId) {
+            staeIdIndex = index;
+          }
           myObj = {
             value: element.zone_id,
             label: element.name
           };
           this.statesArr.push(myObj);
         });
+        this.stateIndex = staeIdIndex;
         this.statesList = this.statesArr;
         if(stateId) {
           this.addressForm.patchValue({state: Number(stateId)})

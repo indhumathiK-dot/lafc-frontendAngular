@@ -434,3 +434,10 @@
 ::ng-deep .quick-select .mat-form-field-appearance-outline .mat-select-arrow-wrapper {
   transform: translateY(-60%);
 }
+
+.select-mat-dd ::ng-deep .mat-select-value {
+  font-size: 17px;
+}
+::ng-deep.mat-select-panel .mat-option {
+  font-size: 17px !important;
+}

@@ -205,6 +205,7 @@ public slideIndex = 1;
               this.cartLabel = 'Added to cart';
             }
             if (type === 'buy') {
+              sessionStorage.setItem('buyNowProduct', this.productId);
               this.hideModal();
               this.router.navigate(['/cart/items']);
             }
@@ -231,6 +232,7 @@ public slideIndex = 1;
             }
             this.cartService.addToCartCountSub.next();
             if (type === 'buy') {
+              sessionStorage.setItem('buyNowProduct', this.productId);
               this.hideModal();
               this.router.navigate(['/cart/items']);
             }

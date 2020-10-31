@@ -7,7 +7,7 @@
     </a>
   </div>
 
-  <div class="row">
+  <div class="row" *ngIf="data?.type !== 'confirm'">
   <div class="col-md-3 right-align right-pad-remove">
     <div *ngIf="data?.type === 'success'">
     <svg xmlns="http://www.w3.org/2000/svg" width="93.954" height="71.954" viewBox="0 0 41.954 41.954">
@@ -30,6 +30,22 @@
     <div class="title">{{data?.title}}</div>
     <div class="message">{{data?.message}}</div>
   </div>
+  </div>
+
+  <div class="row center-align" *ngIf="data?.type === 'confirm'">
+    <div class="col-md-12 left-pad-remove">
+      <div class="title">{{data?.title}}</div>
+      <div class="message">{{data?.message}}</div>
+    </div>
+  </div>
+
+  <div class="center-align" *ngIf="data?.type === 'confirm'">
+    <div class="checkout cart-button display user-padding" (click)="removeItem()">
+      Yes
+    </div>
+    <div class="checkout buy-now-button display user-padding" (click)="onClickCancel()">
+      Cancel
+    </div>
   </div>
 
   <div class="center-align" *ngIf="data?.type === 'error'">

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {BsModalRef} from "ngx-bootstrap";
 import {Router} from "@angular/router";
+import {CartService} from "../../services/cart.service";
+import {take} from "rxjs/operators";
 
 @Component({
   selector: 'app-error-component',
@@ -11,7 +13,8 @@ export class ErrorComponentComponent implements OnInit {
   data;
 
   constructor(private bsModalRef: BsModalRef,
-              private router: Router) { }
+              private router: Router,
+              private cartSerivce: CartService) { }
 
   ngOnInit() {
     setTimeout(() => {
@@ -30,4 +33,16 @@ export class ErrorComponentComponent implements OnInit {
       this.router.navigate([this.data.url]);
     }
   }
+
+  removeItem() {
+    var value = {
+      key: this.data.data['key']
+    }
+      this.cartSerivce.deleteCartProduct(this.data.data['key']).pipe(take(1)).
+      subscribe(e => {
+        this.bsModalRef.hide();
+        this.cartSerivce.addToCartCountSub.next();
+        this.cartSerivce.cartListUpdate.next(true);
+      });
+    }
 }

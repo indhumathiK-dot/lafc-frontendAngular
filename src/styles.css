@@ -19,6 +19,21 @@ input::-webkit-inner-spin-button {
 input[type=number] {
   -moz-appearance: textfield;
 }
+input.mat-input-element {
+  font-family: 'Raleway';
+}
+select.mat-input-element {
+  font-family: 'Raleway';
+}
+table.mat-table {
+  font-family: Raleway;
+}
+.mat-radio-button {
+  font-family: Raleway;
+}
+.mat-checkbox {
+  font-family: Raleway;
+}
 
 body{
   font-size: 15px;
@@ -242,7 +257,7 @@ and (-webkit-min-device-pixel-ratio: 1) {
     font-size: 13px !important;
   }
   .logo-image {
-    width: 70% !important;
+    /* width: 70% !important; */
     height: 160px !important;
     margin-left: 15px;
   }
@@ -261,7 +276,7 @@ and (-webkit-min-device-pixel-ratio: 1) {
     font-size: 10px !important;
   }
   .logo-image {
-    width: 50% !important;
+    /* width: 50% !important; */
     height: 115px !important;
     margin-left: 25px;
   }
@@ -287,7 +302,7 @@ and (-webkit-min-device-pixel-ratio: 1) {
     margin-bottom: 0 !important;
   }
   .logo-image {
-    width: 35% !important;
+    /* width: 35% !important; */
     height: 85px !important;
     margin-left: 28px;
   }

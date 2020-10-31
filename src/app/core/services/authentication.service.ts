@@ -25,12 +25,11 @@ export class AuthenticationService {
       .pipe(
         map((res: any) => {
           if (res) {
-            this.router.navigate(['/']);
-            alert('Thank you for registering with LAFC! You will be notified by e-mail once your account has been activated by the store owner.');
+            // this.router.navigate(['/']);
+            // alert('Thank you for registering with LAFC! You will be notified by e-mail once your account has been activated by the store owner.');
             // localStorage.setItem('user', JSON.stringify(res.data));
             // this.currentUserSubject.next(res);
           } else {
-            alert('htghjfg')
           }
           return res;
         }), catchError(
@@ -47,6 +46,10 @@ export class AuthenticationService {
 
   updatePath(data) {
     return this.http.post(this.vendorVendorUrl + '/updateCCPath', data);
+  }
+
+  emailValidation(email) {
+    return this.http.get(this.vendorVendorUrl + '/emailValidation'+ '?email=' + email);
   }
 
   getCustomerDetails(customerId) {

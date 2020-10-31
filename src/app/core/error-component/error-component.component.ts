@@ -1,6 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { MatDialogRef } from '@angular/material';
-import { AuthenticationService } from '../services/authentication.service';
+import { Component, OnInit } from '@angular/core';
+import {BsModalRef} from "ngx-bootstrap";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-error-component',
@@ -8,19 +8,26 @@ import { AuthenticationService } from '../services/authentication.service';
   styleUrls: ['./error-component.component.css']
 })
 export class ErrorComponentComponent implements OnInit {
-  public errorMessage: string = "500 SERVER ERROR, CONTACT ADMINISTRATOR!!!!";
-  public dialogRef: MatDialogRef<ErrorComponentComponent>
-  @Input() isContinue: boolean;
-  constructor(public authenticationService: AuthenticationService) { }
+  data;
+
+  constructor(private bsModalRef: BsModalRef,
+              private router: Router) { }
 
   ngOnInit() {
-    
+    setTimeout(() => {
+      this.data = this.bsModalRef.content.data ;
+    }, 200);
   }
   onClickContinue() {
-    this.authenticationService.logOutCurrentUser();
-    this.dialogRef.close();
+
+  }
+  close() {
+    this.bsModalRef.hide();
   }
   onClickCancel() {
-    this.dialogRef.close();
+    this.bsModalRef.hide();
+    if(this.data.url) {
+      this.router.navigate([this.data.url]);
+    }
   }
 }

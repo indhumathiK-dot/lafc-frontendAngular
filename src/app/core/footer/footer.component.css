@@ -24,8 +24,7 @@
 .footer-align {
   margin-bottom: 10px;
   margin-top: 10px;
-  padding-left: 0;
-  padding-right: 70px;
+  text-align: end;
 }
 .separators {
   font-size: 13px;

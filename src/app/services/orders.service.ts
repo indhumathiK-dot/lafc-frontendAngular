@@ -86,6 +86,17 @@ export class OrdersService {
     }).pipe(tap(r => r), catchError(this.handleErrorObservable));
   }
 
+  getBuynowBundleOrderSummary(productId): Observable<any> {
+    var data ={
+      id: productId
+    }
+    return this.http.post<any>(this.baseUrl + `/buyNowBundleConfirm`, data, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    }).pipe(tap(r => r), catchError(this.handleErrorObservable));
+  }
+
   // To Empty cart, and clear session.
   onCreateOrder(): Observable<any> {
     return this.http.put<any>(this.baseUrl + `/confirm`, {
@@ -98,6 +109,18 @@ export class OrdersService {
   // To Empty cart, and clear session.
   onCreateBundleOrder(): Observable<any> {
     return this.http.put<any>(this.baseUrl + `/bundleConfirm`, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    }).pipe();
+  }
+
+  // To Empty cart, and clear session.
+  onCreateBuynowBundleOrder(): Observable<any> {
+    var data = {
+      id: sessionStorage.getItem('buyNowProduct')
+    }
+    return this.http.put<any>(this.baseUrl + `/buyNowBundleConfirm`, data, {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
       })

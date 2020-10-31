@@ -65,23 +65,43 @@
 <!--    </div>-->
 <!--      </div>-->
 
+
       <div class="display col-md-4 row-space">
         <label class="label-name display-flex">Country<span class="astrix-size">*</span></label>
-        <mat-form-field appearance="outline" class="w-100 address-form mat-bottom-remove delivery-checkout" [ngClass]="validationCheck['country'] ? 'errorClass' : ''">
-          <select matNativeControl formControlName="country" (change)="onSelectCountry(addressForm.value.country)">
-            <option [value]="country.value" *ngFor="let country of countriesList">{{country.label}}</option>
-          </select>
-        </mat-form-field>
+      <mat-form-field class="select-mat-dd" appearance="outline" [ngClass]="validationCheck['country'] ? 'errorClass' : ''">
+        <mat-select  formControlName="country" (selectionChange)="onSelectCountry(addressForm.value.country)"
+                    panelClass="select-dd-panel">
+          <mat-option [value]="country.value" *ngFor="let country of countriesList">{{country.label}}</mat-option>
+        </mat-select>
+      </mat-form-field>
         <div *ngIf="validationCheck['country']" class="password-check">Please select country </div>
       </div>
 
+<!--      <div class="display col-md-4 row-space">-->
+<!--        <label class="label-name display-flex">Country<span class="astrix-size">*</span></label>-->
+<!--        <mat-form-field appearance="outline" class="w-100 address-form mat-bottom-remove delivery-checkout" [ngClass]="validationCheck['country'] ? 'errorClass' : ''">-->
+<!--          <select matNativeControl formControlName="country" (change)="onSelectCountry(addressForm.value.country)">-->
+<!--            <option [value]="country.value" *ngFor="let country of countriesList">{{country.label}}</option>-->
+<!--          </select>-->
+<!--        </mat-form-field>-->
+<!--        <div *ngIf="validationCheck['country']" class="password-check">Please select country </div>-->
+<!--      </div>-->
+
       <div class="display col-md-4 row-space">
         <label class="label-name display-flex parellel-field">State<span class="astrix-size">*</span></label>
-        <mat-form-field appearance="outline"  class="w-100 address-form mat-bottom-remove delivery-checkout parellel-field" [ngClass]="validationCheck['state'] ? 'errorClass' : ''">
-          <select matNativeControl formControlName="state" (change)="checkValidationForm('state', $event.target.value)">
-            <option [value]="state.value" *ngFor="let state of statesList">{{state.label}}</option>
-          </select>
+
+        <mat-form-field class="select-mat-dd parellel-field" appearance="outline"  [ngClass]="validationCheck['state'] ? 'errorClass' : ''">
+          <mat-select  formControlName="state" [(ngModel)]="addressForm.value.state" (selectionChange)="checkValidationForm('state', addressForm.value.state)"
+                       panelClass="select-dd-panel">
+            <mat-option [value]="state.value" *ngFor="let state of statesList">{{state.label}}</mat-option>
+          </mat-select>
         </mat-form-field>
+
+<!--        <mat-form-field appearance="outline"  class="w-100 address-form mat-bottom-remove delivery-checkout parellel-field" [ngClass]="validationCheck['state'] ? 'errorClass' : ''">-->
+<!--          <select matNativeControl formControlName="state" (change)="checkValidationForm('state', $event.target.value)">-->
+<!--            <option [value]="state.value" *ngFor="let state of statesList">{{state.label}}</option>-->
+<!--          </select>-->
+<!--        </mat-form-field>-->
         <div *ngIf="validationCheck['state']" class="password-check parellel-field">Please select state </div>
       </div>
 

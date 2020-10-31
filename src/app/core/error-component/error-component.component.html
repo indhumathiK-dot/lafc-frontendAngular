@@ -1,8 +1,41 @@
-<h4 mat-dilog-title> OOPS! Error Occurred </h4>
-<div mat-dialog-content>
-    <p> {{data.errorMessage}} </p>
-</div>
-<div mat-dialog-actions class="action-btn">
-    <button mat-button *ngIf="isContinue" class="btn btn-danger col-md-5" (click)="onClickContinue()"> Continue </button>
-    <button mat-button class="btn btn-dark col-md-5" style="margin-left:20px" (click)="onClickCancel()"> Cancel </button>
+<div class="side-container">
+
+  <div class="right-align mouse-events tag">
+    <a (click)="onClickCancel()" class="mouse-events"><svg xmlns="http://www.w3.org/2000/svg" width="16.261" height="16.257" viewBox="0 0 16.261 16.257">
+      <path id="Icon_ionic-ios-close" data-name="Icon ionic-ios-close" d="M21.343,19.417l5.808-5.808a1.361,1.361,0,1,0-1.925-1.925l-5.808,5.808L13.61,11.685a1.361,1.361,0,1,0-1.925,1.925l5.808,5.808-5.808,5.808A1.361,1.361,0,1,0,13.61,27.15l5.808-5.808,5.808,5.808a1.361,1.361,0,1,0,1.925-1.925Z" transform="translate(-11.285 -11.289)" fill="#998c88"/>
+    </svg>
+    </a>
+  </div>
+
+  <div class="row">
+  <div class="col-md-3 right-align right-pad-remove">
+    <div *ngIf="data?.type === 'success'">
+    <svg xmlns="http://www.w3.org/2000/svg" width="93.954" height="71.954" viewBox="0 0 41.954 41.954">
+      <g id="Icon_ionic-ios-checkmark-circle-outline" data-name="Icon ionic-ios-checkmark-circle-outline" transform="translate(-3.375 -3.375)">
+        <path id="Path_114" data-name="Path 114" d="M32.037,14.153l-1.775-1.825a.382.382,0,0,0-.282-.121h0a.366.366,0,0,0-.282.121l-12.3,12.395-4.478-4.478a.39.39,0,0,0-.565,0l-1.8,1.8a.4.4,0,0,0,0,.575L16.2,28.262a1.786,1.786,0,0,0,1.18.575,1.872,1.872,0,0,0,1.17-.555h.01L32.047,14.728A.431.431,0,0,0,32.037,14.153Z" transform="translate(3.066 3.836)" fill="#46c857"/>
+        <path id="Path_115" data-name="Path 115" d="M24.352,6.2a18.146,18.146,0,1,1-12.838,5.315A18.033,18.033,0,0,1,24.352,6.2m0-2.824A20.977,20.977,0,1,0,45.329,24.352,20.974,20.974,0,0,0,24.352,3.375Z" fill="#46c857"/>
+      </g>
+    </svg>
+    </div>
+
+    <div *ngIf="data?.type === 'error'">
+      <svg xmlns="http://www.w3.org/2000/svg" width="93.977" height="71.977" viewBox="0 0 41.977 41.977">
+        <path id="Icon_material-error-outline" data-name="Icon material-error-outline" d="M21.89,30.285h4.2v4.2h-4.2Zm0-16.791h4.2V26.087h-4.2ZM23.968,3a20.989,20.989,0,1,0,21.01,20.989A20.978,20.978,0,0,0,23.968,3Zm.021,37.779A16.791,16.791,0,1,1,40.779,23.989,16.786,16.786,0,0,1,23.989,40.779Z" transform="translate(-3 -3)" fill="#ea4d42"/>
+      </svg>
+    </div>
+
+  </div>
+
+  <div class="col-md-9 left-pad-remove">
+    <div class="title">{{data?.title}}</div>
+    <div class="message">{{data?.message}}</div>
+  </div>
+  </div>
+
+  <div class="center-align" *ngIf="data?.type === 'error'">
+    <div class="checkout cart-button display user-padding" (click)="onClickCancel()">
+      OK
+    </div>
+  </div>
+
 </div>

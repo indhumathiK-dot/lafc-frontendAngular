@@ -18,11 +18,19 @@
 
 
     <div class="">
-      <mat-form-field appearance="outline"  class="w-100 delivery-checkout select-shipping">
-        <select matNativeControl [ngModel]="1" (change)="shippingMethodChange($event.target.value)" placeholder="Shipping Method">
-          <option [value]="ship.value" *ngFor="let ship of shippingMethods">{{ship.label}}</option>
-        </select>
-      </mat-form-field>
+<!--      <mat-form-field appearance="outline"  class="w-100 delivery-checkout select-shipping">-->
+
+        <mat-form-field class="select-mat-dd" appearance="outline">
+          <mat-select [ngModel]="1"  (selectionChange)="shippingMethodChange($event.value)"
+                       panelClass="select-dd-panel">
+            <mat-option [value]="ship.value" *ngFor="let ship of shippingMethods">{{ship.label}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+<!--        <select matNativeControl [ngModel]="1" (change)="shippingMethodChange($event.target.value)" placeholder="Shipping Method">-->
+<!--          <option [value]="ship.value" *ngFor="let ship of shippingMethods">{{ship.label}}</option>-->
+<!--        </select>-->
+<!--      </mat-form-field>-->
     </div>
 
 

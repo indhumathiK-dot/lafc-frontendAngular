@@ -127,6 +127,14 @@ export class BestSellerHttpService {
         catchError(this.handleErrorObservable)
       );
   }
+  postNewAddressForRegister(obj): Observable<any> {
+    return this.http
+      .post(this.baseUrl + '/account/createAddress', obj)
+      .pipe(
+        map((res: Response) => res),
+        catchError(this.handleErrorObservable)
+      );
+  }
 
   postWishListItem(product_id) {
     return this.http.post(this.baseUrl + `/wishlist/${product_id}`, product_id)

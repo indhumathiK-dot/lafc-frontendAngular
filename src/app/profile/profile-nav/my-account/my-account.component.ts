@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthenticationService} from "../../../core/services/authentication.service";
+import {ErrorComponentComponent} from "../../../core/error-component/error-component.component";
+import {BsModalService} from "ngx-bootstrap";
 
 @Component({
   selector: 'app-my-account',
@@ -14,7 +16,8 @@ export class MyAccountComponent implements OnInit {
   public uploadSuccess: boolean = false;
   public uploadedFileName: any;
 
-  constructor(private authService: AuthenticationService) { }
+  constructor(private authService: AuthenticationService,
+              public modalService: BsModalService) { }
 
   ngOnInit() {
     let user = localStorage.getItem('user');
@@ -48,7 +51,7 @@ export class MyAccountComponent implements OnInit {
         }
       })
     } else {
-      alert('Please select the file for upload');
+      this.errorUpdate();
     }
   }
 
@@ -66,6 +69,16 @@ export class MyAccountComponent implements OnInit {
 
       }
     })
+  }
+
+  errorUpdate() {
+    var data = {
+      title: 'My cards',
+      message: 'Please select the file to upload!',
+      type: 'error'
+    }
+    const initialState = {data: data};
+    var loginModalRef = this.modalService.show(ErrorComponentComponent, Object.assign({}, { class: 'modal-md modal-dialog-centered', initialState }));
   }
 
 }

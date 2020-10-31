@@ -298,6 +298,7 @@ export class ProductDetailsComponent implements OnInit {
             this.cartLabel = 'Added to cart';
             this.cartService.addToCartCountSub.next();
             if (type === 'buy') {
+              sessionStorage.setItem('buyNowProduct', this.productId);
               this.router.navigate(['/cart/delivery']);
             }
           }, (error) => {

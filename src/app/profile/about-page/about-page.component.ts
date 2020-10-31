@@ -4,6 +4,8 @@ import {informationServices} from "../../home/information/information.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {AuthenticationService} from "../../core/services/authentication.service";
 import {ToastrService} from "ngx-toastr";
+import {ErrorComponentComponent} from "../../core/error-component/error-component.component";
+import {BsModalService} from "ngx-bootstrap";
 
 @Component({
   selector: 'app-about-page',
@@ -20,7 +22,8 @@ export class AboutPageComponent implements OnInit {
   constructor(private route: ActivatedRoute,
               private infoService: informationServices,
               private fb: FormBuilder,
-              private authenticationService: AuthenticationService) { }
+              private authenticationService: AuthenticationService,
+              public modalService: BsModalService) { }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
@@ -70,8 +73,19 @@ export class AboutPageComponent implements OnInit {
       this.authenticationService.contactMessage(contactData).subscribe(data => {
         if (data.success === 1) {
           this.contactForm.reset();
+          this.successUpdate();
         }
       });
     }
+  }
+
+  successUpdate() {
+    var data = {
+      title: 'Contact Us',
+      message: 'Thanks for contacting us! We will get back to you as soon as possible.',
+      type: 'success'
+    }
+    const initialState = {data: data};
+    var loginModalRef = this.modalService.show(ErrorComponentComponent, Object.assign({}, { class: 'modal-md modal-dialog-centered', initialState }));
   }
 }

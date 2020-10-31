@@ -33,10 +33,10 @@
 
         <ng-container matColumnDef="Quantity">
           <th mat-header-cell *matHeaderCellDef>Quantity</th>
-          <td mat-cell *matCellDef="let element" class="border-table">
+          <td mat-cell *matCellDef="let element; let i=index" class="border-table">
             <div class="quantity-and-remove">
               <mat-form-field class="selectQ w-100">
-                <input type="number" min="1" matInput name="quantity" (keyup)="quantityUpdate($event.target.value, element)" [value]="element.cartBundleQuantity">
+                <input type="number" min="1" matInput name="quantity" (keyup)="quantityUpdate($event, element, i)" [value]="element.cartBundleQuantity">
               </mat-form-field>
             </div>
             <div class="link-color mouse-events" (click)="removeCartItem(element.key)">Remove</div>
@@ -66,7 +66,7 @@
         </div>
         <div class=" no-padding right-total-padding textAlignRight bold-font" style="width: 50%;">
           {{total?.text}}
-        </div>  
+        </div>
 
       </div>
 
@@ -86,8 +86,8 @@
           </div>
         </div>
       </div>
-    
-    
+
+
 
     </div>
 

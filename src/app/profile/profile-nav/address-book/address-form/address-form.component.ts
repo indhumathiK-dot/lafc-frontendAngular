@@ -164,7 +164,6 @@ export class AddressFormComponent implements OnInit {
         pincode: !(this.addressForm.value.pincode && (this.addressForm.value.pincode.length > 4 && this.addressForm.value.pincode.length < 10)),
         phone:  this.addressForm.value.phone ? !(this.digits_count(Number(this.addressForm.value.phone)) > 7 && this.digits_count(Number(this.addressForm.value.phone)) < 32) : false
       }
-      console.log(this.validationCheck)
       return;
     } else {
       var data = {

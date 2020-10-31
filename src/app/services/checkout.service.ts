@@ -64,6 +64,36 @@ export class CheckoutService {
     );
   }
 
+  getBuynowOrderSummary(productId) {
+    return this.ordersService.getBuynowBundleOrderSummary(productId).subscribe(
+      data => {
+        this.orderSummaryData = data;
+        if (this.createOrderService.selectedPaymentMethod === 'ccavenuepay') {
+          this.isCCAvenue = true;
+          window.onpopstate = (e) => {
+            this.payStatusUrl.next(e);
+          };
+          return;
+          //this.router.navigate(['/orderSummary', this.orderSummaryData.data.order_id]);
+        } else {
+          this.buynowCreateOrder();
+          sessionStorage.setItem('orderId', this.orderSummaryData.data.order_id);
+        }
+      }, (error) => {
+        this.isOrderSummaryFailed = true;
+        this.newErrorMsg = error.error.map(error => error);
+        this.noPaymentMethodSelected = this.newErrorMsg[0];
+        this.isError = true;
+        var sa = localStorage.getItem('shipAddrId');
+        var pa = localStorage.getItem('paymentAddrId');
+        var sm = localStorage.getItem('shippingMethod');
+        let createOrder = new CreateOrder(pa, sa, sm);
+        this.ordersService.createOrderAS(createOrder);
+        this.createOrderService.getPaymentMethods();
+      }
+    );
+  }
+
   getSanitizedValue() {
     return this.sanitizer.bypassSecurityTrustHtml(this.orderSummaryData.data.payment);
   }
@@ -71,6 +101,17 @@ export class CheckoutService {
     this.ordersService.onCreateBundleOrder().subscribe(
       data => {
         this.orderCreateRes = data;
+        this.router.navigate(['/cart/orderSuccess']);
+      },
+      (err) => {
+      }
+    )
+  }
+  buynowCreateOrder() {
+    this.ordersService.onCreateBuynowBundleOrder().subscribe(
+      data => {
+        this.orderCreateRes = data;
+        sessionStorage.removeItem('buyNowProduct');
         this.router.navigate(['/cart/orderSuccess']);
       },
       (err) => {

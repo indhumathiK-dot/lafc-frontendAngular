@@ -9,7 +9,7 @@ import {ActivatedRoute} from "@angular/router";
   styleUrls: ['./my-orders-details.component.css'],
 })
 export class MyOrdersDetailsComponent implements OnInit {
-  displayedColumns = ['Product', 'SKU', 'Price', 'Quantity', 'Tracking Code', 'Total'];
+  displayedColumns = ['Product', 'SKU', 'Price', 'Quantity', 'Bundle Quantity', 'Tracking Code', 'Total'];
   commentColumns = ['Date', 'Comment'];
   dataSource = new MatTableDataSource<any>();
   public orderDetails: any;
@@ -32,14 +32,24 @@ export class MyOrdersDetailsComponent implements OnInit {
    this.ordersService.getCustomerOrdersDetailsWithTrackingById(id).subscribe(
      data => {
       this.orderDetails = data;
+
+       let html = this.orderDetails.comment;
+       let htmlObject = document.createElement('div');
+       htmlObject.innerHTML = html;
+       this.orderDetails.comment = htmlObject.innerText;
+
+       this.orderDetails.comment = this.orderDetails.comment.split('<br>');
+       console.log(this.orderDetails.comment);
+
        for(let productIndex = 0; productIndex < data.products.length; productIndex++) {
+         var quantity = Number(data.products[productIndex].quantity) / Number(data.products[productIndex].bundleQuantity);
+         data.products[productIndex].unitPrice = (data.products[productIndex].price_raw * quantity).toFixed(2);
          for(let index = 0; index < this.orderDetails.tracking_code.rows.length; index++) {
            if(this.orderDetails.tracking_code.rows[index].product_id === data.products[productIndex].product_id) {
              data.products[productIndex].tracking = this.orderDetails.tracking_code.rows[index].tracking_id_s2s;
            }
          }
        }
-       console.log(data.products)
       this.dataSource.data = data.products;
        var orderhistory = [];
        var totalValue = [];

@@ -17,4 +17,11 @@ export class CartComponent implements OnInit {
     });
 
   }
+
+  routerNavigate(url: string) {
+    if(url === '/' || url === '/cart/items') {
+      sessionStorage.removeItem('buyNowProduct');
+    }
+    this.router.navigate([url]);
+  }
 }

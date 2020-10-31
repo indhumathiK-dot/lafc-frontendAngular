@@ -4,6 +4,7 @@ import {Router} from "@angular/router";
 import {take} from "rxjs/internal/operators";
 import {CartService} from "../../services/cart.service";
 import {OrdersService} from "../../services/orders.service";
+import {ProductsService} from "../../services/products.service";
 
 @Component({
   selector: 'app-cart-item',
@@ -20,16 +21,45 @@ export class CartItemComponent {
   public cartDetails;
   public orderDetails: any;
   public totalArray: any[];
+  private buyNowProduct: string;
 
   constructor(private router: Router,
               private cartSerivce: CartService,
-              private ordersService: OrdersService) { }
+              private ordersService: OrdersService,
+              private productsService: ProductsService) {
+    this.buyNowProduct = sessionStorage.getItem('buyNowProduct');
+  }
 
   ngOnInit() {
     this.router.events.subscribe(event => {
     });
     this.shiipingInfo = 'Calculated Later';
-    this.getCartItems();
+    if(this.buyNowProduct) {
+      this.getProductDetails(this.buyNowProduct)
+    } else {
+      this.getCartItems();
+    }
+  }
+
+  getProductDetails(productId) {
+    this.cartSerivce.getCartBundleProducts().pipe(take(1)).subscribe(e => {
+      if ((e !== null) && (e !== undefined)) {
+        var productItems = [];
+        for (let index = 0; index < e.products.length; index++) {
+          if(e.products[index].product_id == productId) {
+            productItems.push(e.products[index])
+          }
+        }
+        this.dataSource.data = productItems;
+        this.totalArray = [
+          {title: 'Sub Total', text: productItems[0]['bundle_total']},
+          {title: 'Total', text: productItems[0]['bundle_total']}
+          ];
+
+      } else {
+        this.dataSource.data = [];
+      }
+    });
   }
 
   getCartItems() {

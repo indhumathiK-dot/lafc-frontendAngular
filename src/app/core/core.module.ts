@@ -65,6 +65,9 @@ const routes: Routes = [
     SubCategoryTreeComponent,
     FooterComponent,
     SidebarComponent,
+  ],
+  entryComponents: [
+    ErrorComponentComponent
   ]
 })
 export class CoreModule { }

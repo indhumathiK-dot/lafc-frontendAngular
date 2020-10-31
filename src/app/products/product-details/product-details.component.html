@@ -17,38 +17,44 @@
   </div> -->
 </div>
 <div class="footer-padding right-adjust">
-<div class="head-changes">
-  <a class="back-design common-color mouse-events" (click)="backRedirection(backname)">
-    <span class="back-icon">
-      <svg xmlns="http://www.w3.org/2000/svg" width="10.121" height="16.243" viewBox="0 0 11.121 23.243">
-        <path id="Icon_feather-chevron-down" data-name="Icon feather-chevron-down" d="M15,7.5,7.5,0,0,7.5" transform="translate(1.5 17.121) rotate(-90)" fill="none" stroke="#998c88" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
-      </svg>
-        </span>
-    Back to {{backname}}</a>
-  <div class="right-align">
-    <a class="padding-between mouse-events" (click)="previousProduct()" *ngIf="previousIndexCheck">
+  <div class="head-changes">
+    <a class="back-design common-color mouse-events" (click)="backRedirection(backname)">
       <span class="back-icon">
-      <svg xmlns="http://www.w3.org/2000/svg" width="10.121" height="16.243" viewBox="0 0 11.121 23.243">
-        <path id="Icon_feather-chevron-down" data-name="Icon feather-chevron-down" d="M15,7.5,7.5,0,0,7.5" transform="translate(1.5 17.121) rotate(-90)" fill="none" stroke="#998c88" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
-      </svg>
-        </span>
-     <span> prev</span>
-     </a>
-    <a (click)="nextProduct()" class="mouse-events" *ngIf="nextIndexCheck">Next
-      <span class="next-icon">
-      <svg xmlns="http://www.w3.org/2000/svg" width="10.121" height="16.243" viewBox="0 0 11.121 23.243">
-      <path id="Icon_feather-chevron-down" data-name="Icon feather-chevron-down" d="M15,0,7.5,7.5,0,0" transform="translate(2.121 17.121) rotate(-90)" fill="none" stroke="#998c88" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
-    </svg>
+        <svg xmlns="http://www.w3.org/2000/svg" width="10.121" height="16.243" viewBox="0 0 11.121 23.243">
+          <path id="Icon_feather-chevron-down" data-name="Icon feather-chevron-down" d="M15,7.5,7.5,0,0,7.5"
+            transform="translate(1.5 17.121) rotate(-90)" fill="none" stroke="#998c88" stroke-linecap="round"
+            stroke-linejoin="round" stroke-width="3" />
+        </svg>
       </span>
+      Back to {{backname}}</a>
+    <div class="right-align">
+      <a class="padding-between mouse-events" (click)="previousProduct()" *ngIf="previousIndexCheck">
+        <span class="back-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="10.121" height="16.243" viewBox="0 0 11.121 23.243">
+            <path id="Icon_feather-chevron-down" data-name="Icon feather-chevron-down" d="M15,7.5,7.5,0,0,7.5"
+              transform="translate(1.5 17.121) rotate(-90)" fill="none" stroke="#998c88" stroke-linecap="round"
+              stroke-linejoin="round" stroke-width="3" />
+          </svg>
+        </span>
+        <span> prev</span>
       </a>
+      <a (click)="nextProduct()" class="mouse-events" *ngIf="nextIndexCheck">Next
+        <span class="next-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="10.121" height="16.243" viewBox="0 0 11.121 23.243">
+            <path id="Icon_feather-chevron-down" data-name="Icon feather-chevron-down" d="M15,0,7.5,7.5,0,0"
+              transform="translate(2.121 17.121) rotate(-90)" fill="none" stroke="#998c88" stroke-linecap="round"
+              stroke-linejoin="round" stroke-width="3" />
+          </svg>
+        </span>
+      </a>
+    </div>
   </div>
-</div>
 
-<br>
+  <br>
 
-<div class="row no-margin fd-wid-comp">
+  <div class="row no-margin fd-wid-comp">
 
- <!-- <div class="owl-carousel owl-theme owl-loaded">
+    <!-- <div class="owl-carousel owl-theme owl-loaded">
     <div class="owl-stage-outer">
       <div class="owl-stage">
         <div class="owl-item" *ngFor="let image of productImages;let i = index">
@@ -66,143 +72,165 @@
       <div class="owl-dot"><span></span></div>
     </div>
   </div>-->
-<div class="header-margin w-100">
+    <div class="header-margin w-100">
 
-  <div class="product-width fd-t">
+      <div class="product-width fd-t">
 
 
-    <div id="arrivalcarousal" class="carousel slide" data-ride="carousel" data-interval="0">
-          <div class="swiper-container gallery-top swiper-border">
+        <div id="arrivalcarousal" class="carousel slide" data-ride="carousel" data-interval="0">
+          <div class="swiper-container gallery-top" [ngClass]="productImages.length > 1 ? 'swiper-border' : ''">
             <div class="swiper-wrapper">
 
               <div class="swiper-slide swiper-margin" *ngFor="let image of productImages; let i = index;">
-                <div class="swiper-slide-container" >
+                <div class="swiper-slide-container">
                   <img src="{{image}}" alt="product-image" (click)="imageView(i)">
                 </div>
-                </div>
+              </div>
 
 
             </div>
             <!-- Add Arrows -->
-<!--            <div class="swiper-button-n"><i class="fa fa-angle-right" aria-hidden="true"></i></div>-->
-<!--            <div class="swiper-button-p"><i class="fa fa-angle-left" aria-hidden="true"></i></div>-->
+            <!--            <div class="swiper-button-n"><i class="fa fa-angle-right" aria-hidden="true"></i></div>-->
+            <!--            <div class="swiper-button-p"><i class="fa fa-angle-left" aria-hidden="true"></i></div>-->
 
-        </div>
-        <div class="swiper-container gallery-thumbs">
+          </div>
+          <div class="swiper-container gallery-thumbs">
             <div class="swiper-wrapper swiper-transform">
               <div class="swiper-slide swiper-width" *ngFor="let image of productImages; let i = index;">
-<!--                <div  >-->
-                  <img src="{{image}}"class="swiper-slide-container"  alt="product-image">
-<!--                </div>-->
-                </div>
+                <!--                <div  >-->
+                <img src="{{image}}" class="swiper-slide-container" alt="product-image">
+                <!--                </div>-->
+              </div>
             </div>
+          </div>
         </div>
-    </div>
-  </div>
+      </div>
 
-  <div class="product-info">
-<div class="product-title">
-  <div>
-    {{productsDetails?.name}}
-  </div>
-  <div class="stock-status" *ngIf="productsDetails?.stock_status_id !== 7 && loginCheck">
-  <label>*{{productsDetails?.stock_status}}</label>
-  </div>
-  <div *ngIf="loginCheck">
-  <div>
-    {{productsDetails?.bundle_price}}
-  </div>
-  <div class="border-detail">
+      <div class="product-info">
+        <div class="product-title">
+          <div>
+            {{productsDetails?.name}}
+          </div>
+          <div class="stock-status" *ngIf="productsDetails?.stock_status_id !== 7 && loginCheck">
+            <label>*{{productsDetails?.stock_status}}</label>
+          </div>
+          <div *ngIf="loginCheck">
+            <div>
+              {{productsDetails?.bundle_price}}
+            </div>
+            <div class="border-detail">
 
 
-    <div *ngFor="let option of optionList">
-    <label class="label-name botton-padding">{{option.name}}</label>
+              <div *ngFor="let option of optionList">
+                <label class="label-name botton-padding">{{option.name}}</label>
+                <mat-form-field class="select-mat-dd quick-select" appearance="outline">
+                  <mat-select [(ngModel)]="option.option_value[0].value" formControlName="country" (selectionChange)="optionSelect(option, $event.value)"
+                               panelClass="select-dd-panel">
+                    <mat-option [value]="state.value" *ngFor="let state of option.option_value">{{state.label}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
 
-        <mat-form-field appearance="outline" class="option-view delivery-checkout">
-          <select matNativeControl [(ngModel)]="option.option_value[0].value" (change)="optionSelect(option, $event.target.value)">
-            <option value=""></option>
-            <option [value]="state.value" *ngFor="let state of option.option_value">{{state.label}}</option>
-          </select>
-        </mat-form-field>
+                <!-- <mat-form-field appearance="outline" class="option-view delivery-checkout">
+                  <select matNativeControl [(ngModel)]="option.option_value[0].value"
+                    (change)="optionSelect(option, $event.target.value)">
+                    <option value=""></option>
+                    <option [value]="state.value" *ngFor="let state of option.option_value">{{state.label}}</option>
+                  </select>
+                </mat-form-field> -->
 
-<!--      <div class="form-group form-default m-b-10 w-50">-->
-<!--        <ng-select [items]="option.option_value" bindLabel="label" [searchable]="false"-->
-<!--                   bindValue="value" #options [clearable]="false"-->
-<!--                   (focus)="options.open()" (change)="optionSelect(option, $event.value)"-->
-<!--                   [ngModel]="option.option_value[0].value"-->
-<!--                   class="custom-select color">-->
-<!--        </ng-select>-->
-<!--      </div>-->
+                <!--      <div class="form-group form-default m-b-10 w-50">-->
+                <!--        <ng-select [items]="option.option_value" bindLabel="label" [searchable]="false"-->
+                <!--                   bindValue="value" #options [clearable]="false"-->
+                <!--                   (focus)="options.open()" (change)="optionSelect(option, $event.value)"-->
+                <!--                   [ngModel]="option.option_value[0].value"-->
+                <!--                   class="custom-select color">-->
+                <!--        </ng-select>-->
+                <!--      </div>-->
 
-    </div>
-    <label class="label-name">Quantity (in packs)</label>
-    <mat-form-field appearance="outline" class="select-quantity w-25">
-      <input matInput type="number" [min]="1" (keyup)="quantityValidation()" id="quantity" name="quantity" [value]="1" (blur)="quantityUpdate($event.target.value)">
-    </mat-form-field>
-  </div>
-  <div>
-    <button class="add-to-cart cart-button" (click)="addTocart('cart', productId)">{{cartLabel}}</button>
-    <a *ngIf="cartLabel ==='Added to cart'" href="/cart/items" class="cart-redirect">Go to cart <i class="fa fa-angle-right right-back-icon"></i> </a>
-    <button class="add-to-cart buy-now-button mouse-events" (click)="addTocart('buy', productId)">Buy it now</button>
+              </div>
+              <label class="label-name">Quantity (in packs)</label>
+              <mat-form-field appearance="outline" class="select-quantity quick-select w-25">
+                <input matInput type="number" [min]="1" (keyup)="quantityValidation()" id="quantity" name="quantity"
+                  [value]="1" (blur)="quantityUpdate($event.target.value)">
+              </mat-form-field>
+            </div>
+            <div>
+              <button class="add-to-cart cart-button" (click)="addTocart('cart', productId)">{{cartLabel}}</button>
+              <a *ngIf="cartLabel ==='Added to cart'" href="/cart/items" class="cart-redirect">Go to cart <i
+                  class="fa fa-angle-right right-back-icon"></i> </a>
+              <button class="add-to-cart buy-now-button mouse-events" (click)="addTocart('buy', productId)">Buy it
+                now</button>
 
-    <div class="w-75" *ngIf="!wishlistUpdate">
-      <button class="wishlist-button" (click)="addWishList()">
-        <i class="fa fa-heart-o my-icon"></i>Add to wishlist </button>
-      <span class="wish-count">0</span>
-    </div>
-    <div class="w-75" *ngIf="wishlistUpdate">
-      <button class="wishlist-button">
-        <i class="fa fa-heart-o my-icon"></i>Added to wishlist </button>
-      <span class="wish-count">1</span>
-    </div>
+              <div class="w-75" *ngIf="!wishlistUpdate">
+                <button class="wishlist-button" (click)="addWishList()">
+                  <i class="fa fa-heart-o my-icon"></i>Add to wishlist </button>
+                <span class="wish-count">0</span>
+              </div>
+              <div class="w-75" *ngIf="wishlistUpdate">
+                <button class="wishlist-button">
+                  <i class="fa fa-heart-o my-icon"></i>Added to wishlist </button>
+                <span class="wish-count">1</span>
+              </div>
 
-    <hr>
-  </div>
+              <hr>
+            </div>
 
-  </div>
-  <div class="apply-wholesale" *ngIf="!loginCheck">
-    <div class="botton-padding mouse-events" [routerLink]="'/signup'">
-      Apply for wholesale pricing
-    </div>
-  </div>
+          </div>
+          <div class="apply-wholesale" *ngIf="!loginCheck">
+            <div class="botton-padding mouse-events" [routerLink]="'/signup'">
+              Apply for wholesale pricing
+            </div>
+          </div>
 
-    <div>
-      <div *ngIf="loginCheck" class="common-font-size desc-pad" [innerHTML]="productsDetails?.description"></div>
-      <hr *ngIf="loginCheck">
-      <div>
-      <span class="share-size">Share :</span>
-      <a target="_blank" class="social-icon-pad share-icon" href="https://www.facebook.com/sharer/sharer.php?u=https://lafashionconceptswholesale.com/products/{{fbName}}">
-        <svg xmlns="http://www.w3.org/2000/svg" width="9.641" height="18" viewBox="0 0 9.641 18">
-          <path id="Icon_awesome-facebook-f" data-name="Icon awesome-facebook-f" d="M10.618,10.125l.5-3.258H7.992V4.753a1.629,1.629,0,0,1,1.837-1.76H11.25V.22A17.329,17.329,0,0,0,8.728,0C6.153,0,4.471,1.56,4.471,4.385V6.867H1.609v3.258H4.471V18H7.992V10.125Z" transform="translate(-1.609)" fill="#998c88"/>
-        </svg></a>
+          <div>
+            <div *ngIf="loginCheck" class="common-font-size desc-pad" [innerHTML]="productsDetails?.description"></div>
+            <hr *ngIf="loginCheck">
+            <div>
+              <span class="share-size">Share :</span>
+              <a target="_blank" class="social-icon-pad share-icon"
+                href="https://www.facebook.com/sharer/sharer.php?u=https://lafashionconceptswholesale.com/products/{{fbName}}">
+                <svg xmlns="http://www.w3.org/2000/svg" width="9.641" height="18" viewBox="0 0 9.641 18">
+                  <path id="Icon_awesome-facebook-f" data-name="Icon awesome-facebook-f"
+                    d="M10.618,10.125l.5-3.258H7.992V4.753a1.629,1.629,0,0,1,1.837-1.76H11.25V.22A17.329,17.329,0,0,0,8.728,0C6.153,0,4.471,1.56,4.471,4.385V6.867H1.609v3.258H4.471V18H7.992V10.125Z"
+                    transform="translate(-1.609)" fill="#998c88" />
+                </svg></a>
 
-      <a target="_blank" class="social-icon-pad" href="https://twitter.com/intent/tweet?text=Check out {{productsDetails?.name}}: https://lafashionconceptswholesale.com/products/{{fbName}}"><svg xmlns="http://www.w3.org/2000/svg" width="23.502" height="19.1" viewBox="0 0 23.502 19.1">
-        <path id="Icon_metro-twitter" data-name="Icon metro-twitter" d="M26.073,7.078a9.64,9.64,0,0,1-2.769.759,4.836,4.836,0,0,0,2.12-2.668,9.653,9.653,0,0,1-3.062,1.17,4.826,4.826,0,0,0-8.216,4.4A13.689,13.689,0,0,1,4.207,5.7,4.827,4.827,0,0,0,5.7,12.137a4.8,4.8,0,0,1-2.184-.6c0,.02,0,.04,0,.061a4.825,4.825,0,0,0,3.868,4.728,4.83,4.83,0,0,1-2.178.083,4.827,4.827,0,0,0,4.5,3.349,9.674,9.674,0,0,1-5.988,2.064,9.779,9.779,0,0,1-1.15-.067,13.647,13.647,0,0,0,7.391,2.166A13.625,13.625,0,0,0,23.681,10.2q0-.314-.014-.624a9.8,9.8,0,0,0,2.406-2.5Z" transform="translate(-2.571 -4.817)" fill="#998c88"/>
-      </svg></a>
+              <a target="_blank" class="social-icon-pad"
+                href="https://twitter.com/intent/tweet?text=Check out {{productsDetails?.name}}: https://lafashionconceptswholesale.com/products/{{fbName}}"><svg
+                  xmlns="http://www.w3.org/2000/svg" width="23.502" height="19.1" viewBox="0 0 23.502 19.1">
+                  <path id="Icon_metro-twitter" data-name="Icon metro-twitter"
+                    d="M26.073,7.078a9.64,9.64,0,0,1-2.769.759,4.836,4.836,0,0,0,2.12-2.668,9.653,9.653,0,0,1-3.062,1.17,4.826,4.826,0,0,0-8.216,4.4A13.689,13.689,0,0,1,4.207,5.7,4.827,4.827,0,0,0,5.7,12.137a4.8,4.8,0,0,1-2.184-.6c0,.02,0,.04,0,.061a4.825,4.825,0,0,0,3.868,4.728,4.83,4.83,0,0,1-2.178.083,4.827,4.827,0,0,0,4.5,3.349,9.674,9.674,0,0,1-5.988,2.064,9.779,9.779,0,0,1-1.15-.067,13.647,13.647,0,0,0,7.391,2.166A13.625,13.625,0,0,0,23.681,10.2q0-.314-.014-.624a9.8,9.8,0,0,0,2.406-2.5Z"
+                    transform="translate(-2.571 -4.817)" fill="#998c88" />
+                </svg></a>
 
-<!--      <i class="fa fa-pinterest share-icon"></i>-->
-      <a target="_blank" class="social-icon-pad" href="mailto:?subject=Check out {{productsDetails?.name}}&body=Check out {{productsDetails?.name}}:%0D%0A%0D%0Ahttps://lafashionconceptswholesale.com/products/{{fbName}}">
-      <svg xmlns="http://www.w3.org/2000/svg" width="22.32" height="17.628" viewBox="0 0 22.32 17.628">
-        <g id="Icon_feather-mail" data-name="Icon feather-mail" transform="translate(-1.607 -5)">
-          <path id="Path_102" data-name="Path 102" d="M4.953,6H20.581a1.959,1.959,0,0,1,1.953,1.953V19.674a1.959,1.959,0,0,1-1.953,1.953H4.953A1.959,1.959,0,0,1,3,19.674V7.953A1.959,1.959,0,0,1,4.953,6Z" fill="none" stroke="#998c88" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
-          <path id="Path_103" data-name="Path 103" d="M22.535,9l-9.767,6.837L3,9" transform="translate(0 -1.047)" fill="none" stroke="#998c88" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
-        </g>
-      </svg>
-      </a>
+              <!--      <i class="fa fa-pinterest share-icon"></i>-->
+              <a target="_blank" class="social-icon-pad"
+                href="mailto:?subject=Check out {{productsDetails?.name}}&body=Check out {{productsDetails?.name}}:%0D%0A%0D%0Ahttps://lafashionconceptswholesale.com/products/{{fbName}}">
+                <svg xmlns="http://www.w3.org/2000/svg" width="22.32" height="17.628" viewBox="0 0 22.32 17.628">
+                  <g id="Icon_feather-mail" data-name="Icon feather-mail" transform="translate(-1.607 -5)">
+                    <path id="Path_102" data-name="Path 102"
+                      d="M4.953,6H20.581a1.959,1.959,0,0,1,1.953,1.953V19.674a1.959,1.959,0,0,1-1.953,1.953H4.953A1.959,1.959,0,0,1,3,19.674V7.953A1.959,1.959,0,0,1,4.953,6Z"
+                      fill="none" stroke="#998c88" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
+                    <path id="Path_103" data-name="Path 103" d="M22.535,9l-9.767,6.837L3,9"
+                      transform="translate(0 -1.047)" fill="none" stroke="#998c88" stroke-linecap="round"
+                      stroke-linejoin="round" stroke-width="2" />
+                  </g>
+                </svg>
+              </a>
+            </div>
+
+          </div>
+
+        </div>
       </div>
 
     </div>
-
-</div>
+    <div *ngIf="relatedProducts?.length" class="fd-slider">
+      <div class="spacey-row w-100">You may also like</div>
+      <br>
+      <div class="header-margin w-100">
+        <app-products-carousel [productList]="relatedProducts" [productId]="productId"></app-products-carousel>
+      </div>
+    </div>
   </div>
-
-</div>
-  <div *ngIf="relatedProducts?.length" class="fd-slider">
-  <div class="spacey-row w-100">You may also like</div>
-  <br>
-  <div class="header-margin w-100">
-   <app-products-carousel [productList]="relatedProducts" [productId]="productId"></app-products-carousel>
-  </div>
-  </div>
-</div>
 </div>

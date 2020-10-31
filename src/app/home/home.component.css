@@ -11,6 +11,9 @@
   margin-bottom: 50px;
   padding-left: 50px;
 }
+.fd-ban-width{
+  width: 100%;
+}
 @media (min-width: 1865px) {
   .banner-width {
     width: 100pc;

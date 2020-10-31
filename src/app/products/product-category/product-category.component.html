@@ -67,12 +67,20 @@
   <!-- </div>-->
 
   <div class="w-50 align-order sort">
-  <mat-form-field appearance="outline" class="w-100 auto-grow delivery-checkout styled-select">
-  <select placeholder="Sort By" [ngModel]="7" matNativeControl (change)="sorting($event.target.value)">
-  <option value=""></option>
-  <option [value]="sort.value" *ngFor="let sort of sortOrder">{{sort.label}}</option>
-  </select>
-  </mat-form-field>
+
+    <mat-form-field class="select-mat-dd" appearance="outline">
+      <mat-select [ngModel]="7" (selectionChange)="sorting($event.value)"
+                   panelClass="select-dd-panel">
+        <mat-option [value]="sort.value" *ngFor="let sort of sortOrder">{{sort.label}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+<!--  <mat-form-field appearance="outline" class="w-100 auto-grow delivery-checkout styled-select">-->
+<!--  <select placeholder="Sort By" [ngModel]="7" matNativeControl (change)="sorting($event.target.value)">-->
+<!--  <option value=""></option>-->
+<!--  <option [value]="sort.value" *ngFor="let sort of sortOrder">{{sort.label}}</option>-->
+<!--  </select>-->
+<!--  </mat-form-field>-->
   </div>
 
   </div>

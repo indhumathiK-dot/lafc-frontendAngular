@@ -186,6 +186,7 @@ export class DeliveryComponent implements OnInit {
         this.startupService.getAuthToken().then(
           res => {
             this.events.logoutEvent$.emit(true);
+            sessionStorage.removeItem('buyNowProduct');
             this.router.navigate(["/login"]);
           });
       });
@@ -324,4 +325,8 @@ export class DeliveryComponent implements OnInit {
     this.countryCode =  '+' + $event.dialCode;
   }
 
+  returnRedirect(url: string) {
+    sessionStorage.removeItem('buyNowProduct');
+    this.router.navigate([url]);
+  }
 }

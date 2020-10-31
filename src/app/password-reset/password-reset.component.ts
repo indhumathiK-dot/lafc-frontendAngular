@@ -2,6 +2,8 @@ import { BestSellerHttpService } from "./../core/services/http/bestsellerhttpser
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {ErrorComponentComponent} from "../core/error-component/error-component.component";
+import {BsModalService} from "ngx-bootstrap";
 
 
 @Component({
@@ -16,7 +18,8 @@ export class PasswordResetComponent implements OnInit {
   constructor(private fb: FormBuilder,
     public bestSellerHttpService: BestSellerHttpService,
     public route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    public modalService: BsModalService
   ) { }
 
   ngOnInit() {
@@ -34,18 +37,38 @@ export class PasswordResetComponent implements OnInit {
       }
       this.bestSellerHttpService.forgotPassword(data).subscribe(res => {
         if (res["success"]) {
-          alert('A mail has been sent to your registered email id with link to reset the password');
-          this.router.navigate(["/login"]);
+         this.successUpdate();
         } else {
-          alert('The E-Mail Address was not found in our records, please try again!');
+          this.errorUpdate();
         }
       }, (error) => {
-        alert('The E-Mail Address was not found in our records, please try again!');
+        this.errorUpdate();
       });
     }
   }
 
   emailUpdate() {
     this.validCheck = this.validCheck ? (this.resetForm.invalid) : false;
+  }
+
+  successUpdate() {
+    var data = {
+      title: 'Forget Password',
+      message: 'A mail has been sent to your registered email id with link to reset the password',
+      type: 'success',
+      url: '/login'
+    }
+    const initialState = {data: data};
+    var loginModalRef = this.modalService.show(ErrorComponentComponent, Object.assign({}, { class: 'modal-md modal-dialog-centered', initialState }));
+  }
+
+  errorUpdate() {
+    var data = {
+      title: 'Forget Password',
+      message: 'The E-Mail Address was not found in our records, please try again!',
+      type: 'error'
+    }
+    const initialState = {data: data};
+    var loginModalRef = this.modalService.show(ErrorComponentComponent, Object.assign({}, { class: 'modal-md modal-dialog-centered', initialState }));
   }
 }

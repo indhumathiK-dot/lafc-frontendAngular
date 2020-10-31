@@ -15,7 +15,7 @@
 
 
 <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="4">
-  <div  fxFlex="25" fxFlex.lt-sm="100" class="product-width" *ngFor="let brand of brands?.data;let i = index">
+  <div  fxFlex="22" fxFlex.lt-sm="100" class="product-width" *ngFor="let brand of brands?.data;let i = index">
     <div class="thumb-wrapper">
       <div class="img-box">
      <a [routerLink]="['/products/collections/brands', brand.name, brand.manufacturer_id]">

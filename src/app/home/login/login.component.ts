@@ -5,6 +5,8 @@ import {EventsService} from "../../core/services/events.service";
 import {Router} from "@angular/router";
 import {CartService} from "../../services/cart.service";
 import {WishListService} from "../../core/services/wishlist.service";
+import {ErrorComponentComponent} from "../../core/error-component/error-component.component";
+import {BsModalService} from "ngx-bootstrap";
 
 @Component({
   selector: 'app-login',
@@ -13,15 +15,21 @@ import {WishListService} from "../../core/services/wishlist.service";
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
+  loginValidation = {};
 
   constructor(private fb: FormBuilder,
               public events: EventsService,
               private router: Router,
               private authenticationService: AuthenticationService,
               private cartService: CartService,
-              private wishlistService: WishListService) { }
+              private wishlistService: WishListService,
+              public modalService: BsModalService) { }
 
   ngOnInit() {
+    this.loginValidation = {
+      email : false,
+      password: false
+    }
     if(localStorage.getItem('loggedIn') === 'true') {
       this.router.navigate(['/account/orders'])
     } else {
@@ -34,6 +42,10 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
     if(this.loginForm.invalid) {
+      this.loginValidation = {
+        email: this.loginForm.controls.email.invalid,
+        password: this.loginForm.controls.password.invalid,
+      }
       return
     } else {
 
@@ -51,15 +63,31 @@ export class LoginComponent implements OnInit {
           this.wishlistService.whishListCountSub.next()
           this.router.navigate(['/account/orders']);
         } else {
-          alert('No match for E-Mail Address and/or Password.')
+          this.loginErrorUpdate();
         }
       }, (error) => {
         if(error === 'Bad Request') {
           alert('Thanks for registering with us. We will email you the confirmation once it is verified')
         } else {
-          alert('No match for E-Mail Address and/or Password.')
+          this.loginErrorUpdate();
         }
       });
+    }
+  }
+
+  loginErrorUpdate() {
+    var data = {
+      title: 'Login',
+      message: 'No match for E-Mail Address and/or Password.',
+      type: 'error'
+    }
+    const initialState = {data: data};
+    var loginModalRef = this.modalService.show(ErrorComponentComponent, Object.assign({}, { class: 'modal-md modal-dialog-centered', initialState }));
+  }
+
+  validationUpdate(type, value) {
+    if(value) {
+      this.loginValidation[type] = false;
     }
   }
 }

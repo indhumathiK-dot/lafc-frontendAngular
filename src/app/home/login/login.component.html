@@ -5,15 +5,23 @@
       </div>
       <form novalidate [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-box">
 
+        <div class="botton-padding">
         <label class="label-name display-flex">Email<span class="astrix-size">*</span></label>
-          <mat-form-field appearance="outline" class="label-width w-100">
-            <input matInput formControlName="email" required>
+          <mat-form-field appearance="outline" class="label-width w-100 mat-bottom-remove">
+            <input matInput formControlName="email" required (keyup)="validationUpdate('email', $event.target.value)">
           </mat-form-field>
+          <div *ngIf="loginValidation['email']" class="password-check">Please enter valid email </div>
+        </div>
+
+        <div class="botton-padding">
         <label class="label-name display-flex">Password<span class="astrix-size">*</span></label>
-          <mat-form-field appearance="outline" class="label-width w-100">
-            <input type="password" matInput formControlName="password" required>
+          <mat-form-field appearance="outline" class="label-width w-100 mat-bottom-remove">
+            <input type="password" matInput formControlName="password" required (keyup)="validationUpdate('password', $event.target.value)">
           </mat-form-field>
+          <div *ngIf="loginValidation['password']" class="password-check">Please enter password </div>
         <div>
+        </div>
+
           <a class="forgot-password" [routerLink]="'/account/forgetpassword'">Forgot your password?</a>
         </div>
         <div class="buttonrow">

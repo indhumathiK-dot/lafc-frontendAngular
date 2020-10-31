@@ -3,6 +3,8 @@ import {take} from "rxjs/operators";
 import {WishListService} from "../../../core/services/wishlist.service";
 import {CartService} from "../../../services/cart.service";
 import {ProductsService} from "../../../services/products.service";
+import {ProductQuickViewComponent} from "../../../products/product-quick-view/product-quick-view.component";
+import {BsModalService} from "ngx-bootstrap";
 
 @Component({
   selector: "app-wishlist",
@@ -15,7 +17,8 @@ export class WishlistComponent implements OnInit {
 
   constructor(private wishlistService: WishListService,
               private cartService: CartService,
-              private productsService: ProductsService) { }
+              private productsService: ProductsService,
+              public modalService: BsModalService) { }
 
   ngOnInit() {
     this.getWishList();
@@ -51,6 +54,14 @@ export class WishlistComponent implements OnInit {
         }, (error) => {
         });
       });
+  }
+
+  openQuickView(value) {
+    sessionStorage.setItem('productId', value);
+    const initialState = {productList: this.wishlist, type: 'wishlist'};
+    var loginModalRef = this.modalService.show(ProductQuickViewComponent, Object.assign({}, { class: 'modal-sm quick-width-adjust', initialState })
+    );
+    this.getWishList();
   }
 
   removeFromWishlist(productId) {

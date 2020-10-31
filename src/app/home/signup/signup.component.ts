@@ -8,6 +8,9 @@ import {take} from "rxjs/operators";
 import {NgOption} from "@ng-select/ng-select";
 import {BestSellerHttpService} from "../../core/services/http/bestsellerhttpservice";
 import {informationServices} from "../information/information.service";
+import {ImageViewComponent} from "../../products/image-view/image-view.component";
+import {ErrorComponentComponent} from "../../core/error-component/error-component.component";
+import {BsModalService} from "ngx-bootstrap";
 
 @Component({
   selector: 'app-signup',
@@ -32,6 +35,7 @@ export class SignupComponent implements OnInit {
     separateDialCode: true,
   };
   public infoDetails: any;
+  public emailCheck: boolean = false;
 
   constructor(private fb: FormBuilder,
               private authService: AuthenticationService,
@@ -39,7 +43,8 @@ export class SignupComponent implements OnInit {
               private profileService: ProfileService,
               private countryService: CountryService,
               private bestSellerHttpService: BestSellerHttpService,
-              private infoService: informationServices) { }
+              private infoService: informationServices,
+              public modalService: BsModalService) { }
 
   ngOnInit() {
     this.configForm();
@@ -190,14 +195,14 @@ export class SignupComponent implements OnInit {
   createAccount() {
       if (this.loginCheck) {
         if(!this.registerForm.value.firstname || !this.registerForm.value.lastname || !(this.registerForm.value.phoneNumber && (this.digits_count(this.registerForm.value.phoneNumber) > 7 && this.digits_count(this.registerForm.value.phoneNumber) < 32)) ||
-          !this.registerForm.value.email || !this.registerForm.value.sellersPermit || !(this.registerForm.value.address && (this.registerForm.value.address.length > 2 && this.registerForm.value.address.length < 128)) ||
+          !this.registerForm.value.email || this.emailCheck || !this.registerForm.value.sellersPermit || !(this.registerForm.value.address && (this.registerForm.value.address.length > 2 && this.registerForm.value.address.length < 128)) ||
           !(this.registerForm.value.city && (this.registerForm.value.city.length > 2 && this.registerForm.value.city.length < 128)) ||
           !this.registerForm.value.country || !this.registerForm.value.state || !(this.registerForm.value.zip && (this.registerForm.value.zip.length > 4 && this.registerForm.value.zip.length < 10))) {
           this.validationCheck = {
             firstname: !this.registerForm.value.firstname,
             lastname: !this.registerForm.value.lastname,
             phoneNumber: !(this.registerForm.value.phoneNumber && (this.digits_count(this.registerForm.value.phoneNumber) > 7 && this.digits_count(this.registerForm.value.phoneNumber) < 32)),
-            email: !this.registerForm.value.email,
+            email: !this.registerForm.value.email || this.emailCheck,
             address: !(this.registerForm.value.address && (this.registerForm.value.address.length > 2 && this.registerForm.value.address.length < 128)),
             city: !(this.registerForm.value.city && (this.registerForm.value.city.length > 2 && this.registerForm.value.city.length < 128)),
             country: !this.registerForm.value.country,
@@ -245,14 +250,14 @@ export class SignupComponent implements OnInit {
         }
       } else {
         if(!this.registerForm.value.firstname || !this.registerForm.value.lastname || !(this.registerForm.value.phoneNumber && (this.digits_count(this.registerForm.value.phoneNumber) > 7 && this.digits_count(this.registerForm.value.phoneNumber) < 32)) ||
-          !this.registerForm.value.email ||  !(this.registerForm.value.password && (this.registerForm.value.password.length > 5 && this.registerForm.value.password.length < 20)) || !((this.registerForm.value.confirmPassword && this.registerForm.value.password === this.registerForm.value.confirmPassword) && (this.registerForm.value.confirmPassword.length > 5 && this.registerForm.value.confirmPassword.length < 20)) ||
+          !this.registerForm.value.email || this.emailCheck ||  !(this.registerForm.value.password && (this.registerForm.value.password.length > 5 && this.registerForm.value.password.length < 20)) || !((this.registerForm.value.confirmPassword && this.registerForm.value.password === this.registerForm.value.confirmPassword) && (this.registerForm.value.confirmPassword.length > 5 && this.registerForm.value.confirmPassword.length < 20)) ||
           !this.registerForm.value.address || !this.registerForm.value.city || !this.registerForm.value.country ||
           !this.registerForm.value.state || !(this.registerForm.value.zip && (this.registerForm.value.zip.length > 4 && this.registerForm.value.zip.length < 10)) || !this.registerForm.value.sellersPermit || !this.registerForm.value.agree) {
           this.validationCheck = {
             firstname: !this.registerForm.value.firstname,
             lastname: !this.registerForm.value.lastname,
             phoneNumber: !(this.registerForm.value.phoneNumber && (this.digits_count(this.registerForm.value.phoneNumber) > 7 && this.digits_count(this.registerForm.value.phoneNumber) < 32)),
-            email: !this.registerForm.value.email,
+            email: !this.registerForm.value.email || this.emailCheck,
             password: !(this.registerForm.value.password && (this.registerForm.value.password.length > 5 && this.registerForm.value.password.length < 20)),
             confirmPassword: !((this.registerForm.value.confirmPassword && this.registerForm.value.password === this.registerForm.value.confirmPassword) && (this.registerForm.value.confirmPassword.length > 5 && this.registerForm.value.confirmPassword.length < 20)),
             address: !this.registerForm.value.address,
@@ -288,11 +293,13 @@ export class SignupComponent implements OnInit {
           this.authService.register(registerObject).subscribe(res => {
             if ((res.data !== null) && (res.data !== undefined)) {
               this.upload(res.data['customer_id']);
+              this.successUpdate();
               // this.router.navigate(['/']);
               // alert('Thank you for registering with LAFC! You will be notified by e-mail once your account has been activated by the store owner.');
               // JSON.stringify(localStorage.setItem('loggedIn', 'true'));
               // localStorage.setItem('user', JSON.stringify(res.data));
               var dataAddress = {
+                "customer_id": res.data['customer_id'],
                 "firstname": this.registerForm.value.firstname,
                 "lastname": this.registerForm.value.lastname,
                 "city": this.registerForm.value.city,
@@ -305,7 +312,7 @@ export class SignupComponent implements OnInit {
                 "phone": this.registerForm.value.phoneNumber,
                 "default": 1,
               }
-              this.bestSellerHttpService.postNewAddress(dataAddress).subscribe(res => {
+              this.bestSellerHttpService.postNewAddressForRegister(dataAddress).subscribe(res => {
                 if (res.data) {
                   this.router.navigate(['/']);
                 }
@@ -315,7 +322,7 @@ export class SignupComponent implements OnInit {
             }
           }, (error) => {
             console.log(error)
-            alert('error' + error)
+            // alert('error' + error)
           });
         }
       }
@@ -380,6 +387,8 @@ export class SignupComponent implements OnInit {
       this.validationCheck[type] = this.validationCheck[type] ? !(this.registerForm.value.address && (this.registerForm.value.address.length > 2 && this.registerForm.value.address.length < 128)) : false;
     } else if(type === 'city' && this.loginCheck) {
       this.validationCheck[type] = this.validationCheck[type] ? !(this.registerForm.value.city && (this.registerForm.value.city.length > 2 && this.registerForm.value.city.length < 128)) : false;
+    } else if(type === 'email') {
+      this.emailValidation(value);
     } else {
       if(value) {
         this.validationCheck[type] = false;
@@ -403,5 +412,32 @@ export class SignupComponent implements OnInit {
 
   onCell1CountryChange($event: any) {
     this.countryCode =  '+' + $event.dialCode;
+  }
+
+  emailValidation(email) {
+    this.authService.emailValidation(email).subscribe((res) => {
+      if (res['statusCode'] === 200) {
+        if (res['data'].length) {
+          this.emailCheck = true;
+          this.validationCheck['email'] = true;
+        } else {
+          this.validationCheck['email'] = false;
+          this.emailCheck = false;
+        }
+      } else {
+        this.validationCheck['email'] = false;
+      }
+    });
+  }
+
+  successUpdate() {
+    var data = {
+      title: 'Register',
+      message: 'Thank you for registering with LAFC! You will be notified by e-mail once your account has been activated by the store owner.',
+      type: 'success',
+      url: '/'
+    }
+    const initialState = {data: data};
+    var loginModalRef = this.modalService.show(ErrorComponentComponent, Object.assign({}, { class: 'modal-md modal-dialog-centered', initialState }));
   }
 }

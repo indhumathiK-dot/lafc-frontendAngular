@@ -2,7 +2,8 @@
   margin-top: 15px;
 }
 .image-width {
-  /*width: 275px;*/
+  object-fit: cover;
+  width: 100%;
 }
 .thumb-content {
   padding: 10px;
@@ -78,4 +79,17 @@
 
 .image-hover:hover .middle {
   opacity: 1;
+}
+
+@media (min-width: 832px) and (max-width: 2011px) {
+  ::ng-deep.modal-content {
+    width: 750px !important;
+  }
+}
+
+@media (min-width: 576px) {
+  ::ng-deep .quick-width-adjust.modal-dialog {
+    max-width: 700px !important;
+    margin: 3rem auto !important;
+  }
 }

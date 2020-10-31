@@ -20,11 +20,19 @@
 
         <div class="w-100">
           <label class="label-name">Saved Address</label>
-          <mat-form-field appearance="outline" class="w-100 delivery delivery-checkout select-address">
-            <select matNativeControl formControlName="savedAddress" (change)="getAddressListById(addressForm.value.savedAddress)">
-              <option [value]="address.value" *ngFor="let address of fullAddressList">{{address.label}}</option>
-            </select>
+
+          <mat-form-field class="select-mat-dd" appearance="outline">
+            <mat-select  formControlName="savedAddress" (selectionChange)="getAddressListById(addressForm.value.savedAddress)"
+                         panelClass="select-dd-panel">
+              <mat-option [value]="address.value" *ngFor="let address of fullAddressList">{{address.label}}</mat-option>
+            </mat-select>
           </mat-form-field>
+
+<!--          <mat-form-field appearance="outline" class="w-100 delivery delivery-checkout select-address">-->
+<!--            <select matNativeControl formControlName="savedAddress" (change)="getAddressListById(addressForm.value.savedAddress)">-->
+<!--              <option [value]="address.value" *ngFor="let address of fullAddressList">{{address.label}}</option>-->
+<!--            </select>-->
+<!--          </mat-form-field>-->
         </div>
 
 <!--        <div class="form-group form-default m-b-10  address-width">-->
@@ -94,11 +102,18 @@
 
           <div class="col-md-4 row-space">
             <label class="label-name display-flex">Country<span class="astrix-size">*</span></label>
-            <mat-form-field appearance="outline" class="w-100 delivery mat-bottom-remove delivery-checkout select-address" [ngClass]="validationCheck['country'] ? 'errorClass' : ''">
-              <select matNativeControl formControlName="country" (change)="onSelectCountry(addressForm.value.country)">
-                <option value=""></option>
-                <option [value]="country.value" *ngFor="let country of countriesList">{{country.label}}</option>
-              </select>
+<!--            <mat-form-field appearance="outline" class="w-100 delivery mat-bottom-remove delivery-checkout select-address" [ngClass]="validationCheck['country'] ? 'errorClass' : ''">-->
+<!--              <select matNativeControl formControlName="country" (change)="onSelectCountry(addressForm.value.country)">-->
+<!--                <option value=""></option>-->
+<!--                <option [value]="country.value" *ngFor="let country of countriesList">{{country.label}}</option>-->
+<!--              </select>-->
+<!--            </mat-form-field>-->
+
+            <mat-form-field class="select-mat-dd" appearance="outline" [ngClass]="validationCheck['country'] ? 'errorClass' : ''">
+              <mat-select  formControlName="country" (selectionChange)="onSelectCountry(addressForm.value.country)"
+                           panelClass="select-dd-panel">
+                <mat-option [value]="country.value" *ngFor="let country of countriesList">{{country.label}}</mat-option>
+              </mat-select>
             </mat-form-field>
             <span *ngIf="validationCheck['country']" class="password-check">Please select country </span>
           </div>
@@ -106,12 +121,19 @@
 
           <div class="col-md-4 row-space">
             <label class="label-name parellel-field display-flex">State<span class="astrix-size">*</span></label>
-            <mat-form-field appearance="outline"  class="w-100 delivery delivery-checkout select-address parellel-field mat-bottom-remove" [ngClass]="validationCheck['state'] ? 'errorClass' : ''">
-              <select matNativeControl formControlName="state" (change)="checkValidationForm('state', $event.target.value)">
-                <option value=""></option>
-                <option [value]="state.value" *ngFor="let state of statesList">{{state.label}}</option>
-              </select>
+            <mat-form-field class="select-mat-dd parellel-field" appearance="outline"  [ngClass]="validationCheck['state'] ? 'errorClass' : ''">
+              <mat-select  formControlName="state" [(ngModel)]="addressForm.value.state" (selectionChange)="checkValidationForm('state', addressForm.value.state)"
+                           panelClass="select-dd-panel">
+                <mat-option [value]="state.value" *ngFor="let state of statesList">{{state.label}}</mat-option>
+              </mat-select>
             </mat-form-field>
+
+<!--            <mat-form-field appearance="outline"  class="w-100 delivery delivery-checkout select-address parellel-field mat-bottom-remove" [ngClass]="validationCheck['state'] ? 'errorClass' : ''">-->
+<!--              <select matNativeControl formControlName="state" (change)="checkValidationForm('state', $event.target.value)">-->
+<!--                <option value=""></option>-->
+<!--                <option [value]="state.value" *ngFor="let state of statesList">{{state.label}}</option>-->
+<!--              </select>-->
+<!--            </mat-form-field>-->
             <span *ngIf="validationCheck['state']" class="password-check parellel-field">Please select state </span>
           </div>
 
@@ -132,7 +154,7 @@
                           [ngClass]="validationCheck['pincode'] ? 'errorClass' : ''">
             <input matInput formControlName="pincode" (keyup)="checkValidationForm('pincode', $event.target.value)">
           </mat-form-field>
-            <span *ngIf="validationCheck['pincode']" class="password-check parellel-field">Please enter zip </span>
+            <span *ngIf="validationCheck['pincode']" class="password-check parellel-field">Please enter valid zip </span>
           </div>
         </div>
 
@@ -150,7 +172,7 @@
       </form>
     </div>
     <div class="fd-mob-center">
-      <a class="return display update-left" [routerLink]="'/cart/items'">
+      <a class="return display update-left mouse-events" (click)="returnRedirect('/cart/items')">
         <i class="fa fa-angle-left"></i> Return to Cart
       </a>
       <div class="checkout-align display right-align">

@@ -6,6 +6,7 @@ import {take} from "rxjs/operators";
 import {ProductsService} from "../../services/products.service";
 import {CartService} from "../../services/cart.service";
 import {BestSellerHttpService} from "../../core/services/http/bestsellerhttpservice";
+import {WishListService} from "../../core/services/wishlist.service";
 
 @Component({
   selector: 'app-product-quick-view',
@@ -28,13 +29,14 @@ public slideIndex = 1;
   previousIndexCheck;
   nextIndexCheck;
   public fbName: any;
+  private type: any;
 
   constructor(private bsModalRef: BsModalRef,
               private router: Router,
               private fb: FormBuilder,
               private productsService: ProductsService,
               private cartService: CartService,
-              private bestSellerHttpService: BestSellerHttpService) {
+              private wishlistService: WishListService) {
     this.loginCheck = localStorage.getItem('loggedIn') === 'true';
     this.productId = sessionStorage.getItem('productId');
     // console.log(this.bsModalRef)
@@ -62,6 +64,7 @@ public slideIndex = 1;
         this.productsDetails = products;
         this.fbName = this.productsDetails.name.replaceAll(' ', '-');
         this.products = this.bsModalRef["content"].productList;
+        this.type = this.bsModalRef["content"].type;
         this.productMove();
         this.productImages.push(this.productsDetails.image);
         for(let i = 0; i < this.productsDetails.images.length; i++) {
@@ -195,6 +198,9 @@ public slideIndex = 1;
             "quantity": Number(cartData['quantity']) + Number(this.quantity * this.productsDetails.bundle_quantity)
           }
           this.cartService.updateProductQuantity(quantityData).pipe(take(1)).subscribe(e => {
+            if(this.type && this.type === 'wishlist') {
+              this.removeFromWishlist(this.productId);
+            }
             if(type === 'cart') {
               this.cartLabel = 'Added to cart';
             }
@@ -217,6 +223,9 @@ public slideIndex = 1;
             "option": options
           }
           this.cartService.addProductToCart(data, '').pipe(take(1)).subscribe(e => {
+            if(this.type && this.type === 'wishlist') {
+              this.removeFromWishlist(this.productId);
+            }
             if(type === 'cart') {
               this.cartLabel = 'Added to cart';
             }
@@ -266,5 +275,11 @@ public slideIndex = 1;
   goCart(url: string) {
     this.hideModal();
     this.router.navigate([url]);
+  }
+
+  removeFromWishlist(productId) {
+    this.wishlistService.deleteWishList(productId).subscribe(res => {
+      this.wishlistService.whishListCountSub.next();
+    });
   }
 }

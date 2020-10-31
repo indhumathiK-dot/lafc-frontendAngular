@@ -1,6 +1,49 @@
-p{
-    font-weight: bold;
-    font-size: 50px;
-    text-align: center;
-    color: #c72d2d;
+.side-container {
+  background: #F8F7F7;
+  padding: 20px;
+}
+.title {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 15px 0;
+}
+.tag {
+  position: absolute;
+  right: 13px;
+  top: 10px;
+}
+.right-pad-remove {
+  padding-right: 0;
+  padding-top: 32px;
+}
+.left-pad-remove {
+  padding-left: 0;
+}
+.message {
+  margin: 20px 0;
+}
+.checkout {
+  display: inline-block;
+  margin: 0;
+  padding: 14px 2em;
+  font-family: Raleway,sans-serif;
+  font-weight: bold;
+  font-style: normal;
+  font-size: 15px;
+  line-height: 17px;
+  text-transform: uppercase;
+  cursor: pointer;
+  letter-spacing: 1px;
+  height: auto;
+  border-radius: 2px;
+}
+.cart-button {
+  border: 1px solid #dae6ff;
+  background: #dae6ff;
+  color: #414141;
+}
+.cart-button:hover {
+  border: 1px solid black;
+  background: black;
+  color: #FFFFFF;
 }

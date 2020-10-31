@@ -49,7 +49,12 @@
 
   <div *ngIf="orderDetails?.comment !==''">
     <div class="bold-font comments-sec">Order Notes</div>
-    <div class="comment-box"[innerHTML]="orderDetails?.comment"></div>
+    <div class="comment-box">
+      <div *ngFor="let comment of orderDetails?.comment">
+        <div [innerHTML]="comment"> </div>
+        </div>
+    </div>
+<!--    <div class="comment-box" [innerText]="orderDetails?.comment"></div>-->
   </div>
 
   <div class="container-top">
@@ -79,13 +84,20 @@
         <th mat-header-cell *matHeaderCellDef>Price</th>
         <td mat-cell *matCellDef="let element">
           <div>
-            <span>{{element.price}}</span>
+            <span>{{element.unitPrice}}</span>
           </div>
         </td>
       </ng-container>
 
       <ng-container matColumnDef="Quantity">
         <th mat-header-cell *matHeaderCellDef>Quantity</th>
+        <td mat-cell *matCellDef="let element">
+          {{element.quantity}}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Bundle Quantity">
+        <th mat-header-cell *matHeaderCellDef>Bundle Quantity</th>
         <td mat-cell *matCellDef="let element">
           {{element.bundleQuantity}}
         </td>

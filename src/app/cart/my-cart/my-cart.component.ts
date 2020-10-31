@@ -75,27 +75,34 @@ export class itemsComponent implements OnInit {
     }
   }
 
-  quantityUpdate(value: any, element: any) {
+  quantityUpdate(value: any, element: any, index) {
 
-        var cartData;
-        var cartExists = this.updateCartArray.some(function (el, index) {
-          if (el.key === element.key.toString()) {
-            cartData = {index: index, value: el};
-          }
-          return el.key === element.key.toString()
-        });
-        if (cartExists) {
-          this.updateCartArray.splice(cartData.index, 1);
-          this.updateCartArray.push({
-            "key": element['key'],
-            "quantity": Number(value) * Number(element.singleBundleQuantity)
-          })
-        } else {
-          var quantityData = {
-            "key": element['key'],
-            "quantity": Number(value) * Number(element.singleBundleQuantity)
-          }
-          this.updateCartArray.push(quantityData);
+    console.log(index)
+    if ([69, 187, 188, 189, 190, 48, 96, 109, 107].includes(Number(value.keyCode))) {
+      value.target.value = element.cartBundleQuantity;
+    } else {
+
+
+      var cartData;
+      var cartExists = this.updateCartArray.some(function (el, index) {
+        if (el.key === element.key.toString()) {
+          cartData = {index: index, value: el};
         }
+        return el.key === element.key.toString()
+      });
+      if (cartExists) {
+        this.updateCartArray.splice(cartData.index, 1);
+        this.updateCartArray.push({
+          "key": element['key'],
+          "quantity": Number(value) * Number(element.singleBundleQuantity)
+        })
+      } else {
+        var quantityData = {
+          "key": element['key'],
+          "quantity": Number(value) * Number(element.singleBundleQuantity)
+        }
+        this.updateCartArray.push(quantityData);
+      }
+    }
   }
 }

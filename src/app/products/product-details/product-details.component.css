@@ -226,14 +226,15 @@ html {
   border-top: 0 !important;
 }
 .option-view::ng-deep.mat-form-field-infix {
-  border-top: 0 !important;
+  border-top: 1px !important;
 }
 ::ng-deep .select-quantity.mat-form-field-appearance-outline .mat-form-field-wrapper {
   margin: 0 !important;
   padding: 0 !important;
 }
-::ng-deep .select-quantity.mat-form-field-appearance-outline .mat-form-field-infix {
-  padding: 14px 0 5px 0 !important;
+::ng-deep .quick-select.mat-form-field-appearance-outline .mat-form-field-infix {
+  padding: 0 !important;
+  height: 60px;
 }
 ::ng-deep .option-view.mat-form-field-appearance-outline .mat-form-field-wrapper {
   margin: 0 !important;
@@ -550,6 +551,99 @@ background: #0c83e7;
 
 
 
+/* dropdown styles */
 
 
+#dLabel {
+  width: 240px;
+height: 40px;
+border-radius: 4px;
+background-color: #fff;
+border: solid 1px #cccccc;
+text-align: left;
+padding: 7.5px 15px;
+color: #ccc;
+letter-spacing: 0.7px;
+margin-top: 25px;
 
+
+}
+
+.caret {
+  float: right;
+  margin-top: 9px;
+  display: block;
+}
+
+.dropdown-menu {
+width: 240px;
+padding: 0;
+margin: 0;
+border-top-left-radius: 0;
+border-top-right-radius: 0;
+}
+
+.dropdown button:hover, .dropdown button:focus {
+border: none;
+outline: 0;
+}
+
+.dropdown.open button#dLabel {
+border-bottom-left-radius: 0;
+border-bottom-right-radius: 0;
+
+  box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.23);
+border: solid 1px #666;
+ border-bottom: none;
+}
+
+.dropdown.open ul {
+ box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.23);
+border: solid 1px #666;
+border-top: none;
+height: 200px;
+overflow-y: scroll;
+}
+
+.dropdown-menu li {
+
+   line-height: 1.5;
+letter-spacing: 0.7px;
+color: #666;
+  font-size: 14px;
+cursor: pointer;
+padding: 7.5px 15px;
+border-top: solid 1px #f3f3f3;
+
+}
+
+.dropdown-menu li:hover {
+background-color: #ccc;
+}
+
+
+.select-mat-dd {
+  width: 100%;
+}
+::ng-deep .select-dd-panel {
+  margin-top: 43px;
+}
+
+.select-mat-dd ::ng-deep .mat-form-field-wrapper {
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+.select-mat-dd ::ng-deep .mat-select-arrow {
+  width: 11px;
+  height: 11px;
+  background-color: #fff;
+  border-left: 2px solid #666;
+  border-bottom: 2px solid #666;
+  transform: rotate(313deg);
+  border-right: none;
+  border-top: none;
+}
+::ng-deep .quick-select.mat-form-field-appearance-outline .mat-select-arrow-wrapper {
+  /*transform: translateY(-60%);*/
+}

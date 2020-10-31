@@ -34,6 +34,7 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
 import {MatRadioModule} from "@angular/material/radio";
 import {NgSelectModule} from "@ng-select/ng-select";
 import { Ng2TelInputModule } from "ng2-tel-input";
+import {MatSelectModule} from "@angular/material/select";
 
 const routes: Routes = [
   {path:'login', component: LoginComponent},
@@ -87,7 +88,7 @@ const routes: Routes = [
         }),
         ModalModule.forRoot(),
         AvatarModule,
-        CoreModule, RouterModule.forChild(routes), MatFormFieldModule, ReactiveFormsModule, MatInputModule, MatButtonModule, FlexLayoutModule, MatPaginatorModule, MatCheckboxModule, MatRadioModule, NgSelectModule],
+        CoreModule, RouterModule.forChild(routes), MatFormFieldModule, ReactiveFormsModule, MatInputModule, MatButtonModule, FlexLayoutModule, MatPaginatorModule, MatCheckboxModule, MatRadioModule, NgSelectModule, MatSelectModule],
     exports: [HomeComponent, CarouselComponent, DomsafePipe, CategoryRangeComponent, ProductsCarouselComponent, ContactusComponent,
         BannerMainpageComponent, BlogComponent, BlogDetailsComponent, BrandsComponent, RouterModule, ProductListComponent,LoginComponent],
   providers: [],

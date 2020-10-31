@@ -357,8 +357,9 @@
   top: -24px !important;
 }
 
-::ng-deep .quick-option-view.mat-form-field-appearance-outline .mat-form-field-infix {
+::ng-deep .quick-select.mat-form-field-appearance-outline .mat-form-field-infix {
   padding: 0 0 0 3px  !important;
+  height: 60px;
 }
 .stock-status {
   font-size: 13px;
@@ -404,4 +405,32 @@
 ::ng-deep .quick-option-view.iti .iti__arrow{
   border: none!important;
   height: 12px!important;
+}
+
+
+
+.select-mat-dd {
+  width: 100%;
+}
+::ng-deep .select-dd-panel {
+  margin-top: 43px;
+}
+
+.select-mat-dd ::ng-deep .mat-form-field-wrapper {
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+.select-mat-dd ::ng-deep .mat-select-arrow {
+  width: 11px;
+  height: 11px;
+  background-color: #fff;
+  border-left: 2px solid #666;
+  border-bottom: 2px solid #666;
+  transform: rotate(313deg);
+  border-right: none;
+  border-top: none;
+}
+::ng-deep .quick-select .mat-form-field-appearance-outline .mat-select-arrow-wrapper {
+  transform: translateY(-60%);
 }

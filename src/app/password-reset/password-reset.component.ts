@@ -37,6 +37,7 @@ export class PasswordResetComponent implements OnInit {
       }
       this.bestSellerHttpService.forgotPassword(data).subscribe(res => {
         if (res["success"]) {
+          sessionStorage.setItem('email', this.resetForm.value.email);
          this.successUpdate();
         } else {
           this.errorUpdate();

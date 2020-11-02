@@ -41,17 +41,12 @@
 
   <div class="center-align" *ngIf="data?.type === 'confirm'">
     <div class="checkout cart-button display user-padding" (click)="removeItem()">
-      Yes
+      Okay
     </div>
     <div class="checkout buy-now-button display user-padding" (click)="onClickCancel()">
       Cancel
     </div>
   </div>
 
-  <div class="center-align" *ngIf="data?.type === 'error'">
-    <div class="checkout cart-button display user-padding" (click)="onClickCancel()">
-      OK
-    </div>
-  </div>
 
 </div>

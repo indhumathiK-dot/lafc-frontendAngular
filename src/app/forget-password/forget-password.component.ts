@@ -41,12 +41,15 @@ export class ForgetPasswordComponent implements OnInit {
       return;
     } else {
 
+      var email = sessionStorage.getItem('email');
       var data = {
+        email: email,
         password: this.resetForm.value.password,
         confirm: this.resetForm.value.confirmPassword
       }
       this.bestSellerHttpService.postForgotPassword(data).subscribe(res => {
         if (res["success"]) {
+          sessionStorage.removeItem('email');
           this.successUpdate();
         }
       });
@@ -54,8 +57,12 @@ export class ForgetPasswordComponent implements OnInit {
   }
 
   checkValidationForm(type) {
-    this.validationCheck[type] = false;
-    this.validationCheck['samePass'] = this.resetForm.value.password && this.resetForm.value.confirmPassword ? (this.resetForm.value.password !== this.resetForm.value.confirmPassword ) : false;
+    if(type === 'confirmPassword') {
+      this.validationCheck[type] = this.validationCheck[type] ? !(this.resetForm.value.confirmPassword && (this.resetForm.value.confirmPassword.length > 5 && this.resetForm.value.confirmPassword.length < 20)) : false;
+    } else if(type === 'password') {
+      this.validationCheck[type] = this.validationCheck[type] ? !(this.resetForm.value.password && (this.resetForm.value.password.length > 5 && this.resetForm.value.password.length < 20)) : false;
+    }
+    this.validationCheck['samePass'] = (this.resetForm.value.password && this.resetForm.value.confirmPassword && (this.resetForm.value.confirmPassword.length > 5 && this.resetForm.value.confirmPassword.length < 20) && (this.resetForm.value.password.length > 5 && this.resetForm.value.password.length < 20)) ? (this.resetForm.value.password === this.resetForm.value.confirmPassword) ? false : true : false;
   }
 
   successUpdate() {

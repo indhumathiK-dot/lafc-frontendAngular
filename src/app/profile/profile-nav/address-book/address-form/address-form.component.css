@@ -153,3 +153,6 @@
   border-right: none;
   border-top: none;
 }
+::ng-deep .cdk-overlay-pane {
+  transform: translateX(-12px) translateY(-14px) !important;
+}

@@ -103,13 +103,6 @@
   font-size: 17px;
   padding-left: 10px;
 }
-::ng-deep .mat-select-arrow {
-  border-left: 15px solid transparent !important;
-  border-right: none !important;
-  border-top: 13px solid transparent !important;
-  border-image-source: url('/assets/images/Icon feather-chevron-down - Copy.png') !important;
-  border-image-repeat: stretch !important;
-}
 ::ng-deep .mat-select-panel .mat-option {
   height: 45px !important;
   font-size: 15px !important;
@@ -330,8 +323,11 @@
   height: 11px;
   background-color: #fff;
   border-left: 2px solid #666;
-  /*border-bottom: 2px solid #666;*/
-  transform: rotate(360deg);
+  border-bottom: 2px solid #666;
+  transform: rotate(313deg);
   border-right: none;
   border-top: none;
+}
+::ng-deep .cdk-overlay-pane {
+  transform: translateX(-12px) translateY(-14px) !important;
 }

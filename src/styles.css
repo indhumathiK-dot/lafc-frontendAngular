@@ -25,6 +25,9 @@ input.mat-input-element {
 select.mat-input-element {
   font-family: 'Raleway';
 }
+.mat-select-value {
+  font-family: Raleway;
+}
 table.mat-table {
   font-family: Raleway;
 }
@@ -32,6 +35,9 @@ table.mat-table {
   font-family: Raleway;
 }
 .mat-checkbox {
+  font-family: Raleway;
+}
+.mat-option-text {
   font-family: Raleway;
 }
 

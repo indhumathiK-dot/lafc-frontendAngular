@@ -37,6 +37,7 @@ export class SignupComponent implements OnInit {
   public infoDetails: any;
   public emailCheck: boolean = false;
   stateIndex: any;
+  private originalFilename: any;
 
   constructor(private fb: FormBuilder,
               private authService: AuthenticationService,
@@ -187,6 +188,7 @@ export class SignupComponent implements OnInit {
     let user = JSON.parse(localStorage.getItem('user'));
     this.authService.getCustomerDetails(user['customer_id']).subscribe(res => {
       var customerDetails = res['data']['data'][0];
+      this.originalFilename = customerDetails.cc_auth_path;
       var checkFileName = customerDetails.cc_auth_path.split('/');
       this.fileName = checkFileName[2];
       this.registerForm.patchValue({
@@ -352,7 +354,7 @@ export class SignupComponent implements OnInit {
         }
       })
     } else {
-      this.updatePath('', customerId);
+      this.updatePath(this.originalFilename, customerId);
     }
   }
 

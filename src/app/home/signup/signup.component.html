@@ -98,9 +98,9 @@
 
           <div class="col-md-4 fd-mob row-space">
             <label class="label-name display-flex">Country<span class="astrix-size">*</span></label>
-            <mat-form-field class="select-mat-dd" appearance="outline" [ngClass]="validationCheck['country'] ? 'errorClass' : ''">
+            <mat-form-field class="apply-select-mat-dd w-100" appearance="outline" [ngClass]="validationCheck['country'] ? 'errorClass' : ''">
               <mat-select  formControlName="country" (selectionChange)="onSelectCountry(registerForm.value.country)"
-                           panelClass="select-dd-panel">
+                           panelClass="apply-select-dd-panel">
                 <mat-option [value]="country.value" *ngFor="let country of countriesList">{{country.label}}</mat-option>
               </mat-select>
             </mat-form-field>
@@ -116,9 +116,9 @@
           <div class="col-md-4 row-space">
             <label class="label-name parellel-field display-flex">State<span class="astrix-size">*</span></label>
 
-            <mat-form-field class="select-mat-dd parellel-field" appearance="outline">
+            <mat-form-field class="apply-select-mat-dd parellel-field" appearance="outline">
               <mat-select matNativeControl [ngModel]="statesList[stateIndex]?.value"  formControlName="state" (selectionChange)="checkValidationForm('state', $event.value)" [ngClass]="validationCheck['state'] ? 'errorClass' : ''"
-                           panelClass="select-dd-panel">
+                           panelClass="apply-select-dd-panel">
                 <mat-option [value]="state.value" *ngFor="let state of statesList">{{state.label}}</mat-option>
               </mat-select>
             </mat-form-field>

@@ -126,17 +126,17 @@
   padding: 10px 0 1em 0;
 }
 
-::ng-deep .mat-select-arrow {
-  border-left: 15px solid transparent !important;
-  border-right: none !important;
-  border-top: 15px solid transparent !important;
-  border-image-source: url('/assets/images/Icon feather-chevron-down - Copy.png') !important;
-  border-image-repeat: stretch !important;
-}
-.mat-select-arrow-wrapper {
-  background-image: url('/assets/images/Icon feather-chevron-down - Copy.png') !important;
+/*::ng-deep .mat-select-arrow {*/
+/*  border-left: 15px solid transparent !important;*/
+/*  border-right: none !important;*/
+/*  border-top: 15px solid transparent !important;*/
+/*  border-image-source: url('/assets/images/Icon feather-chevron-down - Copy.png') !important;*/
+/*  border-image-repeat: stretch !important;*/
+/*}*/
+/*.mat-select-arrow-wrapper {*/
+/*  background-image: url('/assets/images/Icon feather-chevron-down - Copy.png') !important;*/
 
-}
+/*}*/
 
 .mat-select-arrow {
   opacity: 0;
@@ -240,19 +240,19 @@
 }
 
 
-.select-mat-dd {
+.apply-select-mat-dd {
   width: 100%;
 }
-::ng-deep .select-dd-panel {
+::ng-deep .apply-select-dd-panel {
   margin-top: 43px;
 }
 
-.select-mat-dd ::ng-deep .mat-form-field-wrapper {
+.apply-select-mat-dd ::ng-deep .mat-form-field-wrapper {
   margin-top: 0;
   margin-bottom: 0;
   padding-bottom: 0;
 }
-.select-mat-dd ::ng-deep .mat-select-arrow {
+.apply-select-mat-dd ::ng-deep .mat-select-arrow {
   width: 11px;
   height: 11px;
   background-color: #fff;
@@ -261,4 +261,7 @@
   transform: rotate(360deg);
   border-right: none;
   border-top: none;
+}
+::ng-deep .cdk-overlay-pane{
+  transform: translateX(-12px) translateY(-14px) !important;
 }

@@ -207,7 +207,7 @@ public slideIndex = 1;
             if (type === 'buy') {
               sessionStorage.setItem('buyNowProduct', this.productId);
               this.hideModal();
-              this.router.navigate(['/cart/items']);
+              this.router.navigate(['/cart/delivery']);
             }
           }, (error) => {
           });
@@ -234,7 +234,7 @@ public slideIndex = 1;
             if (type === 'buy') {
               sessionStorage.setItem('buyNowProduct', this.productId);
               this.hideModal();
-              this.router.navigate(['/cart/items']);
+              this.router.navigate(['/cart/delivery']);
             }
           }, (error) => {
           });

@@ -178,22 +178,26 @@ export class ProductDetailsComponent implements OnInit {
 
         for(let index = 0; index < this.productsDetails.options.length; index++) {
           var optionList = [];
-          for(let value = 0; value < this.productsDetails.options[index].option_value.length; value++) {
-            if(index == 0) {
-              this.selectedOptionList.push({
-                optionId: this.productsDetails.options[index].product_option_id,
-                valueId: this.productsDetails.options[index].option_value[value].product_option_value_id
+          if(this.productsDetails.options[index].option_value.length) {
+            for (let value = 0; value < this.productsDetails.options[index].option_value.length; value++) {
+              if (index == 0) {
+                this.selectedOptionList.push({
+                  optionId: this.productsDetails.options[index].product_option_id,
+                  valueId: this.productsDetails.options[index].option_value[value].product_option_value_id
+                })
+              }
+              optionList.push({
+                value: this.productsDetails.options[index].option_value[value].product_option_value_id,
+                label: this.productsDetails.options[index].option_value[value].name
               })
             }
-            optionList.push({
-              value: this.productsDetails.options[index].option_value[value].product_option_value_id,
-              label: this.productsDetails.options[index].option_value[value].name
+            this.optionList.push({
+              name: this.productsDetails.options[index].name,
+              option_value: optionList
             })
+          } else {
+            this.optionList = [];
           }
-          this.optionList.push({
-            name: this.productsDetails.options[index].name,
-            option_value: optionList
-          })
         }
       });
   }
@@ -260,9 +264,7 @@ export class ProductDetailsComponent implements OnInit {
   }
 
   addTocart(type, productId) {
-    if(type !== 'buy') {
-      this.cartLabel = 'Adding';
-    }
+    this.cartLabel = 'Adding';
     this.cartService.getCartProducts().pipe(take(1))
       .subscribe((res) => {
         var cartlist = res['products'] ? res['products'] : [];
@@ -280,12 +282,7 @@ export class ProductDetailsComponent implements OnInit {
           }
           this.cartService.updateProductQuantity(quantityData).pipe(take(1)).subscribe(e => {
 
-            if (type === 'buy') {
-              sessionStorage.setItem('buyNowProduct', this.productId);
-              this.router.navigate(['/cart/delivery']);
-            } else {
-              this.cartLabel = 'Added to cart';
-            }
+          this.cartLabel = 'Added to cart';
           }, (error) => {
           });
         } else {
@@ -302,12 +299,57 @@ export class ProductDetailsComponent implements OnInit {
           this.cartService.addProductToCart(data, '').pipe(take(1)).subscribe(e => {
 
             this.cartService.addToCartCountSub.next();
-            if (type === 'buy') {
+            this.cartLabel = 'Added to cart';
+          }, (error) => {
+          });
+        }
+      });
+  }
+
+  buynow(productId) {
+    this.cartService.getCartProducts().pipe(take(1))
+      .subscribe((res) => {
+        var cartlist = res['products'] ? res['products'] : [];
+        var cartData = {};
+        var cartListPresent = cartlist.some(function (el) {
+          if(el.product_id === productId.toString()) {
+            cartData = el;
+          }
+          return el.product_id === productId.toString()
+        });
+        if(cartListPresent) {
+          if( Number(cartData['quantity']) === Number(this.quantity)) {
+            sessionStorage.setItem('buyNowProduct', this.productId);
+            this.router.navigate(['/cart/delivery']);
+          } else {
+            var quantityData = {
+              "key": cartData['key'],
+              "quantity": Number(this.quantity * this.productsDetails.bundle_quantity)
+            }
+            this.cartService.updateProductQuantity(quantityData).pipe(take(1)).subscribe(e => {
+
               sessionStorage.setItem('buyNowProduct', this.productId);
               this.router.navigate(['/cart/delivery']);
-            } else {
-              this.cartLabel = 'Added to cart';
-            }
+            }, (error) => {
+            });
+          }
+
+        } else {
+          var options = {};
+          this.selectedOptionList.forEach(function (element) {
+            var key = element.optionId.toString();
+            options[key] = element.valueId
+          })
+          var data = {
+            "product_id": this.productId,
+            "quantity": (this.quantity * this.productsDetails.bundle_quantity ).toString(),
+            "option": options
+          }
+          this.cartService.addProductToCart(data, '').pipe(take(1)).subscribe(e => {
+
+            this.cartService.addToCartCountSub.next();
+              sessionStorage.setItem('buyNowProduct', this.productId);
+              this.router.navigate(['/cart/delivery']);
           }, (error) => {
           });
         }

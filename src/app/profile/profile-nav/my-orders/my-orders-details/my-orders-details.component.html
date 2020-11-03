@@ -51,7 +51,7 @@
     <div class="bold-font comments-sec">Order Notes</div>
     <div class="comment-box">
       <div *ngFor="let comment of orderDetails?.comment">
-        <div [innerHTML]="comment"> </div>
+        <div [innerText]="comment"> </div>
         </div>
     </div>
 <!--    <div class="comment-box" [innerText]="orderDetails?.comment"></div>-->

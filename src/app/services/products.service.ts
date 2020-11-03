@@ -180,6 +180,14 @@ export class ProductsService {
       })
     });
   }
+  searchBundleProductWithoutFilter(searchWord): Observable<any> {
+    return this.http.get(this.baseUrl + `/bundleProducts/search/${searchWord}`, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    });
+  }
+
   addToRecentView(viewObject): Observable<any> {
     return this.http.post(this.baseUrl + '/recentviewadd', viewObject, {
       headers: new HttpHeaders({

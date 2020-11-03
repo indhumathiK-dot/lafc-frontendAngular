@@ -24,7 +24,7 @@ export class CartService {
 
   addProductToCart(cartObject, product): Observable<any> {
     return this.http
-      .post<any>(this.baseUrl + '/cart', cartObject, {
+      .post<any>(this.baseUrl + '/bundleCart', cartObject, {
         headers: new HttpHeaders({
           "Content-Type": "application/json"
         })

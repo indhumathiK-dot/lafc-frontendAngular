@@ -60,7 +60,7 @@
 
 
         <div id="arrivalcarousal" class="carousel slide" data-ride="carousel" data-interval="0">
-          <div class="swiper-container gallery-top" [ngClass]="productImages.length > 1 ? 'swiper-border' : ''">
+          <div class="swiper-container gallery-top swiper-border">
             <div class="swiper-wrapper">
 
               <div class="swiper-slide swiper-margin" *ngFor="let image of productImages; let i = index;">
@@ -138,9 +138,9 @@
             </div>
             <div>
               <button class="add-to-cart cart-button" (click)="addTocart('cart', productId)">{{cartLabel}}</button>
-              <a *ngIf="cartLabel ==='Added to cart'" href="/cart/items" class="cart-redirect">Go to cart <i
+              <a *ngIf="cartLabel ==='Added to cart'" [routerLink]="'/cart/items'" class="cart-redirect">Go to cart <i
                   class="fa fa-angle-right right-back-icon"></i> </a>
-              <button class="add-to-cart buy-now-button mouse-events" (click)="addTocart('buy', productId)">Buy it
+              <button class="add-to-cart buy-now-button mouse-events" (click)="buynow(productId)">Buy it
                 now</button>
 
               <div class="w-75" *ngIf="!wishlistUpdate">

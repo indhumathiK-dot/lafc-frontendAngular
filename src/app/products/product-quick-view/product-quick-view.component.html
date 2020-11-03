@@ -110,9 +110,9 @@
             </mat-form-field>
           </div>
         <div *ngIf="loginCheck">
-          <button class="add-to-cart cart-button" (click)="addTocart('cart', productsDetails?.product_id)">{{cartLabel}}</button>
+          <button class="add-to-cart cart-button" (click)="addTocart(productsDetails?.product_id)">{{cartLabel}}</button>
           <a *ngIf="cartLabel ==='Added to cart'"(click)="goCart('/cart/items')"class="cart-redirect mouse-events">Go to cart <i class="fa fa-angle-right right-back-icon"></i> </a>
-          <button class="add-to-cart buy-now-button" (click)="addTocart('buy', productsDetails?.product_id)">Buy it Now</button>
+          <button class="add-to-cart buy-now-button" (click)="buynow(productsDetails?.product_id)">Buy it Now</button>
 
           <hr>
 

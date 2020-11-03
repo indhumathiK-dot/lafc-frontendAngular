@@ -72,6 +72,7 @@ public slideIndex = 1;
         }
         for(let index = 0; index < this.productsDetails.options.length; index++) {
           var optionList = [];
+          if(this.productsDetails.options[index].option_value.length) {
           for(let value = 0; value < this.productsDetails.options[index].option_value.length; value++) {
             if(index == 0) {
               this.selectedOptionList.push({
@@ -88,6 +89,9 @@ public slideIndex = 1;
             name: this.productsDetails.options[index].name,
             option_value: optionList
           })
+          } else {
+            this.optionList = [];
+          }
         }
         setTimeout(() => {
           this.showDivs(this.slideIndex);
@@ -177,10 +181,8 @@ public slideIndex = 1;
     this.quantity = value;
   }
 
-  addTocart(type, productId) {
-    if(type === 'cart') {
-      this.cartLabel = 'Adding';
-    }
+  addTocart(productId) {
+    this.cartLabel = 'Adding';
     this.cartService.getCartProducts().pipe(take(1))
       .subscribe((res) => {
         var cartlist = res['products'] ? res['products'] : [];
@@ -201,14 +203,7 @@ public slideIndex = 1;
             if(this.type && this.type === 'wishlist') {
               this.removeFromWishlist(this.productId);
             }
-            if(type === 'cart') {
-              this.cartLabel = 'Added to cart';
-            }
-            if (type === 'buy') {
-              sessionStorage.setItem('buyNowProduct', this.productId);
-              this.hideModal();
-              this.router.navigate(['/cart/delivery']);
-            }
+             this.cartLabel = 'Added to cart';
           }, (error) => {
           });
         } else {
@@ -227,20 +222,71 @@ public slideIndex = 1;
             if(this.type && this.type === 'wishlist') {
               this.removeFromWishlist(this.productId);
             }
-            if(type === 'cart') {
-              this.cartLabel = 'Added to cart';
-            }
+             this.cartLabel = 'Added to cart';
             this.cartService.addToCartCountSub.next();
-            if (type === 'buy') {
-              sessionStorage.setItem('buyNowProduct', this.productId);
-              this.hideModal();
-              this.router.navigate(['/cart/delivery']);
-            }
           }, (error) => {
           });
         }
       });
   }
+
+  buynow(productId) {
+    this.cartService.getCartProducts().pipe(take(1))
+      .subscribe((res) => {
+        var cartlist = res['products'] ? res['products'] : [];
+        var cartData = {};
+        var cartListPresent = cartlist.some(function (el) {
+          const self = this;
+          if (el.product_id === productId.toString()) {
+            cartData = el;
+          }
+          return el.product_id === productId.toString()
+        });
+        if (cartListPresent) {
+          if( Number(cartData['quantity']) === Number(this.quantity)) {
+            sessionStorage.setItem('buyNowProduct', this.productId);
+            this.router.navigate(['/cart/delivery']);
+          } else {
+            var quantityData = {
+              "key": cartData['key'],
+              "quantity": Number(this.quantity * this.productsDetails.bundle_quantity)
+            }
+            this.cartService.updateProductQuantity(quantityData).pipe(take(1)).subscribe(e => {
+              if (this.type && this.type === 'wishlist') {
+                this.removeFromWishlist(this.productId);
+              }
+              sessionStorage.setItem('buyNowProduct', this.productId);
+              this.hideModal();
+              this.router.navigate(['/cart/delivery']);
+            }, (error) => {
+            });
+          }
+        } else {
+
+          var options = {};
+          this.selectedOptionList.forEach(function (element) {
+            var key = element.optionId.toString();
+            options[key] = element.valueId
+          })
+          var data = {
+            "product_id": this.productId,
+            "quantity": (this.quantity * this.productsDetails.bundle_quantity).toString(),
+            "option": options
+          }
+          this.cartService.addProductToCart(data, '').pipe(take(1)).subscribe(e => {
+            if(this.type && this.type === 'wishlist') {
+              this.removeFromWishlist(this.productId);
+            }
+            this.cartService.addToCartCountSub.next();
+              sessionStorage.setItem('buyNowProduct', this.productId);
+              this.hideModal();
+              this.router.navigate(['/cart/delivery']);
+          }, (error) => {
+          });
+        }
+      });
+  }
+
   quantityValidation() {
     var ageInput = document.getElementById("quantity")
 

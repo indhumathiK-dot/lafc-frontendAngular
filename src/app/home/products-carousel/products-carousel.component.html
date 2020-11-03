@@ -27,7 +27,7 @@
         </div>
         <a class="title" routerLink="/products/{{item.product_id}}"> {{item.name}} </a>
         <p class="apply-wholesale link-color mouse-events" *ngIf="!loginCheck" [routerLink]="'/signup'"> Apply for wholesale pricing </p>
-        <p class="title" *ngIf="loginCheck"> {{item?.price_formated}} </p>
+        <p class="title" *ngIf="loginCheck"> {{item?.bundle_price}} </p>
       </a>
     </ng-template>
 

@@ -109,12 +109,12 @@ export class itemsComponent implements OnInit {
         this.updateCartArray.splice(cartData.index, 1);
         this.updateCartArray.push({
           "key": element['key'],
-          "quantity": Number(value) * Number(element.singleBundleQuantity)
+          "quantity": Number(value.target.value) * Number(element.singleBundleQuantity)
         })
       } else {
         var quantityData = {
           "key": element['key'],
-          "quantity": Number(value) * Number(element.singleBundleQuantity)
+          "quantity": Number(value.target.value) * Number(element.singleBundleQuantity)
         }
         this.updateCartArray.push(quantityData);
       }

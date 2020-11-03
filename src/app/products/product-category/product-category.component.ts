@@ -93,8 +93,8 @@ export class ProductCategoryComponent implements OnInit {
   getProductList(limit, page) {
     this.bestsellerhttpservice. getBundleLatestProductsWithLimits(limit, page).pipe(take(1))
       .subscribe((products) => {
-        this.firstLoadCheck = true;
         this.products = [];
+        this.firstLoadCheck = true;
         for(let index = 0; index < products.data.length; index++) {
           this.products.push(products.data[index]);
           if(products.data[index].tag) {
@@ -119,8 +119,8 @@ export class ProductCategoryComponent implements OnInit {
     this.productsTags = [];
     this.filterClick = false;
     this.productsService.getBundleProductsByMnfctrIDByLimit(manufactureId, limit, page).subscribe(res => {
+      this.firstLoadCheck = true;
       for(let index = 0; index < res.length; index++) {
-        this.firstLoadCheck = true;
         this.products.push(res[index]);
         if(res[index].tag) {
           var tagArray = res[index].tag.split(', ');
@@ -152,14 +152,14 @@ export class ProductCategoryComponent implements OnInit {
           if(index + 1 === data.sub_categories.length) {
             setTimeout(() => {
               this.splitProductsByCategory(48, 1);
-            }, 1000);
+            }, 1500);
           }
         }
       } else {
         this.getProductListByCategoryId(this.categoryId);
         setTimeout(() => {
           this.splitProductsByCategory(48, 1);
-        }, 1000);
+        }, 1500);
 
       }
 
@@ -168,7 +168,9 @@ export class ProductCategoryComponent implements OnInit {
 
   splitProductsByCategory(limit, start) {
 
-    this,this.productsTotalCount = this.productCategoryList.length;
+    console.log(this.productCategoryList)
+    this.productsTotalCount = this.productCategoryList.length;
+    this.firstLoadCheck = true;
     var totalCheck = 0;
     for(let index = 0; index < this.productCategoryList.length; index++) {
       if(start <= index + 1 && this.products.length < limit) {
@@ -201,7 +203,6 @@ export class ProductCategoryComponent implements OnInit {
   getProductListByCategoryId(categoryId) {
     this.productsService.getBundleProductsByCategoryId(categoryId).pipe(take(1))
       .subscribe((products) => {
-        this.firstLoadCheck = true;
         for(let index = 0; index < products.length; index++) {
           this.productCategoryList.push(products[index]);
           // if(products[index].tag) {
@@ -229,7 +230,7 @@ export class ProductCategoryComponent implements OnInit {
   }
 
   change(valueIndex) {
-    this.productsService.searchProductWithoutFilter(this.selectedFilterList[valueIndex]).pipe(take(1))
+    this.productsService.searchBundleProductWithoutFilter(this.selectedFilterList[valueIndex]).pipe(take(1))
       .subscribe((products) => {
         if(valueIndex === 0) {
           this.products = products.data;

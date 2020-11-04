@@ -6,8 +6,11 @@
   border-left: 1px solid #fafafa;
   float: right;
 }
-.all-height {
-  height: 800px;
+.checkout-all-height {
+  height: 855px;
+}
+.delivery-all-height {
+  height: 1400px;
 }
 .cart-menu {
   display: inline;
@@ -24,8 +27,7 @@
 .left-design {
   /*text-align: center;*/
   width: 56%;
-  margin-top: 50px;
-  padding-bottom: 50px;
+  margin-top: 80px;
 }
 .image {
   width: 100px;
@@ -58,5 +60,12 @@ a:active {
     width: 100%;
     margin-top: 20px;
   }
-  
+
+}
+.footer-align {
+  margin: 0 8pc;
+  border-top: 1px solid #d5cec8;
+  padding: 10px 0;
+  color: #988;
+  font-size: 13px;
 }

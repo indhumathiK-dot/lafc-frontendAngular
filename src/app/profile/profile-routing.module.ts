@@ -10,7 +10,6 @@ import { MyOrdersComponent } from './profile-nav/my-orders/my-orders.component';
 import { MyOrdersDetailsComponent } from './profile-nav/my-orders/my-orders-details/my-orders-details.component';
 import { LoginGuard } from '../cart/login.guard';
 import { ProfileNavComponent } from './profile-nav/profile-nav.component';
-import { NotificationsComponent } from './profile-nav/notifications/notifications.component';
 import {AboutPageComponent} from "./about-page/about-page.component";
 import {AddressFormComponent} from "./profile-nav/address-book/address-form/address-form.component";
 
@@ -43,10 +42,6 @@ const routes: Routes = [
       {
         path: "change-password",
         component: ChangePasswordComponent
-      },
-      {
-        path: "notification",
-        component: NotificationsComponent
       },
       {
         path: "cards",

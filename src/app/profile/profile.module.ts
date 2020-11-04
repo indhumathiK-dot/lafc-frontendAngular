@@ -7,9 +7,7 @@ import { WishlistComponent } from './profile-nav/wishlist/wishlist.component';
 import { AddressBookComponent } from './profile-nav/address-book/address-book.component';
 import { WalletComponent } from './profile-nav/wallet/wallet.component';
 import { MyOrdersComponent } from './profile-nav/my-orders/my-orders.component';
-import { MyOrdersItemComponent } from './profile-nav/my-orders/my-orders-item/my-orders-item.component';
 import { MyOrdersDetailsComponent } from './profile-nav/my-orders/my-orders-details/my-orders-details.component';
-import { TrackOrderComponent } from './profile-nav/my-orders/track-order/track-order.component';
 import { ProfileNavComponent } from './profile-nav/profile-nav.component';
 import { CoreModule } from '../core/core.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -19,7 +17,6 @@ import { ChangePasswordComponent } from './profile-nav/change-password/change-pa
 import { MatInputModule } from '@angular/material/input';
 import { LoginGuard } from '../cart/login.guard';
 import { PopoverModule } from 'ngx-smart-popover';
-import { NotificationsComponent } from './profile-nav/notifications/notifications.component';
 import { AvatarModule } from 'ngx-avatar';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
@@ -79,11 +76,8 @@ import {Ng2TelInputModule} from "ng2-tel-input";
     AddressBookComponent,
     WalletComponent,
     MyOrdersComponent,
-    MyOrdersItemComponent,
     MyOrdersDetailsComponent,
-    TrackOrderComponent,
     ChangePasswordComponent,
-    NotificationsComponent,
     AboutPageComponent,
     AddressFormComponent
 

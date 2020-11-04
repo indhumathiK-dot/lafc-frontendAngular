@@ -5,10 +5,7 @@ import { CartRoutingModule } from './cart-routing.module';
 import { CoreModule } from '../core/core.module';
 import { itemsComponent } from './my-cart/my-cart.component';
 import { DeliveryComponent } from './delivery/delivery.component';
-
-import { PaymentComponent } from './payment/payment.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import { PriceDetailsComponent } from './price-details/price-details.component';
 import { OrderFailureComponent } from './order-failure/order-failure.component';
 import { OrderSuccessComponent } from './order-success/order-success.component';
 import { MomentModule } from 'angular2-moment';
@@ -60,8 +57,6 @@ import {Ng2TelInputModule} from "ng2-tel-input";
         itemsComponent,
         DeliveryComponent,
         OrderSuccessComponent,
-        PaymentComponent,
-        PriceDetailsComponent,
         OrderFailureComponent,
         CartFooterComponent,
         CheckoutComponent

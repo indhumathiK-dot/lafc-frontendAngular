@@ -1,6 +1,6 @@
 
 .padd-item {
-  margin-left: 4%;
+  margin: 80px 4% 0 4%;
   width: 70%;
 }
 .image-border {
@@ -18,7 +18,6 @@
 td.mat-cell{
   border-bottom-style: none;
 }
-
 th.mat-header-cell{
   border-bottom-style: none;
 }
@@ -51,9 +50,12 @@ table {
   background: #fafafa;
 }
 .table-overflow {
-  overflow: auto;
+  overflow: hidden;
   height: 240px;
   width: 100%;
+}
+.table-overflow:hover {
+  overflow: auto;
 }
 .separator {
   border-top: 1px solid #323232;
@@ -84,7 +86,7 @@ table {
   .padd-item{
     width: 90%;
   }
-  
+
 }
 .fd-mob{
   display: none;
@@ -101,7 +103,7 @@ table {
   }
   .mob-head h5{
     float:left;
-    padding: 10px 0;  
+    padding: 10px 0;
     display: contents;
   }
   .table-overflow{

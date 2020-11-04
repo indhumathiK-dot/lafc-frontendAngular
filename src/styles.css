@@ -73,14 +73,14 @@ body{
 }
 
 
-html {
+/*html {
   overflow: scroll;
   overflow-x: hidden;
 }
 ::-webkit-scrollbar {
   width: 0px;
   background: transparent;
-}
+}*/
 
 .display {
   display: inline-block;

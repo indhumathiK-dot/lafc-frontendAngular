@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CategoryRangeComponent } from './category-range/category-range.component';
 import { CarouselModule } from "ngx-owl-carousel-o";
 import { CarouselComponent } from './carousel/carousel.component';
 import { ProductsCarouselComponent } from './products-carousel/products-carousel.component';
@@ -76,7 +75,7 @@ const routes: Routes = [
   { path: 'contactus', component: ContactusComponent }
 ];
 @NgModule({
-  declarations: [HomeComponent, CarouselComponent, CategoryRangeComponent, ProductsCarouselComponent,
+  declarations: [HomeComponent, CarouselComponent, ProductsCarouselComponent,
     BannerMainpageComponent, BrandsComponent,
     InformationComponent, TestimonialsComponent, DomsafePipe, BlogComponent, BlogDetailsComponent, GalleryComponent, ContactusComponent, LoginComponent, ProductListComponent, SearchListComponent, SignupComponent,
     ],
@@ -89,7 +88,7 @@ const routes: Routes = [
         ModalModule.forRoot(),
         AvatarModule,
         CoreModule, RouterModule.forChild(routes), MatFormFieldModule, ReactiveFormsModule, MatInputModule, MatButtonModule, FlexLayoutModule, MatPaginatorModule, MatCheckboxModule, MatRadioModule, NgSelectModule, MatSelectModule],
-    exports: [HomeComponent, CarouselComponent, DomsafePipe, CategoryRangeComponent, ProductsCarouselComponent, ContactusComponent,
+    exports: [HomeComponent, CarouselComponent, DomsafePipe, ProductsCarouselComponent, ContactusComponent,
         BannerMainpageComponent, BlogComponent, BlogDetailsComponent, BrandsComponent, RouterModule, ProductListComponent,LoginComponent],
   providers: [],
   entryComponents: [LoginComponent, ]

@@ -51,11 +51,8 @@ export function provideConfig() {
 }
 import { GestureConfig } from '@angular/material';
 import { AlertModule } from 'ngx-bootstrap/alert';
-import { DialogOverviewComponent } from "./home/dialog-overview/dialog-overview.component";
 import { CartComponent } from './cart/cart.component';
 import { ModalModule } from 'ngx-bootstrap/modal';
-import { DownloadAppComponent } from './download-app/download-app.component';
-import { MandatoryComponent } from './mandatory/mandatory.component';
 import { ErrorInterceptor } from './core/services/error.interceptor';
 import { environment } from 'src/environments/environment';
 import {CartModule} from "./cart/cart.module";
@@ -69,10 +66,7 @@ import {MatButtonModule} from "@angular/material/button";
     PpsServicesComponent,
     PageNotFoundComponent,
     PasswordResetComponent,
-    DialogOverviewComponent,
-    DownloadAppComponent,
     CartComponent,
-    MandatoryComponent,
     ForgetPasswordComponent
   ],
   imports: [
@@ -119,6 +113,6 @@ import {MatButtonModule} from "@angular/material/button";
     { provide: HAMMER_GESTURE_CONFIG, useClass: GestureConfig }
   ],
   bootstrap: [AppComponent],
-  entryComponents: [DialogOverviewComponent, MandatoryComponent]
+  entryComponents: []
 })
 export class AppModule {}

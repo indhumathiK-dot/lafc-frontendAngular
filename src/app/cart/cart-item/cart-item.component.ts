@@ -51,10 +51,7 @@ export class CartItemComponent {
           }
         }
         this.dataSource.data = productItems;
-        this.totalArray = [
-          {title: 'Sub Total', text: productItems[0]['bundle_total']},
-          {title: 'Total', text: productItems[0]['bundle_total']}
-          ];
+        this.totalArray = e.totals;
 
       } else {
         this.dataSource.data = [];

@@ -20,7 +20,6 @@ import { AccordionModule } from 'ngx-bootstrap/accordion';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 import { NpnSliderModule } from "npn-slider";
-import { PriceRangeComponent } from '../price-range/price-range.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import { UtilitiesComponent } from './utilities/utilities.component';
 import { CarouselModule as carouselBootModule} from 'ngx-bootstrap/carousel';
@@ -100,7 +99,6 @@ import { OwlModule } from 'ngx-owl-carousel';
         ToolsbarComponent,
         CategoryFilterComponent,
         CustomerReviewComponent,
-        PriceRangeComponent,
         UtilitiesComponent,
         OtherProductsComponent,
         BrandProductsComponent,

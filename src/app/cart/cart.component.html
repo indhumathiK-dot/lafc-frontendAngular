@@ -1,5 +1,5 @@
 <div *ngIf="router.url !== '/cart/items'">
-<div class="w-100 all-height">
+<div class="w-100" [ngClass]="router.url == '/cart/checkout' ? 'checkout-all-height' : 'delivery-all-height'">
  <div class=" display left-design">
    <div class="center-align">
    <a class="mouse-events" (click)="routerNavigate('/')">
@@ -29,6 +29,10 @@
         </ul>
    </div>
    <router-outlet></router-outlet>
+
+   <footer class="footer-align">
+     <a class="link-color"[routerLink]="'/about/Privacy Policy/3'">Privacy policy</a>
+   </footer>
 </div>
  <div class="display fd-dis item-display">
    <app-cart-item ></app-cart-item>

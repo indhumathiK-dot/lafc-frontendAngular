@@ -45,6 +45,7 @@ export class ProductDetailsComponent implements OnInit {
               private wishListService: WishListService,
               public modalService: BsModalService,
               public elementRef: ElementRef) {
+    window.scrollTo(0, 0);
     this.loginCheck = localStorage.getItem('loggedIn') === 'true';
     this.route.params.subscribe(params => {
       this.productId = params['product_id'];
@@ -184,7 +185,7 @@ export class ProductDetailsComponent implements OnInit {
           if(this.productsDetails.options[index].option_value.length) {
             for (let value = 0; value < this.productsDetails.options[index].option_value.length; value++) {
               if (value == 0) {
-                this.productTotal = Number(this.productTotal) + Number(this.productsDetails.options[index].option_value[value].price);
+                this.productTotal = Number(this.productTotal) + (Number(this.productsDetails.options[index].option_value[value].price * this.productsDetails.bundle_quantity));
                 this.selectedOptionList.push({
                   optionId: this.productsDetails.options[index].product_option_id,
                   valueId: this.productsDetails.options[index].option_value[value].product_option_value_id
@@ -257,7 +258,7 @@ export class ProductDetailsComponent implements OnInit {
         amount = element.amount;
       }
     })
-    this.productTotal = Number(this.productsDetails.bundle_price_without_format.toFixed(2)) +  Number(amount);
+    this.productTotal = Number(this.productsDetails.bundle_price_without_format.toFixed(2)) +  (Number(amount) * this.productsDetails.bundle_quantity);
       this.selectedOptionList.push({
         optionId: optionId,
         valueId: value

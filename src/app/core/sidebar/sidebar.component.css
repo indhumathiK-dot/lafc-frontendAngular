@@ -43,14 +43,35 @@
 .sidebar-move {
   overflow: auto;
 }
+
+.app-mat-sidenav {
+  overflow-y: visible;
+}
+.mob-haeder-logo {
+  display: none;
+}
 @media screen and (max-width: 765px) {
-.page-wrapper{
-  width: 100%;
-  float: unset;
-  padding: 20px;
+  .page-wrapper{
+    width: 100%;
+    float: unset;
+    padding: 20px;
+  }
+  .header-icon{
+    padding: 20px;
+    color: #333333;
+  }
+
+  .mob-app-header {
+    height: 100px !important;
+  }
+  .mob-haeder-logo {
+    display: block;
+    position: absolute;
+    top: 5px;
+    height: 100px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+  }
 }
-.header-icon{
-  padding: 20px;
-  color: #333333;
-}
-}
+

@@ -18,7 +18,7 @@
           </a>
           <ul *ngIf="category.children.length">
             <li *ngFor="let childCategory of category.children">
-              <a class="sub-menu" routerLink="/products/collections/{{childCategory.cat.name}}/{{childCategory.cat.category_id}}" title="">{{childCategory.cat.name}}</a>
+              <a class="sub-menu" routerLink="/products/collections/{{childCategory.cat.name}}/{{childCategory.cat.category_id}}" title="" [innerHTML]="childCategory.cat.name"></a>
             </li>
           </ul>
         </li>

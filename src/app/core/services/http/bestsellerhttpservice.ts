@@ -48,18 +48,32 @@ export class BestSellerHttpService {
       .pipe(catchError(this.handleErrorObservable));
   }
   getBundleLatestProducts(): Observable<any> {
-    var imageDimesions = JSON.parse(localStorage.getItem('image-dimension'))
-    return this.http
-      .get(this.baseUrl + '/bundleLatest',
-        {
-          headers: new HttpHeaders({
-            'Content-Type': 'application/json',
-            'x-oc-image-dimension' : imageDimesions.theme_default_image_product_width + 'x' + imageDimesions.theme_default_image_product_height,
-          })
-        }
+    var imageDimesions = JSON.parse(localStorage.getItem('image-dimension'));
+    if(imageDimesions) {
+      return this.http
+        .get(this.baseUrl + '/bundleLatest',
+          {
+            headers: new HttpHeaders({
+              'Content-Type': 'application/json',
+              'x-oc-image-dimension' : imageDimesions.theme_default_image_product_width + 'x' + imageDimesions.theme_default_image_product_height,
+            })
+          }
         )
-      .pipe(map(this.extractData))
-      .pipe(catchError(this.handleErrorObservable));
+        .pipe(map(this.extractData))
+        .pipe(catchError(this.handleErrorObservable));
+    } else {
+      return this.http
+        .get(this.baseUrl + '/bundleLatest',
+          {
+            headers: new HttpHeaders({
+              'Content-Type': 'application/json',
+              'x-oc-image-dimension': '300x400',
+            })
+          }
+        )
+        .pipe(map(this.extractData))
+        .pipe(catchError(this.handleErrorObservable));
+    }
   }
 
   getBundleLatestProductsWithLimits(limit, page): Observable<any> {

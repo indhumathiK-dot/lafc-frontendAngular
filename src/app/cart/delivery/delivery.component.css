@@ -62,6 +62,13 @@
 ::ng-deep .delivery.mat-form-field-appearance-outline .mat-form-field-label {
   font-size: 13px;
 }
+.astrix-delivery-size {
+  font-size: 27px;
+  margin-top: -11px;
+}
+.address-botton-padding {
+  padding-bottom: 17px;
+}
 .return {
   font-size: 14px !important;
   color: #988c88 !important;

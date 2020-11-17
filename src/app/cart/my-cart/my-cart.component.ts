@@ -23,6 +23,7 @@ export class itemsComponent implements OnInit {
   constructor(private cartSerivce: CartService,
               private router: Router,
               public modalService: BsModalService) {
+    window.scrollTo(0, 0);
     this.cartSerivce.cartListUpdate.subscribe(value => {
       if(value) {
         this.cartSerivce.cartListUpdate.next(false);

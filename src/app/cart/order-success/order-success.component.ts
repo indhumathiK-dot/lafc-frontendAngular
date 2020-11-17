@@ -16,6 +16,7 @@ export class OrderSuccessComponent implements OnInit {
 
   constructor(private ordersService: OrdersService, private router: Router, private location: PlatformLocation,
               private route: ActivatedRoute) {
+    window.scrollTo(0, 0);
     location.onPopState(() => {
       this.router.navigate(['/cart', 'orderSuccess']);
       history.forward();

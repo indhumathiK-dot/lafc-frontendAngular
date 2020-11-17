@@ -20,6 +20,11 @@
           <th mat-header-cell *matHeaderCellDef></th>
           <td mat-cell *matCellDef="let element" class="border-table">
             {{element.name}}
+            <br>
+            <div class="link-color" *ngFor="let option of element.option">
+              <span>- {{option.name}} : </span>
+              <span>{{option.value}}</span>
+            </div>
           </td>
         </ng-container>
 

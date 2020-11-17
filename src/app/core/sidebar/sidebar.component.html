@@ -5,7 +5,7 @@
     <!-- ============================================================== -->
     <!-- Sidebar - style you can find in sidebar.scss -->
     <!-- ============================================================== -->
-    <mat-sidenav #snav id="snav" class="dark-sidebar pl-xs sidebar-background" [mode]="mobileQuery.matches ? 'side' : 'over'"
+    <mat-sidenav #snav id="snav" class="app-mat-sidenav dark-sidebar pl-xs sidebar-background" [mode]="mobileQuery.matches ? 'side' : 'over'"
                  fixedTopGap="0" [opened]="mobileQuery.matches" [disableClose]="mobileQuery.matches">
 
       <app-menubar></app-menubar>
@@ -14,7 +14,7 @@
     <!-- ============================================================== -->
     <!-- Sidebar - style you can find in sidebar.scss -->
     <!-- ============================================================== -->
-    <mat-sidenav-content class="topbar-overflow">
+    <mat-sidenav-content class="topbar-overflow mob-app-header">
       <mat-toolbar class="header">
         <div class="header-margin">
         <!-- ============================================================== -->
@@ -29,6 +29,7 @@
 
         </div>
       </mat-toolbar>
+      <img src="/assets/images/LA%20Marketplace%20Logo.jpg" class="mob-haeder-logo" />
       <!-- ============================================================== -->
       <!-- End Topbar - style you can find in pages.scss -->
       <!-- ============================================================== -->

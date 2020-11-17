@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import {take} from "rxjs/operators";
 import {ProductsService} from "../services/products.service";
 import {BestSellerHttpService} from "../core/services/http/bestsellerhttpservice";
+import {CategoryService} from "../services/category.service";
 
 @Component({
   selector: "app-home",
@@ -13,9 +14,11 @@ export class HomeComponent implements OnInit {
   public products = [];
   public bannerImage = [];
   constructor(private productsService: ProductsService,
-              private bestSellerHttpService: BestSellerHttpService) { }
+              private bestSellerHttpService: BestSellerHttpService,
+              private categoryService: CategoryService) { }
 
   ngOnInit(): void {
+    this.getImageDimesion();
     this.getInfoData();
     this.getProductList();
   }
@@ -25,6 +28,12 @@ export class HomeComponent implements OnInit {
       .subscribe((products) => {
         this.products = products.data;
       });
+  }
+
+  getImageDimesion() {
+    this.categoryService.getSystemSettingDimension().subscribe(res => {
+      localStorage.setItem('image-dimension', JSON.stringify(res));
+    })
   }
 
   getInfoData() {

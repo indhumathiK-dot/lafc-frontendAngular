@@ -35,7 +35,9 @@ export class CheckoutComponent implements OnInit {
               private infoService: informationServices,
               private authService: AuthenticationService,
               private router: Router,
-              public modalService: BsModalService) { }
+              public modalService: BsModalService) {
+    window.scrollTo(0, 0);
+  }
 
   ngOnInit() {
     // this.loadStoreData();

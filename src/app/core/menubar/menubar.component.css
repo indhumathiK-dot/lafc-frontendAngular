@@ -30,8 +30,8 @@
 .logo-image {
   /* width: 100%;
   height: 230px; */
-  margin: 0 25px 0 15px;
-  height: 25vh!important;
+  margin: 0;
+  width: 100%;
 }
 
 .mainnav {
@@ -277,4 +277,12 @@
 .cart-li:last-child .cart-count {
   top: -3px;
   right: -3px;
+}
+@media screen and (max-width: 765px) {
+  .mainnav {
+    padding-top: 15px;
+  }
+  .logo-image {
+    display: none;
+  }
 }

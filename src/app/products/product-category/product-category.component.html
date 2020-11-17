@@ -1,6 +1,6 @@
 <div class="product-category-container">
   <div class="category-name">
-  <h1>{{categoryName ? categoryName : (manufactureName ? manufactureName : ArrivalsName)}}</h1>
+  <h1 [innerHTML]="categoryName ? categoryName : (manufactureName ? manufactureName : ArrivalsName)"></h1>
   </div>
   <div>
 

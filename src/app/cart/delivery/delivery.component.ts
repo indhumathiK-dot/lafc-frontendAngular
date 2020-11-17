@@ -46,7 +46,9 @@ export class DeliveryComponent implements OnInit {
               private shippingAddressService: ShippingAddressService,
               private countryService: CountryService,
               private bestSellerHttpService: BestSellerHttpService,
-              private createOrderService: CreateOrderService) { }
+              private createOrderService: CreateOrderService) {
+    window.scrollTo(0, 0);
+  }
 
   ngOnInit() {
     this.createOrderService.shippingMethodId = 'free.free'

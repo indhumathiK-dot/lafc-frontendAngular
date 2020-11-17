@@ -1,5 +1,5 @@
 <div *ngIf="router.url !== '/cart/items'">
-<div class="w-100" [ngClass]="router.url == '/cart/delivery' ? 'checkout-all-height' : (router.url == '/cart/orderSuccess' ? 'success-all-height' : 'delivery-all-height')">
+<div class="w-100" [ngClass]="router.url == '/cart/checkout' ? 'checkout-all-height' : (router.url == '/cart/orderSuccess' ? 'success-all-height' : 'delivery-all-height')">
  <div class=" display left-design">
    <div class="center-align">
    <a class="mouse-events" (click)="routerNavigate('/')">

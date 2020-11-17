@@ -9,6 +9,9 @@
 .checkout-all-height {
   height: 855px;
 }
+.success-all-height {
+  height: 700px;
+}
 .delivery-all-height {
   height: 1400px;
 }
@@ -64,6 +67,13 @@ a:active {
 }
 .footer-align {
   margin: 0 8pc;
+  border-top: 1px solid #d5cec8;
+  padding: 10px 0;
+  color: #988;
+  font-size: 13px;
+}
+.success-footer-align {
+  margin: 3pc 6pc 0pc 6pc;;
   border-top: 1px solid #d5cec8;
   padding: 10px 0;
   color: #988;

@@ -75,6 +75,25 @@ export class CartService {
     );
   }
 
+  getBuynowCartBundleProducts(id): Observable<ICartData> {
+    var imageDimesions = JSON.parse(localStorage.getItem('image-dimension'))
+    return this.http.get<ICartData>(this.baseUrl + `/buynowBundleCart/${id}`, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'x-oc-image-dimension' : imageDimesions.theme_default_image_cart_width + 'x' + imageDimesions.theme_default_image_cart_height,
+      })
+    }).pipe(
+      map((r: any) => {
+        this.addToCartCount =
+          r.data && r.data.products && r.data.products.length
+            ? r.data.products.length
+            : 0;
+        // this.addToCartCountSub.next(this.addToCartCount);
+        return r.data as ICartData;
+      })
+    );
+  }
+
   updateProductQuantity(cartObject): Observable<any> {
     return this.http.put<any>(this.baseUrl + '/cart', cartObject, {
       headers: new HttpHeaders({

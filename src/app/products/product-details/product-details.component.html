@@ -98,7 +98,7 @@
           </div>
           <div *ngIf="loginCheck">
             <div>
-              {{productsDetails?.bundle_price}}
+              ${{productTotal}}
             </div>
             <div class="border-detail">
 
@@ -106,7 +106,7 @@
               <div *ngFor="let option of optionList">
                 <label class="label-name botton-padding">{{option.name}}</label>
                 <mat-form-field class="select-mat-dd quick-select" appearance="outline">
-                  <mat-select [(ngModel)]="option.option_value[0].value" (selectionChange)="optionSelect(option, $event.value)"
+                  <mat-select [(ngModel)]="selectedOptionList[0].valueId" (selectionChange)="optionSelect(option, $event.value)"
                                panelClass="select-dd-panel">
                     <mat-option [value]="state.value" *ngFor="let state of option.option_value">{{state.label}}</mat-option>
                   </mat-select>
@@ -132,7 +132,7 @@
               </div>
               <label class="label-name">Quantity (in packs)</label>
               <mat-form-field appearance="outline" class="select-quantity quantity-select w-25">
-                <input matInput type="number" [min]="1" (keyup)="quantityValidation()" id="quantity" name="quantity"
+                <input matInput type="number" (keyup)="quantityValidation($event)" min="1" id="quantity" name="quantity"
                   [value]="1" (blur)="quantityUpdate($event.target.value)">
               </mat-form-field>
             </div>

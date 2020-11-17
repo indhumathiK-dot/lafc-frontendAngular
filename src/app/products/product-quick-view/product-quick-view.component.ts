@@ -30,6 +30,7 @@ public slideIndex = 1;
   nextIndexCheck;
   public fbName: any;
   private type: any;
+  public productTotal: any;
 
   constructor(private bsModalRef: BsModalRef,
               private router: Router,
@@ -53,7 +54,6 @@ public slideIndex = 1;
 
   getConfigDetails() {
     this.variableForm = this.fb.group({
-      color: [""],
       quantity: [""]
     });
   }
@@ -70,11 +70,14 @@ public slideIndex = 1;
         for(let i = 0; i < this.productsDetails.images.length; i++) {
           this.productImages.push(this.productsDetails.images[i]);
         }
+
+        this.productTotal = this.productsDetails.bundle_price_without_format.toFixed(2);
         for(let index = 0; index < this.productsDetails.options.length; index++) {
           var optionList = [];
           if(this.productsDetails.options[index].option_value.length) {
           for(let value = 0; value < this.productsDetails.options[index].option_value.length; value++) {
-            if(index == 0) {
+            if(value == 0) {
+              this.productTotal = Number(this.productTotal) + Number(this.productsDetails.options[index].option_value[value].price);
               this.selectedOptionList.push({
                 optionId: this.productsDetails.options[index].product_option_id,
                 valueId: this.productsDetails.options[index].option_value[value].product_option_value_id
@@ -82,7 +85,9 @@ public slideIndex = 1;
             }
             optionList.push({
               value: this.productsDetails.options[index].option_value[value].product_option_value_id,
-              label: this.productsDetails.options[index].option_value[value].name
+              label: this.productsDetails.options[index].option_value[value].name,
+              optionId: this.productsDetails.options[index].product_option_id,
+              amount: this.productsDetails.options[index].option_value[value].price
             })
           }
           this.optionList.push({
@@ -160,21 +165,20 @@ public slideIndex = 1;
 
 
   optionSelect(option: any, value: any) {
-    if(this.selectedOptionList.length) {
-      this.selectedOptionList = this.selectedOptionList.filter(function( obj ) {
-        return obj.optionId !== option.product_option_id;
-      });
-
-      this.selectedOptionList.push({
-        optionId: option.product_option_id,
-        valueId: value
-      })
-    } else {
-      this.selectedOptionList.push({
-        optionId: option.product_option_id,
-        valueId: value
-      })
-    }
+    this.selectedOptionList = [];
+    var optionId;
+    let amount;
+    option.option_value.forEach(function (element) {
+      if(value === element.value) {
+        optionId = element.optionId;
+        amount = element.amount;
+      }
+    })
+    this.productTotal = Number(this.productsDetails.bundle_price_without_format.toFixed(2)) +  Number(amount);
+    this.selectedOptionList.push({
+      optionId: optionId,
+      valueId: value
+    })
   }
 
   quantityUpdate(value: any) {
@@ -183,119 +187,69 @@ public slideIndex = 1;
 
   addTocart(productId) {
     this.cartLabel = 'Adding';
-    this.cartService.getCartProducts().pipe(take(1))
-      .subscribe((res) => {
-        var cartlist = res['products'] ? res['products'] : [];
-        var cartData = {};
-        var cartListPresent = cartlist.some(function (el) {
-          const self = this;
-          if (el.product_id === productId.toString()) {
-            cartData = el;
-          }
-          return el.product_id === productId.toString()
-        });
-        if (cartListPresent) {
-          var quantityData = {
-            "key": cartData['key'],
-            "quantity": Number(cartData['quantity']) + Number(this.quantity * this.productsDetails.bundle_quantity)
-          }
-          this.cartService.updateProductQuantity(quantityData).pipe(take(1)).subscribe(e => {
-            if(this.type && this.type === 'wishlist') {
-              this.removeFromWishlist(this.productId);
-            }
-             this.cartLabel = 'Added to cart';
-          }, (error) => {
-          });
-        } else {
 
-          var options = {};
-          this.selectedOptionList.forEach(function (element) {
-            var key = element.optionId.toString();
-            options[key] = element.valueId
-          })
-          var data = {
-            "product_id": this.productId,
-            "quantity": (this.quantity * this.productsDetails.bundle_quantity).toString(),
-            "option": options
-          }
-          this.cartService.addProductToCart(data, '').pipe(take(1)).subscribe(e => {
-            if(this.type && this.type === 'wishlist') {
-              this.removeFromWishlist(this.productId);
-            }
-             this.cartLabel = 'Added to cart';
-            this.cartService.addToCartCountSub.next();
-          }, (error) => {
-          });
-        }
-      });
+    var options = {};
+    this.selectedOptionList.forEach(function (element) {
+      var key = element.optionId.toString();
+      options[key] = element.valueId
+    })
+    var data = {
+      "product_id": this.productId,
+      "quantity": (this.quantity * this.productsDetails.bundle_quantity).toString(),
+      "option": options
+    }
+    this.cartService.addProductToCart(data, '').pipe(take(1)).subscribe(e => {
+      if (this.type && this.type === 'wishlist') {
+        this.removeFromWishlist(this.productId);
+      }
+      this.cartLabel = 'Added to cart';
+      this.cartService.addToCartCountSub.next();
+    }, (error) => {
+    });
   }
 
   buynow(productId) {
-    this.cartService.getCartProducts().pipe(take(1))
-      .subscribe((res) => {
-        var cartlist = res['products'] ? res['products'] : [];
-        var cartData = {};
-        var cartListPresent = cartlist.some(function (el) {
-          const self = this;
-          if (el.product_id === productId.toString()) {
-            cartData = el;
-          }
-          return el.product_id === productId.toString()
-        });
-        if (cartListPresent) {
-          if( Number(cartData['quantity']) === Number(this.quantity)) {
-            sessionStorage.setItem('buyNowProduct', this.productId);
-            this.router.navigate(['/cart/delivery']);
-          } else {
-            var quantityData = {
-              "key": cartData['key'],
-              "quantity": Number(this.quantity * this.productsDetails.bundle_quantity)
-            }
-            this.cartService.updateProductQuantity(quantityData).pipe(take(1)).subscribe(e => {
-              if (this.type && this.type === 'wishlist') {
-                this.removeFromWishlist(this.productId);
-              }
-              sessionStorage.setItem('buyNowProduct', this.productId);
-              this.hideModal();
-              this.router.navigate(['/cart/delivery']);
-            }, (error) => {
-            });
-          }
-        } else {
+    var options = {};
+    this.selectedOptionList.forEach(function (element) {
+      var key = element.optionId.toString();
+      options[key] = element.valueId
+    })
+    var data = {
+      "product_id": this.productId,
+      "quantity": (this.quantity * this.productsDetails.bundle_quantity).toString(),
+      "option": options
+    }
+    this.cartService.addProductToCart(data, '').pipe(take(1)).subscribe(e => {
+      if (this.type && this.type === 'wishlist') {
+        this.removeFromWishlist(this.productId);
+      }
+      this.cartService.addToCartCountSub.next();
+      sessionStorage.setItem('buyNowProduct', this.productId);
+      this.hideModal();
+      this.router.navigate(['/cart/delivery']);
+    }, (error) => {
+    });
 
-          var options = {};
-          this.selectedOptionList.forEach(function (element) {
-            var key = element.optionId.toString();
-            options[key] = element.valueId
-          })
-          var data = {
-            "product_id": this.productId,
-            "quantity": (this.quantity * this.productsDetails.bundle_quantity).toString(),
-            "option": options
-          }
-          this.cartService.addProductToCart(data, '').pipe(take(1)).subscribe(e => {
-            if(this.type && this.type === 'wishlist') {
-              this.removeFromWishlist(this.productId);
-            }
-            this.cartService.addToCartCountSub.next();
-              sessionStorage.setItem('buyNowProduct', this.productId);
-              this.hideModal();
-              this.router.navigate(['/cart/delivery']);
-          }, (error) => {
-          });
-        }
-      });
   }
 
-  quantityValidation() {
-    var ageInput = document.getElementById("quantity")
-
-    ageInput.addEventListener("keydown", function(e) {
-      // prevent: "e", "=", ",", "-", "."
-      if ([69, 187, 188, 189, 190, 48, 96].includes(e.keyCode)) {
-        e.preventDefault();
+  quantityValidation(event) {
+    if(event.target.value === '0') {
+      event.target.value = 1;
+    } else {
+      if ([69, 187, 188, 189, 190, 110, 46, 109, 45, 43, 107].includes(Number(event.keyCode))) {
+        event.target.value = 0;
+        event.target.value = 1;
       }
-    })
+      var ageInput = document.getElementById("quantity")
+
+      ageInput.addEventListener("keydown", function (e) {
+        console.log(e)
+        // prevent: "e", "=", ",", "-", "."
+        if ([69, 187, 188, 189, 190, 48, 96, 110, 46, 109, 45, 43, 107].includes(Number(e.keyCode))) {
+          e.preventDefault();
+        }
+      })
+    }
   }
 
   previousProduct() {

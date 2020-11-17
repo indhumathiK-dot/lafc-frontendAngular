@@ -11,8 +11,7 @@
           <th mat-header-cell *matHeaderCellDef>Product</th>
           <td mat-cell *matCellDef="let element" class="border-table">
             <a routerLink="/products/{{element.product_id}}" class="col-image">
-              <img *ngIf="element.imageCheck" src="{{element.thumb}}" class="image-width">
-              <img *ngIf="!element.imageCheck" src="/assets/images/LA%20Marketplace%20Logo.jpg" class="image-width">
+              <img src="{{element.thumb}}" class="image-width">
             </a>
           </td>
         </ng-container>

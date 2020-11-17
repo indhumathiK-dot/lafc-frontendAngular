@@ -26,10 +26,13 @@
       </div>
     </div>
 
-        <label class="label-name">Business Name</label>
-        <mat-form-field appearance="outline" class="w-100 botton-padding mat-bottom-remove register">
-          <input matInput formControlName="businessName">
+        <div class="botton-padding">
+        <label class="label-name">Business Name<span class="astrix-size">*</span></label>
+        <mat-form-field appearance="outline" class="w-100 mat-bottom-remove register" [ngClass]="validationCheck['businessName'] ? 'errorClass' : ''">
+          <input matInput formControlName="businessName" (keyup)="checkValidationForm('businessName', $event.target.value)">
         </mat-form-field>
+        <span *ngIf="validationCheck['businessName']" class="password-check">Please enter business name </span>
+        </div>
 
         <div class="botton-padding">
         <label class="label-name display-flex">Phone Number<span class="astrix-size">*</span></label>
@@ -116,9 +119,9 @@
           <div class="col-md-4 row-space">
             <label class="label-name parellel-field display-flex">State<span class="astrix-size">*</span></label>
 
-            <mat-form-field class="apply-select-mat-dd parellel-field" appearance="outline">
-              <mat-select matNativeControl [ngModel]="statesList[stateIndex]?.value"  formControlName="state" (selectionChange)="checkValidationForm('state', $event.value)" [ngClass]="validationCheck['state'] ? 'errorClass' : ''"
-                           panelClass="apply-select-dd-panel">
+            <mat-form-field class="apply-select-mat-dd parellel-field" appearance="outline" [ngClass]="validationCheck['state'] ? 'errorClass' : ''">
+              <mat-select matNativeControl [ngModel]="statesList[stateIndex]?.value"  formControlName="state"
+                          (selectionChange)="checkValidationForm('state', $event.value)" panelClass="apply-select-dd-panel">
                 <mat-option [value]="state.value" *ngFor="let state of statesList">{{state.label}}</mat-option>
               </mat-select>
             </mat-form-field>

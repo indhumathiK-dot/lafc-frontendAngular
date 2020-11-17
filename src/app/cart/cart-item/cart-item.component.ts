@@ -42,7 +42,7 @@ export class CartItemComponent {
   }
 
   getProductDetails(productId) {
-    this.cartSerivce.getCartBundleProducts().pipe(take(1)).subscribe(e => {
+    this.cartSerivce.getBuynowCartBundleProducts(productId).pipe(take(1)).subscribe(e => {
       if ((e !== null) && (e !== undefined)) {
         var productItems = [];
         for (let index = 0; index < e.products.length; index++) {

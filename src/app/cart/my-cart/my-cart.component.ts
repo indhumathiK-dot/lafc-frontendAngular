@@ -45,16 +45,7 @@ export class itemsComponent implements OnInit {
         } else {
           this.cartDetails = e;
           var productsList = [];
-          for(let i=0; i< e.products.length; i++) {
-            if(e.products[i].thumb.includes('no_image')) {
-              e.products[i]['imageCheck'] = false;
-              productsList.push(e.products[i]);
-            } else {
-              e.products[i]['imageCheck'] = true;
-              productsList.push(e.products[i]);
-            }
-          }
-          this.dataSource.data = e['length'] === 0 ? [] : productsList;
+          this.dataSource.data = e['length'] === 0 ? [] : e.products;
         }
 
       } else {
@@ -91,34 +82,36 @@ export class itemsComponent implements OnInit {
   }
 
   quantityUpdate(value: any, element: any, index) {
-
-    console.log(index)
-    if ([69, 187, 188, 189, 190, 48, 96, 109, 107].includes(Number(value.keyCode))) {
+    if(value.target.value === '0') {
       value.target.value = element.cartBundleQuantity;
     } else {
-
-
-      var cartData;
-      var cartExists = this.updateCartArray.some(function (el, index) {
-        if (el.key === element.key.toString()) {
-          cartData = {index: index, value: el};
-        }
-        return el.key === element.key.toString()
-      });
-      if (cartExists) {
-        this.updateCartArray.splice(cartData.index, 1);
-        this.updateCartArray.push({
-          "key": element['key'],
-          "quantity": Number(value.target.value) * Number(element.singleBundleQuantity)
-        })
+      if ([69, 187, 188, 189, 190, 109, 107, 110].includes(Number(value.keyCode))) {
+        value.target.value = 0;
+        value.target.value = element.cartBundleQuantity;
       } else {
-        var quantityData = {
-          "key": element['key'],
-          "quantity": Number(value.target.value) * Number(element.singleBundleQuantity)
+        var cartData;
+        var cartExists = this.updateCartArray.some(function (el, index) {
+          if (el.key === element.key.toString()) {
+            cartData = {index: index, value: el};
+          }
+          return el.key === element.key.toString()
+        });
+        if (cartExists) {
+          this.updateCartArray.splice(cartData.index, 1);
+          this.updateCartArray.push({
+            "key": element['key'],
+            "quantity": Number(value.target.value) * Number(element.singleBundleQuantity)
+          })
+        } else {
+          var quantityData = {
+            "key": element['key'],
+            "quantity": Number(value.target.value) * Number(element.singleBundleQuantity)
+          }
+          this.updateCartArray.push(quantityData);
         }
-        this.updateCartArray.push(quantityData);
       }
     }
+
   }
 
   errorUpdate(cart) {

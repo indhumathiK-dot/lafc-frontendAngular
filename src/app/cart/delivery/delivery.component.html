@@ -62,10 +62,13 @@
           </div>
         </div>
 
-        <label class="label-name">Business Name</label>
-          <mat-form-field appearance="outline" class="w-100 delivery mat-bottom-remove botton-padding">
-            <input matInput formControlName="company">
+        <div class="botton-padding">
+        <label class="label-name">Business Name<span class="astrix-size">*</span></label>
+          <mat-form-field appearance="outline" class="w-100 delivery mat-bottom-remove " [ngClass]="validationCheck['company'] ? 'errorClass' : ''">
+            <input matInput formControlName="company" (keyup)="checkValidationForm('company', $event.target.value)">
           </mat-form-field>
+        <span *ngIf="validationCheck['company']" class="password-check">Please enter business name </span>
+        </div>
 
         <div class="botton-padding">
         <label class="label-name display-flex">Address<span class="astrix-size">*</span></label>

@@ -9,7 +9,7 @@ import {ActivatedRoute} from "@angular/router";
   styleUrls: ['./my-orders-details.component.css'],
 })
 export class MyOrdersDetailsComponent implements OnInit {
-  displayedColumns = ['Product', 'SKU', 'Price', 'Quantity', 'Tracking Code', 'Total'];
+  displayedColumns = ['Product', 'Price', 'Quantity', 'Tracking Code', 'Total'];
   commentColumns = ['Date', 'Comment'];
   dataSource = new MatTableDataSource<any>();
   public orderDetails: any;

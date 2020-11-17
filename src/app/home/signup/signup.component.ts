@@ -60,6 +60,7 @@ export class SignupComponent implements OnInit {
     this.validationCheck = {
       firstname: false,
       lastname: false,
+      businessName: false,
       phoneNumber: false,
       email: false,
       password: false,
@@ -172,13 +173,13 @@ export class SignupComponent implements OnInit {
       if (data.success === 1) {
         this.userDetails = data.data;
         this.getAddressListById(this.userDetails.address_id);
-        var phoneArray = this.userDetails.telephone.split(' ');
-        this.countryCode = phoneArray.length === 1 ? '+1' : phoneArray[0];
+        var phoneArray = this.userDetails.telephone ? this.userDetails.telephone.split(' ') : [];
+        this.countryCode = phoneArray.length ? phoneArray.length === 1 ? '+1' : phoneArray[0] : '+1';
         this.registerForm.patchValue({
           "firstname": this.userDetails.firstname,
           "lastname": this.userDetails.lastname,
           "email": this.userDetails.email,
-          "phoneNumber": phoneArray.length === 1 ? phoneArray[0] : phoneArray[1],
+          "phoneNumber": phoneArray.length ? phoneArray.length === 1 ? phoneArray[0] : phoneArray[1] : '',
         })
       }
     });
@@ -190,7 +191,8 @@ export class SignupComponent implements OnInit {
       var customerDetails = res['data']['data'][0];
       this.originalFilename = customerDetails.cc_auth_path;
       var checkFileName = customerDetails.cc_auth_path.split('/');
-      this.fileName = checkFileName[2];
+      var removeTime = checkFileName.length ? checkFileName[2].split('-') : [];
+      this.fileName = removeTime[2];
       this.registerForm.patchValue({
         "uploadCC": checkFileName[2],
         "websiteUrl": customerDetails.social_url,
@@ -202,13 +204,14 @@ export class SignupComponent implements OnInit {
 
   createAccount() {
       if (this.loginCheck) {
-        if(!this.registerForm.value.firstname || !this.registerForm.value.lastname || !(this.registerForm.value.phoneNumber && (this.digits_count(this.registerForm.value.phoneNumber) > 7 && this.digits_count(this.registerForm.value.phoneNumber) < 32)) ||
+        if(!this.registerForm.value.firstname || !this.registerForm.value.lastname || !this.registerForm.value.businessName || !(this.registerForm.value.phoneNumber && (this.digits_count(this.registerForm.value.phoneNumber) > 7 && this.digits_count(this.registerForm.value.phoneNumber) < 32)) ||
           !this.registerForm.value.email || this.emailCheck || !this.registerForm.value.sellersPermit || !(this.registerForm.value.address && (this.registerForm.value.address.length > 2 && this.registerForm.value.address.length < 128)) ||
           !(this.registerForm.value.city && (this.registerForm.value.city.length > 2 && this.registerForm.value.city.length < 128)) ||
           !this.registerForm.value.country || !this.registerForm.value.state || !(this.registerForm.value.zip && (this.registerForm.value.zip.length > 4 && this.registerForm.value.zip.length < 10))) {
           this.validationCheck = {
             firstname: !this.registerForm.value.firstname,
             lastname: !this.registerForm.value.lastname,
+            businessName: !this.registerForm.value.businessName,
             phoneNumber: !(this.registerForm.value.phoneNumber && (this.digits_count(this.registerForm.value.phoneNumber) > 7 && this.digits_count(this.registerForm.value.phoneNumber) < 32)),
             email: !this.registerForm.value.email || this.emailCheck,
             address: !(this.registerForm.value.address && (this.registerForm.value.address.length > 2 && this.registerForm.value.address.length < 128)),
@@ -257,13 +260,14 @@ export class SignupComponent implements OnInit {
           );
         }
       } else {
-        if(!this.registerForm.value.firstname || !this.registerForm.value.lastname || !(this.registerForm.value.phoneNumber && (this.digits_count(this.registerForm.value.phoneNumber) > 7 && this.digits_count(this.registerForm.value.phoneNumber) < 32)) ||
+        if(!this.registerForm.value.firstname || !this.registerForm.value.lastname || !this.registerForm.value.businessName || !(this.registerForm.value.phoneNumber && (this.digits_count(this.registerForm.value.phoneNumber) > 7 && this.digits_count(this.registerForm.value.phoneNumber) < 32)) ||
           !this.registerForm.value.email || this.emailCheck ||  !(this.registerForm.value.password && (this.registerForm.value.password.length > 5 && this.registerForm.value.password.length < 20)) || !((this.registerForm.value.confirmPassword && this.registerForm.value.password === this.registerForm.value.confirmPassword) && (this.registerForm.value.confirmPassword.length > 5 && this.registerForm.value.confirmPassword.length < 20)) ||
           !this.registerForm.value.address || !this.registerForm.value.city || !this.registerForm.value.country ||
           !this.registerForm.value.state || !(this.registerForm.value.zip && (this.registerForm.value.zip.length > 4 && this.registerForm.value.zip.length < 10)) || !this.registerForm.value.sellersPermit || !this.registerForm.value.agree) {
           this.validationCheck = {
             firstname: !this.registerForm.value.firstname,
             lastname: !this.registerForm.value.lastname,
+            businessName: !this.registerForm.value.businessName,
             phoneNumber: !(this.registerForm.value.phoneNumber && (this.digits_count(this.registerForm.value.phoneNumber) > 7 && this.digits_count(this.registerForm.value.phoneNumber) < 32)),
             email: !this.registerForm.value.email || this.emailCheck,
             password: !(this.registerForm.value.password && (this.registerForm.value.password.length > 5 && this.registerForm.value.password.length < 20)),
@@ -347,6 +351,7 @@ export class SignupComponent implements OnInit {
       let formData = new FormData();
       for (var i = 0; i < this.uploadedFiles.length; i++) {
         formData.append("uploads[]", this.uploadedFiles[i], this.uploadedFiles[i].name);
+        formData.append("customerId", customerId);
       }
       this.authService.invoiceUpload(formData).subscribe((res) => {
         if (res['ccAuthPath']) {
@@ -398,7 +403,7 @@ export class SignupComponent implements OnInit {
     } else if(type === 'email') {
       this.emailValidation(value);
     } else {
-      if(value) {
+      if(value.trim()) {
         this.validationCheck[type] = false;
       }
     }

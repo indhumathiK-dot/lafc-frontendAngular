@@ -26,7 +26,6 @@ export class ProductCategoryComponent implements OnInit {
   firstLoadCheck: boolean;
   public productsTotalCount: any;
   public productCategoryList = [];
-  public categoryCheck: boolean = false;
 
   constructor(private route: ActivatedRoute,
               private productsService: ProductsService,
@@ -261,6 +260,7 @@ export class ProductCategoryComponent implements OnInit {
 
   removeFilter() {
     this.selectedFilterList = [];
+    this.firstLoadCheck = false;
     if(this.categoryId) {
       this.getCategoryDetails(this.categoryId);
     } else if(this.ArrivalsName === 'New Arrival') {

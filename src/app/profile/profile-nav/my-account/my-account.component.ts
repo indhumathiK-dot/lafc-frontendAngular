@@ -30,7 +30,8 @@ export class MyAccountComponent implements OnInit {
     this.authService.getCustomerDetails(user['customer_id']).subscribe(res => {
       var customerDetails = res['data']['data'][0];
       var checkFileName = customerDetails.cc_auth_path ? customerDetails.cc_auth_path.split('/') : [];
-      this.uploadedFileName = customerDetails.cc_auth_path ? checkFileName[2] : '';
+      var removeTime = checkFileName.length ? checkFileName[2].split('-') : [];
+      this.uploadedFileName = removeTime.length ? removeTime[2] : '';
     });
   }
 
@@ -40,10 +41,12 @@ export class MyAccountComponent implements OnInit {
   }
 
   upload() {
+    let user = JSON.parse(localStorage.getItem('user'));
     if(this.uploadedFiles && this.uploadedFiles.length) {
       let formData = new FormData();
       for (var i = 0; i < this.uploadedFiles.length; i++) {
         formData.append("uploads[]", this.uploadedFiles[i], this.uploadedFiles[i].name);
+        formData.append("customerId", user['customer_id']);
       }
       this.authService.invoiceUpload(formData).subscribe((res) => {
         if (res['ccAuthPath']) {

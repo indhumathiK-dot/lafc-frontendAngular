@@ -172,7 +172,7 @@
             <i class="remove-searchbar fa fa-times" (click)="removeSearchBar()"></i> -->
         <form class="example-form">
             <mat-form-field class="example-full-width">
-                <input type="text" autofocus aria-label="Search" (keyup)="onSelectProduct()" matInput
+                <input type="text" autofocus aria-label="Search" matInput
                     (keydown.enter)="onKeydown($event)" [matAutocomplete]="auto" [formControl]="myControl">
                 <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
                     <mat-option *ngFor="let option of products" [value]="option">

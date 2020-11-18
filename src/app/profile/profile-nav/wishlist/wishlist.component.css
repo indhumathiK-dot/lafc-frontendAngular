@@ -1,6 +1,9 @@
 .wishlist-image {
   margin-top: 15px;
 }
+.product-card {
+
+}
 .image-width {
   object-fit: cover;
   width: 100%;
@@ -12,11 +15,20 @@
   border: 1px solid #F8F8F8;
   /*Box-shadow: 0px 3px 15px white;*/
   margin-right: 15px;
+  margin-bottom: 15px;
+  position: relative;
 }
 .project-name{
   font-size: 15px;
   color: #414141;
   font-weight: 600;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  word-break: break-word;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  text-decoration: none;
 }
 .apply-wholesale {
   font-size: 15px;
@@ -24,6 +36,7 @@
 }
 .checkout-row {
   /*margin-bottom: 5em;*/
+  margin-top: 50px;
 }
 .checkout {
   display: inline-block;
@@ -45,6 +58,8 @@
   border: 1px solid #dae6ff;
   background: #dae6ff;
   color: #414141;
+  position: absolute;
+  bottom: 0;
 }
 .cart-button:hover {
   border: 1px solid black;

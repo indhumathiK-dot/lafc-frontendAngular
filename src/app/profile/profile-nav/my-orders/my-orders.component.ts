@@ -17,7 +17,7 @@ export class MyOrdersComponent implements OnInit {
 
   displayedColumns = ['Order No', 'Date', 'Payment Status', 'Total'];
   dataSource = new MatTableDataSource<any>();
-  customerDetails: any;
+  customerDetails: {};
   public address = [];
   public defaultAddress: {};
 

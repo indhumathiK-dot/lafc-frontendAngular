@@ -9,7 +9,7 @@
       </g>
     </svg>
     </span>
-    <span class="transformText">{{customerDetails?.firstname}} {{customerDetails?.lastname}}</span>
+    <span class="transformText">{{customerDetails['firstname']}} {{customerDetails['lastname']}}</span>
   </div>
   <div class="botton-padding">
      <span class="icon-padding">
@@ -20,7 +20,7 @@
       </g>
     </svg>
      </span>
-    {{customerDetails?.email}}
+    {{customerDetails['email']}}
   </div>
 </div>
 
@@ -30,14 +30,14 @@
     <div fxFlex="65" fxFlex.lt-sm="100">
       <div>
         <div class="link-color">&#42; Default Address</div>
-        <div class="transformText">{{defaultAddress?.firstname}} {{defaultAddress?.lastname}}</div>
-        <div>{{defaultAddress?.company}}</div>
-        <div>{{defaultAddress?.address_1}}</div>
-        <div>{{defaultAddress?.address_2}}</div>
-        <div>{{defaultAddress?.city}} {{defaultAddress?.post_code}}</div>
-        <div>{{defaultAddress?.zone}}</div>
-        <div>{{defaultAddress?.country}}</div>
-        <div>{{defaultAddress?.phone ? defaultAddress?.phone : ''}}</div>
+        <div class="transformText">{{defaultAddress['firstname']}} {{defaultAddress['lastname']}}</div>
+        <div>{{defaultAddress['company']}}</div>
+        <div>{{defaultAddress['address_1']}}</div>
+        <div>{{defaultAddress['address_2']}}</div>
+        <div>{{defaultAddress['city']}} {{defaultAddress['post_code']}}</div>
+        <div>{{defaultAddress['zone']}}</div>
+        <div>{{defaultAddress['country']}}</div>
+        <div>{{defaultAddress['phone'] ? defaultAddress['phone'] : ''}}</div>
       </div>
     </div>
     <div fxFlex="48" fxFlex.lt-sm="100">

@@ -2,19 +2,19 @@
                 class="fa fa-angle-down"></i></h6>
 <accordion closeOthers="false">
         <accordion-group *ngFor="let cat2 of catfilter?.primaryView?.children " [isOpen]="cat2.isOpen"
-                (click)="navigate($event,cat2.cat.category_id)">
+                >
                 <span accordion-heading [ngStyle]="{color:cat2.isSelected?'#ED2F2F':'black'}"
                         [ngClass]="{'active':cat2.isSelected}"> {{cat2.cat.name | titlecase }} <i
                                 class="fa fa-angle-down"></i> </span>
                 <accordion closeOthers="false">
                         <accordion-group *ngFor="let cat3 of cat2.children " [isOpen]="cat3.isOpen"
-                                (click)="navigate($event,cat2.cat.category_id,cat3.cat.category_id)">
+                               >
                                 <span accordion-heading [ngStyle]="{color:cat3.isSelected?'#ED2F2F':'black'}"
                                         [ngClass]="{'active':cat3.isSelected}"> {{cat3.cat.name | titlecase }} <i
                                                 class="fa fa-angle-down" *ngIf="cat3.children.cat"></i> </span>
                                 <accordion closeOthers="false">
                                         <accordion-group *ngFor="let cat4 of cat3?.children " [isOpen]="cat4.isOpen"
-                                                (click)="navigate($event,cat2.cat.category_id,cat3.cat.category_id,cat4.cat.category_id)">
+                                                >
                                                 <span accordion-heading
                                                         [ngStyle]="{color:cat4.isSelected?'#ED2F2F':'black'}"
                                                         [ngClass]="{'active':cat4.isSelected}">
@@ -28,7 +28,7 @@
 <h6 class="static">Also in {{catfilter?.secondaryView?.cat?.name}}</h6>
 <accordion style="margin-top: 8px;">
         <accordion-group *ngFor="let cat2 of catfilter?.secondaryView?.children "
-                (click)="navigate($event,cat2.cat.category_id)">
+        >
                 <span accordion-heading class="cat-group" [ngStyle]="{color:cat2.isSelected?'#ED2F2F':'black'}"
                         [ngClass]="{'active':cat2.isSelected}"> {{cat2.cat.name | titlecase }} <i
                                 class="fa fa-angle-right"></i> </span>

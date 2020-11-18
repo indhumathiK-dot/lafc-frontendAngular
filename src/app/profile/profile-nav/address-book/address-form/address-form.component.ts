@@ -5,7 +5,6 @@ import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { take } from 'rxjs/operators';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {NgOption} from "@ng-select/ng-select";
 import {element} from "protractor";
 
 @Component({
@@ -18,9 +17,9 @@ export class AddressFormComponent implements OnInit {
 
   addressForm: FormGroup;
   address: any[] = [];
-  countriesList: NgOption = [];
+  countriesList = [];
   countryArr = [];
-  statesList: NgOption = [];
+  statesList = [];
   statesArr = [];
   public errorMessage = false;
 

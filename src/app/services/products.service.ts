@@ -181,9 +181,11 @@ export class ProductsService {
     });
   }
   searchBundleProductWithoutFilter(searchWord): Observable<any> {
+    var imageDimesions = JSON.parse(localStorage.getItem('image-dimension'));
     return this.http.get(this.baseUrl + `/bundleProducts/search/${searchWord}`, {
       headers: new HttpHeaders({
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'x-oc-image-dimension' : imageDimesions.theme_default_image_product_width + 'x' + imageDimesions.theme_default_image_product_height,
       })
     });
   }

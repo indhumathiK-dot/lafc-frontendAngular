@@ -7,6 +7,7 @@ import {ProductsService} from "../../services/products.service";
 import {CartService} from "../../services/cart.service";
 import {BestSellerHttpService} from "../../core/services/http/bestsellerhttpservice";
 import {WishListService} from "../../core/services/wishlist.service";
+import {environment} from "../../../environments/environment";
 
 @Component({
   selector: 'app-product-quick-view',
@@ -31,6 +32,7 @@ public slideIndex = 1;
   public fbName: any;
   private type: any;
   public productTotal: any;
+  public env: string;
 
   constructor(private bsModalRef: BsModalRef,
               private router: Router,
@@ -38,6 +40,7 @@ public slideIndex = 1;
               private productsService: ProductsService,
               private cartService: CartService,
               private wishlistService: WishListService) {
+    this.env = environment.frontend_url;
     this.loginCheck = localStorage.getItem('loggedIn') === 'true';
     this.productId = sessionStorage.getItem('productId');
     // console.log(this.bsModalRef)

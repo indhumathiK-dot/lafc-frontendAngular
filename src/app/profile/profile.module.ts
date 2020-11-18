@@ -1,22 +1,17 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from '@angular/common';
-import { OverviewComponent } from "./profile-nav/overview/overview.component";
 import { ProfileRoutingModule } from "./profile-routing.module";
 import { MyAccountComponent } from './profile-nav/my-account/my-account.component';
 import { WishlistComponent } from './profile-nav/wishlist/wishlist.component';
 import { AddressBookComponent } from './profile-nav/address-book/address-book.component';
-import { WalletComponent } from './profile-nav/wallet/wallet.component';
 import { MyOrdersComponent } from './profile-nav/my-orders/my-orders.component';
 import { MyOrdersDetailsComponent } from './profile-nav/my-orders/my-orders-details/my-orders-details.component';
 import { ProfileNavComponent } from './profile-nav/profile-nav.component';
 import { CoreModule } from '../core/core.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MglTimelineModule } from 'angular-mgl-timeline';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { ChangePasswordComponent } from './profile-nav/change-password/change-password.component';
 import { MatInputModule } from '@angular/material/input';
 import { LoginGuard } from '../cart/login.guard';
-import { PopoverModule } from 'ngx-smart-popover';
 import { AvatarModule } from 'ngx-avatar';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
@@ -31,10 +26,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import {MatTabsModule} from "@angular/material/tabs";
 import {FlexLayoutModule} from "@angular/flex-layout";
 import {MatTableModule} from "@angular/material/table";
-import { AboutPageComponent } from './about-page/about-page.component';
 import {AddressFormComponent} from "./profile-nav/address-book/address-form/address-form.component";
 import {MatFormFieldModule} from "@angular/material/form-field";
-import {NgSelectModule} from "@ng-select/ng-select";
 import {MatRadioModule} from "@angular/material/radio";
 import {MatTooltipModule} from "@angular/material/tooltip";
 import {Ng2TelInputModule} from "ng2-tel-input";
@@ -44,7 +37,6 @@ import {Ng2TelInputModule} from "ng2-tel-input";
         BrowserAnimationsModule,
         FormsModule,
         ReactiveFormsModule,
-        MglTimelineModule,
         AvatarModule,
         ModalModule.forRoot(),
         AccordionModule.forRoot(),
@@ -55,7 +47,6 @@ import {Ng2TelInputModule} from "ng2-tel-input";
         MatIconModule,
         MatSelectModule,
         MatToolbarModule,
-        PopoverModule,
         MatCheckboxModule,
         MatInputModule,
         CoreModule,
@@ -64,21 +55,17 @@ import {Ng2TelInputModule} from "ng2-tel-input";
         FlexLayoutModule,
         MatTableModule,
         MatFormFieldModule,
-        NgSelectModule,
         MatRadioModule,
         MatTooltipModule,
         Ng2TelInputModule
     ],
-  declarations: [OverviewComponent,
+  declarations: [
     MyAccountComponent,
     ProfileNavComponent,
     WishlistComponent,
     AddressBookComponent,
-    WalletComponent,
     MyOrdersComponent,
     MyOrdersDetailsComponent,
-    ChangePasswordComponent,
-    AboutPageComponent,
     AddressFormComponent
 
   ],

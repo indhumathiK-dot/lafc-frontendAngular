@@ -6,11 +6,9 @@ import { CoreModule } from '../core/core.module';
 import { itemsComponent } from './my-cart/my-cart.component';
 import { DeliveryComponent } from './delivery/delivery.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import { OrderFailureComponent } from './order-failure/order-failure.component';
 import { OrderSuccessComponent } from './order-success/order-success.component';
 import { MomentModule } from 'angular2-moment';
 import {MatFormFieldModule} from '@angular/material/form-field';
-import { CartFooterComponent } from './cart-footer/cart-footer.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
@@ -23,9 +21,6 @@ import { AlertModule } from 'ngx-bootstrap/alert';
 import { AccordionModule } from 'ngx-bootstrap/accordion';
 import { CheckoutComponent } from './checkout/checkout.component';
 import {MatTableModule} from "@angular/material/table";
-import {NgSelectModule} from "@ng-select/ng-select";
-import { NgSelectConfig } from '@ng-select/ng-select';
-import { ɵs } from '@ng-select/ng-select';
 import {FlexModule} from "@angular/flex-layout";
 import {Ng2TelInputModule} from "ng2-tel-input";
 @NgModule({
@@ -48,7 +43,6 @@ import {Ng2TelInputModule} from "ng2-tel-input";
         CartRoutingModule,
         MatTableModule,
         ReactiveFormsModule,
-        NgSelectModule,
         FlexModule,
         Ng2TelInputModule,
     ],
@@ -57,8 +51,6 @@ import {Ng2TelInputModule} from "ng2-tel-input";
         itemsComponent,
         DeliveryComponent,
         OrderSuccessComponent,
-        OrderFailureComponent,
-        CartFooterComponent,
         CheckoutComponent
     ],
     exports: [
@@ -66,8 +58,6 @@ import {Ng2TelInputModule} from "ng2-tel-input";
         CartItemComponent,
     ],
   providers: [
-    NgSelectConfig,
-    ɵs
   ]
 
 })

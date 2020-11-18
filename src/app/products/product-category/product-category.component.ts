@@ -3,7 +3,6 @@ import {ActivatedRoute} from "@angular/router";
 import {take} from "rxjs/operators";
 import {ProductsService} from "../../services/products.service";
 import {CategoryService} from "../../services/category.service";
-import {NgOption} from "@ng-select/ng-select";
 import {BestSellerHttpService} from "../../core/services/http/bestsellerhttpservice";
 
 @Component({
@@ -20,7 +19,7 @@ export class ProductCategoryComponent implements OnInit {
   public selectedFilterList = [];
   public manufacureId: any;
   public manufactureName: any;
-  public sortOrder: NgOption = [];
+  public sortOrder = [];
   private brands: any;
   public ArrivalsName = '';
   firstLoadCheck: boolean;
@@ -38,6 +37,7 @@ export class ProductCategoryComponent implements OnInit {
       this.manufacureId = params['manufacture_id'];
       this.manufactureName = params['manufacture_name'];
       this.firstLoadCheck = false;
+      this.selectedFilterList = [];
       if(this.categoryId) {
         this.getCategoryDetails(this.categoryId);
       } else if(this.ArrivalsName === 'New Arrival') {
@@ -99,7 +99,9 @@ export class ProductCategoryComponent implements OnInit {
           if(products.data[index].tag) {
             var tagArray = products.data[index].tag.split(', ');
             for(let tag = 0; tag < tagArray.length; tag++) {
-              this.productsTags.push(tagArray[tag])
+              if(!this.productsTags.includes(tagArray[tag].toLowerCase())) {
+                this.productsTags.push(tagArray[tag].toLowerCase())
+              }
             }
           }
         }
@@ -124,7 +126,9 @@ export class ProductCategoryComponent implements OnInit {
         if(res[index].tag) {
           var tagArray = res[index].tag.split(', ');
           for(let tag = 0; tag < tagArray.length; tag++) {
-            this.productsTags.push(tagArray[tag])
+            if(!this.productsTags.includes(tagArray[tag].toLowerCase())) {
+              this.productsTags.push(tagArray[tag].toLowerCase())
+            }
           }
           this.sorting(7);
         }
@@ -151,7 +155,7 @@ export class ProductCategoryComponent implements OnInit {
           if(index + 1 === data.sub_categories.length) {
             setTimeout(() => {
               this.splitProductsByCategory(48, 1);
-            }, 1500);
+            }, 2500);
           }
         }
       } else {
@@ -168,6 +172,7 @@ export class ProductCategoryComponent implements OnInit {
   splitProductsByCategory(limit, start) {
 
     console.log(this.productCategoryList)
+    this.productsTags = [];
     this.productsTotalCount = this.productCategoryList.length;
     this.firstLoadCheck = true;
     var totalCheck = 0;
@@ -178,7 +183,9 @@ export class ProductCategoryComponent implements OnInit {
         if(this.productCategoryList[index].tag) {
           var tagArray = this.productCategoryList[index].tag.split(', ');
           for(let tag = 0; tag < tagArray.length; tag++) {
-            this.productsTags.push(tagArray[tag])
+            if(!this.productsTags.includes(tagArray[tag].toLowerCase())) {
+              this.productsTags.push(tagArray[tag].toLowerCase())
+            }
           }
           this.sorting(7);
         }
@@ -216,6 +223,7 @@ export class ProductCategoryComponent implements OnInit {
   }
 
   filterSubmit(filter) {
+    this.firstLoadCheck = false;
     var tagCheck = this.selectedFilterList.some(tag => tag === filter);
     if (!tagCheck) {
       this.selectedFilterList.push(filter);
@@ -231,19 +239,75 @@ export class ProductCategoryComponent implements OnInit {
   change(valueIndex) {
     this.productsService.searchBundleProductWithoutFilter(this.selectedFilterList[valueIndex]).pipe(take(1))
       .subscribe((products) => {
-        if(valueIndex === 0) {
-          this.products = products.data;
-        } else {
-          var uniqueValue = [];
-          for(let i = 0; i < this.products.length; i++){
-            for(let j = 0; j < products.data.length; j++){// inner loop
-              if(this.products[i].id == products.data[j].id){
-                uniqueValue.push(this.products[i])
+
+        let categoryArray = [];
+        this.catService.getCategoriesById(this.categoryId).subscribe(data => {
+          if (data.sub_categories.length) {
+            for(let index = 0; index< data.sub_categories.length; index++) {
+              categoryArray.push(data.sub_categories[index].category_id)
+            }
+            categoryArray.push(this.categoryId);
+
+            if(valueIndex === 0) {
+              this.firstLoadCheck = true;
+              // this.products = products.data;
+              for(let j = 0; j < products.data.length; j++){
+                if(categoryArray.includes((products.data[j].category[0].id).toString())){
+                  this.products.push(products.data[j]);
+                }
               }
+            } else {
+              var uniqueValue = [];
+              for(let i = 0; i < this.products.length; i++){
+                for(let j = 0; j < products.data.length; j++){// inner loop
+                  if(categoryArray.includes((products.data[j].category[0].id).toString()) && this.products[i].id == products.data[j].id){
+                    uniqueValue.push(this.products[i]);
+                  }
+                }
+              }
+              this.products = uniqueValue;
+            }
+
+          } else {
+            categoryArray.push(this.categoryId);
+
+            if(valueIndex === 0) {
+              this.firstLoadCheck = true;
+              // this.products = products.data;
+              for(let j = 0; j < products.data.length; j++){
+                if(categoryArray.includes((products.data[j].category[0].id).toString())){
+                  this.products.push(products.data[j]);
+                }
+              }
+            } else {
+              var uniqueValue = [];
+              for(let i = 0; i < this.products.length; i++){
+                for(let j = 0; j < products.data.length; j++){// inner loop
+                  if(categoryArray.includes((products.data[j].category[0].id).toString()) && this.products[i].id == products.data[j].id){
+                    uniqueValue.push(this.products[i]);
+                  }
+                }
+              }
+              this.products = uniqueValue;
             }
           }
-          this.products = uniqueValue;
-        }
+        });
+
+
+        // if(valueIndex === 0) {
+        //   this.firstLoadCheck = true;
+        //   this.products = products.data;
+        // } else {
+        //   var uniqueValue = [];
+        //   for(let i = 0; i < this.products.length; i++){
+        //     for(let j = 0; j < products.data.length; j++){// inner loop
+        //       if(this.products[i].id == products.data[j].id){
+        //         uniqueValue.push(this.products[i])
+        //       }
+        //     }
+        //   }
+        //   this.products = uniqueValue;
+        // }
       });
   }
   removeIndividualFilter(tag) {

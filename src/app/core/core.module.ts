@@ -2,12 +2,9 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {Router, RouterModule, Routes} from '@angular/router';
 import { HttpClientModule } from '@angular/common/http'
-import { TreeviewModule } from 'ngx-treeview';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { SignUpComponent } from './sign-up/sign-up.component';
 import { MatInputModule } from '@angular/material/input';
 import { NavComponent } from './nav/nav.component';
-import { SubCategoryTreeComponent } from './sub-category-tree/sub-category-tree.component';
 import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
@@ -33,7 +30,6 @@ const routes: Routes = [
         HttpClientModule,
         FormsModule,
         ReactiveFormsModule,
-        TreeviewModule.forRoot(),
         ModalModule.forRoot(),
         TooltipModule.forRoot(),
         AlertModule.forRoot(),
@@ -52,9 +48,7 @@ const routes: Routes = [
     declarations: [
         HeaderComponent,
         NavComponent,
-        SubCategoryTreeComponent,
         FooterComponent,
-        SignUpComponent,
         ErrorComponentComponent,
         SidebarComponent,
         MenubarComponent
@@ -62,7 +56,6 @@ const routes: Routes = [
   exports: [
     HeaderComponent,
     NavComponent,
-    SubCategoryTreeComponent,
     FooterComponent,
     SidebarComponent,
   ],

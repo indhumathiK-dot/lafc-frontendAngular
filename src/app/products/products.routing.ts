@@ -1,24 +1,9 @@
 import { NgModule, Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { ProductOverviewComponent } from './product-overview/product-overview.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
-import { OtherProductsComponent } from './other-products/other-products.component';
-import { BrandProductsComponent } from './brand-products/brand-products.component';
 import {ProductCategoryComponent} from "./product-category/product-category.component";
 
 const routes = [
-    {
-        path: 'products',
-        component: ProductOverviewComponent
-    },
-    {
-        path: 'deals/:deal_id/:title',
-        component: OtherProductsComponent
-    },
-    {
-        path: 'brands/:manufacturer_id/:name',
-        component: BrandProductsComponent
-    },
     {
         path: 'products/:name/:product_id',
         component: ProductDetailsComponent

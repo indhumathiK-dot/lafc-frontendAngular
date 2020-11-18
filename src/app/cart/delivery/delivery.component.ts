@@ -7,7 +7,6 @@ import {EventsService} from "../../core/services/events.service";
 import {take} from "rxjs/operators";
 import {BestSellerHttpService} from "../../core/services/http/bestsellerhttpservice";
 import {ShippingAddressService} from "../../services/shipping-address.service";
-import {NgOption} from "@ng-select/ng-select";
 import {CountryService} from "../../services/country.service";
 import {CreateOrderService} from "../../services/create-order.service";
 
@@ -23,11 +22,11 @@ export class DeliveryComponent implements OnInit {
   public addressList: any;
   public selectDropdown = [];
   project = [];
-  countriesList: NgOption = [];
+  countriesList = [];
   countryArr = [];
-  statesList: NgOption = [];
+  statesList = [];
   statesArr = [];
-  fullAddressList: NgOption = [];
+  fullAddressList = [];
   addressArr = [];
   newAddress: boolean = false;
   validationCheck = {};

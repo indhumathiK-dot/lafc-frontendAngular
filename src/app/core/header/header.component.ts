@@ -1,7 +1,6 @@
 import { Component, OnInit, NgZone } from '@angular/core';
 import { AppAccessService } from '../services/app-access.service';
 import { BsModalService } from 'ngx-bootstrap';
-import { SignUpComponent } from '../sign-up/sign-up.component';
 import { AuthService } from 'angularx-social-login';
 import { AuthenticationService } from '../services/authentication.service';
 import { StartupService } from '../services/startup.service';

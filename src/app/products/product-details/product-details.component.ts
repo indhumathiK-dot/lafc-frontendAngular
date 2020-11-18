@@ -7,6 +7,7 @@ import {WishListService} from "../../core/services/wishlist.service";
 import {BsModalService} from "ngx-bootstrap";
 import {ImageViewComponent} from "../image-view/image-view.component";
 import Swiper from 'swiper';
+import {environment} from "../../../environments/environment";
 declare var $:any;
 
 @Component({
@@ -37,6 +38,7 @@ export class ProductDetailsComponent implements OnInit {
   public imagesList = [];
   carouselOptions: any = {items: 3, dots: true, navigation: false};
   public productTotal: any;
+  public env: string;
 
   constructor(private route: ActivatedRoute,
               private productsService: ProductsService,
@@ -45,6 +47,7 @@ export class ProductDetailsComponent implements OnInit {
               private wishListService: WishListService,
               public modalService: BsModalService,
               public elementRef: ElementRef) {
+    this.env = environment.frontend_url;
     window.scrollTo(0, 0);
     this.loginCheck = localStorage.getItem('loggedIn') === 'true';
     this.route.params.subscribe(params => {

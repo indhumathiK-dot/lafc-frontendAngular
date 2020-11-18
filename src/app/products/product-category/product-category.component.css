@@ -15,6 +15,7 @@
 
 .tag-label {
   margin: 10px;
+  text-transform: capitalize;
 }
 
 .filter-label {

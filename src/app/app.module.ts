@@ -11,7 +11,6 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
 import { AppComponent } from "./app.component";
 import { MainPageRoutes } from "../app/routes";
-import { PpsServicesComponent } from "./utilities/pps-services/pps-services.component";
 import { PageNotFoundComponent } from "./page-not-found/page-not-found.component";
 import { HttpInterceptorService } from "./core/services/http.intercptor.service";
 import { startupFactory } from "./core/services/startup.factory";
@@ -63,7 +62,6 @@ import {MatButtonModule} from "@angular/material/button";
   declarations: [
     AppComponent,
     // HomeComponent,
-    PpsServicesComponent,
     PageNotFoundComponent,
     PasswordResetComponent,
     CartComponent,

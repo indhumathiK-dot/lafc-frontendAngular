@@ -17,9 +17,7 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 import { AppAccessService } from '../services/app-access.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { GoogleLoginProvider, AuthService, SocialUser } from 'angularx-social-login';
-import { SignUpComponent } from '../sign-up/sign-up.component';
 import { EventsService } from '../services/events.service';
-import { ProductsOverviewService } from 'src/app/products/product-overview/products.overview-service';
 import { FormControl } from '@angular/forms';
 import { debounceTime, distinctUntilChanged, map, filter, switchMap, take } from 'rxjs/operators';
 declare var $: any;
@@ -74,7 +72,6 @@ export class NavComponent implements OnInit {
     public cartSerivce: CartService,
     private modalService: BsModalService,
     private ngZone: NgZone,
-    public po: ProductsOverviewService,
     public appAccessService: AppAccessService
   ) { }
   categoryImage: string;

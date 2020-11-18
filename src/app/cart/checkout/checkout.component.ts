@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import {CheckoutService} from "../../services/checkout.service";
-import {NgOption} from "@ng-select/ng-select";
 import {CreateOrderService} from "../../services/create-order.service";
 import {take} from "rxjs/operators";
 import {PaymentMethodsService} from "../../services/payment-methods.service";
@@ -20,7 +19,7 @@ export class CheckoutComponent implements OnInit {
 
   public shippingAddress = '';
   public customerDetails: any;
-  shippingMethods: NgOption = [];
+  shippingMethods = [];
   public notesValidation: boolean = false;
   private shippingValue = 'UPS Ground';
   public validateNote = false;
